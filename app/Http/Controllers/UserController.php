@@ -42,6 +42,10 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         //
+        $user = new User($request->all());
+        $user->save();
+        //
+        return redirect()->route('users.index')->with("success",["新增成功"]);
     }
 
     /**
@@ -68,7 +72,12 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        $user->fill($request->all());
+        $user->fill($request->except("password"));
+        //
+        if($request->get("password")){
+            $user->password = $request->get("password");
+        }
+        //
         $user->save();
         return redirect()->route('users.edit', ["user" => $user])->with("success",["儲存成功"]);
     }

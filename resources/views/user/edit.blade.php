@@ -20,6 +20,10 @@
                                 <input type="text" class="form-control" name="name" value="{{$item->name}}">
                             </div>
                             <div class="mb-3">
+                                <label class="form-label">密碼</label>
+                                <input type="text" class="form-control" name="password" placeholder="空白代表不修改">
+                            </div>
+                            <div class="mb-3">
                                 <label class="form-label">Email</label>
                                 <input type="email" class="form-control" name="email" value="{{$item->email}}">
                             </div>

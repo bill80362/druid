@@ -14,10 +14,13 @@
                     <div class="p-2 ">
                         <form method="post" action="{{route('users.store',['user'=>$item->id])}}">
                             @csrf
-                            @method('put')
                             <div class="mb-3">
                                 <label class="form-label">名稱</label>
                                 <input type="text" class="form-control" name="name" value="{{$item->name}}">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">密碼</label>
+                                <input type="text" class="form-control" name="password" value="{{$item->password}}">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Email</label>
@@ -25,7 +28,7 @@
                             </div>
                             <div class="mb-3">
                                 <div class="flex justify-content-between">
-                                    <button type="submit" class="btn btn-primary">送出</button>
+                                    <button type="submit" class="btn btn-primary">新增</button>
                                 </div>
                             </div>
                         </form>
