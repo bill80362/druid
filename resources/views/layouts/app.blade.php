@@ -12,17 +12,39 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @vite(['resources/css/app.scss', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
+        @if($errors->any() || Illuminate\Support\Facades\Session::has('success'))
+            <div class="position-absolute bottom-0 w-100">
+                @foreach($errors as $error)
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <strong>{{$error}}</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endforeach
+                @foreach(Illuminate\Support\Facades\Session::get('success') as $success)
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>{{$success}}</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endforeach
+            </div>
+        @endif
+
         <div class="min-h-screen bg-gray-100">
             <livewire:layout.navigation />
 
             <!-- Page Heading -->
             @if (isset($header))
                 <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
+                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex justify-content-between">
+                        <div>
+                            {{ $header }}
+                        </div>
+                        <div>
+                            {{ $header_tool??"" }}
+                        </div>
                     </div>
                 </header>
             @endif
@@ -32,5 +54,6 @@
                 {{ $slot }}
             </main>
         </div>
+
     </body>
 </html>
