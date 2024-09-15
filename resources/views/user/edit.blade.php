@@ -6,6 +6,15 @@
             > {{ __('帳號編輯') }} : {{$item->name}}
         </h2>
     </x-slot>
+    <x-slot name="header_tool">
+        @can('帳號管理_刪除')
+            <form method="post" action="{{route('users.destroy',['user'=>$item->id])}}">
+                @csrf
+                @method('delete')
+                <button class="btn btn-danger" onclick="confirm('是否確認刪除')">刪除</button>
+            </form>
+        @endcan
+    </x-slot>
 
     <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -27,18 +36,29 @@
                                 <label class="form-label">Email</label>
                                 <input type="email" class="form-control" name="email" value="{{$item->email}}">
                             </div>
+                            <div class="py-1">
+                                <hr>
+                            </div>
+                            <div class="mb-3">
+                                @foreach($permissionGroups as $key => $permissionGroups)
+                                    <label class="form-label px-2">{{$permissionGroups->name}}</label>
+                                    @foreach($permissionGroups?->permissions??[] as $permissions)
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox{{$permissions->id}}"
+                                                   name="permissions[]"
+                                                   value="{{$permissions->id}}"
+                                                   @if($item->permissions->pluck("id")->contains($permissions->id)) checked @endif
+                                            >
+                                            <label class="form-check-label" for="inlineCheckbox{{$permissions->id}}">{{$permissions->name}}</label>
+                                        </div>
+                                    @endforeach
+                                @endforeach
+                            </div>
                             <div class="mb-3">
                                 <div class="flex justify-content-between">
                                     <div>
                                         <button type="submit" class="btn btn-primary">儲存</button>
                                         <a class="btn btn-secondary" href="{{route('users.edit',['user'=>$item])}}" >取消</a>
-                                    </div>
-                                    <div>
-                                        <form method="post" action="{{route('users.destroy',['user'=>$item->id])}}">
-                                            @csrf
-                                            @method('delete')
-                                            <button class="btn btn-danger" onclick="confirm('是否確認刪除')">刪除</button>
-                                        </form>
                                     </div>
                                 </div>
                             </div>

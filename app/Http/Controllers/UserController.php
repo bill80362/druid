@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\PermissionGroup;
 use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class UserController extends Controller
@@ -14,6 +16,9 @@ class UserController extends Controller
      */
     public function index()
     {
+        if (! Gate::allows('帳號管理_讀取')) {
+            abort(403);
+        }
         $paginator = QueryBuilder::for(User::class)
             ->allowedFilters(['name', 'email'])
             ->paginate();
@@ -28,6 +33,9 @@ class UserController extends Controller
      */
     public function create()
     {
+        if (! Gate::allows('帳號管理_新增')) {
+            abort(403);
+        }
         //
         $user = new User([]);
         //
@@ -41,6 +49,9 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
+        if (! Gate::allows('帳號管理_新增')) {
+            abort(403);
+        }
         //
         $user = new User($request->all());
         $user->save();
@@ -61,9 +72,15 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        if (! Gate::allows('帳號管理_修改')) {
+            abort(403);
+        }
+        //
+        $user->load(["permissions"]);
         //
         return view('user.edit', [
             "item" => $user,
+            "permissionGroups" => PermissionGroup::with(["permissions"])->get(),
         ]);
     }
 
@@ -72,13 +89,18 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        $user->fill($request->except("password"));
+        if (! Gate::allows('帳號管理_修改')) {
+            abort(403);
+        }
+        $user->fill($request->only(["name","email"]));
         //
         if($request->get("password")){
             $user->password = $request->get("password");
         }
-        //
         $user->save();
+        //
+        $user->permissions()->sync($request->get('permissions'));
+        //
         return redirect()->route('users.edit', ["user" => $user])->with("success",["儲存成功"]);
     }
 
@@ -87,6 +109,9 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        if (! Gate::allows('帳號管理_刪除')) {
+            abort(403);
+        }
         $user->delete();
         return redirect()->route('users.index')->with("success",["刪除成功"]);
     }

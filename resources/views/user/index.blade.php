@@ -5,7 +5,9 @@
         </h2>
     </x-slot>
     <x-slot name="header_tool">
-        <a class="btn btn-primary" href="{{route('users.create')}}">新增</a>
+        @can('帳號管理_新增')
+            <a class="btn btn-primary" href="{{route('users.create')}}">新增</a>
+        @endcan
     </x-slot>
 
     <div class="py-6">
@@ -84,8 +86,9 @@
 
                                 <td
                                     class="px-6 py-2 text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-200 text-center">
-{{--                                    <a class="btn btn-sm btn-primary" href="{{route('users.show',["user"=>$item->id])}}">詳細</a>--}}
+                                    @can('帳號管理_修改')
                                     <a class="btn btn-sm btn-primary" href="{{route('users.edit',["user"=>$item->id])}}">編輯</a>
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach
