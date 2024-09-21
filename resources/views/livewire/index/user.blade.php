@@ -11,6 +11,9 @@
             </div>
         </form>
     </div>
+    <div class="alert alert-primary w-full" wire:loading>
+        資料搜尋中...請稍等...
+    </div>
     <table class="w-full">
         <thead>
         <tr>
