@@ -19,13 +19,8 @@ class UserController extends Controller
         if (! Gate::allows('帳號管理_讀取')) {
             abort(403);
         }
-        $paginator = QueryBuilder::for(User::class)
-            ->allowedFilters(['name', 'email'])
-            ->paginate();
         //
-        return view('user.index', [
-            "paginator" => $paginator,
-        ]);
+        return view('user.index');
     }
 
     /**
