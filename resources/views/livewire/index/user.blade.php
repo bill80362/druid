@@ -17,27 +17,32 @@
             <th
                 wire:click="sortBy('name')" :sortDirection="$sortByColumn=='name'?$sortByDirection:null"
                 class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center">
-                名稱A
+                名稱
+                <x-table-sort-icon :sortByColumn="$sortByColumn" :sortByDirection="$sortByDirection" column="name" />
             </th>
             <th
                 wire:click="sortBy('email')" :sortDirection="$sortByColumn=='email'?$sortByDirection:null"
                 class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center">
                 Email
+                <x-table-sort-icon :sortByColumn="$sortByColumn" :sortByDirection="$sortByDirection" column="email"  />
             </th>
             <th
                 wire:click="sortBy('remember_token')" :sortDirection="$sortByColumn=='remember_token'?$sortByDirection:null"
                 class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center">
                 remember_token
+                <x-table-sort-icon :sortByColumn="$sortByColumn" :sortByDirection="$sortByDirection" column="remember_token"  />
             </th>
             <th
                 wire:click="sortBy('updated_at')" :sortDirection="$sortByColumn=='updated_at'?$sortByDirection:null"
                 class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center">
                 最後更新時間
+                <x-table-sort-icon :sortByColumn="$sortByColumn" :sortByDirection="$sortByDirection" column="updated_at"  />
             </th>
             <th
                 wire:click="sortBy('created_at')" :sortDirection="$sortByColumn=='created_at'?$sortByDirection:null"
                 class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center">
                 建立時間
+                <x-table-sort-icon :sortByColumn="$sortByColumn" :sortByDirection="$sortByDirection" column="created_at"  />
             </th>
             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center">
                 管理
