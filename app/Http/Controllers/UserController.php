@@ -71,11 +71,8 @@ class UserController extends Controller
             abort(403);
         }
         //
-        $user->load(["permissions"]);
-        //
         return view('user.edit', [
             "item" => $user,
-            "permissionGroups" => PermissionGroup::with(["permissions"])->get(),
         ]);
     }
 
