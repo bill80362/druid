@@ -14,7 +14,6 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.scss', 'resources/js/app.js'])
-        @livewireStyles
     </head>
     <body class="font-sans antialiased">
         @if($errors->any() || Illuminate\Support\Facades\Session::has('success'))
@@ -57,6 +56,5 @@
             </main>
         </div>
 
-        @livewireScripts
     </body>
 </html>
