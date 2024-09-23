@@ -8,12 +8,11 @@
                 <div class="col-12 col-md-3">
                     <input class="form-control form-control-sm w-100" type="text" wire:model.live="email" placeholder="Email" />
                 </div>
+
             </div>
         </form>
     </div>
-    <div class="alert alert-primary w-full" wire:loading>
-        資料搜尋中...請稍等...
-    </div>
+    <div class="alert alert-primary w-full" wire:loading>載入中...</div>
     <table class="w-full">
         <thead>
         <tr>
