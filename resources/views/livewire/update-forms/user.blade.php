@@ -2,18 +2,20 @@
     <div class="p-2 ">
         <form method="post" wire:submit="submit()">
             @csrf
-            @method('put')
             <div class="mb-3">
                 <label class="form-label">名稱</label>
                 <input type="text" class="form-control" wire:model="name">
+                <small class="text-danger">@error('name') {{ $message }} @enderror</small>
             </div>
             <div class="mb-3">
                 <label class="form-label">Email</label>
                 <input type="text" class="form-control" wire:model="email">
+                <small class="text-danger">@error('email') {{ $message }} @enderror</small>
             </div>
             <div class="mb-3">
                 <label class="form-label">密碼</label>
                 <input type="text" class="form-control" wire:model="password" placeholder="空白代表不修改">
+                <small class="text-danger">@error('password') {{ $message }} @enderror</small>
             </div>
             <div class="py-1">
                 <hr>
@@ -42,7 +44,7 @@
                                 儲存中
                             </div>
                         </button>
-                        <a class="btn btn-secondary" href="{{route('users.edit',['user'=>$item])}}">取消</a>
+                        <button type="button" class="btn btn-secondary" wire:click="$refresh">取消</button>
                     </div>
                 </div>
             </div>

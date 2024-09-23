@@ -3,7 +3,7 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             <a href="{{route('users.index')}}">{{ __('帳號管理') }}</a>
 
-            > {{ __('帳號編輯') }} : {{$item->name}}
+            > {{ __('編輯') }} : {{$item->name}}
         </h2>
     </x-slot>
     <x-slot name="header_tool">

@@ -3,50 +3,70 @@
 namespace App\Livewire\UpdateForms;
 
 use App\Models\PermissionGroup;
+use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 class User extends Component
 {
     public $userId = null;
 
-    public $name = "";
-    public $email = "";
-    public $password = "";
-    public $permissionIdArray = [];
+    #[Validate(['required','min:4','max:20'], as: '名稱')]
+    public string $name = "";
+    #[Validate(['required'], as: 'Email')]
+    public string $email = "";
+    #[Validate([], as: '密碼')]
+    public string $password = "";
+
+    public array $permissionIdArray = [];
     //
-    public $actionMessage = "";
+    public string $actionMessage = "";
 
     public function mount($id)
     {
         $this->userId = $id;
+        //
+        $item = \App\Models\User::with(["permissions"])->find($this->userId);
+        $this->name = $item?->name ?? "";
+        $this->email = $item?->email ?? "";
+        $this->permissionIdArray = $item?->permissions->pluck("id")->toArray() ?? [];
     }
 
     public function submit()
     {
-        $item = \App\Models\User::with(["permissions"])->find($this->userId);
+        //
+        if(!$this->userId){
+            $this->validate([
+                "name" => ["required"],
+                "email" => ["required"],
+                "password" => ["required"],
+            ]);
+        }else{
+            $this->validate();
+        }
+        //
+        $item = \App\Models\User::with(["permissions"])->findOrNew($this->userId);
         $item->name = $this->name;
         $item->email = $this->email;
-        if($this->password){
+        if ($this->password) {
             $item->password = $this->password;
         }
         $item->save();
         //
         $item->permissions()->sync($this->permissionIdArray);
         //
-        $this->actionMessage = "儲存成功";
+        if ($this->userId) {
+            $this->actionMessage = "更新成功";
+        } else {
+            $this->actionMessage = "新增成功";
+            return redirect()->route('users.edit', ["user" => $item]);
+        }
+//        return redirect()->route('users.edit', ["user" => $item])->with("success", ["新增成功"]);
+
     }
 
     public function render()
     {
-        //
-        $item = \App\Models\User::with(["permissions"])->find($this->userId);
-        //
-        $this->name = $item->name;
-        $this->email = $item->email;
-        $this->permissionIdArray = $item->permissions->pluck("id")->toArray();
-        //
         return view('livewire.update-forms.user', [
-            "item" => $item,
             "permissionGroups" => PermissionGroup::with(["permissions"])->get()
         ]);
     }
