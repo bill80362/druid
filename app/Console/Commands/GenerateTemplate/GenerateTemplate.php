@@ -37,21 +37,22 @@ class GenerateTemplate extends Command
         $stringLcFirst = Str::lcfirst($str);//str str
         $stringUcFirst = Str::ucfirst($str);//Str str
         $stringPlural = Str::plural($str);//複數
-
+        //replaces array
+        $replacesArray = [
+            'NAMESPACE' => 'App\Http\Controllers',
+            'CLASS' => $stringUcFirst,
+            'CLASS_CAMEL' => $stringUcFirst,
+            'VIEW_FILE' => $stringUcFirst,
+            'ROUTE_NAME' => $stringPlural,
+            "TEXT" => $text,
+        ];
 
         //controller
         LaravelStub::from(__DIR__ . '/template/app/Http/Controllers/Controller.stub')
             ->to(base_path("/app/Http/Controllers/"))
             ->name($stringUcFirst."Controller")
             ->ext('php')
-            ->replaces([
-                'NAMESPACE' => 'App\Http\Controllers',
-                'CLASS' => $stringUcFirst,
-                'CLASS_CAMEL' => $stringUcFirst,
-                'VIEW_FILE' => $stringUcFirst,
-                'ROUTE_NAME' => $stringPlural,
-                "TEXT" => $text,
-            ])
+            ->replaces($replacesArray)
             ->generate();
         //model
         Artisan::call("make:model {$stringUcFirst} --migration ");
@@ -60,17 +61,15 @@ class GenerateTemplate extends Command
             ->to(base_path("/resources/views/livewire/index/"))
             ->name($stringLcFirst)
             ->ext('blade.php')
-            ->replaces([
-                'NAMESPACE' => 'App\Http\Controllers',
-                'CLASS' => $stringUcFirst,
-                'CLASS_CAMEL' => $stringUcFirst,
-                'VIEW_FILE' => $stringUcFirst,
-                'ROUTE_NAME' => $stringPlural,
-                "TEXT" => $text,
-            ])
+            ->replaces($replacesArray)
             ->generate();
         //livewire/update-forms/[user].blade.php
-
+        LaravelStub::from(__DIR__ . '/template/resources/views/livewire/update-forms/stub.stub')
+            ->to(base_path("/resources/views/livewire/update-forms/"))
+            ->name($stringLcFirst)
+            ->ext('blade.php')
+            ->replaces($replacesArray)
+            ->generate();
         //[user]/create.blade.php
 
         //[user]/edit.blade.php
