@@ -125,6 +125,9 @@ new class extends Component {
                         </ul>
                     </li>
                 @endforeach
+                    <li class="nav-item dropdown">
+                        <a wire:click="logout" class="nav-link">{{__("Logout")}}</a>
+                    </li>
                 </ul>
             </div>
         </div>
