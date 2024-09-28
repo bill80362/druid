@@ -34,7 +34,7 @@
         @endif
 
         <div class="min-h-screen bg-gray-100">
-            <livewire:layout.navigation />
+            <livewire:layout.navigation2 />
 
             <!-- Page Heading -->
             @if (isset($header))
