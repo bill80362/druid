@@ -1,0 +1,108 @@
+<?php
+
+namespace {{ NAMESPACE }};
+
+use App\Http\Requests\Store{{ CLASS }}Request;
+use App\Http\Requests\Update{{ CLASS }}Request;
+use App\Models\PermissionGroup;
+use App\Models\{{ CLASS }};
+use Illuminate\Support\Facades\Gate;
+use Spatie\QueryBuilder\QueryBuilder;
+
+class {{ CLASS }}Controller extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        if (! Gate::allows('{{ TEXT }}管理_讀取')) {
+            abort(403);
+        }
+        //
+        return view('{{ VIEW_FILE }}.index');
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        if (! Gate::allows('{{ TEXT }}管理_新增')) {
+            abort(403);
+        }
+        //
+        ${{ CLASS_CAMEL }} = new {{ CLASS }}([]);
+        //
+        return view('{{ VIEW_FILE }}.create', [
+            "item" => ${{ CLASS_CAMEL }},
+        ]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Store{{ CLASS }}Request $request)
+    {
+        if (! Gate::allows('{{ TEXT }}管理_新增')) {
+            abort(403);
+        }
+        //
+        ${{ CLASS_CAMEL }} = new {{ CLASS }}($request->all());
+        ${{ CLASS_CAMEL }}->save();
+        //
+        return redirect()->route('{{ ROUTE_NAME }}.index')->with("success",["新增成功"]);
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show({{ CLASS }} ${{ CLASS_CAMEL }})
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit({{ CLASS }} ${{ CLASS_CAMEL }})
+    {
+        if (! Gate::allows('{{ TEXT }}管理_修改')) {
+            abort(403);
+        }
+        //
+        return view('{{ VIEW_FILE }}.edit', [
+            "item" => ${{ CLASS_CAMEL }},
+        ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Update{{ CLASS }}Request $request, {{ CLASS }} ${{ CLASS_CAMEL }})
+    {
+        if (! Gate::allows('{{ TEXT }}管理_修改')) {
+            abort(403);
+        }
+        ${{ CLASS_CAMEL }}->fill($request->only(["name","email"]));
+        //
+        if($request->get("password")){
+            ${{ CLASS_CAMEL }}->password = $request->get("password");
+        }
+        ${{ CLASS_CAMEL }}->save();
+        //
+        return redirect()->route('{{ ROUTE_NAME }}.edit', ["user" => ${{ CLASS_CAMEL }}])->with("success",["儲存成功"]);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy({{ CLASS }} ${{ CLASS_CAMEL }})
+    {
+        if (! Gate::allows('{{ TEXT }}管理_刪除')) {
+            abort(403);
+        }
+        ${{ CLASS_CAMEL }}->delete();
+        return redirect()->route('{{ ROUTE_NAME }}.index')->with("success",["刪除成功"]);
+    }
+}
