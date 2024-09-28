@@ -4,6 +4,7 @@ namespace App\Console\Commands\GenerateTemplate;
 
 use Binafy\LaravelStub\Facades\LaravelStub;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
 
 class GenerateTemplate extends Command
@@ -27,8 +28,8 @@ class GenerateTemplate extends Command
      */
     public function handle()
     {
-        $str = "blog";
-        $text = "帳號";
+        $str = "page";
+        $text = "頁面";
         $stringSnake = Str::snake($str);//str_str
         $stringLowerCamel = Str::camel($str);//strStr
         $stringUpperCamel = Str::Studly($str);//StrStr
@@ -52,8 +53,22 @@ class GenerateTemplate extends Command
                 "TEXT" => $text,
             ])
             ->generate();
+        //model
+        Artisan::call("make:model {$stringUcFirst} --migration ");
         //livewire/index/[user].blade.php
-
+        LaravelStub::from(__DIR__ . '/template/resources/views/livewire/index/stub.stub')
+            ->to(base_path("/resources/views/livewire/index/"))
+            ->name($stringLcFirst)
+            ->ext('blade.php')
+            ->replaces([
+                'NAMESPACE' => 'App\Http\Controllers',
+                'CLASS' => $stringUcFirst,
+                'CLASS_CAMEL' => $stringUcFirst,
+                'VIEW_FILE' => $stringUcFirst,
+                'ROUTE_NAME' => $stringPlural,
+                "TEXT" => $text,
+            ])
+            ->generate();
         //livewire/update-forms/[user].blade.php
 
         //[user]/create.blade.php
@@ -61,26 +76,5 @@ class GenerateTemplate extends Command
         //[user]/edit.blade.php
 
         //[user]/index.blade.php
-
-        //
-//        LaravelStub::from(__DIR__ . '/model.stub')
-//            ->to(__DIR__)
-//            ->name('AAAAABB')
-//            ->ext('php')
-//            ->replaces([
-//                'NAMESPACE' => '\App\Http\Controllers',
-//                'CLASS' => 'Abc'
-//            ])
-//            ->generate();
-
-//        LaravelStub::from(__DIR__ . '/ex.blade.php')
-//            ->to(__DIR__)
-//            ->name('AAAAABB.blade')
-//            ->ext('php')
-//            ->replaces([
-//                'NAMESPACEAAA' => 'aaa_aaa',
-//            ])
-//            ->generate();
-
     }
 }

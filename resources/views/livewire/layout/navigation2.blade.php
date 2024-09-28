@@ -19,17 +19,12 @@ new class extends Component {
         ]);
         //
         $menus->push([
-            "title" => __("商品管理"),
+            "title" => __("內容管理系統"),
             "href" => route('users.index'),
             "active" => "",
             "submenus" => [
                 [
-                    "title" => __("商品主檔管理"),
-                    "href" => route('users.index'),
-                    "active" => request()->routeIs('users.index'),
-                ],
-                [
-                    "title" => __("商品規格管理"),
+                    "title" => __("頁面管理"),
                     "href" => route('users.index'),
                     "active" => request()->routeIs('users.index'),
                 ],

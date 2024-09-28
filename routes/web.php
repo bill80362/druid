@@ -17,3 +17,4 @@ require __DIR__.'/auth.php';
 
 /**開發期間 */
 Route::resource('users', UserController::class);
+Route::resource('pages', UserController::class);
