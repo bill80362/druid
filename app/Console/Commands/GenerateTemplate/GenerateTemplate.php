@@ -2,6 +2,8 @@
 
 namespace App\Console\Commands\GenerateTemplate;
 
+use App\Models\Permission;
+use App\Models\PermissionGroup;
 use Binafy\LaravelStub\Facades\LaravelStub;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
@@ -38,26 +40,35 @@ class GenerateTemplate extends Command
         $stringLcFirst = Str::lcfirst($str);//str str
         $stringUcFirst = Str::ucfirst($str);//Str str
         $stringPlural = Str::plural($str);//複數
+        //
+        $permissionGroupMaxId = PermissionGroup::get()->max("id");
+        $permissionMaxId = Permission::get()->max("id");
         //replaces array
         $replacesArray = [
             'NAMESPACE' => 'App\Http\Controllers',
-            'CLASS' => $stringUcFirst,
-            'CLASS_CAMEL' => $stringUcFirst,
+            'CLASS' => $stringUpperCamel,
+            'CLASS_CAMEL' => $stringUpperCamel,
             'VIEW_FILE' => $stringSnake,
             'ROUTE_NAME' => $stringPlural,
             'VAR_NAME' => $stringLowerCamel,
             "TEXT" => $text,
+            //
+            "PERMISSION_GROUP_ID" => $permissionGroupMaxId+1,
+            "PERMISSION__ID_READ" => $permissionMaxId+1,
+            "PERMISSION__ID_CREATE" => $permissionMaxId+2,
+            "PERMISSION__ID_UPDATE" => $permissionMaxId+3,
+            "PERMISSION__ID_DELETE" => $permissionMaxId+4,
         ];
 
         //controller
         LaravelStub::from(__DIR__ . '/template/app/Http/Controllers/Controller.stub')
             ->to(base_path("/app/Http/Controllers/"))
-            ->name($stringUcFirst."Controller")
+            ->name($stringUpperCamel."Controller")
             ->ext('php')
             ->replaces($replacesArray)
             ->generate();
         //model
-        Artisan::call("make:model {$stringUcFirst} --migration ");
+        Artisan::call("make:model {$stringUpperCamel} --migration ");
         //livewire/index/[user].blade.php
         LaravelStub::from(__DIR__ . '/template/resources/views/livewire/index/stub.stub')
             ->to(base_path("/resources/views/livewire/index/"))
@@ -110,6 +121,11 @@ class GenerateTemplate extends Command
             ->replaces($replacesArray)
             ->generate();
         //permission migrate
-
+        LaravelStub::from(__DIR__ . '/template/database/migrations/0002_01_01_000001_insert_permissions_table.stub')
+            ->to(base_path("/database/migrations/"))
+            ->name("0002_01_01_000001_insert_permissions_table_".$stringSnake)
+            ->ext('php')
+            ->replaces($replacesArray)
+            ->generate();
     }
 }
