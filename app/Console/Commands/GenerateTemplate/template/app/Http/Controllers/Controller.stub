@@ -82,11 +82,7 @@ class {{ CLASS }}Controller extends Controller
         if (! Gate::allows('{{ TEXT }}管理_修改')) {
             abort(403);
         }
-        ${{ CLASS_CAMEL }}->fill($request->only(["name","email"]));
-        //
-        if($request->get("password")){
-            ${{ CLASS_CAMEL }}->password = $request->get("password");
-        }
+        ${{ CLASS_CAMEL }}->fill($request->only(["name","content"]));
         ${{ CLASS_CAMEL }}->save();
         //
         return redirect()->route('{{ ROUTE_NAME }}.edit', ["user" => ${{ CLASS_CAMEL }}])->with("success",["儲存成功"]);

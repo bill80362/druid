@@ -6,7 +6,7 @@
                     <input class="form-control form-control-sm w-100" type="text" wire:model.live="name" placeholder="名稱" />
                 </div>
                 <div class="col-12 col-md-3">
-                    <input class="form-control form-control-sm w-100" type="text" wire:model.live="email" placeholder="Email" />
+                    <input class="form-control form-control-sm w-100" type="text" wire:model.live="content" placeholder="內容" />
                 </div>
 
             </div>
@@ -23,16 +23,10 @@
                 <x-table-sort-icon :sortByColumn="$sortByColumn" :sortByDirection="$sortByDirection" column="name" />
             </th>
             <th
-                wire:click="sortBy('email')" :sortDirection="$sortByColumn=='email'?$sortByDirection:null"
+                wire:click="sortBy('content')" :sortDirection="$sortByColumn=='content'?$sortByDirection:null"
                 class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center">
-                Email
-                <x-table-sort-icon :sortByColumn="$sortByColumn" :sortByDirection="$sortByDirection" column="email"  />
-            </th>
-            <th
-                wire:click="sortBy('remember_token')" :sortDirection="$sortByColumn=='remember_token'?$sortByDirection:null"
-                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center">
-                remember_token
-                <x-table-sort-icon :sortByColumn="$sortByColumn" :sortByDirection="$sortByDirection" column="remember_token"  />
+                內容
+                <x-table-sort-icon :sortByColumn="$sortByColumn" :sortByDirection="$sortByDirection" column="content"  />
             </th>
             <th
                 wire:click="sortBy('updated_at')" :sortDirection="$sortByColumn=='updated_at'?$sortByDirection:null"
@@ -61,11 +55,7 @@
                     </div>
                 </td>
                 <td class="px-6 py-2 border-b border-gray-200 text-center">
-                    <div class="text-sm leading-5 text-gray-500">{{ $item->email }}</div>
-                </td>
-
-                <td class="px-6 py-2 border-b border-gray-200 text-center">
-                    <div class="text-sm leading-5 text-gray-900">{{ $item->remember_token }}</div>
+                    <div class="text-sm leading-5 text-gray-500">{{ $item->content }}</div>
                 </td>
 
                 <td
@@ -77,8 +67,8 @@
 
                 <td
                     class="px-6 py-2 text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-200 text-center">
-                    @can('帳號管理_修改')
-                        <a class="btn btn-sm btn-primary" href="{{route('users.edit',["user"=>$item->id])}}">編輯</a>
+                    @can('{{ TEXT }}管理_修改')
+                        <a class="btn btn-sm btn-primary" href="{{route('{{ ROUTE_NAME }}.edit',["{{ VAR_NAME }}"=>$item->id])}}">編輯</a>
                     @endcan
                 </td>
             </tr>

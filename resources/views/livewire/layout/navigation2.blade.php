@@ -25,8 +25,8 @@ new class extends Component {
             "submenus" => [
                 [
                     "title" => __("頁面管理"),
-                    "href" => route('users.index'),
-                    "active" => request()->routeIs('users.index'),
+                    "href" => route('pages.index'),
+                    "active" => request()->routeIs('pages.index'),
                 ],
             ],
         ]);

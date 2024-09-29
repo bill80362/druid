@@ -20,19 +20,21 @@
             <div class="py-1">
                 <hr>
             </div>
-            <div class="mb-3">
+            <div class="row mb-3">
                 @foreach($permissionGroups as $key => $permissionGroups)
-                    <label class="form-label px-2">{{$permissionGroups->name}}</label>
-                    @foreach($permissionGroups?->permissions??[] as $permissions)
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox"
-                                   wire:model="permissionIdArray"
-                                   id="inlineCheckbox{{$permissions->id}}"
-                                   value="{{$permissions->id}}"
-                            >
-                            <label class="form-check-label" for="inlineCheckbox{{$permissions->id}}">{{$permissions->name}}</label>
-                        </div>
-                    @endforeach
+                    <div class="col-12 col-lg-6">
+                        <label class="form-label px-2">{{$permissionGroups->name}}</label>
+                        @foreach($permissionGroups?->permissions??[] as $permissions)
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox"
+                                       wire:model="permissionIdArray"
+                                       id="inlineCheckbox{{$permissions->id}}"
+                                       value="{{$permissions->id}}"
+                                >
+                                <label class="form-check-label" for="inlineCheckbox{{$permissions->id}}">{{$permissions->name}}</label>
+                            </div>
+                        @endforeach
+                    </div>
                 @endforeach
             </div>
             <div class="mb-3">

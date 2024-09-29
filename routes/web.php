@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome');
@@ -16,5 +15,5 @@ Route::view('profile', 'profile')
 require __DIR__.'/auth.php';
 
 /**開發期間 */
-Route::resource('users', UserController::class);
-Route::resource('pages', UserController::class);
+Route::resource('users', \App\Http\Controllers\UserController::class);
+Route::resource('pages', \App\Http\Controllers\PageController::class);

@@ -5,6 +5,7 @@ namespace App\Console\Commands\GenerateTemplate;
 use Binafy\LaravelStub\Facades\LaravelStub;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
 class GenerateTemplate extends Command
@@ -42,8 +43,9 @@ class GenerateTemplate extends Command
             'NAMESPACE' => 'App\Http\Controllers',
             'CLASS' => $stringUcFirst,
             'CLASS_CAMEL' => $stringUcFirst,
-            'VIEW_FILE' => $stringUcFirst,
+            'VIEW_FILE' => $stringSnake,
             'ROUTE_NAME' => $stringPlural,
+            'VAR_NAME' => $stringLowerCamel,
             "TEXT" => $text,
         ];
 
@@ -59,21 +61,55 @@ class GenerateTemplate extends Command
         //livewire/index/[user].blade.php
         LaravelStub::from(__DIR__ . '/template/resources/views/livewire/index/stub.stub')
             ->to(base_path("/resources/views/livewire/index/"))
-            ->name($stringLcFirst)
+            ->name($stringSnake)
             ->ext('blade.php')
             ->replaces($replacesArray)
             ->generate();
         //livewire/update-forms/[user].blade.php
         LaravelStub::from(__DIR__ . '/template/resources/views/livewire/update-forms/stub.stub')
             ->to(base_path("/resources/views/livewire/update-forms/"))
-            ->name($stringLcFirst)
+            ->name($stringSnake)
             ->ext('blade.php')
             ->replaces($replacesArray)
             ->generate();
+        //
+        File::exists(base_path("/resources/views/{$stringSnake}/")) || File::makeDirectory(base_path("/resources/views/{$stringSnake}/"));
         //[user]/create.blade.php
-
+        LaravelStub::from(__DIR__ . '/template/resources/views/page/create.stub')
+            ->to(base_path("/resources/views/{$stringSnake}/"))
+            ->name("create")
+            ->ext('blade.php')
+            ->replaces($replacesArray)
+            ->generate();
         //[user]/edit.blade.php
-
+        LaravelStub::from(__DIR__ . '/template/resources/views/page/edit.stub')
+            ->to(base_path("/resources/views/{$stringSnake}/"))
+            ->name("edit")
+            ->ext('blade.php')
+            ->replaces($replacesArray)
+            ->generate();
         //[user]/index.blade.php
+        LaravelStub::from(__DIR__ . '/template/resources/views/page/index.stub')
+            ->to(base_path("/resources/views/{$stringSnake}/"))
+            ->name("index")
+            ->ext('blade.php')
+            ->replaces($replacesArray)
+            ->generate();
+        //app/Livewire/Index/[User].php
+        LaravelStub::from(__DIR__ . '/template/app/Livewire/Index/stub.stub')
+            ->to(base_path("/app/Livewire/Index/"))
+            ->name($stringUpperCamel)
+            ->ext('php')
+            ->replaces($replacesArray)
+            ->generate();
+        //app/Livewire/UpdateForms/[User].php
+        LaravelStub::from(__DIR__ . '/template/app/Livewire/UpdateForms/stub.stub')
+            ->to(base_path("/app/Livewire/UpdateForms/"))
+            ->name($stringUpperCamel)
+            ->ext('php')
+            ->replaces($replacesArray)
+            ->generate();
+        //permission migrate
+
     }
 }
