@@ -9,7 +9,8 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">內容</label>
-                <input type="text" class="form-control" wire:model="content">
+                <textarea class="form-control" wire:model="content"></textarea>
+{{--                <input type="text" class="form-control" wire:model="content">--}}
                 <small class="text-danger">@error('content') {{ $message }} @enderror</small>
             </div>
             <div class="mb-3">
