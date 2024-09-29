@@ -31,15 +31,25 @@ class GenerateTemplate extends Command
      */
     public function handle()
     {
+        //路由 Route::resource('pages', \App\Http\Controllers\PageController::class);
+        //選單 navigation2.blade.php
+//        [
+//            "title" => __("頁面管理"),
+//            "href" => route('pages.index'),
+//            "active" => request()->routeIs('pages.index'),
+//        ],
+        //
         $str = "page";
         $text = "頁面";
+
+        //
         $stringSnake = Str::snake($str);//str_str
         $stringLowerCamel = Str::camel($str);//strStr
         $stringUpperCamel = Str::Studly($str);//StrStr
-        $stringDash = Str::kebab($str);//str-str
-        $stringLcFirst = Str::lcfirst($str);//str str
-        $stringUcFirst = Str::ucfirst($str);//Str str
-        $stringPlural = Str::plural($str);//複數
+//        $stringDash = Str::kebab($str);//str-str
+//        $stringLcFirst = Str::lcfirst($str);//str str
+//        $stringUcFirst = Str::ucfirst($str);//Str str
+//        $stringPlural = Str::plural($str);//複數
         //
         $permissionGroupMaxId = PermissionGroup::get()->max("id");
         $permissionMaxId = Permission::get()->max("id");
@@ -49,7 +59,7 @@ class GenerateTemplate extends Command
             'CLASS' => $stringUpperCamel,
             'CLASS_CAMEL' => $stringUpperCamel,
             'VIEW_FILE' => $stringSnake,
-            'ROUTE_NAME' => $stringPlural,
+            'ROUTE_NAME' => Str::plural($stringSnake),
             'VAR_NAME' => $stringLowerCamel,
             "TEXT" => $text,
             //
