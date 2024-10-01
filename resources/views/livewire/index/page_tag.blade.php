@@ -67,8 +67,8 @@
 
                 <td
                     class="px-6 py-2 text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-200 text-center">
-                    @can('{{ TEXT }}管理_修改')
-                        <a class="btn btn-sm btn-primary" href="{{route('{{ ROUTE_NAME }}.edit',["{{ ROUTE_VAR_NAME }}"=>$item->id])}}">編輯</a>
+                    @can('頁面標籤管理_修改')
+                        <a class="btn btn-sm btn-primary" href="{{route('page_tags.edit',["page_tag"=>$item->id])}}">編輯</a>
                     @endcan
                 </td>
             </tr>

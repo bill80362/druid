@@ -6,9 +6,9 @@ use App\Models\PermissionGroup;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
-class {{ CLASS }} extends Component
+class PageTag extends Component
 {
-    public ${{ VAR_NAME }}Id = null;
+    public $pageTagId = null;
 
     #[Validate(['required','min:4','max:20'], as: '名稱')]
     public string $name = "";
@@ -19,9 +19,9 @@ class {{ CLASS }} extends Component
 
     public function mount($id)
     {
-        $this->{{ VAR_NAME }}Id = $id;
+        $this->pageTagId = $id;
         //
-        $item = \App\Models\{{ CLASS }}::find($this->{{ VAR_NAME }}Id);
+        $item = \App\Models\PageTag::find($this->pageTagId);
         $this->name = $item?->name ?? "";
         $this->content = $item?->content ?? "";
     }
@@ -29,7 +29,7 @@ class {{ CLASS }} extends Component
     public function submit()
     {
         //
-        //if(!$this->{{ VAR_NAME }}Id){
+        //if(!$this->pageTagId){
         //    $this->validate([
         //        "name" => ["required"],
         //        "content" => ["required"],
@@ -39,21 +39,21 @@ class {{ CLASS }} extends Component
         //}
         $this->validate();
         //
-        $item = \App\Models\{{ CLASS }}::findOrNew($this->{{ VAR_NAME }}Id);
+        $item = \App\Models\PageTag::findOrNew($this->pageTagId);
         $item->name = $this->name;
         $item->content = $this->content;
         $item->save();
         //
-        if ($this->{{ VAR_NAME }}Id) {
+        if ($this->pageTagId) {
             $this->actionMessage = "更新成功";
         } else {
             $this->actionMessage = "新增成功";
-            return redirect()->route('{{ ROUTE_NAME }}.edit', ["{{ ROUTE_VAR_NAME }}" => $item]);
+            return redirect()->route('page_tags.edit', ["page_tag" => $item]);
         }
     }
 
     public function render()
     {
-        return view('livewire.update-forms.{{ VIEW_FILE }}');
+        return view('livewire.update-forms.page_tag');
     }
 }

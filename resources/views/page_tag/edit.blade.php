@@ -1,14 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            <a href="{{route('{{ ROUTE_NAME }}.index')}}">{{ __('{{ TEXT }}管理') }}</a>
+            <a href="{{route('page_tags.index')}}">{{ __('頁面標籤管理') }}</a>
 
             > {{ __('編輯') }} : {{$item->name}}
         </h2>
     </x-slot>
     <x-slot name="header_tool">
-        @can('{{ TEXT }}管理_刪除')
-            <form method="post" action="{{route('{{ ROUTE_NAME }}.destroy',['{{ ROUTE_VAR_NAME }}'=>$item->id])}}">
+        @can('頁面標籤管理_刪除')
+            <form method="post" action="{{route('page_tags.destroy',['page_tag'=>$item->id])}}">
                 @csrf
                 @method('delete')
                 <button class="btn btn-danger" onclick="confirm('是否確認刪除')">刪除</button>
@@ -19,7 +19,7 @@
     <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <livewire:update-forms.{{ VIEW_FILE }} :id="$item->id" />
+                <livewire:update-forms.page_tag :id="$item->id" />
             </div>
         </div>
     </div>

@@ -39,9 +39,8 @@ class GenerateTemplate extends Command
 //            "active" => request()->routeIs('pages.index'),
 //        ],
         //
-        $str = "page";
-        $text = "頁面";
-
+        $str = "page_tag";
+        $text = "頁面標籤";
         //
         $stringSnake = Str::snake($str);//str_str
         $stringLowerCamel = Str::camel($str);//strStr
@@ -51,8 +50,8 @@ class GenerateTemplate extends Command
 //        $stringUcFirst = Str::ucfirst($str);//Str str
 //        $stringPlural = Str::plural($str);//複數
         //
-        $permissionGroupMaxId = PermissionGroup::get()->max("id");
-        $permissionMaxId = Permission::get()->max("id");
+        $permissionGroupMaxId = 2;
+        $permissionMaxId = 8;
         //replaces array
         $replacesArray = [
             'NAMESPACE' => 'App\Http\Controllers',
@@ -61,13 +60,14 @@ class GenerateTemplate extends Command
             'VIEW_FILE' => $stringSnake,
             'ROUTE_NAME' => Str::plural($stringSnake),
             'VAR_NAME' => $stringLowerCamel,
+            'ROUTE_VAR_NAME' => $stringSnake,
             "TEXT" => $text,
             //
             "PERMISSION_GROUP_ID" => $permissionGroupMaxId+1,
-            "PERMISSION__ID_READ" => $permissionMaxId+1,
-            "PERMISSION__ID_CREATE" => $permissionMaxId+2,
-            "PERMISSION__ID_UPDATE" => $permissionMaxId+3,
-            "PERMISSION__ID_DELETE" => $permissionMaxId+4,
+            "PERMISSION_ID_READ" => $permissionMaxId+1,
+            "PERMISSION_ID_CREATE" => $permissionMaxId+2,
+            "PERMISSION_ID_UPDATE" => $permissionMaxId+3,
+            "PERMISSION_ID_DELETE" => $permissionMaxId+4,
         ];
 
         //controller

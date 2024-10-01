@@ -85,7 +85,7 @@ class {{ CLASS }}Controller extends Controller
         ${{ CLASS_CAMEL }}->fill($request->only(["name","content"]));
         ${{ CLASS_CAMEL }}->save();
         //
-        return redirect()->route('{{ ROUTE_NAME }}.edit', ["user" => ${{ CLASS_CAMEL }}])->with("success",["儲存成功"]);
+        return redirect()->route('{{ ROUTE_NAME }}.edit', ["{{ ROUTE_VAR_NAME }}" => ${{ CLASS_CAMEL }}])->with("success",["儲存成功"]);
     }
 
     /**

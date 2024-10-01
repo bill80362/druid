@@ -12,31 +12,31 @@ return new class extends Migration
     public function up(): void
     {
         //
-        $g = \App\Models\PermissionGroup::findOrNew({{ PERMISSION_GROUP_ID }});
-        $g->id = {{ PERMISSION_GROUP_ID }};
-        $g->name = "{{ TEXT }}管理";
+        $g = \App\Models\PermissionGroup::findOrNew(3);
+        $g->id = 3;
+        $g->name = "頁面標籤管理";
         $g->save();
         //
-        $p = \App\Models\Permission::findOrNew({{ PERMISSION_ID_READ }});
-        $p->id = {{ PERMISSION_ID_READ }};
+        $p = \App\Models\Permission::findOrNew(9);
+        $p->id = 9;
         $p->permission_group_id = $g->id;
         $p->name = "讀取";
         $p->save();
         //
-        $p = \App\Models\Permission::findOrNew({{ PERMISSION_ID_CREATE }});
-        $p->id = {{ PERMISSION_ID_CREATE }};
+        $p = \App\Models\Permission::findOrNew(10);
+        $p->id = 10;
         $p->permission_group_id = $g->id;
         $p->name = "新增";
         $p->save();
         //
-        $p = \App\Models\Permission::findOrNew({{ PERMISSION_ID_UPDATE }});
-        $p->id = {{ PERMISSION_ID_UPDATE }};
+        $p = \App\Models\Permission::findOrNew(11);
+        $p->id = 11;
         $p->permission_group_id = $g->id;
         $p->name = "修改";
         $p->save();
         //
-        $p = \App\Models\Permission::findOrNew({{ PERMISSION_ID_DELETE }});
-        $p->id = {{ PERMISSION_ID_DELETE }};
+        $p = \App\Models\Permission::findOrNew(12);
+        $p->id = 12;
         $p->permission_group_id = $g->id;
         $p->name = "刪除";
         $p->save();

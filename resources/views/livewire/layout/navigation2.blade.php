@@ -28,6 +28,11 @@ new class extends Component {
                     "href" => route('pages.index'),
                     "active" => request()->routeIs('pages.index'),
                 ],
+                [
+                    "title" => __("頁面標籤管理"),
+                    "href" => route('page_tags.index'),
+                    "active" => request()->routeIs('page_tags.index'),
+                ],
             ],
         ]);
         //
