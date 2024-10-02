@@ -14,19 +14,19 @@ class Page extends Component
     public string $name = "";
     #[Validate([])]
     public string $content = "";
+    #[Validate([])]
+    public string $page_tag_id = "";
     //
     public string $actionMessage = "";
-
-    public array $tags = [];
 
     public function mount($id)
     {
         $this->pageId = $id;
         //
-        $item = \App\Models\Page::with(["tags"])->find($this->pageId);
+        $item = \App\Models\Page::with(["tags","tag"])->find($this->pageId);
         $this->name = $item?->name ?? "";
         $this->content = $item?->content ?? "";
-        $this->tags = $item?->tags->pluck("id")->toArray() ?? [];
+        $this->page_tag_id = $item?->page_tag_id ?? "";
     }
 
     public function submit()
@@ -36,6 +36,7 @@ class Page extends Component
         $item = \App\Models\Page::findOrNew($this->pageId);
         $item->name = $this->name;
         $item->content = $this->content;
+        $item->page_tag_id = $this->page_tag_id;
         $item->save();
         //
         $item->tags()->sync($this->tags);
@@ -51,7 +52,7 @@ class Page extends Component
     public function render()
     {
         return view('livewire.update-forms.page',[
-            "pageTags" => \App\Models\PageTag::get()
+            "pageTags" => \App\Models\PageTag::get(),
         ]);
     }
 }

@@ -6,7 +6,7 @@
                     <input class="form-control form-control-sm w-100" type="text" wire:model.live="name" placeholder="名稱" />
                 </div>
                 <div class="col-12 col-md-3">
-                    <input class="form-control form-control-sm w-100" type="text" wire:model.live="content" placeholder="內容" />
+                    <input class="form-control form-control-sm w-100" type="text" wire:model.live="content" placeholder="描述" />
                 </div>
 
             </div>
@@ -25,7 +25,7 @@
             <th
                 wire:click="sortBy('content')" :sortDirection="$sortByColumn=='content'?$sortByDirection:null"
                 class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center">
-                內容
+                描述
                 <x-table-sort-icon :sortByColumn="$sortByColumn" :sortByDirection="$sortByDirection" column="content"  />
             </th>
             <th

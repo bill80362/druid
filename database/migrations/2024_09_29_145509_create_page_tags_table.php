@@ -17,7 +17,7 @@ return new class extends Migration
             //
             $table->integer('sort')->unsigned()->default(1)->comment("排序");
             $table->string('name')->comment("名稱");
-            $table->mediumText('content')->comment("內容");
+            $table->mediumText('content')->comment("描述");
         });
     }
 

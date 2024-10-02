@@ -13,4 +13,8 @@ class Page extends Model
     {
         return $this->belongsToMany(PageTag::class);
     }
+    public function tag(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(PageTag::class);
+    }
 }
