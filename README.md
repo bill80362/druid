@@ -26,3 +26,6 @@
 ## 安裝列表篩選器
 
 * composer require spatie/laravel-query-builder
+
+## 建立中繼表
+*  php artisan make:model PagePageTag -p --migration

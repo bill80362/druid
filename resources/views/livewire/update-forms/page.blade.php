@@ -13,6 +13,26 @@
 {{--                <input type="text" class="form-control" wire:model="content">--}}
                 <small class="text-danger">@error('content') {{ $message }} @enderror</small>
             </div>
+
+            <div class="py-1">
+                <hr>
+            </div>
+            <div class="row mb-3">
+                <div class="col-12 col-lg-6">
+                    <label class="form-label px-2">{{__("頁面標籤")}}</label>
+                    @foreach($pageTags as $pageTag)
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox"
+                                   wire:model="tags"
+                                   id="inlineCheckbox{{$pageTag->id}}"
+                                   value="{{$pageTag->id}}"
+                            >
+                            <label class="form-check-label" for="inlineCheckbox{{$pageTag->id}}">{{$pageTag->name}}</label>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+
             <div class="mb-3">
                 <div class="flex justify-content-between">
                     <div wire:dirty>

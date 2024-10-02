@@ -17,32 +17,28 @@ class PageTag extends Component
     //
     public string $actionMessage = "";
 
+    public array $pages = [];
+
     public function mount($id)
     {
         $this->pageTagId = $id;
         //
-        $item = \App\Models\PageTag::find($this->pageTagId);
+        $item = \App\Models\PageTag::with(["pages"])->find($this->pageTagId);
         $this->name = $item?->name ?? "";
         $this->content = $item?->content ?? "";
+        $this->pages = $item?->pages->pluck("id")->toArray() ?? [];
     }
 
     public function submit()
     {
-        //
-        //if(!$this->pageTagId){
-        //    $this->validate([
-        //        "name" => ["required"],
-        //        "content" => ["required"],
-        //    ]);
-        //}else{
-        //    $this->validate();
-        //}
         $this->validate();
         //
         $item = \App\Models\PageTag::findOrNew($this->pageTagId);
         $item->name = $this->name;
         $item->content = $this->content;
         $item->save();
+        //
+        $item->pages()->sync($this->pages);
         //
         if ($this->pageTagId) {
             $this->actionMessage = "更新成功";
@@ -54,6 +50,8 @@ class PageTag extends Component
 
     public function render()
     {
-        return view('livewire.update-forms.page_tag');
+        return view('livewire.update-forms.page_tag',[
+            "pageOptions" => \App\Models\Page::get(),
+        ]);
     }
 }
