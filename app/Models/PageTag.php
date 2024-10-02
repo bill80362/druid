@@ -13,4 +13,8 @@ class PageTag extends Model
     {
         return $this->belongsToMany(Page::class);
     }
+    public function customFields(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(PageTagCustomField::class);
+    }
 }

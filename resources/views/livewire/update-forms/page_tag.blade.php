@@ -13,24 +13,79 @@
                 <small class="text-danger">@error('content') {{ $message }} @enderror</small>
             </div>
 
-{{--            <div class="py-1">--}}
-{{--                <hr>--}}
-{{--            </div>--}}
-{{--            <div class="row mb-3">--}}
-{{--                <div class="col-12 col-lg-6">--}}
-{{--                    <label class="form-label px-2">{{__("頁面")}}</label>--}}
-{{--                    @foreach($pageOptions as $item)--}}
-{{--                        <div class="form-check form-check-inline">--}}
-{{--                            <input class="form-check-input" type="checkbox"--}}
-{{--                                   wire:model="pages"--}}
-{{--                                   id="inlineCheckbox{{$item->id}}"--}}
-{{--                                   value="{{$item->id}}"--}}
-{{--                            >--}}
-{{--                            <label class="form-check-label" for="inlineCheckbox{{$item->id}}">{{$item->name}}</label>--}}
-{{--                        </div>--}}
-{{--                    @endforeach--}}
-{{--                </div>--}}
-{{--            </div>--}}
+            <div class="py-1">
+                <hr>
+            </div>
+
+            <div class="row mb-3">
+                <h5 class="card-title">{{__("編輯自訂欄位")}}</h5>
+                @foreach($customFields as $key => $item)
+                    <div class="col-12 col-lg-3 card m-2">
+                        <div class="card-body">
+                            <div class="card-text">
+                                <div class="mb-2">
+                                    <label class="form-label">{{__("名稱")}}</label>
+                                    <input type="text" class="form-control" wire:model="customFields.{{$key}}.name">
+                                </div>
+                                <div class="mb-2">
+                                    <label class="form-label">{{__("排序")}}</label>
+                                    <input type="text" class="form-control" wire:model="customFields.{{$key}}.sort">
+                                    {{--                        <small class="text-danger">@error('customFields.') {{ $message }} @enderror</small>--}}
+                                </div>
+                                <div class="mb-2">
+                                    <label class="form-label">{{__("類型")}}</label>
+                                    <select class="form-control" wire:model="customFields.{{$key}}.type">
+                                        <option value="text">單行文字</option>
+                                        <option value="textarea">多行文字</option>
+                                        <option value="select">下拉</option>
+                                        <option value="checkbox">多選</option>
+                                    </select>
+                                </div>
+                                <div class="mb-2">
+                                    <label class="form-label">{{__("選項")}}</label>
+                                    <textarea class="form-control" wire:model="customFields.{{$key}}.options"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
+            <div class="py-1">
+                <hr>
+            </div>
+
+            <div class="row mb-3">
+                <h5 class="card-title">{{__("新增自訂欄位")}}</h5>
+                <div class="col-12 col-lg-3 card m-2">
+                    <div class="card-body">
+                        <div class="card-text">
+                            <div class="mb-2">
+                                <label class="form-label">{{__("名稱")}}</label>
+                                <input type="text" class="form-control" wire:model="customFieldNew.name">
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label">{{__("排序")}}</label>
+                                <input type="text" class="form-control" wire:model="customFieldNew.sort">
+                                {{--                        <small class="text-danger">@error('customFields.') {{ $message }} @enderror</small>--}}
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label">{{__("類型")}}</label>
+                                <select class="form-control" wire:model="customFieldNew.type">
+                                    <option value="text">單行文字</option>
+                                    <option value="textarea">多行文字</option>
+                                    <option value="select">下拉</option>
+                                    <option value="checkbox">多選</option>
+                                </select>
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label">{{__("選項")}}</label>
+                                <textarea class="form-control" wire:model="customFieldNew.options"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="mb-3">
                 <div class="flex justify-content-between">
