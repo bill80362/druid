@@ -20,7 +20,7 @@
                         <option value="{{$pageTag->id}}">{{$pageTag->name}}</option>
                     @endforeach
                 </select>
-                <small class="text-danger">@error('name') {{ $message }} @enderror</small>
+                <small class="text-danger">@error('page_tag_id') {{ $message }} @enderror</small>
             </div>
 
             @foreach($customFields as $key => $customField)

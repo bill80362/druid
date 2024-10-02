@@ -15,7 +15,7 @@ class Page extends Component
     public string $name = "";
     #[Validate([])]
     public string $content = "";
-    #[Validate([])]
+    #[Validate(["required"], as : '標籤')]
     public string $page_tag_id = "";
     #[Validate([])]
     public array $customFields = [];
@@ -46,8 +46,8 @@ class Page extends Component
         $item->page_tag_id = $this->page_tag_id;
         $item->save();
         //
-        $item->customFieldValue()->saveMany(collect($this->customFieldValue)->transform(function ($value,$key){
-            $o = new PageCustomFieldValue();
+        $item->customFieldValue()->saveMany(collect($this->customFieldValue)->transform(function ($value,$key)use($item){
+            $o = PageCustomFieldValue::where("page_id",$item->id)->where("page_tag_custom_field_id",$key)->firstOrNew();
             $o->page_tag_custom_field_id = $key;
             $o->value = $value["value"];
             return $o;
