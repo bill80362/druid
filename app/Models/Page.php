@@ -13,8 +13,12 @@ class Page extends Model
     {
         return $this->belongsToMany(PageTag::class);
     }
-    public function tag(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function pageTag(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(PageTag::class);
+    }
+    public function customFieldValue(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(PageCustomFieldValue::class);
     }
 }

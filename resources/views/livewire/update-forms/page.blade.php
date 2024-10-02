@@ -23,6 +23,27 @@
                 <small class="text-danger">@error('name') {{ $message }} @enderror</small>
             </div>
 
+            @foreach($customFields as $key => $customField)
+                <div class="mb-3">
+                    <label class="form-label">{{$customField["name"]}}</label>
+                    @if($customField["type"]=="text")
+                        <input type="text" class="form-control" wire:model="customFieldValue.{{$customField["id"]}}.value" >
+                    @elseif($customField["type"]=="textarea")
+                        <textarea class="form-control" wire:model="customFieldValue.{{$customField["id"]}}.value"></textarea>
+                    @elseif($customField["type"]=="select")
+                        <select class="form-control" wire:model="customFieldValue.{{$customField["id"]}}.value">
+                            <option value="">請選擇</option>
+                            @foreach( explode("\n",$customField["options"]) as $optionKey => $option )
+                            <option value="{{$option}}">{{$option}}</option>
+                            @endforeach
+                        </select>
+                    @endif
+
+                    <small class="text-danger">@error('content') {{ $message }} @enderror</small>
+                </div>
+            @endforeach
+
+
             <div class="mb-3">
                 <div class="flex justify-content-between">
                     <div wire:dirty>

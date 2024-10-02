@@ -2,6 +2,7 @@
 
 namespace App\Livewire\UpdateForms;
 
+use App\Models\PageCustomFieldValue;
 use App\Models\PermissionGroup;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -16,6 +17,10 @@ class Page extends Component
     public string $content = "";
     #[Validate([])]
     public string $page_tag_id = "";
+    #[Validate([])]
+    public array $customFields = [];
+    #[Validate([])]
+    public array $customFieldValue = [];
     //
     public string $actionMessage = "";
 
@@ -23,10 +28,12 @@ class Page extends Component
     {
         $this->pageId = $id;
         //
-        $item = \App\Models\Page::with(["tags","tag"])->find($this->pageId);
+        $item = \App\Models\Page::with(["pageTag.customFields","customFieldValue.customField"])->find($this->pageId);
         $this->name = $item?->name ?? "";
         $this->content = $item?->content ?? "";
         $this->page_tag_id = $item?->page_tag_id ?? "";
+        $this->customFields = $item?->pageTag?->customFields?->sortByDesc("sort")->toArray() ?? [];
+        $this->customFieldValue = $item?->customFieldValue?->keyBy("page_tag_custom_field_id")->toArray() ?? [];
     }
 
     public function submit()
@@ -39,7 +46,12 @@ class Page extends Component
         $item->page_tag_id = $this->page_tag_id;
         $item->save();
         //
-        $item->tags()->sync($this->tags);
+        $item->customFieldValue()->saveMany(collect($this->customFieldValue)->transform(function ($value,$key){
+            $o = new PageCustomFieldValue();
+            $o->page_tag_custom_field_id = $key;
+            $o->value = $value["value"];
+            return $o;
+        }));
         //
         if ($this->pageId) {
             $this->actionMessage = "更新成功";
