@@ -61,21 +61,21 @@
                                             <a href="#" class="list-group-item list-group-item-action">
                                                 <div class="d-flex w-100 justify-content-between">
                                                     <h5 class="my-1">頁面</h5>
-                                                    <small class="text-secondary">評估中</small>
+                                                    <small class="text-primary">已完成</small>
                                                 </div>
                                                 <small class="my-1">舉例：關於我們、最新消息都可以使用此功能。這邊只提供標題和內容，其他可以透過自訂欄位自行產生。 </small>
                                             </a>
                                             <a href="#" class="list-group-item list-group-item-action">
                                                 <div class="d-flex w-100 justify-content-between">
                                                     <h5 class="my-1">頁面標籤</h5>
-                                                    <small class="text-secondary">評估中</small>
+                                                    <small class="text-primary">已完成</small>
                                                 </div>
                                                 <small class="my-1">使用標籤來分類群組，例如最新消息標籤，這樣前台拉資料可以根據標籤來拉取所有最新消息的資料</small>
                                             </a>
                                             <a href="#" class="list-group-item list-group-item-action">
                                                 <div class="d-flex w-100 justify-content-between">
                                                     <h5 class="my-1">標籤自訂欄位管理</h5>
-                                                    <small class="text-secondary">評估中</small>
+                                                    <small class="text-primary">已完成</small>
                                                 </div>
                                                 <small class="my-1">頁面根據設定的標籤，可以有自訂欄位</small>
                                             </a>
