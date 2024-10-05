@@ -42,11 +42,18 @@
 {{--                                            </a>--}}
                                             <a href="#" class="list-group-item list-group-item-action">
                                                 <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">功能自訂欄位管理</h5>
+                                                    <h5 class="my-1">功能自訂欄位</h5>
                                                     <small class="text-body-secondary">評估中</small>
                                                 </div>
-                                                <small class="my-1">根據指定的功能，可以自行設定延伸欄位，非邏輯性的欄位都可以自行開立欄位。舉例像是：商品描述、商品運送須知。</small>
+                                                <small class="my-1">商品、規格群組、規格、商品明細，延伸的彈性欄位。欄位格式可以是字串、選項。</small>
                                             </a>
+{{--                                            <a href="#" class="list-group-item list-group-item-action">--}}
+{{--                                                <div class="d-flex w-100 justify-content-between">--}}
+{{--                                                    <h5 class="my-1">動態功能自訂欄位</h5>--}}
+{{--                                                    <small class="text-body-secondary">評估中</small>--}}
+{{--                                                </div>--}}
+{{--                                                <small class="my-1"></small>--}}
+{{--                                            </a>--}}
                                         </div>
                                     </div>
                                 </div>
@@ -92,38 +99,45 @@
                                         <div class="list-group">
                                             <a href="#" class="list-group-item list-group-item-action" aria-current="true">
                                                 <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">商品主檔</h5>
+                                                    <h5 class="my-1">商品</h5>
                                                     <small class="text-secondary">評估中</small>
                                                 </div>
-                                                <small class="my-1">商品基本資料、規格設定(顏色、尺寸...等等)</small>
+                                                <small class="my-1">名稱、SKU(不可重複)、價格、開關、排序</small>
                                             </a>
                                             <a href="#" class="list-group-item list-group-item-action">
                                                 <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">商品規格</h5>
+                                                    <h5 class="my-1">規格群組</h5>
                                                     <small class="text-secondary">評估中</small>
                                                 </div>
-                                                <small class="my-1">(商品+各規格)產生商品規格</small>
+                                                <small class="my-1">名稱</small>
                                             </a>
                                             <a href="#" class="list-group-item list-group-item-action">
                                                 <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">商品大分類</h5>
+                                                    <h5 class="my-1">規格</h5>
                                                     <small class="text-secondary">評估中</small>
                                                 </div>
-                                                <small class="my-1">大分類，第一層分類</small>
+                                                <small class="my-1">名稱、SKU、價格、開關、排序</small>
                                             </a>
                                             <a href="#" class="list-group-item list-group-item-action">
                                                 <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">商品小分類</h5>
+                                                    <h5 class="my-1">商品明細</h5>
                                                     <small class="text-secondary">評估中</small>
                                                 </div>
-                                                <small class="my-1">小分類，第二層分類</small>
+                                                <small class="my-1">SKU(不可重複)、價格、開關、排序。SKU組成是由商品SKU+規格群組x規格群組，例如PROD(商品)RED(顏色-紅)LARGE(尺寸-大)</small>
                                             </a>
                                             <a href="#" class="list-group-item list-group-item-action">
                                                 <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">商品小分類歸類商品</h5>
+                                                    <h5 class="my-1">商品標籤</h5>
                                                     <small class="text-secondary">評估中</small>
                                                 </div>
-                                                <small class="my-1">綁定小分類和商品，一個小分類有多個商品，一個商品可以設定多個小分類，根據小分類就可以關聯到大分類</small>
+                                                <small class="my-1">將商品貼上標籤，連動對應的功能</small>
+                                            </a>
+                                            <a href="#" class="list-group-item list-group-item-action">
+                                                <div class="d-flex w-100 justify-content-between">
+                                                    <h5 class="my-1">商品分類</h5>
+                                                    <small class="text-secondary">評估中</small>
+                                                </div>
+                                                <small class="my-1">將商品分類，連動對應的功能</small>
                                             </a>
                                         </div>
                                     </div>
@@ -246,7 +260,7 @@
                                         <div class="list-group">
                                             <a href="#" class="list-group-item list-group-item-action" aria-current="true">
                                                 <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">小分類優惠規則</h5>
+                                                    <h5 class="my-1">標籤優惠規則</h5>
                                                     <small class="text-secondary">評估中</small>
                                                 </div>
                                                 <small class="my-1">滿X打折、滿X折扣金額、滿Ａ送Ｂ、相同是否可以重複吃到優惠、優惠優先順序</small>
