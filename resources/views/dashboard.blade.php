@@ -94,13 +94,13 @@
                         <div class="col-4 p-2">
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">商品系統</h5>
+                                    <h5 class="card-title">商品管理</h5>
                                     <div class="card-text">
                                         <div class="list-group">
                                             <a href="#" class="list-group-item list-group-item-action" aria-current="true">
                                                 <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">商品</h5>
-                                                    <small class="text-secondary">評估中</small>
+                                                    <h5 class="my-1">主商品</h5>
+                                                    <small class="text-primary">已完成</small>
                                                 </div>
                                                 <small class="my-1">名稱、SKU(不可重複)、價格、開關、排序</small>
                                             </a>
