@@ -107,7 +107,7 @@
                                             <a href="#" class="list-group-item list-group-item-action">
                                                 <div class="d-flex w-100 justify-content-between">
                                                     <h5 class="my-1">規格群組</h5>
-                                                    <small class="text-secondary">已完成</small>
+                                                    <small class="text-primary">已完成</small>
                                                 </div>
                                                 <small class="my-1">名稱</small>
                                             </a>
