@@ -18,3 +18,6 @@ require __DIR__.'/auth.php';
 Route::resource('users', \App\Http\Controllers\UserController::class);
 Route::resource('pages', \App\Http\Controllers\PageController::class);
 Route::resource('page_tags', \App\Http\Controllers\PageTagController::class);
+Route::resource('goods', \App\Http\Controllers\GoodsController::class)->parameters([
+    "goods" => "goods:id",
+]);

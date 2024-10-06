@@ -36,6 +36,19 @@ new class extends Component {
             ],
         ]);
         //
+        $menus->push([
+            "title" => __("商品管理"),
+            "href" => "#",
+            "active" => "",
+            "submenus" => [
+                [
+                    "title" => __("主商品管理"),
+                    "href" => route('goods.index'),
+                    "active" => request()->routeIs('goods.index'),
+                ],
+            ],
+        ]);
+        //
         return $menus;
     }
     /**

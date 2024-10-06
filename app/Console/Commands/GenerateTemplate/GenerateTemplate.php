@@ -39,8 +39,8 @@ class GenerateTemplate extends Command
 //            "active" => request()->routeIs('pages.index'),
 //        ],
         //
-        $str = "page_tag";
-        $text = "頁面標籤";
+        $str = "goods";
+        $text = "主商品";
         //
         $stringSnake = Str::snake($str);//str_str
         $stringLowerCamel = Str::camel($str);//strStr
@@ -50,8 +50,8 @@ class GenerateTemplate extends Command
 //        $stringUcFirst = Str::ucfirst($str);//Str str
 //        $stringPlural = Str::plural($str);//複數
         //
-        $permissionGroupMaxId = 2;
-        $permissionMaxId = 8;
+        $permissionGroupMaxId = 3;
+        $permissionMaxId = $permissionGroupMaxId*4;
         //replaces array
         $replacesArray = [
             'NAMESPACE' => 'App\Http\Controllers',
