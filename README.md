@@ -30,7 +30,6 @@
 ## 建立中繼表
 *  php artisan make:model PagePageTag -p --migration
 
-
 ## 開發環境下看ER圖
 * php artisan erd:generate
 * http://127.0.0.1:8000/laravel-erd
