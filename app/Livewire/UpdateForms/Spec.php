@@ -6,22 +6,22 @@ use App\Models\PermissionGroup;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
-class {{ CLASS }} extends Component
+class Spec extends Component
 {
-    public ${{ VAR_NAME }}Id = null;
+    public $specId = null;
 
     #[Validate(['required','min:1','max:20'], as: '名稱')]
     public string $name = "";
-    #[Validate([])]
+    #[Validate([], as: '描述')]
     public string $content = "";
     //
     public string $actionMessage = "";
 
     public function mount($id)
     {
-        $this->{{ VAR_NAME }}Id = $id;
+        $this->specId = $id;
         //
-        $item = \App\Models\{{ CLASS }}::find($this->{{ VAR_NAME }}Id);
+        $item = \App\Models\Spec::find($this->specId);
         $this->name = $item?->name ?? "";
         $this->content = $item?->content ?? "";
     }
@@ -29,7 +29,7 @@ class {{ CLASS }} extends Component
     public function submit()
     {
         //
-        //if(!$this->{{ VAR_NAME }}Id){
+        //if(!$this->specId){
         //    $this->validate([
         //        "name" => ["required"],
         //        "content" => ["required"],
@@ -39,21 +39,21 @@ class {{ CLASS }} extends Component
         //}
         $this->validate();
         //
-        $item = \App\Models\{{ CLASS }}::findOrNew($this->{{ VAR_NAME }}Id);
+        $item = \App\Models\Spec::findOrNew($this->specId);
         $item->name = $this->name;
         $item->content = $this->content;
         $item->save();
         //
-        if ($this->{{ VAR_NAME }}Id) {
+        if ($this->specId) {
             $this->actionMessage = "更新成功";
         } else {
             $this->actionMessage = "新增成功";
-            return redirect()->route('{{ ROUTE_NAME }}.edit', ["{{ ROUTE_VAR_NAME }}" => $item]);
+            return redirect()->route('specs.edit', ["spec" => $item]);
         }
     }
 
     public function render()
     {
-        return view('livewire.update-forms.{{ VIEW_FILE }}');
+        return view('livewire.update-forms.spec');
     }
 }

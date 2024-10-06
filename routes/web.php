@@ -21,3 +21,5 @@ Route::resource('page_tags', \App\Http\Controllers\PageTagController::class);
 Route::resource('goods', \App\Http\Controllers\GoodsController::class)->parameters([
     "goods" => "goods:id",
 ]);
+Route::resource('specs', \App\Http\Controllers\SpecController::class);
+

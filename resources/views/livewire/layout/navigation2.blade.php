@@ -46,6 +46,11 @@ new class extends Component {
                     "href" => route('goods.index'),
                     "active" => request()->routeIs('goods.index'),
                 ],
+                [
+                    "title" => __("規格群組管理"),
+                    "href" => route('specs.index'),
+                    "active" => request()->routeIs('specs.index'),
+                ],
             ],
         ]);
         //
