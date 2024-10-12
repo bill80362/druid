@@ -39,8 +39,8 @@ class GenerateTemplate extends Command
 //            "active" => request()->routeIs('pages.index'),
 //        ],
         //
-        $str = "spec";
-        $text = "規格群組";
+        $str = "spec_option";
+        $text = "規格選項";
         //
         $stringSnake = Str::snake($str);//str_str
         $stringLowerCamel = Str::camel($str);//strStr

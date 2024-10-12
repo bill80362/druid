@@ -22,4 +22,5 @@ Route::resource('goods', \App\Http\Controllers\GoodsController::class)->paramete
     "goods" => "goods:id",
 ]);
 Route::resource('specs', \App\Http\Controllers\SpecController::class);
+Route::resource('spec_options', \App\Http\Controllers\SpecOptionController::class);
 

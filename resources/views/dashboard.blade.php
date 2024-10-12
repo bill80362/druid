@@ -113,10 +113,10 @@
                                             </a>
                                             <a href="#" class="list-group-item list-group-item-action">
                                                 <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">規格</h5>
+                                                    <h5 class="my-1">規格選項</h5>
                                                     <small class="text-secondary">評估中</small>
                                                 </div>
-                                                <small class="my-1">名稱、SKU、價格、開關、排序</small>
+                                                <small class="my-1">名稱、SKU、開關、排序</small>
                                             </a>
                                             <a href="#" class="list-group-item list-group-item-action">
                                                 <div class="d-flex w-100 justify-content-between">
