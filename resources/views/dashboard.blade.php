@@ -114,7 +114,7 @@
                                             <a href="#" class="list-group-item list-group-item-action">
                                                 <div class="d-flex w-100 justify-content-between">
                                                     <h5 class="my-1">規格選項</h5>
-                                                    <small class="text-secondary">評估中</small>
+                                                    <small class="text-primary">已完成</small>
                                                 </div>
                                                 <small class="my-1">名稱、SKU、開關、排序</small>
                                             </a>
@@ -123,7 +123,7 @@
                                                     <h5 class="my-1">商品明細</h5>
                                                     <small class="text-secondary">評估中</small>
                                                 </div>
-                                                <small class="my-1">SKU(不可重複)、價格、開關、排序。SKU組成是由商品SKU+規格群組x規格群組，例如PROD(商品)RED(顏色-紅)LARGE(尺寸-大)</small>
+                                                <small class="my-1">SKU(主商品x規格群組x規格選項)(PRODREDLARGE/PRODBLUESMALL)<br />價格、開關、排序</small>
                                             </a>
                                             <a href="#" class="list-group-item list-group-item-action">
                                                 <div class="d-flex w-100 justify-content-between">

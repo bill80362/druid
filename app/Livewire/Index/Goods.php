@@ -51,6 +51,7 @@ class Goods extends Component
         //
         return view('livewire.index.goods', [
             "paginator" => $paginator,
+            "specOptions" => \App\Models\Spec::get(),
         ]);
     }
 }
