@@ -70,9 +70,6 @@ class Goods extends Component
                 if ($specIndex) {
                     //第二圈開始數量要等比上升
                     foreach ($detailCanBuilds as $detailCanBuild) {
-                        //已經有建立跳過
-                        if(in_array($detailCanBuild["sku"] . $specOption->sku,$skuExclude)) continue;
-                        //
                         $temp[] = [
                             "name" => $detailCanBuild["name"] . $specOption->name,
                             "sku" => $detailCanBuild["sku"] . $specOption->sku,
@@ -94,6 +91,13 @@ class Goods extends Component
             }
             $detailCanBuilds = $temp;
         }
+        //過濾掉已經建檔SKU
+        foreach ($detailCanBuilds as $key => $value){
+            if(in_array($value["sku"],$skuExclude)){
+                unset($detailCanBuilds[$key]);
+            }
+        }
+        //
         return $detailCanBuilds;
     }
 
