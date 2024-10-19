@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('goods_sepc_options', function (Blueprint $table) {
+        Schema::create('goods_spec_options', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
 

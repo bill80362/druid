@@ -15,6 +15,6 @@ class Goods extends Model
     }
     public function specOptions(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(GoodsSepcOption::class);
+        return $this->hasMany(GoodsSpecOption::class);
     }
 }

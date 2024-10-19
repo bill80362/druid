@@ -2,7 +2,7 @@
 
 namespace App\Livewire\UpdateForms;
 
-use App\Models\GoodsSepcOption;
+use App\Models\GoodsSpecOption;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
@@ -48,7 +48,7 @@ class Goods extends Component
         //載入商品明細列表
         $this->details = $this->loadSpecOptions($item->specOptions ?? []);
         //建議新增
-        $this->detailCanBuilds = $this->loadDetailCanBuilds($item->specs ?? [], $item->name, $item->sku, $item->price, $item->status);
+        $this->detailCanBuilds = $this->loadDetailCanBuilds($item->specs ?? [], $item?->name, $item?->sku, $item?->price, $item?->status,array_keys($this->details));
 
     }
 
@@ -61,7 +61,7 @@ class Goods extends Component
         return $detail;
     }
 
-    public function loadDetailCanBuilds($specs, $defaultName, $defaultSku, $defaultPrice, $defaultStatus): array
+    public function loadDetailCanBuilds($specs, $defaultName, $defaultSku, $defaultPrice, $defaultStatus, $skuExclude): array
     {
         $detailCanBuilds = [];
         foreach ($specs as $specIndex => $spec) {
@@ -70,6 +70,9 @@ class Goods extends Component
                 if ($specIndex) {
                     //第二圈開始數量要等比上升
                     foreach ($detailCanBuilds as $detailCanBuild) {
+                        //已經有建立跳過
+                        if(in_array($detailCanBuild["sku"] . $specOption->sku,$skuExclude)) continue;
+                        //
                         $temp[] = [
                             "name" => $detailCanBuild["name"] . $specOption->name,
                             "sku" => $detailCanBuild["sku"] . $specOption->sku,
@@ -119,7 +122,15 @@ class Goods extends Component
     public function updateDetails()
     {
         //
-        dd($this->details);
+        foreach ($this->details as $item){
+            $goodsSpecOption = GoodsSpecOption::find($item["id"]);
+            $goodsSpecOption->name = $item["name"];
+            $goodsSpecOption->sku = $item["sku"];
+            $goodsSpecOption->price = $item["price"];
+            $goodsSpecOption->status = $item["status"];
+            $goodsSpecOption->sort = $item["sort"];
+            $goodsSpecOption->save();
+        }
     }
 
     public function createDetail($key)
@@ -129,7 +140,7 @@ class Goods extends Component
         //
         if (empty($this->detailCanBuilds[$key]["sku"])) return;
         //
-        $detail = GoodsSepcOption::where("sku", $this->detailCanBuilds[$key]["sku"])->firstOrNew();
+        $detail = GoodsSpecOption::where("sku", $this->detailCanBuilds[$key]["sku"])->firstOrNew();
         $detail->sku = $this->detailCanBuilds[$key]["sku"];
         $detail->name = $this->detailCanBuilds[$key]["name"];
         $detail->price = $this->detailCanBuilds[$key]["price"];
