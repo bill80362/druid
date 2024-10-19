@@ -39,8 +39,8 @@ class GenerateTemplate extends Command
 //            "active" => request()->routeIs('pages.index'),
 //        ],
         //
-        $str = "spec_option";
-        $text = "規格選項";
+        $str = "goods_spec_option";
+        $text = "商品明細";
         //
         $stringSnake = Str::snake($str);//str_str
         $stringLowerCamel = Str::camel($str);//strStr
@@ -50,7 +50,7 @@ class GenerateTemplate extends Command
 //        $stringUcFirst = Str::ucfirst($str);//Str str
 //        $stringPlural = Str::plural($str);//複數
         //
-        $permissionGroupMaxId = 4;
+        $permissionGroupMaxId = 7;
         $permissionMaxId = $permissionGroupMaxId*4;
         //replaces array
         $replacesArray = [
