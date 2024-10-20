@@ -36,6 +36,11 @@
                 <x-table-sort-icon :sortByColumn="$sortByColumn" :sortByDirection="$sortByDirection" column="sku"  />
             </th>
             <th
+                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center">
+                規格選項
+                <x-table-sort-icon :sortByColumn="$sortByColumn" :sortByDirection="$sortByDirection" column="規格選項"  />
+            </th>
+            <th
                 wire:click="sortBy('price')" :sortDirection="$sortByColumn=='price'?$sortByDirection:null"
                 class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center">
                 價格
@@ -81,6 +86,11 @@
                 </td>
                 <td class="px-6 py-2 border-b border-gray-200 text-center">
                     <div class="text-sm leading-5 text-gray-500">{{ $item->sku }}</div>
+                </td>
+                <td class="px-6 py-2 border-b border-gray-200 text-center">
+                    <div class="text-sm leading-5 text-gray-500">
+                        {{$item->specOptions->map(fn($i)=>$i->name)->implode(",")}}
+                    </div>
                 </td>
                 <td class="px-6 py-2 border-b border-gray-200 text-center">
                     <div class="text-sm leading-5 text-gray-500">{{ $item->price }}</div>

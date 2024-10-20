@@ -47,7 +47,7 @@ class GoodsDetail extends Component
         if ($this->sortByColumn) {
             $query->orderBy($this->sortByColumn, $this->sortByDirection);
         }
-        $paginator = $query->paginate();
+        $paginator = $query->with(["specs","specOptions"])->paginate();
         //
         return view('livewire.index.goods_detail', [
             "paginator" => $paginator,
