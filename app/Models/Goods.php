@@ -13,7 +13,7 @@ class Goods extends Model
     {
         return $this->belongsToMany(Spec::class);
     }
-    public function specOptions(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function goodsDetails(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(GoodsDetail::class);
     }

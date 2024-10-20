@@ -79,6 +79,9 @@
             <form wire:submit="updateDetails()">
                 @foreach($details as $key => $item)
                     <div class="row">
+                        <div class="col-12">
+                            規格選項：[{{collect($item["spec_options"])->pluck('name')->implode('] x [')}}]
+                        </div>
                         <div class="col-12 col-md-3 mb-2">
                             <input class="form-control form-control-sm w-100" type="text" wire:model="details.{{$key}}.name" placeholder="名稱" />
                         </div>
@@ -124,6 +127,7 @@
             <label class="form-label px-2">快速建立商品明細</label>
             @foreach($detailCanBuilds as $key => $item)
             <form wire:submit="createDetail({{$key}})">
+                <input type="hidden" wire:model="detailCanBuilds.{{$key}}.spec" placeholder="排序" />
                 <div class="row">
                     <div class="col-12 col-md-3 mb-2">
                         <input class="form-control form-control-sm w-100" type="text" wire:model="detailCanBuilds.{{$key}}.name" placeholder="名稱" />
