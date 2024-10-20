@@ -37,8 +37,12 @@ class Goods extends Component
     public function mount($id)
     {
         $this->goodsId = $id;
-        //
-        $item = \App\Models\Goods::with(["specs.specOptions", "specOptions"])->find($this->goodsId);
+        //載入商品
+        $item = \App\Models\Goods::with([
+            "specs.specOptions",
+            "goodsDetails.specs",
+            "goodsDetails.specOptions",
+        ])->find($this->goodsId);
         $this->name = $item?->name ?? "";
         $this->sku = $item?->sku ?? "";
         $this->price = $item?->price ?? "";
@@ -46,17 +50,16 @@ class Goods extends Component
         $this->sort = $item?->sort ?? "";
         $this->specIds = $item?->specs->pluck("id")->toArray() ?? [];
         //載入商品明細列表
-        $this->details = $this->loadSpecOptions($item->specOptions ?? []);
+        $this->details = $this->loadSpecOptions($item->goodsDetails ?? []);
         //建議新增
         $this->detailCanBuilds = $this->loadDetailCanBuilds($item->specs ?? [], $item?->name, $item?->sku, $item?->price, $item?->status,array_keys($this->details));
-
     }
 
-    public function loadSpecOptions($specOptions): array
+    public function loadSpecOptions($goodsDetails): array
     {
         $detail = [];
-        foreach ($specOptions as $specOption) {
-            $detail[$specOption->sku] = $specOption->toArray();
+        foreach ($goodsDetails as $goodsDetail) {
+            $detail[$goodsDetail->sku] = $goodsDetail->toArray();
         }
         return $detail;
     }
@@ -76,6 +79,7 @@ class Goods extends Component
                             "price" => $defaultPrice,
                             "status" => $defaultStatus,
                             "sort" => 1,
+                            "spec" => array_merge($detailCanBuild["spec"],[$spec->id => $specOption->id]),
                         ];
                     }
                 } else {
@@ -86,6 +90,9 @@ class Goods extends Component
                         "price" => $defaultPrice,
                         "status" => $defaultStatus,
                         "sort" => 1,
+                        "spec" => [
+                            $spec->id => $specOption->id,
+                        ],
                     ];
                 }
             }
@@ -96,6 +103,10 @@ class Goods extends Component
             if(in_array($value["sku"],$skuExclude)){
                 unset($detailCanBuilds[$key]);
             }
+        }
+        //轉字串
+        foreach ($detailCanBuilds as $key => $value){
+            $detailCanBuilds[$key]["spec"] = json_encode($value["spec"]??[]);
         }
         //
         return $detailCanBuilds;
@@ -127,7 +138,7 @@ class Goods extends Component
     {
         //
         foreach ($this->details as $item){
-            $goodsDetail = GoodsDetail::find($item["id"]);
+            $goodsDetail = GoodsDetail::with(["specs","specOptions"])->find($item["id"]);
             $goodsDetail->name = $item["name"];
             $goodsDetail->sku = $item["sku"];
             $goodsDetail->price = $item["price"];
@@ -139,9 +150,6 @@ class Goods extends Component
 
     public function createDetail($key)
     {
-        //
-        $item = \App\Models\Goods::find($this->goodsId);
-        //
         if (empty($this->detailCanBuilds[$key]["sku"])) return;
         //
         $detail = GoodsDetail::where("sku", $this->detailCanBuilds[$key]["sku"])->firstOrNew();
@@ -150,11 +158,26 @@ class Goods extends Component
         $detail->price = $this->detailCanBuilds[$key]["price"];
         $detail->status = $this->detailCanBuilds[$key]["status"];
         $detail->sort = 1;
-        $item->specOptions()->save($detail);
-        //新增成功就刪掉
-        unset($this->detailCanBuilds[$key]);
+        $detail->goods_id = $this->goodsId;
+        $detail->save();
+        //
+        $detailSpec = json_decode($this->detailCanBuilds[$key]["spec"]??[],true);
+        foreach ($detailSpec as $key => $value){
+            $detailSpec[$key] = [
+                "spec_option_id" => $value,
+            ];
+        }
+        $detail->specs()->sync($detailSpec);
+        //載入商品
+        $item = \App\Models\Goods::with([
+            "specs.specOptions",
+            "goodsDetails.specs",
+            "goodsDetails.specOptions",
+        ])->find($this->goodsId);
         //重新載入商品明細列表
-        $this->details = $this->loadSpecOptions($item->specOptions ?? []);
+        $this->details = $this->loadSpecOptions($item->goodsDetails ?? []);
+        //重新載入建議新增
+        $this->detailCanBuilds = $this->loadDetailCanBuilds($item->specs ?? [], $item?->name, $item?->sku, $item?->price, $item?->status,array_keys($this->details));
     }
 
     public function render()
