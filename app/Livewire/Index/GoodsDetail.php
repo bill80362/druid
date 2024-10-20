@@ -6,7 +6,7 @@ use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class GoodsSpecOption extends Component
+class GoodsDetail extends Component
 {
     use WithPagination;
 
@@ -34,7 +34,7 @@ class GoodsSpecOption extends Component
     public function render()
     {
         //
-        $query = \App\Models\GoodsSpecOption::query();
+        $query = \App\Models\GoodsDetail::query();
         if ($this->name) {
             $query->where("name", "like", "%" . $this->name . "%");
         }
@@ -49,7 +49,7 @@ class GoodsSpecOption extends Component
         }
         $paginator = $query->paginate();
         //
-        return view('livewire.index.goods_spec_option', [
+        return view('livewire.index.goods_detail', [
             "paginator" => $paginator,
         ]);
     }

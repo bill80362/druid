@@ -6,9 +6,9 @@ use App\Models\PermissionGroup;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
-class GoodsSpecOption extends Component
+class GoodsDetail extends Component
 {
-    public $goodsSpecOptionId = null;
+    public $goodsDetailId = null;
 
     #[Validate(['required','min:1','max:20'], as: '名稱')]
     public string $name = "";
@@ -30,9 +30,9 @@ class GoodsSpecOption extends Component
 
     public function mount($id)
     {
-        $this->goodsSpecOptionId = $id;
+        $this->goodsDetailId = $id;
         //
-        $item = \App\Models\GoodsSpecOption::find($this->goodsSpecOptionId);
+        $item = \App\Models\GoodsDetail::find($this->goodsDetailId);
         $this->name = $item?->name ?? "";
         $this->sku = $item?->sku ?? "";
         $this->price = $item?->price ?? "";
@@ -44,7 +44,7 @@ class GoodsSpecOption extends Component
     {
         $this->validate();
         //
-        $item = \App\Models\GoodsSpecOption::findOrNew($this->goodsSpecOptionId);
+        $item = \App\Models\GoodsDetail::findOrNew($this->goodsDetailId);
         $item->name = $this->name;
         $item->sku = $this->sku;
         $item->price = $this->price;
@@ -52,16 +52,16 @@ class GoodsSpecOption extends Component
         $item->sort = $this->sort;
         $item->save();
         //
-        if ($this->goodsSpecOptionId) {
+        if ($this->goodsDetailId) {
             $this->actionMessage = "更新成功";
         } else {
             $this->actionMessage = "新增成功";
-            return redirect()->route('goods_spec_options.edit', ["goods_spec_option" => $item]);
+            return redirect()->route('goods_details.edit', ["goods_detail" => $item]);
         }
     }
 
     public function render()
     {
-        return view('livewire.update-forms.goods_spec_option');
+        return view('livewire.update-forms.goods_detail');
     }
 }

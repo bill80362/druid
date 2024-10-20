@@ -58,8 +58,8 @@ new class extends Component {
                 ],
                 [
                     "title" => __("商品明細管理"),
-                    "href" => route('goods_spec_options.index'),
-                    "active" => request()->routeIs('goods_spec_options.index'),
+                    "href" => route('goods_details.index'),
+                    "active" => request()->routeIs('goods_details.index'),
                 ],
             ],
         ]);

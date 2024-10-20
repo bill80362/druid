@@ -102,7 +102,7 @@
                 <td
                     class="px-6 py-2 text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-200 text-center">
                     @can('商品明細管理_修改')
-                        <a class="btn btn-sm btn-primary" href="{{route('goods_spec_options.edit',["goods_spec_option"=>$item->id])}}">編輯</a>
+                        <a class="btn btn-sm btn-primary" href="{{route('goods_details.edit',["goods_detail"=>$item->id])}}">編輯</a>
                     @endcan
                 </td>
             </tr>

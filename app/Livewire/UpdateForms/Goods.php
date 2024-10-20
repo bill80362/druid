@@ -2,7 +2,7 @@
 
 namespace App\Livewire\UpdateForms;
 
-use App\Models\GoodsSpecOption;
+use App\Models\GoodsDetail;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
@@ -127,13 +127,13 @@ class Goods extends Component
     {
         //
         foreach ($this->details as $item){
-            $goodsSpecOption = GoodsSpecOption::find($item["id"]);
-            $goodsSpecOption->name = $item["name"];
-            $goodsSpecOption->sku = $item["sku"];
-            $goodsSpecOption->price = $item["price"];
-            $goodsSpecOption->status = $item["status"];
-            $goodsSpecOption->sort = $item["sort"];
-            $goodsSpecOption->save();
+            $goodsDetail = GoodsDetail::find($item["id"]);
+            $goodsDetail->name = $item["name"];
+            $goodsDetail->sku = $item["sku"];
+            $goodsDetail->price = $item["price"];
+            $goodsDetail->status = $item["status"];
+            $goodsDetail->sort = $item["sort"];
+            $goodsDetail->save();
         }
     }
 
@@ -144,7 +144,7 @@ class Goods extends Component
         //
         if (empty($this->detailCanBuilds[$key]["sku"])) return;
         //
-        $detail = GoodsSpecOption::where("sku", $this->detailCanBuilds[$key]["sku"])->firstOrNew();
+        $detail = GoodsDetail::where("sku", $this->detailCanBuilds[$key]["sku"])->firstOrNew();
         $detail->sku = $this->detailCanBuilds[$key]["sku"];
         $detail->name = $this->detailCanBuilds[$key]["name"];
         $detail->price = $this->detailCanBuilds[$key]["price"];

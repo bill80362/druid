@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\PermissionGroup;
-use App\Models\GoodsSpecOption;
+use App\Models\GoodsDetail;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Request;
 use Spatie\QueryBuilder\QueryBuilder;
 
-class GoodsSpecOptionController extends Controller
+class GoodsDetailController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +19,7 @@ class GoodsSpecOptionController extends Controller
             abort(403);
         }
         //
-        return view('goods_spec_option.index');
+        return view('goods_detail.index');
     }
 
     /**
@@ -30,10 +31,10 @@ class GoodsSpecOptionController extends Controller
             abort(403);
         }
         //
-        $GoodsSpecOption = new GoodsSpecOption([]);
+        $GoodsDetail = new GoodsDetail([]);
         //
-        return view('goods_spec_option.create', [
-            "item" => $GoodsSpecOption,
+        return view('goods_detail.create', [
+            "item" => $GoodsDetail,
         ]);
     }
 
@@ -46,16 +47,16 @@ class GoodsSpecOptionController extends Controller
             abort(403);
         }
         //
-        $GoodsSpecOption = new GoodsSpecOption($request->all());
-        $GoodsSpecOption->save();
+        $GoodsDetail = new GoodsDetail($request->all());
+        $GoodsDetail->save();
         //
-        return redirect()->route('goods_spec_options.index')->with("success",["新增成功"]);
+        return redirect()->route('goods_details.index')->with("success",["新增成功"]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(GoodsSpecOption $GoodsSpecOption)
+    public function show(GoodsDetail $GoodsDetail)
     {
         //
     }
@@ -63,40 +64,40 @@ class GoodsSpecOptionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(GoodsSpecOption $GoodsSpecOption)
+    public function edit(GoodsDetail $GoodsDetail)
     {
         if (! Gate::allows('商品明細管理_修改')) {
             abort(403);
         }
         //
-        return view('goods_spec_option.edit', [
-            "item" => $GoodsSpecOption,
+        return view('goods_detail.edit', [
+            "item" => $GoodsDetail,
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, GoodsSpecOption $GoodsSpecOption)
+    public function update(Request $request, GoodsDetail $GoodsDetail)
     {
         if (! Gate::allows('商品明細管理_修改')) {
             abort(403);
         }
-        $GoodsSpecOption->fill($request->only(["name","content"]));
-        $GoodsSpecOption->save();
+        $GoodsDetail->fill($request->only(["name","content"]));
+        $GoodsDetail->save();
         //
-        return redirect()->route('goods_spec_options.edit', ["goods_spec_option" => $GoodsSpecOption])->with("success",["儲存成功"]);
+        return redirect()->route('goods_details.edit', ["goods_detail" => $GoodsDetail])->with("success",["儲存成功"]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(GoodsSpecOption $GoodsSpecOption)
+    public function destroy(GoodsDetail $GoodsDetail)
     {
         if (! Gate::allows('商品明細管理_刪除')) {
             abort(403);
         }
-        $GoodsSpecOption->delete();
-        return redirect()->route('goods_spec_options.index')->with("success",["刪除成功"]);
+        $GoodsDetail->delete();
+        return redirect()->route('goods_details.index')->with("success",["刪除成功"]);
     }
 }

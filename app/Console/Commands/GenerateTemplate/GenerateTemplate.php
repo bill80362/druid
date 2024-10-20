@@ -39,7 +39,7 @@ class GenerateTemplate extends Command
 //            "active" => request()->routeIs('pages.index'),
 //        ],
         //
-        $str = "goods_spec_option";
+        $str = "goods_detail";
         $text = "商品明細";
         //
         $stringSnake = Str::snake($str);//str_str
