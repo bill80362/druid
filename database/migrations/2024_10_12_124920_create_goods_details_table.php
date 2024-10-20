@@ -16,7 +16,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->bigInteger('goods_id')->nullable();
-            $table->bigInteger('spec_option_id')->nullable();
+//            $table->bigInteger('spec_option_id')->nullable();
 
             $table->string("name")->nullable()->comment("名稱");
             $table->string("sku")->nullable()->comment("");
