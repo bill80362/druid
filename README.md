@@ -33,3 +33,6 @@
 ## 開發環境下看ER圖
 * php artisan erd:generate
 * http://127.0.0.1:8000/laravel-erd
+
+## 圖片軟連結
+* php artisan storage:link

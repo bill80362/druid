@@ -17,4 +17,8 @@ class Goods extends Model
     {
         return $this->hasMany(GoodsDetail::class);
     }
+    public function goodsPhotos(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(GoodsPhoto::class);
+    }
 }
