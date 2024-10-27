@@ -70,20 +70,21 @@
             </form>
         </div>
     </div>
-    <div class="col-12 col-md-6">
-        <div class="p-2 ">
-            商品圖片
-        </div>
-        <div class="row">
-            <div class="col-12">
+    <div class="col-12 col-md-6 p-3 text-gray-900">
+        <div class="row p-2">
+            <div class="col-12 mb-3">
                 <form wire:submit="uploadPhotos()">
-                    <input type="file" wire:model="uploads" multiple>
+                    <label class="form-label px-2">商品圖片批次上傳</label>
+                    <div class="input-group">
+                        <input type="file" class="form-control" wire:model="uploads" multiple>
+                        <button class="btn btn-primary" type="submit">上傳</button>
+                    </div>
                     @error('uploads.*') <span class="error">{{ $message }}</span> @enderror
-                    <button class="btn btn-sm btn-primary" type="submit">上傳</button>
                 </form>
             </div>
+            <label class="form-label px-2">商品圖片</label>
             @foreach($photos as $photo)
-            <div class="col-3">
+            <div class="col-3 mb-3">
                 <picture>
                     <img class="img-fluid img-thumbnail" src="{{asset("storage/".$photo["name"]??"")}}">
                 </picture>
@@ -113,8 +114,8 @@
     @if($details)
     <div style="height: 10px;"></div>
     <div class="col-12 p-3 text-gray-900">
-        <div class="">
-            <label class="form-label px-2">商品明細列表</label>
+        <div class="p-2">
+            <label class="form-label">商品明細列表</label>
             <form wire:submit="updateDetails()">
                 @foreach($details as $key => $item)
                     <div class="row">
@@ -162,8 +163,8 @@
     @if($detailCanBuilds)
     <div style="height: 10px;"></div>
     <div class="col-12 p-3 text-gray-900">
-        <div class="">
-            <label class="form-label px-2">快速建立商品明細</label>
+        <div class="p-2">
+            <label class="form-label">快速建立商品明細</label>
             @foreach($detailCanBuilds as $key => $item)
             <form wire:submit="createDetail({{$key}})">
                 <input type="hidden" wire:model="detailCanBuilds.{{$key}}.spec" placeholder="排序" />

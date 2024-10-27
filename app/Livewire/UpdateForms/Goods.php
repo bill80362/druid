@@ -64,7 +64,7 @@ class Goods extends Component
         //建議新增
         $this->detailCanBuilds = $this->loadDetailCanBuilds($item->specs ?? [], $item?->name, $item?->sku, $item?->price, $item?->status, array_keys($this->details));
         //
-        $this->photos = $item?->goodsPhotos?->toArray();
+        $this->photos = $item?->goodsPhotos?->toArray()??[];
     }
 
     public function loadSpecOptions($goodsDetails): array
