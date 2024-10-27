@@ -3,11 +3,16 @@
 namespace App\Livewire\UpdateForms;
 
 use App\Models\GoodsDetail;
+use App\Models\GoodsPhoto;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Goods extends Component
 {
+    use WithFileUploads;
+
     public $goodsId = null;
 
     #[Validate(['required', 'min:1', 'max:20'], as: '名稱')]
@@ -25,6 +30,8 @@ class Goods extends Component
     //
     public array $details = [];
     //
+    public array $photos = [];
+    //
     public array $detailCanBuilds = [];
     //
     public array $statusText = [
@@ -33,6 +40,8 @@ class Goods extends Component
     ];
     //
     public string $actionMessage = "";
+    #[Validate(['uploads.*' => 'image|max:1024'])]
+    public array $uploads = [];
 
     public function mount($id)
     {
@@ -42,6 +51,7 @@ class Goods extends Component
             "specs.specOptions",
             "goodsDetails.specs",
             "goodsDetails.specOptions",
+            "goodsPhotos" => fn($q) => $q->orderBy('sort'),
         ])->find($this->goodsId);
         $this->name = $item?->name ?? "";
         $this->sku = $item?->sku ?? "";
@@ -52,7 +62,9 @@ class Goods extends Component
         //載入商品明細列表
         $this->details = $this->loadSpecOptions($item->goodsDetails ?? []);
         //建議新增
-        $this->detailCanBuilds = $this->loadDetailCanBuilds($item->specs ?? [], $item?->name, $item?->sku, $item?->price, $item?->status,array_keys($this->details));
+        $this->detailCanBuilds = $this->loadDetailCanBuilds($item->specs ?? [], $item?->name, $item?->sku, $item?->price, $item?->status, array_keys($this->details));
+        //
+        $this->photos = $item?->goodsPhotos?->toArray();
     }
 
     public function loadSpecOptions($goodsDetails): array
@@ -79,7 +91,7 @@ class Goods extends Component
                             "price" => $defaultPrice,
                             "status" => $defaultStatus,
                             "sort" => 1,
-                            "spec" => array_merge($detailCanBuild["spec"],[$spec->id => $specOption->id]),
+                            "spec" => array_merge($detailCanBuild["spec"], [$spec->id => $specOption->id]),
                         ];
                     }
                 } else {
@@ -99,14 +111,14 @@ class Goods extends Component
             $detailCanBuilds = $temp;
         }
         //過濾掉已經建檔SKU
-        foreach ($detailCanBuilds as $key => $value){
-            if(in_array($value["sku"],$skuExclude)){
+        foreach ($detailCanBuilds as $key => $value) {
+            if (in_array($value["sku"], $skuExclude)) {
                 unset($detailCanBuilds[$key]);
             }
         }
         //轉字串
-        foreach ($detailCanBuilds as $key => $value){
-            $detailCanBuilds[$key]["spec"] = json_encode($value["spec"]??[]);
+        foreach ($detailCanBuilds as $key => $value) {
+            $detailCanBuilds[$key]["spec"] = json_encode($value["spec"] ?? []);
         }
         //
         return $detailCanBuilds;
@@ -134,11 +146,118 @@ class Goods extends Component
         }
     }
 
+    public function uploadPhotos()
+    {
+        //上傳圖片到檔案
+        $photoItems = [];
+        foreach ($this->uploads as $photo) {
+            $temp = new GoodsPhoto();
+            $temp->sort = 9999999;
+            $temp->name = $photo->store(path: 'photos');
+            $photoItems[] = $temp;
+        }
+        //新增入DB
+        $item = \App\Models\Goods::with(["specs"])->findOrNew($this->goodsId);
+        $item->goodsPhotos()->saveMany($photoItems);
+        //重新排序sort
+        $this->resortPhotos();
+        //刷新
+        $this->actionMessage = "圖片上傳成功";
+        return redirect()->route('goods.edit', ["goods" => $item]);
+    }
+
+    public function resortPhotos(): bool
+    {
+        $updateItems = [];
+        $item = \App\Models\Goods::with([
+            "goodsPhotos" => fn($q) => $q->orderBy('sort'),
+        ])->find($this->goodsId);
+        foreach ($item?->goodsPhotos ?? [] as $newSort => $goodsPhotoItem) {
+            $goodsPhotoItem->sort = ($newSort + 1);
+            $updateItems[] = $goodsPhotoItem;
+        }
+        $item->goodsPhotos()->saveMany($updateItems);
+        return true;
+    }
+
+    public function upPhoto(GoodsPhoto $goodsPhoto)
+    {
+        $item = \App\Models\Goods::with([
+            "goodsPhotos" => fn($q) => $q->orderBy('sort'),
+        ])->find($this->goodsId);
+        //
+        foreach ($item?->goodsPhotos ?? [] as $sort => $goodsPhotoItem) {
+            if($goodsPhoto->id == $goodsPhotoItem->id){
+                //交換雙方
+                $targetPhoto = $item?->goodsPhotos->get(($sort-1));
+                if(!$targetPhoto){
+                    break;
+                }
+                $thisPhoto = $goodsPhoto;
+                //交換
+                $temp = $targetPhoto->sort;
+                $targetPhoto->sort = $thisPhoto->sort;
+                $targetPhoto->save();
+                $thisPhoto->sort = $temp;
+                $thisPhoto->save();
+                //
+                break;
+            }
+        }
+        //刷新
+        $this->actionMessage = "圖片排序成功";
+        return redirect()->route('goods.edit', ["goods" => $goodsPhoto->goods_id]);
+    }
+
+    public function downPhoto(GoodsPhoto $goodsPhoto)
+    {
+        $item = \App\Models\Goods::with([
+            "goodsPhotos" => fn($q) => $q->orderBy('sort'),
+        ])->find($this->goodsId);
+        //
+        foreach ($item?->goodsPhotos ?? [] as $sort => $goodsPhotoItem) {
+            if($goodsPhoto->id == $goodsPhotoItem->id){
+                //交換雙方
+                $targetPhoto = $item?->goodsPhotos->get(($sort+1));
+                if(!$targetPhoto){
+                    break;
+                }
+                $thisPhoto = $goodsPhoto;
+                //交換
+                $temp = $targetPhoto->sort;
+                $targetPhoto->sort = $thisPhoto->sort;
+                $targetPhoto->save();
+                $thisPhoto->sort = $temp;
+                $thisPhoto->save();
+                //
+                break;
+            }
+        }
+        //刷新
+        $this->actionMessage = "圖片排序成功";
+        return redirect()->route('goods.edit', ["goods" => $goodsPhoto->goods_id]);
+    }
+
+    public function deletePhoto(GoodsPhoto $goodsPhoto)
+    {
+        //
+//        $this->authorize("delete",$goodsPhoto);
+        //刪除實體檔案
+        Storage::disk('public')->delete($goodsPhoto->name);
+        //db刪除
+        $goodsPhoto->delete();
+        //重新排序sort
+        $this->resortPhotos();
+        //刷新
+        $this->actionMessage = "圖片刪除成功";
+        return redirect()->route('goods.edit', ["goods" => $goodsPhoto->goods_id]);
+    }
+
     public function updateDetails()
     {
         //
-        foreach ($this->details as $item){
-            $goodsDetail = GoodsDetail::with(["specs","specOptions"])->find($item["id"]);
+        foreach ($this->details as $item) {
+            $goodsDetail = GoodsDetail::with(["specs", "specOptions"])->find($item["id"]);
             $goodsDetail->name = $item["name"];
             $goodsDetail->sku = $item["sku"];
             $goodsDetail->price = $item["price"];
@@ -161,8 +280,8 @@ class Goods extends Component
         $detail->goods_id = $this->goodsId;
         $detail->save();
         //
-        $detailSpec = json_decode($this->detailCanBuilds[$key]["spec"]??[],true);
-        foreach ($detailSpec as $key => $value){
+        $detailSpec = json_decode($this->detailCanBuilds[$key]["spec"] ?? [], true);
+        foreach ($detailSpec as $key => $value) {
             $detailSpec[$key] = [
                 "spec_option_id" => $value,
             ];
@@ -177,7 +296,7 @@ class Goods extends Component
         //重新載入商品明細列表
         $this->details = $this->loadSpecOptions($item->goodsDetails ?? []);
         //重新載入建議新增
-        $this->detailCanBuilds = $this->loadDetailCanBuilds($item->specs ?? [], $item?->name, $item?->sku, $item?->price, $item?->status,array_keys($this->details));
+        $this->detailCanBuilds = $this->loadDetailCanBuilds($item->specs ?? [], $item?->name, $item?->sku, $item?->price, $item?->status, array_keys($this->details));
     }
 
     public function render()
@@ -187,4 +306,5 @@ class Goods extends Component
             "specOptions" => \App\Models\Spec::get(),
         ]);
     }
+
 }
