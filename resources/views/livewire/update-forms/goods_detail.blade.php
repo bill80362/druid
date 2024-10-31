@@ -3,6 +3,11 @@
         <form method="post" wire:submit="submit()">
             @csrf
             <div class="mb-3">
+                <label class="form-label">規格</label>
+                <input type="text" class="form-control" disabled value="{{implode(" x ",array_column($spec_options,"name"))}}">
+                <small class="text-danger">@error('name') {{ $message }} @enderror</small>
+            </div>
+            <div class="mb-3">
                 <label class="form-label">名稱</label>
                 <input type="text" class="form-control" wire:model="name">
                 <small class="text-danger">@error('name') {{ $message }} @enderror</small>

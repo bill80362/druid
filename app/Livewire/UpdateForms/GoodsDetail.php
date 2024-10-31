@@ -20,6 +20,8 @@ class GoodsDetail extends Component
     public string $status = "Y";
     #[Validate(['required'], as: '排序')]
     public string $sort = "1";
+    #[Validate([], as: '規格')]
+    public array $spec_options = [];
     //
     public array $statusText = [
         "Y" => "顯示",
@@ -38,6 +40,7 @@ class GoodsDetail extends Component
         $this->price = $item?->price ?? "";
         $this->status = $item?->status ?? "";
         $this->sort = $item?->sort ?? "";
+        $this->spec_options = $item->specOptions?->toArray()??[];
     }
 
     public function submit()

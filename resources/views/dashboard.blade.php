@@ -121,7 +121,7 @@
                                             <a href="#" class="list-group-item list-group-item-action">
                                                 <div class="d-flex w-100 justify-content-between">
                                                     <h5 class="my-1">商品明細</h5>
-                                                    <small class="text-secondary">評估中</small>
+                                                    <small class="text-primary">已完成</small>
                                                 </div>
                                                 <small class="my-1">SKU(主商品x規格群組x規格選項)(PRODREDLARGE/PRODBLUESMALL)<br />價格、開關、排序</small>
                                             </a>
