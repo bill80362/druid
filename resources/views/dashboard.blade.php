@@ -152,53 +152,38 @@
                                         <div class="list-group">
                                             <a href="#" class="list-group-item list-group-item-action" aria-current="true">
                                                 <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">訂單</h5>
+                                                    <h5 class="my-1">主訂單資訊</h5>
                                                     <small class="text-secondary">評估中</small>
                                                 </div>
                                                 <small class="my-1">商品基本資料、規格設定(顏色、尺寸...等等)</small>
                                             </a>
                                             <a href="#" class="list-group-item list-group-item-action">
                                                 <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">訂單商品明細</h5>
+                                                    <h5 class="my-1">訂單消費明細</h5>
                                                     <small class="text-secondary">評估中</small>
                                                 </div>
-                                                <small class="my-1">訂單內的商品</small>
+                                                <small class="my-1">商品、優惠、其他項目</small>
                                             </a>
                                             <a href="#" class="list-group-item list-group-item-action">
                                                 <div class="d-flex w-100 justify-content-between">
                                                     <h5 class="my-1">訂單金流</h5>
                                                     <small class="text-secondary">評估中</small>
                                                 </div>
-                                                <small class="my-1">訂單產生>金流付款>訂單付款完成</small>
+                                                <small class="my-1">對應金流付款</small>
                                             </a>
                                             <a href="#" class="list-group-item list-group-item-action">
                                                 <div class="d-flex w-100 justify-content-between">
                                                     <h5 class="my-1">訂單物流</h5>
                                                     <small class="text-secondary">評估中</small>
                                                 </div>
-                                                <small class="my-1">訂單付款完成>商品檢貨和QC>訂單出貨開始物流>訂單完成</small>
+                                                <small class="my-1">出貨單(撿貨>出貨>到貨>退貨)</small>
                                             </a>
                                             <a href="#" class="list-group-item list-group-item-action">
                                                 <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">訂單逆物流</h5>
+                                                    <h5 class="my-1">銷退單</h5>
                                                     <small class="text-secondary">評估中</small>
                                                 </div>
-                                                <small class="my-1">訂單退回申請>訂單退回物流中>逆物流到貨>QC商品回庫存>逆物流訂單完成</small>
-                                                <small class="my-1">商品未領貨退回>逆物流到貨>QC商品回庫存>逆物流訂單完成</small>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">門市結帳流程</h5>
-                                                    <small class="text-secondary">評估中</small>
-                                                </div>
-                                                <small class="my-1">一樣建立訂單，只是流程會與網購不同，金流接實體金流。物流選項也不同。</small>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">門市退貨流程</h5>
-                                                    <small class="text-secondary">評估中</small>
-                                                </div>
-                                                <small class="my-1">待討論</small>
+                                                <small class="my-1">消費明細、金流、物流</small>
                                             </a>
                                         </div>
                                     </div>
