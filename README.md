@@ -1,3 +1,10 @@
+## Druid 演化架構
+```mermaid
+graph TD;
+    基礎-->EC商城;
+    基礎-->存證信函收件;
+```
+
 # Druid 
 * 為了希望快速開發，先準備這個開頭
 
@@ -36,3 +43,5 @@
 
 ## 圖片軟連結
 * php artisan storage:link
+
+

@@ -355,6 +355,39 @@
                                 </div>
                             </div>
                         </div>
+
+
+                        <div class="col-4 p-2">
+
+                        </div>
+
+                        <div class="col-4 p-2">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">存證信函收件服務</h5>
+                                    <div class="card-text">
+                                        <div class="list-group">
+                                            <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+                                                <div class="d-flex w-100 justify-content-between">
+                                                    <h5 class="my-1">存證信函管理</h5>
+                                                    <small class="text-secondary">評估中</small>
+                                                </div>
+                                                <small class="my-1">建立存證信函>預覽內容</small>
+                                            </a>
+                                            <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+                                                <div class="d-flex w-100 justify-content-between">
+                                                    <h5 class="my-1">存證信函寄送(訂單)</h5>
+                                                    <small class="text-secondary">評估中</small>
+                                                </div>
+                                                <small class="my-1">選擇存證信函>寄送>付款(綠界)</small>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
             </div>
