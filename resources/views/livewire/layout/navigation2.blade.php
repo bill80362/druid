@@ -64,6 +64,24 @@ new class extends Component {
             ],
         ]);
         //
+        $menus->push([
+            "title" => __("存證信函管理"),
+            "href" => "#",
+            "active" => "",
+            "submenus" => [
+                [
+                    "title" => __("存證信函"),
+                    "href" => route('legal_attest_letters.index'),
+                    "active" => request()->routeIs('legal_attest_letters.index'),
+                ],
+//                [
+//                    "title" => __("存證信函寄送"),
+//                    "href" => route('page_tags.index'),
+//                    "active" => request()->routeIs('page_tags.index'),
+//                ],
+            ],
+        ]);
+        //
         return $menus;
     }
     /**

@@ -31,6 +31,7 @@ class GenerateTemplate extends Command
      */
     public function handle()
     {
+        //需要手動捕上的資料
         //路由 Route::resource('pages', \App\Http\Controllers\PageController::class);
         //選單 navigation2.blade.php
 //        [
@@ -38,19 +39,15 @@ class GenerateTemplate extends Command
 //            "href" => route('pages.index'),
 //            "active" => request()->routeIs('pages.index'),
 //        ],
-        //
-        $str = "goods_detail";
-        $text = "商品明細";
+        //需要設定的資料
+        $str = "legal_attest_letter";
+        $text = "存證信函";
+        $permissionGroupMaxId = 8;
         //
         $stringSnake = Str::snake($str);//str_str
         $stringLowerCamel = Str::camel($str);//strStr
         $stringUpperCamel = Str::Studly($str);//StrStr
-//        $stringDash = Str::kebab($str);//str-str
-//        $stringLcFirst = Str::lcfirst($str);//str str
-//        $stringUcFirst = Str::ucfirst($str);//Str str
-//        $stringPlural = Str::plural($str);//複數
         //
-        $permissionGroupMaxId = 7;
         $permissionMaxId = $permissionGroupMaxId*4;
         //replaces array
         $replacesArray = [
