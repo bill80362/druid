@@ -9,10 +9,13 @@
         "binafy/laravel-stub": "^1.0",
         "laravel-lang/common": "^6.4",
         "laravel/framework": "^11.9",
+        "laravel/octane": "^2.6",
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.4",
         "livewire/volt": "^1.0",
-        "spatie/laravel-query-builder": "^6.0"
+        "spatie/laravel-query-builder": "^6.0",
+        "spiral/roadrunner-cli": "^2.6.0",
+        "spiral/roadrunner-http": "^3.3.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

@@ -23,9 +23,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        //
         try{
             foreach (Permission::with(["group"])->get() as $permission){
                 Gate::define($permission?->group?->name."_".$permission->name, function (User $user) use ($permission) {
+                    //先全開
+                    return true;
+
                     return $user->permissions->pluck("id")->contains($permission->id);
                 });
             }
