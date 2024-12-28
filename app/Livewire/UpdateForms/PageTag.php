@@ -78,6 +78,7 @@ class PageTag extends Component
         //
         if ($this->pageTagId) {
             $this->actionMessage = "更新成功";
+            return redirect()->route('page_tags.edit', ["page_tag" => $item]);
         } else {
             $this->actionMessage = "新增成功";
             return redirect()->route('page_tags.edit', ["page_tag" => $item]);

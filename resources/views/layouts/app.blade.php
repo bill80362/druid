@@ -14,6 +14,29 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.scss', 'resources/js/app.js'])
+
+        <!--編輯器-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/froala_editor_3.2.6-1/css/froala_editor.css">
+        <link rel="stylesheet" href="/froala_editor_3.2.6-1/css/froala_style.css">
+        <link rel="stylesheet" href="/froala_editor_3.2.6-1/css/plugins/code_view.css">
+        <link rel="stylesheet" href="/froala_editor_3.2.6-1/css/plugins/image_manager.css">
+        <link rel="stylesheet" href="/froala_editor_3.2.6-1/css/plugins/image.css">
+        <link rel="stylesheet" href="/froala_editor_3.2.6-1/css/plugins/table.css">
+        <link rel="stylesheet" href="/froala_editor_3.2.6-1/css/plugins/video.css">
+        <link rel="stylesheet" href="/froala_editor_3.2.6-1/css/plugins/colors.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
+        <!-- Include the fonts. -->
+        <link href='https://fonts.googleapis.com/css?family=Noto+Sans+TC' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Noto+Serif+SC' rel='stylesheet' type='text/css'>
+        <style>
+            /*Unlicensed隱藏*/
+            /*.fr-wrapper > div:first-child {*/
+            /*    display: none;*/
+            /*}*/
+        </style>
+
+
     </head>
     <body class="font-sans antialiased">
         @if($errors->any() || Illuminate\Support\Facades\Session::has('success'))
