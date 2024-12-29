@@ -33,10 +33,6 @@
                     <input type="text" class="form-control" wire:model="sort">
                     <small class="text-danger">@error('sort') {{ $message }} @enderror</small>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label px-2">商品介紹</label>
-                    <textarea class="form-control" id="content" name="content" rows="5">AAAAA</textarea>
-                </div>
                 <div class="row mb-3">
                     <div class="col-12 col-lg-6">
                         <label class="form-label px-2">規格群組</label>

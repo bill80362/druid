@@ -101,11 +101,11 @@ new class extends Component {
                     "href" => route('users.index'),
                     "active" => request()->routeIs('users.index'),
                 ],
-                [
-                    "title" => __("自訂欄位管理"),
-                    "href" => route('users.index'),
-                    "active" => request()->routeIs('users.index'),
-                ],
+//                [
+//                    "title" => __("自訂欄位管理"),
+//                    "href" => route('users.index'),
+//                    "active" => request()->routeIs('users.index'),
+//                ],
             ],
         ]);
         //

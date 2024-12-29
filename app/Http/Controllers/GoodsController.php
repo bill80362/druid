@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PermissionGroup;
 use App\Models\Goods;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
-use Spatie\QueryBuilder\QueryBuilder;
 
 class GoodsController extends Controller
 {
@@ -14,7 +13,7 @@ class GoodsController extends Controller
      */
     public function index()
     {
-        if (! Gate::allows('主商品管理_讀取')) {
+        if (!Gate::allows('主商品管理_讀取')) {
             abort(403);
         }
         //
@@ -26,7 +25,7 @@ class GoodsController extends Controller
      */
     public function create()
     {
-        if (! Gate::allows('主商品管理_新增')) {
+        if (!Gate::allows('主商品管理_新增')) {
             abort(403);
         }
         //
@@ -42,14 +41,14 @@ class GoodsController extends Controller
      */
     public function store(Request $request)
     {
-        if (! Gate::allows('主商品管理_新增')) {
+        if (!Gate::allows('主商品管理_新增')) {
             abort(403);
         }
         //
         $Goods = new Goods($request->all());
         $Goods->save();
         //
-        return redirect()->route('goods.index')->with("success",["新增成功"]);
+        return redirect()->route('goods.index')->with("success", ["新增成功"]);
     }
 
     /**
@@ -65,7 +64,7 @@ class GoodsController extends Controller
      */
     public function edit(Goods $Goods)
     {
-        if (! Gate::allows('主商品管理_修改')) {
+        if (!Gate::allows('主商品管理_修改')) {
             abort(403);
         }
         //
@@ -79,13 +78,13 @@ class GoodsController extends Controller
      */
     public function update(Request $request, Goods $Goods)
     {
-        if (! Gate::allows('主商品管理_修改')) {
+        if (!Gate::allows('主商品管理_修改')) {
             abort(403);
         }
-        $Goods->fill($request->only(["name","content"]));
+        $Goods->fill($request->only(["name", "content"]));
         $Goods->save();
         //
-        return redirect()->route('goods.edit', ["goods" => $Goods])->with("success",["儲存成功"]);
+        return redirect()->route('goods.edit', ["goods" => $Goods])->with("success", ["儲存成功"]);
     }
 
     /**
@@ -93,10 +92,29 @@ class GoodsController extends Controller
      */
     public function destroy(Goods $Goods)
     {
-        if (! Gate::allows('主商品管理_刪除')) {
+        if (!Gate::allows('主商品管理_刪除')) {
             abort(403);
         }
         $Goods->delete();
-        return redirect()->route('goods.index')->with("success",["刪除成功"]);
+        return redirect()->route('goods.index')->with("success", ["刪除成功"]);
+    }
+
+    public function edit2(Goods $Goods)
+    {
+        if (!Gate::allows('主商品管理_修改')) {
+            abort(403);
+        }
+        //
+        return view('goods.edit2', [
+            "item" => $Goods,
+        ]);
+    }
+
+    public function update2(Request $request,Goods $Goods)
+    {
+        $Goods->content1 = $request->get("content1");
+        $Goods->save();
+        //
+        return redirect()->route('goods.edit2',["goods"=>$Goods])->with("success", ["更新成功"]);
     }
 }
