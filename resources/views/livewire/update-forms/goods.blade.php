@@ -115,7 +115,7 @@
     <div style="height: 10px;"></div>
     <div class="col-12 p-3 text-gray-900">
         <div class="p-2">
-            <label class="form-label">商品明細列表</label>
+            <label class="form-label">以建立的商品明細列表</label>
             <form wire:submit="updateDetails()">
                 @foreach($details as $key => $item)
                     <div class="row">
@@ -164,7 +164,7 @@
     <div style="height: 10px;"></div>
     <div class="col-12 p-3 text-gray-900">
         <div class="p-2">
-            <label class="form-label">快速建立商品明細</label>
+            <label class="form-label">建議建立的商品明細</label>
             @foreach($detailCanBuilds as $key => $item)
             <form wire:submit="createDetail({{$key}})">
                 <input type="hidden" wire:model="detailCanBuilds.{{$key}}.spec" placeholder="排序" />

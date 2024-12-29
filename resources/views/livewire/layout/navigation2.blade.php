@@ -24,11 +24,6 @@ new class extends Component {
             "active" => "",
             "submenus" => [
                 [
-                    "title" => __("頁面標籤管理"),
-                    "href" => route('page_tags.index'),
-                    "active" => request()->routeIs('page_tags.index'),
-                ],
-                [
                     "title" => __("頁面管理"),
                     "href" => route('pages.index'),
                     "active" => request()->routeIs('pages.index'),
@@ -45,16 +40,6 @@ new class extends Component {
                     "title" => __("主商品管理"),
                     "href" => route('goods.index'),
                     "active" => request()->routeIs('goods.index'),
-                ],
-                [
-                    "title" => __("規格群組管理"),
-                    "href" => route('specs.index'),
-                    "active" => request()->routeIs('specs.index'),
-                ],
-                [
-                    "title" => __("規格選項管理"),
-                    "href" => route('spec_options.index'),
-                    "active" => request()->routeIs('spec_options.index'),
                 ],
                 [
                     "title" => __("商品明細管理"),
@@ -106,6 +91,21 @@ new class extends Component {
 //                    "href" => route('users.index'),
 //                    "active" => request()->routeIs('users.index'),
 //                ],
+                [
+                    "title" => __("頁面標籤管理"),
+                    "href" => route('page_tags.index'),
+                    "active" => request()->routeIs('page_tags.index'),
+                ],
+                [
+                    "title" => __("規格群組管理"),
+                    "href" => route('specs.index'),
+                    "active" => request()->routeIs('specs.index'),
+                ],
+                [
+                    "title" => __("規格選項管理"),
+                    "href" => route('spec_options.index'),
+                    "active" => request()->routeIs('spec_options.index'),
+                ],
             ],
         ]);
         //
