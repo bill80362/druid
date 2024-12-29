@@ -7,7 +7,9 @@
         </h2>
     </x-slot>
     <x-slot name="header_tool">
-
+        <div class="d-flex">
+            <a class="btn btn-primary mr-2" href="{{route('goods.edit',['goods'=>$item])}}">商品編輯</a>
+        </div>
     </x-slot>
 
     <div class="py-6">
@@ -70,7 +72,7 @@
         const editorInstance = new FroalaEditor('#content', {
             enter: FroalaEditor.ENTER_P,
             placeholderText: null,
-            imageUploadURL: '/web/editor',
+            imageUploadURL: '/web/editor?_token={{ csrf_token() }}',
             language: 'zh_tw',
             events: {
                 initialized: function () {

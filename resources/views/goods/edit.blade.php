@@ -7,13 +7,17 @@
         </h2>
     </x-slot>
     <x-slot name="header_tool">
-        @can('主商品管理_刪除')
-            <form method="post" action="{{route('goods.destroy',['goods'=>$item->id])}}">
-                @csrf
-                @method('delete')
-                <button class="btn btn-danger" onclick="confirm('是否確認刪除')">刪除</button>
-            </form>
-        @endcan
+        <div class="d-flex">
+            <a class="btn btn-primary mr-2" href="{{route('goods.edit2',['goods'=>$item])}}">商品描述</a>
+            @can('主商品管理_刪除')
+                <form method="post" action="{{route('goods.destroy',['goods'=>$item->id])}}">
+                    @csrf
+                    @method('delete')
+                    <button class="btn btn-danger mr-2" onclick="confirm('是否確認刪除')">刪除</button>
+                </form>
+            @endcan
+        </div>
+
     </x-slot>
 
     <div class="py-6">

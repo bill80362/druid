@@ -28,3 +28,5 @@ Route::resource('legal_attest_letters', \App\Http\Controllers\LegalAttestLetterC
 
 Route::get('goods/edit2/{goods}', [\App\Http\Controllers\GoodsController::class,'edit2'])->name("goods.edit2");
 Route::post('goods/update2/{goods}', [\App\Http\Controllers\GoodsController::class,'update2'])->name("goods.update2");
+
+Route::post('web/editor', [\App\Http\Controllers\WebEditorController::class,'upload'])->name("web.editor.upload");
