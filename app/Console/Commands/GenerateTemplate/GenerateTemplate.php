@@ -40,9 +40,9 @@ class GenerateTemplate extends Command
 //            "active" => request()->routeIs('pages.index'),
 //        ],
         //需要設定的資料
-        $str = "legal_attest_letter";
-        $text = "存證信函";
-        $permissionGroupMaxId = 8;
+        $str = "order";
+        $text = "訂單管理";
+        $permissionGroupMaxId = 9;
         //
         $stringSnake = Str::snake($str);//str_str
         $stringLowerCamel = Str::camel($str);//strStr
