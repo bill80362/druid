@@ -49,6 +49,19 @@ new class extends Component {
             ],
         ]);
         //
+        $menus->push([
+            "title" => __("訂單管理"),
+            "href" => "#",
+            "active" => "",
+            "submenus" => [
+                [
+                    "title" => __("訂單管理"),
+                    "href" => route('orders.index'),
+                    "active" => request()->routeIs('orders.index'),
+                ],
+            ],
+        ]);
+        //
 //        $menus->push([
 //            "title" => __("存證信函管理"),
 //            "href" => "#",
