@@ -40,6 +40,12 @@ class Order extends Component
     public string $memo_admin = "";
     #[Validate([])]
     public string $promotion_code = "";
+    #[Validate([])]
+    public string $created_at = "";
+    #[Validate([])]
+    public string $member_id = "";
+    //
+    public mixed $member;
     //
     public string $actionMessage = "";
 
@@ -47,7 +53,7 @@ class Order extends Component
     {
         $this->orderId = $id;
         //
-        $item = \App\Models\Order::find($this->orderId);
+        $item = \App\Models\Order::with(["member"])->find($this->orderId);
         $this->status = $item?->status ?? "";
         $this->detail_subtotal = $item?->detail_subtotal ?? "";
         $this->payment_fee = $item?->payment_fee ?? "";
@@ -62,6 +68,10 @@ class Order extends Component
         $this->receiver_memo = $item?->receiver_memo ?? "";
         $this->memo = $item?->memo ?? "";
         $this->memo_admin = $item?->memo_admin ?? "";
+        $this->created_at = $item?->created_at ?? "";
+        $this->member_id = $item?->member_id ?? "";
+        //
+        $this->member = $item?->member;
     }
 
     public function submit()
@@ -77,7 +87,7 @@ class Order extends Component
         //}
         $this->validate();
         //
-        $item = \App\Models\Order::findOrNew($this->orderId);
+        $item = \App\Models\Order::with(["member"])->findOrNew($this->orderId);
         $item->status = $this->status;
         $item->detail_subtotal = $this->detail_subtotal ?? "";
         $item->payment_fee = $this->payment_fee ?? "";
@@ -92,7 +102,10 @@ class Order extends Component
         $item->receiver_memo = $this->receiver_memo ?? "";
         $item->memo = $this->memo ?? "";
         $item->memo_admin = $this->memo_admin ?? "";
+        $item->member_id = $this->member_id ?? "";
         $item->save();
+        //
+        $this->member = $item?->member;
         //
         if ($this->orderId) {
             $this->actionMessage = "更新成功";

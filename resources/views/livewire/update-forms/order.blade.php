@@ -38,7 +38,7 @@
                         <h4>訂單資訊</h4>
                     </div>
                     <div class="mb-3">
-                        <div>訂單時間：2022-02-02 12:12:12</div>
+                        <div>訂單時間：{{$created_at}}</div>
                         <div class="mb-3"></div>
                         <div>訂單金額</div>
                         <div>訂單明細小計：{{$detail_subtotal}}</div>
@@ -93,11 +93,6 @@
                         <small class="text-danger">@error('receiver_memo') {{ $message }} @enderror</small>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">訂購會員</label>
-                        <input type="text" class="form-control" wire:model="member_id">
-                        <small class="text-danger">@error('member_id') {{ $message }} @enderror</small>
-                    </div>
-                    <div class="mb-3">
                         <label class="form-label">購買人</label>
                         <input type="text" class="form-control" wire:model="buyer_name">
                         <small class="text-danger">@error('buyer_name') {{ $message }} @enderror</small>
@@ -106,6 +101,15 @@
                         <label class="form-label">購買人電話</label>
                         <input type="text" class="form-control" wire:model="buyer_phone">
                         <small class="text-danger">@error('buyer_phone') {{ $message }} @enderror</small>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">訂購會員編號</label>
+                        <input type="text" class="form-control" wire:model="member_id">
+                        <small class="text-danger">@error('member_id') {{ $message }} @enderror</small>
+                    </div>
+                    <div class="mb-3">
+                        <div>會員帳號：{{$member?->account}}</div>
+                        <div>會員名字：{{$member?->name}}</div>
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
