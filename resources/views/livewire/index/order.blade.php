@@ -8,14 +8,9 @@
                 <div class="col-12 col-md-3">
                     <select class="form-control form-control-sm w-100" wire:model.live="status" >
                         <option value="">狀態:不限制</option>
-                        <option value="created">已建立，待付款</option>
-                        <option value="pay">已付款，待出貨</option>
-                        <option value="ship">已出貨</option>
-                        <option value="cod">已出貨，未付款</option>
-                        <option value="arrive">已到貨，待取貨</option>
-                        <option value="delivery">已取貨，待結案</option>
-                        <option value="finish">結案</option>
-                        <option value="cancel">取消</option>
+                        @foreach(\App\Enum\OrderStatusEnum::cases() as $key => $value)
+                            <option value="{{$key}}">{{$value}}</option>
+                        @endforeach
                     </select>
                 </div>
 
@@ -77,7 +72,9 @@
                     </div>
                 </td>
                 <td class="px-6 py-2 border-b border-gray-200 text-center">
-                    <div class="text-sm leading-5 text-gray-500">{{ $item->status }}</div>
+                    <div class="text-sm leading-5 text-gray-500">
+                        {{ \App\Enum\OrderStatusEnum::tryFrom($item->status)->text() }}
+                    </div>
                 </td>
                 <td class="px-6 py-2 border-b border-gray-200 text-center">
                     <div class="text-sm leading-5 text-gray-500">{{ $item->total }}</div>
