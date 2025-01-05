@@ -62,6 +62,19 @@ new class extends Component {
             ],
         ]);
         //
+        $menus->push([
+            "title" => __("會員管理"),
+            "href" => "#",
+            "active" => "",
+            "submenus" => [
+                [
+                    "title" => __("會員管理"),
+                    "href" => route('members.index'),
+                    "active" => request()->routeIs('members.index'),
+                ],
+            ],
+        ]);
+        //
 //        $menus->push([
 //            "title" => __("存證信函管理"),
 //            "href" => "#",
