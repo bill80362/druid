@@ -132,6 +132,11 @@ new class extends Component {
                     "href" => route('spec_options.index'),
                     "active" => request()->routeIs('spec_options.index'),
                 ],
+                [
+                    "title" => __("LINE帳號管理"),
+                    "href" => route('lines.index'),
+                    "active" => request()->routeIs('lines.index'),
+                ],
             ],
         ]);
         //
