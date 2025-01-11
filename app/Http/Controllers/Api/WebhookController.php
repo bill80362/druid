@@ -17,14 +17,17 @@ class WebhookController extends Controller
         $lineMessages = new LineMessages();
         $lineMessages->status = "I";
         $lineMessages->line_id = $line->id;
-        $lineMessages->log = $request->getContent();
+        $lineMessages->log = json_encode([
+            "header" => $request->header(),
+            "body" => $request->getContent(),
+        ]);
         $lineMessages->save();
 
-//        $signature = base64_encode(hash_hmac('sha256', $request->getContent() , $line->secret, true));
-//        if ($signature != $request->header('http_x_line_signature')) {
-//            throw new \Exception("sign error");
-//        }
-//dd($request->get("events")[0]);
+        $signature = base64_encode(hash_hmac('sha256', $request->getContent() , $line->secret, true));
+        if ($signature != $request->header('x-line-signature')) {
+            throw new \Exception("sign error");
+        }
+
         foreach ($request->get("events")?:[] as $event){
             if ($event['message']['type'] == 'text') {
                 //記錄訊息內容
