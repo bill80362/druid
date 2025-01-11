@@ -72,6 +72,11 @@ new class extends Component {
                     "href" => route('members.index'),
                     "active" => request()->routeIs('members.index'),
                 ],
+                [
+                    "title" => __("LINE對話紀錄"),
+                    "href" => route('line_messages.index'),
+                    "active" => request()->routeIs('line_messages.index'),
+                ],
             ],
         ]);
         //

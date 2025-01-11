@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome');
 
+
+Route::get('/api/webhook/line', [\App\Http\Controllers\API\WebhookController::class, "line"]);
+
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
@@ -12,7 +15,7 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 /**開發期間 */
 Route::resource('users', \App\Http\Controllers\UserController::class);
@@ -28,8 +31,9 @@ Route::resource('legal_attest_letters', \App\Http\Controllers\LegalAttestLetterC
 Route::resource('orders', \App\Http\Controllers\OrderController::class);
 Route::resource('members', \App\Http\Controllers\MemberController::class);
 Route::resource('lines', \App\Http\Controllers\LineController::class);
+Route::resource('line_messages', \App\Http\Controllers\LineMessagesController::class);
 
-Route::get('goods/edit2/{goods}', [\App\Http\Controllers\GoodsController::class,'edit2'])->name("goods.edit2");
-Route::post('goods/update2/{goods}', [\App\Http\Controllers\GoodsController::class,'update2'])->name("goods.update2");
+Route::get('goods/edit2/{goods}', [\App\Http\Controllers\GoodsController::class, 'edit2'])->name("goods.edit2");
+Route::post('goods/update2/{goods}', [\App\Http\Controllers\GoodsController::class, 'update2'])->name("goods.update2");
 
-Route::post('web/editor', [\App\Http\Controllers\WebEditorController::class,'upload'])->name("web.editor.upload");
+Route::post('web/editor', [\App\Http\Controllers\WebEditorController::class, 'upload'])->name("web.editor.upload");
