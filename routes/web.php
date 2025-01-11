@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'welcome');
 
 
-Route::get('/api/webhook/line', [\App\Http\Controllers\API\WebhookController::class, "line"]);
+Route::post('aaa/{id}', [\App\Http\Controllers\API\WebhookController::class, "line"]);
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
