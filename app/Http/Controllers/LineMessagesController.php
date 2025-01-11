@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PermissionGroup;
 use App\Models\LineMessages;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Request;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class LineMessagesController extends Controller
@@ -63,14 +64,14 @@ class LineMessagesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(LineMessages $LineMessages)
+    public function edit($line_messages_id)
     {
         if (! Gate::allows('LINE對話記錄管理_修改')) {
             abort(403);
         }
         //
         return view('line_messages.edit', [
-            "item" => $LineMessages,
+            "item" => LineMessages::find($line_messages_id),
         ]);
     }
 

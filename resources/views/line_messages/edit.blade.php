@@ -8,7 +8,7 @@
     </x-slot>
     <x-slot name="header_tool">
         @can('LINE對話記錄管理_刪除')
-            <form method="post" action="{{route('line_messages.destroy',['line_messages'=>$item->id])}}">
+            <form method="post" action="{{route('line_messages.destroy',['line_message'=>$item->id])}}">
                 @csrf
                 @method('delete')
                 <button class="btn btn-danger" onclick="confirm('是否確認刪除')">刪除</button>

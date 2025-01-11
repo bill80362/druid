@@ -31,7 +31,7 @@ class WebhookController extends Controller
                 $lineMessages->type = "T";
                 $lineMessages->message = $event['message']['text']??"";;
                 $lineMessages->member_line_id = $event['source']['userId']??"";
-//                $lineMessages->message_at = Carbon::createFromTimestamp($event['timestamp'])->format("Y-m-d H:i:s");
+                $lineMessages->message_at = Carbon::createFromTimestampMs($event['timestamp'])->setTimezone(config("app.timezone"))->format("Y-m-d H:i:s");
                 $lineMessages->save();
             }
         }
