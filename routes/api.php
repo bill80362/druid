@@ -8,3 +8,4 @@ use Illuminate\Support\Facades\Route;
 //})->middleware('auth:sanctum');
 
 Route::post('webhook/line/{id}', [\App\Http\Controllers\Api\WebhookController::class, "line"]);
+Route::get('line/image/{id}/{image}', [\App\Http\Controllers\Api\WebhookController::class, "image"]);

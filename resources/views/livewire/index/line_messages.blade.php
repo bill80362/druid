@@ -70,10 +70,20 @@
                     <div class="text-sm leading-5 text-gray-500">{{ $item->status=="I"?"詢問":"回覆" }}</div>
                 </td>
                 <td class="px-6 py-2 border-b border-gray-200 text-center">
-                    <div class="text-sm leading-5 text-gray-500">{{ $item->type=="T"?"文字":"非文字" }}</div>
+                    <div class="text-sm leading-5 text-gray-500">
+                        {{$item->type=="T"?"文字":""}}
+                        {{$item->type=="I"?"圖片":""}}
+                    </div>
                 </td>
                 <td class="px-6 py-2 border-b border-gray-200">
-                    <div class="text-sm leading-5 text-gray-500">{{ $item->message }}</div>
+                    <div class="text-sm leading-5 text-gray-500">
+                        @if($item->type=="I")
+                            <img src="/api/line/image/{{$item->line_id}}/{{ $item->message }}" />
+                        @else
+                            {{ $item->message }}
+                        @endif
+
+                    </div>
                 </td>
                 <td class="px-6 py-2 border-b border-gray-200 text-center">
                     <div class="text-sm leading-5 text-gray-500">{{ $item->member?->name }}</div>
