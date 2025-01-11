@@ -7,4 +7,4 @@ use Illuminate\Support\Facades\Route;
 //    return $request->user();
 //})->middleware('auth:sanctum');
 
-Route::post('webhook/line/{id}', [\App\Http\Controllers\API\WebhookController::class, "line"]);
+Route::post('webhook/line/{id}', [\App\Http\Controllers\Api\WebhookController::class, "line"]);

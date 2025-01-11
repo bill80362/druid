@@ -63,7 +63,7 @@
             <tr>
                 <td class="px-6 py-2 border-b border-gray-200">
                     <div class="text-sm font-medium leading-5 text-gray-900">
-                        {{ $item->line_id }}
+                        {{ $item->line?->name }}
                     </div>
                 </td>
                 <td class="px-6 py-2 border-b border-gray-200 text-center">
@@ -76,7 +76,7 @@
                     <div class="text-sm leading-5 text-gray-500">{{ $item->message }}</div>
                 </td>
                 <td class="px-6 py-2 border-b border-gray-200 text-center">
-                    <div class="text-sm leading-5 text-gray-500">{{ $item->member_line_id }}</div>
+                    <div class="text-sm leading-5 text-gray-500">{{ $item->member?->name }}</div>
                 </td>
                 <td
                     class="px-6 py-2 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200 text-center">

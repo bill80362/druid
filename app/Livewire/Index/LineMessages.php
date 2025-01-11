@@ -37,7 +37,7 @@ class LineMessages extends Component
         if ($this->sortByColumn) {
             $query->orderBy($this->sortByColumn, $this->sortByDirection);
         }
-        $paginator = $query->paginate();
+        $paginator = $query->with(["line","member"])->paginate();
         //
         return view('livewire.index.line_messages', [
             "paginator" => $paginator,
