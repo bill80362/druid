@@ -4,8 +4,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome');
 
+Route::get('webhooks', [\App\Http\Controllers\Api\WebhookFbController::class, "verify"]);
 
-Route::post('aaa/{id}', [\App\Http\Controllers\Api\WebhookController::class, "line"]);
+
+
+//Route::post('aaa/{id}', [\App\Http\Controllers\Api\WebhookController::class, "line"]);
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])

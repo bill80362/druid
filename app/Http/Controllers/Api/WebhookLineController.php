@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Response;
 
-class WebhookController extends Controller
+class WebhookLineController extends Controller
 {
     public function line(Request $request,$id)
     {

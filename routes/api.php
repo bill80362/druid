@@ -7,5 +7,7 @@ use Illuminate\Support\Facades\Route;
 //    return $request->user();
 //})->middleware('auth:sanctum');
 
-Route::post('webhook/line/{id}', [\App\Http\Controllers\Api\WebhookController::class, "line"]);
-Route::get('line/image/{id}/{image}', [\App\Http\Controllers\Api\WebhookController::class, "image"]);
+Route::post('webhook/line/{id}', [\App\Http\Controllers\Api\WebhookLineController::class, "line"]);
+Route::get('line/image/{id}/{image}', [\App\Http\Controllers\Api\WebhookLineController::class, "image"]);
+
+Route::post('webhook/fb/verify', [\App\Http\Controllers\Api\WebhookFbController::class, "verify"]);
