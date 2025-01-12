@@ -77,6 +77,11 @@ new class extends Component {
                     "href" => route('line_messages.index'),
                     "active" => request()->routeIs('line_messages.index'),
                 ],
+                [
+                    "title" => __("Meta對話紀錄"),
+                    "href" => route('meta_messages.index'),
+                    "active" => request()->routeIs('meta_messages.index'),
+                ],
             ],
         ]);
         //
