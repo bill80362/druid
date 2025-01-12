@@ -11,7 +11,7 @@
                 <div class="p-6 text-gray-900">
                     <div class="row">
                         <div class="col-12 mb-2">
-                            <h3>歡迎使用德魯伊系統，系統架構介紹：</h3>
+                            <h3>歡迎使用{{config('app.name')}}，系統架構介紹：</h3>
                         </div>
                         <div class="col-4 p-2">
                             <div class="card">
