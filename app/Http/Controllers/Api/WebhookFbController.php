@@ -8,6 +8,7 @@ use App\Models\LineMessages;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Response;
 
 class WebhookFbController extends Controller
@@ -22,6 +23,15 @@ class WebhookFbController extends Controller
             return response($challenge);
         }
         return response("error",403);
+    }
+    public function webhook(Request $request){
+        Log::info("臉書webhook",[
+            "data" => $request->all(),
+            "fullUrl" => $request->fullUrl(),
+            "content" => $request->getContent(),
+            "header" => $request->header(),
+        ]);
+        return response("OK");
     }
 
 }

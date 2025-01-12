@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'welcome');
 
 Route::get('webhooks', [\App\Http\Controllers\Api\WebhookFbController::class, "verify"]);
+Route::post('webhooks', [\App\Http\Controllers\Api\WebhookFbController::class, "webhook"]);
+Route::view('info/privacy', 'info/privacy');
+Route::view('info/service', 'info/service');
 
 
 
