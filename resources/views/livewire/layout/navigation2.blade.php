@@ -142,6 +142,11 @@ new class extends Component {
                     "href" => route('lines.index'),
                     "active" => request()->routeIs('lines.index'),
                 ],
+                [
+                    "title" => __("Meta串接管理"),
+                    "href" => route('metas.index'),
+                    "active" => request()->routeIs('metas.index'),
+                ],
             ],
         ]);
         //

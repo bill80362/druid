@@ -40,9 +40,9 @@ class GenerateTemplate extends Command
 //            "active" => request()->routeIs('pages.index'),
 //        ],
         //需要設定的資料
-        $str = "line_messages";
-        $text = "LINE對話記錄";
-        $permissionGroupMaxId = 12;
+        $str = "meta";
+        $text = "Meta串接";
+        $permissionGroupMaxId = 13;
         //
         $stringSnake = Str::snake($str);//str_str
         $stringLowerCamel = Str::camel($str);//strStr
