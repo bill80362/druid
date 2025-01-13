@@ -10,4 +10,5 @@ use Illuminate\Support\Facades\Route;
 Route::post('webhook/line/{id}', [\App\Http\Controllers\Api\WebhookLineController::class, "line"]);
 Route::get('line/image/{id}/{image}', [\App\Http\Controllers\Api\WebhookLineController::class, "image"]);
 
-Route::post('webhook/fb/verify', [\App\Http\Controllers\Api\WebhookFbController::class, "verify"]);
+Route::get('webhook/fb/{id}', [\App\Http\Controllers\Api\WebhookFbController::class, "verify"]);
+Route::post('webhook/fb/{id}', [\App\Http\Controllers\Api\WebhookFbController::class, "webhook"]);

@@ -22,6 +22,7 @@ class WebhookLineController extends Controller
         $lineMessages->log = json_encode([
             "header" => $request->header(),
             "body" => $request->getContent(),
+            "fullUrl" => $request->fullUrl(),
         ]);
         $lineMessages->save();
 
@@ -46,6 +47,8 @@ class WebhookLineController extends Controller
                 $lineMessages->save();
             }
         }
+
+        return response("OK");
     }
     public function image($id,$image)
     {
