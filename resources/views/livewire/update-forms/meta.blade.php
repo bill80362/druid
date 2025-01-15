@@ -17,9 +17,19 @@
                 <small class="text-danger">@error('status') {{ $message }} @enderror</small>
             </div>
             <div class="mb-3">
+                <label class="form-label">官方id</label>
+                <input type="text" class="form-control" wire:model="page_id">
+                <small class="text-danger">@error('page_id') {{ $message }} @enderror</small>
+            </div>
+            <div class="mb-3">
                 <label class="form-label">access_token</label>
                 <input type="text" class="form-control" wire:model="access_token">
                 <small class="text-danger">@error('access_token') {{ $message }} @enderror</small>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">secret</label>
+                <input type="text" class="form-control" wire:model="secret">
+                <small class="text-danger">@error('secret') {{ $message }} @enderror</small>
             </div>
             <div class="mb-3">
                 <div class="flex justify-content-between">

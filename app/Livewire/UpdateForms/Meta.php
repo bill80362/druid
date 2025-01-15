@@ -15,7 +15,11 @@ class Meta extends Component
     #[Validate([])]
     public string $status = "";
     #[Validate([])]
+    public string $page_id = "";
+    #[Validate([])]
     public string $access_token = "";
+    #[Validate([])]
+    public string $secret = "";
     //
     public string $actionMessage = "";
 
@@ -26,7 +30,9 @@ class Meta extends Component
         $item = \App\Models\Meta::find($this->metaId);
         $this->name = $item?->name ?? "";
         $this->status = $item?->status ?? "";
+        $this->page_id = $item?->page_id ?? "";
         $this->access_token = $item?->access_token ?? "";
+        $this->secret = $item?->secret ?? "";
     }
 
     public function submit()
@@ -45,7 +51,9 @@ class Meta extends Component
         $item = \App\Models\Meta::findOrNew($this->metaId);
         $item->name = $this->name;
         $item->status = $this->status;
+        $item->page_id = $this->page_id;
         $item->access_token = $this->access_token;
+        $item->secret = $this->secret;
         $item->save();
         //
         if ($this->metaId) {
