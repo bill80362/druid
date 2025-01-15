@@ -45,9 +45,15 @@ class WebhookFbController extends Controller
         $entry = $request->get("entry");
         foreach ($entry as $event){
             if(!empty($event["id"])){
+                if($event["messaging"][0]['sender']['id']==$meta->page_id){
+                    $metaMessage->status = "O";
+                    $metaMessage->member_meta_id = $event["messaging"][0]['recipient']['id']??"";
+                }else{
+                    $metaMessage->status = "I";
+                    $metaMessage->member_meta_id = $event["messaging"][0]['sender']['id']??"";
+                }
                 $metaMessage->type = "T";
                 $metaMessage->message = $event['messaging'][0]['message']["text"]??"";
-                $metaMessage->member_meta_id = $event['sender']['id']??"";
                 $metaMessage->message_at = Carbon::createFromTimestampMs($event["time"]??"")->format("Y-m-d H:i:s");
                 $metaMessage->save();
             }
