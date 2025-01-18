@@ -8,6 +8,7 @@ Route::get('webhooks', [\App\Http\Controllers\Api\WebhookFbController::class, "v
 Route::post('webhooks', [\App\Http\Controllers\Api\WebhookFbController::class, "webhook"]);
 Route::view('info/privacy', 'info/privacy');
 Route::view('info/service', 'info/service');
+Route::view('info/remove', 'info/remove');
 
 //
 Route::get('member/{id}', [\App\Http\Controllers\Front\MemberController::class, "member"]);
