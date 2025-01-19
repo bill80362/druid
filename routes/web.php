@@ -47,3 +47,8 @@ Route::get('goods/edit2/{goods}', [\App\Http\Controllers\GoodsController::class,
 Route::post('goods/update2/{goods}', [\App\Http\Controllers\GoodsController::class, 'update2'])->name("goods.update2");
 
 Route::post('web/editor', [\App\Http\Controllers\WebEditorController::class, 'upload'])->name("web.editor.upload");
+
+Route::get('excel/output', [\App\Http\Controllers\ExcelController::class, 'export'])->name("excel.export");
+Route::get('excel/import', [\App\Http\Controllers\ExcelController::class, 'import'])->name("excel.import");
+Route::post('excel/import', [\App\Http\Controllers\ExcelController::class, 'importAction'])->name("excel.import.action");
+

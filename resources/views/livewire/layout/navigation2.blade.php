@@ -113,6 +113,24 @@ new class extends Component {
         $menus = collect();
         //
         $menus->push([
+            "title" => __("批次管理"),
+            "href" => route('users.index'),
+            "active" => "",
+            "submenus" => [
+                [
+                    "title" => __("商品匯出"),
+                    "href" => route('excel.export'),
+                    "active" => false,
+                ],
+                [
+                    "title" => __("商品匯入"),
+                    "href" => route('excel.import'),
+                    "active" => false,
+                ],
+            ],
+        ]);
+        //
+        $menus->push([
             "title" => __("系統設定"),
             "href" => route('users.index'),
             "active" => "",
@@ -156,7 +174,7 @@ new class extends Component {
         ]);
         //
         $menus->push([
-            "title" => __("我的個人資料")."(".auth()->user()->name.")",
+            "title" => __("我的個人資料")."(".auth()->user()?->name.")",
             "href" => route('profile'),
             "active" => request()->routeIs('profile'),
             "submenus" => [],
