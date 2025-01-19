@@ -19,7 +19,7 @@ new class extends Component {
         ]);
         //
         $menus->push([
-            "title" => __("內容管理系統"),
+            "title" => __("基本頁面"),
             "href" => route('users.index'),
             "active" => "",
             "submenus" => [

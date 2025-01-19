@@ -62,7 +62,7 @@
                         <div class="col-4 p-2">
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">內容管理系統</h5>
+                                    <h5 class="card-title">基本頁面</h5>
                                     <div class="card-text">
                                         <div class="list-group">
                                             <a href="#" class="list-group-item list-group-item-action">
