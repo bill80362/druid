@@ -17,6 +17,7 @@ class GoodsImport implements WithMultipleSheets
             "規格群組" => new SpecSheetImport(),
             "規格選項" => new SpecOptionSheetImport(),
             "商品明細" => new GoodsDetailSheetImport(),
+            "商品圖片" => new GoodsDetailSheetImport(),
         ];
     }
 }

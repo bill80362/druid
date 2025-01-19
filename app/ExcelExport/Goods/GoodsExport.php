@@ -22,6 +22,7 @@ class GoodsExport implements WithMultipleSheets
         $sheets[] = new SpecSheet();
         $sheets[] = new SpecOptionSheet();
         $sheets[] = new GoodsDetailSheet();
+        $sheets[] = new GoodsPhotoSheet();
         return $sheets;
     }
 }
