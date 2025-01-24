@@ -47,8 +47,8 @@
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 @endforeach
-                @foreach(Illuminate\Support\Facades\Session::get('success') as $success)
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                @foreach(Illuminate\Support\Facades\Session::get('success',[]) as $success)
+                    <div class="alert alert-success alert-dismissible fade show" role="alert" style="z-index: 99999;">
                         <strong>{{$success}}</strong>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>

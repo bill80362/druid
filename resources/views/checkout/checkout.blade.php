@@ -15,12 +15,14 @@
                 <div class="p-3 text-gray-900">
                     <div class="row">
                         <div class="col-4">
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="商品sku">
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="button">刷入商品</button>
+                            <form action="{{route("checkout.add.goods")}}">
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="商品sku" name="goods_detail_sku">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" type="submit">刷入商品</button>
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                         <div class="col-4">
                             <div class="input-group mb-3">
@@ -47,29 +49,25 @@
                                             <thead>
                                             <tr>
                                                 <th>商品</th>
+                                                <th>SKU</th>
                                                 <th>原價</th>
                                                 <th>折扣後</th>
-                                                <th>優惠說明</th>
+                                                <th>使用優惠</th>
                                                 <th>操作</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <td>123</td>
-                                                <td>123</td>
-                                                <td>123</td>
-                                                <td>123</td>
-                                                <td><button class="btn btn-sm btn-outline-secondary" type="button">移除</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td>123</td>
-                                                <td>123</td>
-                                                <td>123</td>
-                                                <td>123</td>
-                                                <td><button class="btn btn-sm btn-outline-secondary" type="button">移除</button></td>
-                                            </tr>
+                                            @foreach($shoppingCartGoodsItems as $item)
+                                                <tr>
+                                                    <td>{{$item->goodsDetail->name}}</td>
+                                                    <td>{{$item->goodsDetail->sku}}</td>
+                                                    <td>{{$item->goodsDetail->price}}</td>
+                                                    <td>{{$item->goodsDetail->price}}</td>
+                                                    <td></td>
+                                                    <td><button class="btn btn-sm btn-outline-secondary" type="button">移除</button></td>
+                                                </tr>
+                                            @endforeach
                                             </tbody>
-
                                         </table>
                                     </div>
                                 </div>
@@ -83,11 +81,11 @@
                                         <table class="table table-striped">
                                             <tr>
                                                 <td>卡號</td>
-                                                <td>12345678</td>
+                                                <td>{{$member?->slug}}</td>
                                             </tr>
                                             <tr>
                                                 <td>會員名稱</td>
-                                                <td>陳俊瑋</td>
+                                                <td>{{{$member?->slug}}}}</td>
                                             </tr>
                                             <tr>
                                                 <td>可用點數</td>

@@ -43,6 +43,12 @@
                 <x-table-sort-icon :sortByColumn="$sortByColumn" :sortByDirection="$sortByDirection" column="account"  />
             </th>
             <th
+                wire:click="sortBy('slug')" :sortDirection="$sortByColumn=='slug'?$sortByDirection:null"
+                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center">
+                卡號
+                <x-table-sort-icon :sortByColumn="$sortByColumn" :sortByDirection="$sortByDirection" column="slug"  />
+            </th>
+            <th
                 wire:click="sortBy('updated_at')" :sortDirection="$sortByColumn=='updated_at'?$sortByDirection:null"
                 class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center">
                 最後更新時間
@@ -73,6 +79,9 @@
                 </td>
                 <td class="px-6 py-2 border-b border-gray-200 text-center">
                     <div class="text-sm leading-5 text-gray-500">{{ $item->account }}</div>
+                </td>
+                <td class="px-6 py-2 border-b border-gray-200 text-center">
+                    <div class="text-sm leading-5 text-gray-500">{{ $item->slug }}</div>
                 </td>
                 <td
                     class="px-6 py-2 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200 text-center">

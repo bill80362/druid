@@ -57,6 +57,7 @@ Route::middleware(['auth'])->group(function (){
     Route::post('excel/import', [\App\Http\Controllers\ExcelController::class, 'importAction'])->name("excel.import.action");
 
     Route::get('checkout/checkout', [\App\Http\Controllers\CheckoutController::class, 'checkout'])->name("checkout.checkout");
+    Route::get('checkout/add/goods', [\App\Http\Controllers\CheckoutController::class, 'addGoods'])->name("checkout.add.goods");
 
 
 });
