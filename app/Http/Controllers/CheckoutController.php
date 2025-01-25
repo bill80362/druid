@@ -14,9 +14,9 @@ class CheckoutController extends Controller
         //購物車商品
         $shoppingCartGoodsItems = ShoppingCartGoods::with(["goodsDetail"])->where("user_id", auth()->user()->id)->get();
         //購物車付款方式
-        $shoppingCard = ShoppingCart::find(auth()->user()->id);
+        $shoppingCard = ShoppingCart::where("user_id",auth()->user()->id)->first();
         //結帳會員
-        $member = Member::find($shoppingCard->data["member_id"]??"");
+        $member = Member::find($shoppingCard?->data["member_id"]??"");
 
         //
         return view('checkout/checkout', [
@@ -53,14 +53,18 @@ class CheckoutController extends Controller
     public function setMember()
     {
         //
-        $item = Member::where("sku", request()->get("member_slug"))->first();
+        $item = Member::where("slug", request()->get("member_slug"))->first();
         if (!$item) {
             return back()->with("success", ["卡號異常"]);
         }
         //
         $shoppingCard = ShoppingCart::where("user_id", auth()->user()->id)->firstOrNew();
         $shoppingCard->user_id = auth()->user()->id;
-        $shoppingCard->data["member_id"] = $item->id;
+        $data = $shoppingCard->data??[];
+        $data["member_id"] = $item->id;
+        $shoppingCard->data = $data;
         $shoppingCard->save();
+        //
+        return redirect()->route("checkout.checkout");
     }
 }

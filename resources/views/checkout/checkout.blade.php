@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            門市結帳 - 金額 1000元
+            門市結帳 | 結帳金額 1000元
         </h2>
     </x-slot>
     <x-slot name="header_tool">
@@ -33,17 +33,19 @@
                             </div>
                         </div>
                         <div class="col-4">
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="結帳會員卡號" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="button">刷入卡號</button>
+                            <form action="{{route("checkout.set.member")}}">
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="結帳會員卡號" name="member_slug">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" type="submit">刷入卡號</button>
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                         <div class="col-8 p-2">
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">結帳商品</h5>
+                                    <h5 class="card-title">結帳商品 ({{$shoppingCartGoodsItems?->count()}})</h5>
                                     <div class="card-text">
                                         <table class="table table-striped">
                                             <thead>
@@ -88,7 +90,11 @@
                                                 </tr>
                                                 <tr>
                                                     <td>會員名稱</td>
-                                                    <td>{{{$member?->slug}}}</td>
+                                                    <td>{{{$member?->name}}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>手機</td>
+                                                    <td>{{{$member?->phone}}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>可用點數</td>
@@ -150,7 +156,7 @@
                                         <div class="mb-3">
                                             <textarea class="form-control"></textarea>
                                         </div>
-                                        <button class="btn btn-primary w-full" type="button">建立訂單</button>
+                                        <button class="btn btn-primary w-full" type="button">結帳</button>
                                     </div>
                                 </div>
                             </div>
