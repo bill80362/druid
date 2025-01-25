@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="row">
-                        <div class="col-4 p-2">
+                        <div class="col-12 col-md-6 p-2">
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">系統設定</h5>
@@ -70,7 +70,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-4 p-2">
+                        <div class="col-12 col-md-6 p-2">
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">批次管理</h5>
@@ -102,7 +102,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-4 p-2">
+                        <div class="col-12 col-md-6 p-2">
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">商品管理</h5>
@@ -141,7 +141,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-4 p-2">
+                        <div class="col-12 col-md-6 p-2">
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">訂單系統</h5>
@@ -187,7 +187,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-4 p-2">
+                        <div class="col-12 col-md-6 p-2">
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">會員系統</h5>
@@ -234,7 +234,7 @@
                             </div>
                         </div>
 
-                        <div class="col-4 p-2">
+                        <div class="col-12 col-md-6 p-2">
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">結帳優惠系統</h5>
@@ -288,7 +288,7 @@
                             </div>
                         </div>
 
-                        <div class="col-4 p-2">
+                        <div class="col-12 col-md-6 p-2">
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">商品倉儲系統</h5>
@@ -320,7 +320,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-4 p-2">
+                        <div class="col-12 col-md-6 p-2">
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">分析報表</h5>
@@ -354,11 +354,11 @@
                         </div>
 
 
-                        <div class="col-4 p-2">
+                        <div class="col-12 col-md-6 p-2">
 
                         </div>
 
-                        <div class="col-4 p-2">
+                        <div class="col-12 col-md-6 p-2">
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">存證信函寄送服務</h5>
