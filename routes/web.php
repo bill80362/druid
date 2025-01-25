@@ -60,6 +60,7 @@ Route::middleware(['auth'])->group(function (){
     Route::get('checkout/add/goods', [\App\Http\Controllers\CheckoutController::class, 'addGoods'])->name("checkout.add.goods");
     Route::get('checkout/remove/goods', [\App\Http\Controllers\CheckoutController::class, 'removeGoods'])->name("checkout.remove.goods");
     Route::get('checkout/set/member', [\App\Http\Controllers\CheckoutController::class, 'setMember'])->name("checkout.set.member");
+    Route::get('checkout/reset/member', [\App\Http\Controllers\CheckoutController::class, 'resetMember'])->name("checkout.reset.member");
 
 
 });

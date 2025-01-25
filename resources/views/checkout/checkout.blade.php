@@ -7,6 +7,7 @@
     <x-slot name="header_tool">
         <button class="btn btn-outline-secondary" type="button">選擇會員</button>
         <button class="btn btn-outline-secondary" type="button">選擇商品</button>
+        <button class="btn btn-outline-secondary" type="button">選擇折扣</button>
     </x-slot>
 
     <div class="py-6">
@@ -45,7 +46,14 @@
                         <div class="col-8 p-2">
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">結帳商品 ({{$shoppingCartGoodsItems?->count()}})</h5>
+                                    <h5 class="card-title flex justify-content-between">
+                                        <div>
+                                            結帳商品 ({{$shoppingCartGoodsItems?->count()}})
+                                        </div>
+                                        <div>
+                                            小計 $ {{$shoppingCartGoodsItems?->sum("price")}}
+                                        </div>
+                                    </h5>
                                     <div class="card-text">
                                         <table class="table table-striped">
                                             <thead>
@@ -80,7 +88,18 @@
                         <div class="col-4 p-2">
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">結帳會員</h5>
+                                    <h5 class="card-title flex justify-content-between">
+                                        <div>
+                                            使用會員結帳
+                                        </div>
+                                        <div class="card-tool">
+                                            @if($member)
+                                                <a class="btn btn-outline-secondary" href="{{route("checkout.reset.member")}}">取消</a>
+                                            @else
+                                                <a class="btn btn-outline-secondary" target="_blank" href="{{route("members.create")}}">新增</a>
+                                            @endif
+                                        </div>
+                                    </h5>
                                     <div class="card-text">
                                         @if($member)
                                             <table class="table table-striped">
@@ -89,7 +108,7 @@
                                                     <td>{{$member?->slug}}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>會員名稱</td>
+                                                    <td>名字</td>
                                                     <td>{{{$member?->name}}}</td>
                                                 </tr>
                                                 <tr>
@@ -97,24 +116,43 @@
                                                     <td>{{{$member?->phone}}}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>可用點數</td>
+                                                    <td>剩餘點數</td>
                                                     <td>300</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>結帳訂單</td>
-                                                    <td>300</td>
+                                                    <td>歷史訂單</td>
+                                                    <td>$300 (5)</td>
                                                 </tr>
                                             </table>
-                                        @else
-                                            <div>
-                                                <a class="text-danger">新增會員</a>
-                                            </div>
                                         @endif
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-8 p-2">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">使用優惠</h5>
+                                    <div class="card-text">
+                                        <table class="table table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th>項目</th>
+                                                <th>代碼</th>
+                                                <th>優惠說明</th>
+                                                <th>折抵金額</th>
+                                                <th>使用優惠</th>
+                                                <th>操作</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 p-2">
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">付款</h5>
@@ -161,25 +199,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-4 p-2">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">其他優惠</h5>
-                                    <div class="card-text">
-                                        <table class="table table-striped">
-                                            <tr>
-                                                <td>獲得點數</td>
-                                                <td>50</td>
-                                            </tr>
-                                            <tr>
-                                                <td>全館95折</td>
-                                                <td>-50</td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
 
                     </div>
 

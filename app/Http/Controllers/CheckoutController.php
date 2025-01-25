@@ -67,4 +67,15 @@ class CheckoutController extends Controller
         //
         return redirect()->route("checkout.checkout");
     }
+    public function resetMember()
+    {
+        $shoppingCard = ShoppingCart::where("user_id", auth()->user()->id)->firstOrNew();
+        $shoppingCard->user_id = auth()->user()->id;
+        $data = $shoppingCard->data??[];
+        $data["member_id"] = "";
+        $shoppingCard->data = $data;
+        $shoppingCard->save();
+        //
+        return redirect()->route("checkout.checkout");
+    }
 }

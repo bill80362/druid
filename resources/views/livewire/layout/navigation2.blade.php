@@ -91,7 +91,7 @@ new class extends Component {
             "active" => "",
             "submenus" => [
                 [
-                    "title" => __("結帳"),
+                    "title" => __("結帳1"),
                     "href" => route('checkout.checkout'),
                     "active" => request()->routeIs('checkout.checkout'),
                 ],
