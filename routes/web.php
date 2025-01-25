@@ -58,6 +58,7 @@ Route::middleware(['auth'])->group(function (){
 
     Route::get('checkout/checkout', [\App\Http\Controllers\CheckoutController::class, 'checkout'])->name("checkout.checkout");
     Route::get('checkout/add/goods', [\App\Http\Controllers\CheckoutController::class, 'addGoods'])->name("checkout.add.goods");
+    Route::get('checkout/remove/goods', [\App\Http\Controllers\CheckoutController::class, 'removeGoods'])->name("checkout.remove.goods");
 
 
 });

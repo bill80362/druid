@@ -64,7 +64,9 @@
                                                     <td>{{$item->goodsDetail->price}}</td>
                                                     <td>{{$item->goodsDetail->price}}</td>
                                                     <td></td>
-                                                    <td><button class="btn btn-sm btn-outline-secondary" type="button">移除</button></td>
+                                                    <td>
+                                                        <a class="btn btn-sm btn-outline-secondary" href="{{route("checkout.remove.goods")}}?id={{$item->id}}">移除</a>
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                             </tbody>

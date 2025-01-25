@@ -34,10 +34,18 @@ class CheckoutController extends Controller
             return back()->with("success", ["sku異常"]);
         }
         //
-        $shoppingCardGoods = ShoppingCartGoods::where("user_id", auth()->user()->id)->where("goods_detail_id", $item->id)->firstOrNew();
+        $shoppingCardGoods = new ShoppingCartGoods();
         $shoppingCardGoods->user_id = auth()->user()->id;
         $shoppingCardGoods->goods_detail_id = $item->id;
         $shoppingCardGoods->save();
+        //
+        return redirect()->route("checkout.checkout");
+    }
+    public function removeGoods()
+    {
+        //
+        $shoppingCardGoods = ShoppingCartGoods::find(request()->get("id"));
+        $shoppingCardGoods->delete();
         //
         return redirect()->route("checkout.checkout");
     }
