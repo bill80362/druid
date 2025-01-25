@@ -78,24 +78,30 @@
                                 <div class="card-body">
                                     <h5 class="card-title">結帳會員</h5>
                                     <div class="card-text">
-                                        <table class="table table-striped">
-                                            <tr>
-                                                <td>卡號</td>
-                                                <td>{{$member?->slug}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>會員名稱</td>
-                                                <td>{{{$member?->slug}}}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>可用點數</td>
-                                                <td>300</td>
-                                            </tr>
-                                            <tr>
-                                                <td>結帳訂單</td>
-                                                <td>300</td>
-                                            </tr>
-                                        </table>
+                                        @if($member)
+                                            <table class="table table-striped">
+                                                <tr>
+                                                    <td>卡號</td>
+                                                    <td>{{$member?->slug}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>會員名稱</td>
+                                                    <td>{{{$member?->slug}}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>可用點數</td>
+                                                    <td>300</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>結帳訂單</td>
+                                                    <td>300</td>
+                                                </tr>
+                                            </table>
+                                        @else
+                                            <div>
+                                                <a class="text-danger">新增會員</a>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

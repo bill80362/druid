@@ -187,7 +187,7 @@ new class extends Component {
         ]);
         //
         $menus->push([
-            "title" => __("我的個人資料")."(".auth()->user()?->name.")",
+            "title" => __("登入")."(".auth()->user()?->name.")",
             "href" => route('profile'),
             "active" => request()->routeIs('profile'),
             "submenus" => [],
