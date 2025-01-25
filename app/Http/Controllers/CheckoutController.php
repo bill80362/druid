@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\GoodsDetail;
 use App\Models\Member;
+use App\Models\Payment;
 use App\Models\ShoppingCart;
 use App\Models\ShoppingCartGoods;
+use App\Models\ShoppingPayment;
 
 class CheckoutController extends Controller
 {
@@ -13,6 +15,8 @@ class CheckoutController extends Controller
     {
         //購物車商品
         $shoppingCartGoodsItems = ShoppingCartGoods::with(["goodsDetail"])->where("user_id", auth()->user()->id)->get();
+        //
+        $shoppingCartPaymentItems = ShoppingPayment::with(["payment"])->get();
         //購物車付款方式
         $shoppingCard = ShoppingCart::where("user_id",auth()->user()->id)->first();
         //結帳會員
@@ -21,8 +25,10 @@ class CheckoutController extends Controller
         //
         return view('checkout/checkout', [
             "shoppingCartGoodsItems" => $shoppingCartGoodsItems,
+            "shoppingCartPaymentItems" => $shoppingCartPaymentItems,
             "shoppingCard" => $shoppingCard,
             "member" => $member,
+            "paymentItems" => Payment::where("status","Y")->get(),
         ]);
     }
 
@@ -39,7 +45,7 @@ class CheckoutController extends Controller
         $shoppingCardGoods->goods_detail_id = $item->id;
         $shoppingCardGoods->save();
         //
-        return redirect()->route("checkout.checkout");
+        return redirect()->route("checkout.checkout")->with("success", ["新增商品成功"]);
     }
     public function removeGoods()
     {
@@ -47,7 +53,7 @@ class CheckoutController extends Controller
         $shoppingCardGoods = ShoppingCartGoods::find(request()->get("id"));
         $shoppingCardGoods->delete();
         //
-        return redirect()->route("checkout.checkout");
+        return redirect()->route("checkout.checkout")->with("success", ["移除商品成功"]);
     }
 
     public function setMember()
@@ -65,7 +71,7 @@ class CheckoutController extends Controller
         $shoppingCard->data = $data;
         $shoppingCard->save();
         //
-        return redirect()->route("checkout.checkout");
+        return redirect()->route("checkout.checkout")->with("success", ["結帳會員設定成功"]);
     }
     public function resetMember()
     {
@@ -76,6 +82,39 @@ class CheckoutController extends Controller
         $shoppingCard->data = $data;
         $shoppingCard->save();
         //
-        return redirect()->route("checkout.checkout");
+        return redirect()->route("checkout.checkout")->with("success", ["結帳會員取消成功"]);
+    }
+    public function addPayment()
+
+    {
+        //
+        $item = Payment::find(request()->get("payment_id"));
+        if (!$item) {
+            return back()->with("success", ["支付方式異常"]);
+        }
+        if (!request()->get("money")) {
+            return back()->with("success", ["支付金額異常"]);
+        }
+        if(request()->get("money")<0)
+        {
+            return back()->with("success", ["支付金額需要大於0"]);
+        }
+        //
+        $shoppingPayment = new ShoppingPayment();
+        $shoppingPayment->user_id = auth()->user()->id;
+        $shoppingPayment->payment_id = $item->id;
+        $shoppingPayment->money = request()->get("money");
+        $shoppingPayment->memo = request()->get("memo");
+        $shoppingPayment->save();
+        //
+        return redirect()->route("checkout.checkout")->with("success", ["支付方式新增成功"]);
+    }
+    public function removePayment()
+    {
+        //
+        $item = ShoppingPayment::find(request()->get("id"));
+        $item->delete();
+        //
+        return redirect()->route("checkout.checkout")->with("success", ["移除付款方式成功"]);
     }
 }

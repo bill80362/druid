@@ -40,9 +40,9 @@ class GenerateTemplate extends Command
 //            "active" => request()->routeIs('pages.index'),
 //        ],
         //需要設定的資料
-        $str = "meta_messages";
-        $text = "Meta對話記錄";
-        $permissionGroupMaxId = 14;
+        $str = "payment";
+        $text = "付款方式";
+        $permissionGroupMaxId = 15;
         //
         $stringSnake = Str::snake($str);//str_str
         $stringLowerCamel = Str::camel($str);//strStr

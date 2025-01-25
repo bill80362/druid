@@ -91,7 +91,7 @@ new class extends Component {
             "active" => "",
             "submenus" => [
                 [
-                    "title" => __("結帳1"),
+                    "title" => __("收銀台結帳1"),
                     "href" => route('checkout.checkout'),
                     "active" => request()->routeIs('checkout.checkout'),
                 ],
@@ -182,6 +182,11 @@ new class extends Component {
                     "title" => __("Meta串接管理"),
                     "href" => route('metas.index'),
                     "active" => request()->routeIs('metas.index'),
+                ],
+                [
+                    "title" => __("付款方式管理"),
+                    "href" => route('payments.index'),
+                    "active" => request()->routeIs('payments.index'),
                 ],
             ],
         ]);

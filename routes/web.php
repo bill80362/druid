@@ -46,6 +46,7 @@ Route::middleware(['auth'])->group(function (){
     Route::resource('line_messages', \App\Http\Controllers\LineMessagesController::class);
     Route::resource('metas', \App\Http\Controllers\MetaController::class);
     Route::resource('meta_messages', \App\Http\Controllers\MetaMessagesController::class);
+    Route::resource('payments', \App\Http\Controllers\PaymentController::class);
 
     Route::get('goods/edit2/{goods}', [\App\Http\Controllers\GoodsController::class, 'edit2'])->name("goods.edit2");
     Route::post('goods/update2/{goods}', [\App\Http\Controllers\GoodsController::class, 'update2'])->name("goods.update2");
@@ -61,6 +62,8 @@ Route::middleware(['auth'])->group(function (){
     Route::get('checkout/remove/goods', [\App\Http\Controllers\CheckoutController::class, 'removeGoods'])->name("checkout.remove.goods");
     Route::get('checkout/set/member', [\App\Http\Controllers\CheckoutController::class, 'setMember'])->name("checkout.set.member");
     Route::get('checkout/reset/member', [\App\Http\Controllers\CheckoutController::class, 'resetMember'])->name("checkout.reset.member");
+    Route::get('checkout/add/payment', [\App\Http\Controllers\CheckoutController::class, 'addPayment'])->name("checkout.add.payment");
+    Route::get('checkout/remove/payment', [\App\Http\Controllers\CheckoutController::class, 'removePayment'])->name("checkout.remove.payment");
 
 
 });

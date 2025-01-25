@@ -156,19 +156,20 @@
                                 <div class="card-body">
                                     <h5 class="card-title">付款</h5>
                                     <div class="card-text">
-                                        <div class="input-group mb-3">
-                                            <select class="form-control">
-                                                <option>LINE PAY</option>
-                                                <option>信用卡</option>
-                                                <option>金額找補</option>
-                                                <option>會員點數折抵</option>
-                                            </select>
-                                            <input type="text" class="form-control" placeholder="金額" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                            <input type="text" class="form-control" placeholder="備註" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-outline-secondary" type="button">新增</button>
+                                        <form action="{{route("checkout.add.payment")}}">
+                                            <div class="input-group mb-3">
+                                                <select class="form-control" name="payment_id">
+                                                    @foreach($paymentItems as $item)
+                                                        <option value="{{$item->id}}">{{$item->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                                <input type="text" class="form-control" placeholder="金額" name="money">
+                                                <input type="text" class="form-control" placeholder="備註" name="memo">
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-outline-secondary" type="submit">新增</button>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </form>
                                         <table class="table table-striped">
                                             <tr>
                                                 <td>付款方式</td>
@@ -176,18 +177,14 @@
                                                 <td>備註</td>
                                                 <td>操作</td>
                                             </tr>
-                                            <tr>
-                                                <td>LINE_PAY</td>
-                                                <td>500</td>
-                                                <td></td>
-                                                <td><button class="btn btn-sm btn-outline-secondary" type="button">移除</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td>現金</td>
-                                                <td>500</td>
-                                                <td></td>
-                                                <td><button class="btn btn-sm btn-outline-secondary" type="button">移除</button></td>
-                                            </tr>
+                                            @foreach($shoppingCartPaymentItems as $item)
+                                                <tr>
+                                                    <td>{{$item->payment->name}}</td>
+                                                    <td>{{$item->money}}</td>
+                                                    <td>{{$item->memo}}</td>
+                                                    <td><a class="btn btn-sm btn-outline-secondary" href="{{route("checkout.remove.payment")}}?id={{$item->id}}">移除</a></td>
+                                                </tr>
+                                            @endforeach
                                         </table>
                                         <label>結帳備註</label>
                                         <div class="mb-3">
