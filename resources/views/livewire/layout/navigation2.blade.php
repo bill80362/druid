@@ -12,23 +12,10 @@ new class extends Component {
         $menus = collect();
         //
         $menus->push([
-            "title" => __("首頁"),
+            "title" => __("使用說明書"),
             "href" => route('dashboard'),
             "active" => request()->routeIs('dashboard'),
             "submenus" => [],
-        ]);
-        //
-        $menus->push([
-            "title" => __("基本頁面"),
-            "href" => route('users.index'),
-            "active" => "",
-            "submenus" => [
-                [
-                    "title" => __("頁面管理"),
-                    "href" => route('pages.index'),
-                    "active" => request()->routeIs('pages.index'),
-                ],
-            ],
         ]);
         //
         $menus->push([
@@ -148,6 +135,16 @@ new class extends Component {
             "href" => route('users.index'),
             "active" => "",
             "submenus" => [
+//                [
+//                    "title" => __("頁面管理"),
+//                    "href" => route('pages.index'),
+//                    "active" => request()->routeIs('pages.index'),
+//                ],
+//                [
+//                    "title" => __("頁面標籤管理"),
+//                    "href" => route('page_tags.index'),
+//                    "active" => request()->routeIs('page_tags.index'),
+//                ],
                 [
                     "title" => __("帳號管理"),
                     "href" => route('users.index'),
@@ -158,11 +155,7 @@ new class extends Component {
 //                    "href" => route('users.index'),
 //                    "active" => request()->routeIs('users.index'),
 //                ],
-                [
-                    "title" => __("頁面標籤管理"),
-                    "href" => route('page_tags.index'),
-                    "active" => request()->routeIs('page_tags.index'),
-                ],
+
                 [
                     "title" => __("規格群組管理"),
                     "href" => route('specs.index'),

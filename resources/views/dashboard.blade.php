@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('首頁') }}
+            {{ __('使用說明書') }}
         </h2>
     </x-slot>
 
@@ -10,13 +10,10 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="row">
-                        <div class="col-12 mb-2">
-                            <h3>歡迎使用{{config('app.name')}}，系統架構介紹：</h3>
-                        </div>
                         <div class="col-4 p-2">
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">核心架構</h5>
+                                    <h5 class="card-title">系統設定</h5>
                                     <div class="card-text">
                                         <div class="list-group">
                                             <a href="#" class="list-group-item list-group-item-action" aria-current="true">
@@ -24,36 +21,50 @@
                                                     <h5 class="my-1">帳號管理</h5>
                                                     <small class="text-primary">已完成</small>
                                                 </div>
-                                                <small class="my-1">後台、登入登出、我的資料，管理平台基礎操作</small>
+                                                <small class="my-1">針對此系統的登入身份進行管理</small>
                                             </a>
                                             <a href="#" class="list-group-item list-group-item-action">
                                                 <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">權限管理</h5>
+                                                    <h5 class="my-1">規格群組</h5>
                                                     <small class="text-primary">已完成</small>
                                                 </div>
-                                                <small class="my-1">帳號能夠設定功能的操作行為，讀取、新增、修改、刪除</small>
+                                                <small class="my-1">商品的規格，例如顏色、尺寸、規格</small>
                                             </a>
-{{--                                            <a href="#" class="list-group-item list-group-item-action">--}}
-{{--                                                <div class="d-flex w-100 justify-content-between">--}}
-{{--                                                    <h5 class="my-1">系統設定</h5>--}}
-{{--                                                    <small class="text-body-secondary">未製作</small>--}}
-{{--                                                </div>--}}
-{{--                                                <small class="my-1">管理平台的相關設定，包含標題、icon、平台名稱</small>--}}
-{{--                                            </a>--}}
                                             <a href="#" class="list-group-item list-group-item-action">
                                                 <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">功能自訂欄位</h5>
-                                                    <small class="text-body-secondary">評估中</small>
+                                                    <h5 class="my-1">規格選項</h5>
+                                                    <small class="text-primary">已完成</small>
                                                 </div>
-                                                <small class="my-1">商品、規格群組、規格、商品明細，延伸的彈性欄位。欄位格式可以是字串、選項。</small>
+                                                <small class="my-1">例如顏色有紅色、黑色、白色，尺寸有小、中、大</small>
                                             </a>
-{{--                                            <a href="#" class="list-group-item list-group-item-action">--}}
-{{--                                                <div class="d-flex w-100 justify-content-between">--}}
-{{--                                                    <h5 class="my-1">動態功能自訂欄位</h5>--}}
-{{--                                                    <small class="text-body-secondary">評估中</small>--}}
-{{--                                                </div>--}}
-{{--                                                <small class="my-1"></small>--}}
-{{--                                            </a>--}}
+                                            <a href="#" class="list-group-item list-group-item-action">
+                                                <div class="d-flex w-100 justify-content-between">
+                                                    <h5 class="my-1">Line帳號</h5>
+                                                    <small class="text-primary">已完成</small>
+                                                </div>
+                                                <small class="my-1">會員Line登入串接，Line官方帳號詢問問題，系統也能抓到。</small>
+                                            </a>
+                                            <a href="#" class="list-group-item list-group-item-action">
+                                                <div class="d-flex w-100 justify-content-between">
+                                                    <h5 class="my-1">Meta串接</h5>
+                                                    <small class="text-primary">已完成</small>
+                                                </div>
+                                                <small class="my-1">可以抓到facebook(FB)/instagram(IG)的粉絲帳號私人對話記錄</small>
+                                            </a>
+                                            <a href="#" class="list-group-item list-group-item-action">
+                                                <div class="d-flex w-100 justify-content-between">
+                                                    <h5 class="my-1">臉書直播</h5>
+                                                    <small class="text-info">評估中</small>
+                                                </div>
+                                                <small class="my-1">可以抓到直播間的聊天室對話</small>
+                                            </a>
+                                            <a href="#" class="list-group-item list-group-item-action">
+                                                <div class="d-flex w-100 justify-content-between">
+                                                    <h5 class="my-1">設定串接對話對應行為</h5>
+                                                    <small class="text-info">評估中</small>
+                                                </div>
+                                                <small class="my-1">LINE/FB/IG/直播間的對話內容，實行應對方案，可能是回應會員點數、訂單資訊、自訂下單(599 +1 自動完成下單)</small>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -62,30 +73,30 @@
                         <div class="col-4 p-2">
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">基本頁面</h5>
+                                    <h5 class="card-title">批次管理</h5>
                                     <div class="card-text">
                                         <div class="list-group">
                                             <a href="#" class="list-group-item list-group-item-action">
                                                 <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">頁面</h5>
+                                                    <h5 class="my-1">商品匯出</h5>
                                                     <small class="text-primary">已完成</small>
                                                 </div>
-                                                <small class="my-1">舉例：關於我們、最新消息都可以使用此功能。這邊只提供標題和內容，其他可以透過自訂欄位自行產生。 </small>
+                                                <small class="my-1">匯出包含商品各項內容，會根據工作表(sheet)分開</small>
                                             </a>
                                             <a href="#" class="list-group-item list-group-item-action">
                                                 <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">頁面標籤</h5>
+                                                    <h5 class="my-1">商品匯入</h5>
                                                     <small class="text-primary">已完成</small>
                                                 </div>
-                                                <small class="my-1">使用標籤來分類群組，例如最新消息標籤，這樣前台拉資料可以根據標籤來拉取所有最新消息的資料</small>
+                                                <small class="my-1">請先匯出，編輯後再進行匯入，新增或修改的依據是id，空值代表新增，有值代表修改，欄位順序請依匯出順序不可變動。</small>
                                             </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">標籤自訂欄位管理</h5>
-                                                    <small class="text-primary">已完成</small>
-                                                </div>
-                                                <small class="my-1">頁面根據設定的標籤，可以有自訂欄位</small>
-                                            </a>
+{{--                                            <a href="#" class="list-group-item list-group-item-action">--}}
+{{--                                                <div class="d-flex w-100 justify-content-between">--}}
+{{--                                                    <h5 class="my-1">標籤自訂欄位管理</h5>--}}
+{{--                                                    <small class="text-primary">已完成</small>--}}
+{{--                                                </div>--}}
+{{--                                                <small class="my-1">頁面根據設定的標籤，可以有自訂欄位</small>--}}
+{{--                                            </a>--}}
                                         </div>
                                     </div>
                                 </div>
@@ -102,43 +113,29 @@
                                                     <h5 class="my-1">主商品</h5>
                                                     <small class="text-primary">已完成</small>
                                                 </div>
-                                                <small class="my-1">名稱、SKU(不可重複)、價格、開關、排序</small>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">規格群組</h5>
-                                                    <small class="text-primary">已完成</small>
-                                                </div>
-                                                <small class="my-1">名稱</small>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">規格選項</h5>
-                                                    <small class="text-primary">已完成</small>
-                                                </div>
-                                                <small class="my-1">名稱、SKU、開關、排序</small>
+                                                <small class="my-1">門市系統請不要使用，未來保留給電子商務用</small>
                                             </a>
                                             <a href="#" class="list-group-item list-group-item-action">
                                                 <div class="d-flex w-100 justify-content-between">
                                                     <h5 class="my-1">商品明細</h5>
                                                     <small class="text-primary">已完成</small>
                                                 </div>
-                                                <small class="my-1">SKU(主商品x規格群組x規格選項)(PRODREDLARGE/PRODBLUESMALL)<br />價格、開關、排序</small>
+                                                <small class="my-1">商品條碼(sku)，每個商品(各種規格)都是獨立的sku，舉例：洋裝(黑)(F)DRESSBLACKF、洋裝(紅)(F)DRESSREDF，建議使用批次匯入編輯</small>
                                             </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">商品標籤</h5>
-                                                    <small class="text-secondary">評估中</small>
-                                                </div>
-                                                <small class="my-1">將商品貼上標籤，連動對應的功能</small>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">商品分類</h5>
-                                                    <small class="text-secondary">評估中</small>
-                                                </div>
-                                                <small class="my-1">將商品分類，連動對應的功能</small>
-                                            </a>
+{{--                                            <a href="#" class="list-group-item list-group-item-action">--}}
+{{--                                                <div class="d-flex w-100 justify-content-between">--}}
+{{--                                                    <h5 class="my-1">商品標籤</h5>--}}
+{{--                                                    <small class="text-secondary">評估中</small>--}}
+{{--                                                </div>--}}
+{{--                                                <small class="my-1">將商品貼上標籤，連動對應的功能</small>--}}
+{{--                                            </a>--}}
+{{--                                            <a href="#" class="list-group-item list-group-item-action">--}}
+{{--                                                <div class="d-flex w-100 justify-content-between">--}}
+{{--                                                    <h5 class="my-1">商品分類</h5>--}}
+{{--                                                    <small class="text-secondary">評估中</small>--}}
+{{--                                                </div>--}}
+{{--                                                <small class="my-1">將商品分類，連動對應的功能</small>--}}
+{{--                                            </a>--}}
                                         </div>
                                     </div>
                                 </div>
