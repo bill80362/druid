@@ -51,7 +51,7 @@
                                             結帳商品 ({{$shoppingCartGoodsItems?->count()}})
                                         </div>
                                         <div>
-                                            小計 $ {{$shoppingCartGoodsItems?->sum("price")}}
+                                            小計 $ {{$shoppingCartGoodsItems?->sum("goodsDetail.price")}}
                                         </div>
                                     </h5>
                                     <div class="card-text">
@@ -141,7 +141,6 @@
                                                 <th>代碼</th>
                                                 <th>優惠說明</th>
                                                 <th>折抵金額</th>
-                                                <th>使用優惠</th>
                                                 <th>操作</th>
                                             </tr>
                                             </thead>
