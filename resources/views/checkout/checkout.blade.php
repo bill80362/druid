@@ -1,10 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            門市結帳 | 結帳金額 1000元
+            門市結帳 | 結帳金額 {{$shoppingCartGoodsItems?->sum("goodsDetail.price")}} | 已付款 {{$shoppingCartPaymentItems->sum("money")}} | 還需支付 {{$shoppingCartGoodsItems?->sum("goodsDetail.price")-$shoppingCartPaymentItems->sum("money")}}
         </h2>
     </x-slot>
     <x-slot name="header_tool">
+        <button class="btn btn-primary" type="button">結帳</button>
         <button class="btn btn-outline-secondary" type="button">選擇會員</button>
         <button class="btn btn-outline-secondary" type="button">選擇商品</button>
         <button class="btn btn-outline-secondary" type="button">選擇折扣</button>

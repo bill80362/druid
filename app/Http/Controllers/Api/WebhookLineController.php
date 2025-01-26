@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Line;
 use App\Models\LineMessages;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Response;
 
 class WebhookLineController extends Controller
@@ -39,6 +41,20 @@ class WebhookLineController extends Controller
                 $lineMessages->member_line_id = $event['source']['userId']??"";
                 $lineMessages->message_at = Carbon::createFromTimestampMs($event['timestamp'])->setTimezone(config("app.timezone"))->format("Y-m-d H:i:s");
                 $lineMessages->save();
+                //回應訊息
+                try{
+                    $response_http = Http::withToken($line->access_token)->post("https://api.line.me/v2/bot/message/reply",[
+                        'replyToken' => $event['replyToken']??"",
+                        'messages' => [
+                            [
+                                'type' => 'text',
+                                'text' => '這是'.config('app.name').'自動回應文字範本',
+                            ]
+                        ]
+                    ]);
+                }catch (Exception $e){
+                    Log::debug("Line回應錯誤訊息:".$e->getMessage());
+                }
             }elseif ($event['message']['type'] == 'image') {
                 $lineMessages->type = "I";
                 $lineMessages->message = $event['message']['id']??"";

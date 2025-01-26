@@ -53,18 +53,26 @@
                                             </a>
                                             <a href="#" class="list-group-item list-group-item-action">
                                                 <div class="d-flex w-100 justify-content-between">
+                                                    <h5 class="my-1">會員等級設定</h5>
+                                                    <small class="text-secondary">評估中</small>
+                                                </div>
+                                                <small class="my-1">升降等門檻</small>
+                                            </a>
+                                            <a href="#" class="list-group-item list-group-item-action">
+                                                <div class="d-flex w-100 justify-content-between">
                                                     <h5 class="my-1">臉書直播</h5>
-                                                    <small class="text-info">評估中</small>
+                                                    <small class="text-secondary">評估中</small>
                                                 </div>
                                                 <small class="my-1">可以抓到直播間的聊天室對話</small>
                                             </a>
                                             <a href="#" class="list-group-item list-group-item-action">
                                                 <div class="d-flex w-100 justify-content-between">
                                                     <h5 class="my-1">設定串接對話對應行為</h5>
-                                                    <small class="text-info">評估中</small>
+                                                    <small class="text-secondary">評估中</small>
                                                 </div>
                                                 <small class="my-1">LINE/FB/IG/直播間的對話內容，實行應對方案，可能是回應會員點數、訂單資訊、自訂下單(599 +1 自動完成下單)</small>
                                             </a>
+
                                         </div>
                                     </div>
                                 </div>
@@ -149,39 +157,39 @@
                                         <div class="list-group">
                                             <a href="#" class="list-group-item list-group-item-action" aria-current="true">
                                                 <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">主訂單資訊</h5>
-                                                    <small class="text-secondary">評估中</small>
+                                                    <h5 class="my-1">訂單管理</h5>
+                                                    <small class="text-secondary">製作中</small>
                                                 </div>
-                                                <small class="my-1">商品基本資料、規格設定(顏色、尺寸...等等)</small>
+                                                <small class="my-1">訂單資訊、訂單商品</small>
                                             </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">訂單消費明細</h5>
-                                                    <small class="text-secondary">評估中</small>
-                                                </div>
-                                                <small class="my-1">商品、優惠、其他項目</small>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">訂單金流</h5>
-                                                    <small class="text-secondary">評估中</small>
-                                                </div>
-                                                <small class="my-1">對應金流付款</small>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">訂單物流</h5>
-                                                    <small class="text-secondary">評估中</small>
-                                                </div>
-                                                <small class="my-1">出貨單(撿貨>出貨>到貨>退貨)</small>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">銷退單</h5>
-                                                    <small class="text-secondary">評估中</small>
-                                                </div>
-                                                <small class="my-1">消費明細、金流、物流</small>
-                                            </a>
+{{--                                            <a href="#" class="list-group-item list-group-item-action">--}}
+{{--                                                <div class="d-flex w-100 justify-content-between">--}}
+{{--                                                    <h5 class="my-1">訂單消費明細</h5>--}}
+{{--                                                    <small class="text-secondary">評估中</small>--}}
+{{--                                                </div>--}}
+{{--                                                <small class="my-1">商品、優惠、其他項目</small>--}}
+{{--                                            </a>--}}
+{{--                                            <a href="#" class="list-group-item list-group-item-action">--}}
+{{--                                                <div class="d-flex w-100 justify-content-between">--}}
+{{--                                                    <h5 class="my-1">訂單金流</h5>--}}
+{{--                                                    <small class="text-secondary">評估中</small>--}}
+{{--                                                </div>--}}
+{{--                                                <small class="my-1">對應金流付款</small>--}}
+{{--                                            </a>--}}
+{{--                                            <a href="#" class="list-group-item list-group-item-action">--}}
+{{--                                                <div class="d-flex w-100 justify-content-between">--}}
+{{--                                                    <h5 class="my-1">訂單物流</h5>--}}
+{{--                                                    <small class="text-secondary">評估中</small>--}}
+{{--                                                </div>--}}
+{{--                                                <small class="my-1">出貨單(撿貨>出貨>到貨>退貨)</small>--}}
+{{--                                            </a>--}}
+{{--                                            <a href="#" class="list-group-item list-group-item-action">--}}
+{{--                                                <div class="d-flex w-100 justify-content-between">--}}
+{{--                                                    <h5 class="my-1">銷退單</h5>--}}
+{{--                                                    <small class="text-secondary">評估中</small>--}}
+{{--                                                </div>--}}
+{{--                                                <small class="my-1">消費明細、金流、物流</small>--}}
+{{--                                            </a>--}}
                                         </div>
                                     </div>
                                 </div>
@@ -196,37 +204,37 @@
                                             <a href="#" class="list-group-item list-group-item-action" aria-current="true">
                                                 <div class="d-flex w-100 justify-content-between">
                                                     <h5 class="my-1">會員管理</h5>
-                                                    <small class="text-secondary">評估中</small>
+                                                    <small class="text-primary">已完成</small>
                                                 </div>
                                                 <small class="my-1">會員基本資料、等級</small>
                                             </a>
+{{--                                            <a href="#" class="list-group-item list-group-item-action">--}}
+{{--                                                <div class="d-flex w-100 justify-content-between">--}}
+{{--                                                    <h5 class="my-1">會員分析</h5>--}}
+{{--                                                    <small class="text-secondary">評估中</small>--}}
+{{--                                                </div>--}}
+{{--                                                <small class="my-1">會員的各種分析，訂單、購買商品、累積消費、等級升降</small>--}}
+{{--                                            </a>--}}
+{{--                                            <a href="#" class="list-group-item list-group-item-action">--}}
+{{--                                                <div class="d-flex w-100 justify-content-between">--}}
+{{--                                                    <h5 class="my-1">會員購物金</h5>--}}
+{{--                                                    <small class="text-secondary">評估中</small>--}}
+{{--                                                </div>--}}
+{{--                                                <small class="my-1">會員購物金，適合像是退貨暫時放入購物金，再走申請退款流程。</small>--}}
+{{--                                            </a>--}}
                                             <a href="#" class="list-group-item list-group-item-action">
                                                 <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">會員分析</h5>
-                                                    <small class="text-secondary">評估中</small>
+                                                    <h5 class="my-1">Line對話紀錄</h5>
+                                                    <small class="text-primary">已完成</small>
                                                 </div>
-                                                <small class="my-1">會員的各種分析，訂單、購買商品、累積消費、等級升降</small>
+                                                <small class="my-1">Line目前只能單向抓取會員留言，無法抓到Line官方帳號的客服回應，但是可以使用自動回應功能</small>
                                             </a>
                                             <a href="#" class="list-group-item list-group-item-action">
                                                 <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">會員購物金</h5>
-                                                    <small class="text-secondary">評估中</small>
+                                                    <h5 class="my-1">meta對話紀錄</h5>
+                                                    <small class="text-primary">已完成</small>
                                                 </div>
-                                                <small class="my-1">會員購物金，適合像是退貨暫時放入購物金，再走申請退款流程。</small>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">會員紅利金</h5>
-                                                    <small class="text-secondary">評估中</small>
-                                                </div>
-                                                <small class="my-1">優惠贈送，可以拿來按比例折抵商品</small>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">會員等級折扣</h5>
-                                                    <small class="text-secondary">評估中</small>
-                                                </div>
-                                                <small class="my-1">根據等級購買商品，可以有折扣</small>
+                                                <small class="my-1">meta可以雙向抓到完整的客服和會員的對話紀錄，並且也能自動回應</small>
                                             </a>
                                         </div>
                                     </div>
@@ -237,50 +245,29 @@
                         <div class="col-12 col-md-6 p-2">
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">結帳優惠系統</h5>
+                                    <h5 class="card-title">商品優惠</h5>
                                     <div class="card-text">
                                         <div class="list-group">
-                                            <a href="#" class="list-group-item list-group-item-action" aria-current="true">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">標籤優惠規則</h5>
-                                                    <small class="text-secondary">評估中</small>
-                                                </div>
-                                                <small class="my-1">滿X打折、滿X折扣金額、滿Ａ送Ｂ、相同是否可以重複吃到優惠、優惠優先順序</small>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action" aria-current="true">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">優惠規則綁定小分類</h5>
-                                                    <small class="text-secondary">評估中</small>
-                                                </div>
-                                                <small class="my-1">優惠和商品的綁定，透過小分類</small>
-                                            </a>
                                             <a href="#" class="list-group-item list-group-item-action" aria-current="true">
                                                 <div class="d-flex w-100 justify-content-between">
                                                     <h5 class="my-1">全館優惠</h5>
                                                     <small class="text-secondary">評估中</small>
                                                 </div>
-                                                <small class="my-1">滿Ｘ打折、滿Ｘ折扣金額、贈品(小分類)、滿額加購(小分類)</small>
+                                                <small class="my-1">限定等級，滿？元，折扣？%、折扣？元、送點數</small>
                                             </a>
                                             <a href="#" class="list-group-item list-group-item-action" aria-current="true">
                                                 <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">折扣碼/優惠卷</h5>
+                                                    <h5 class="my-1">商品優惠</h5>
                                                     <small class="text-secondary">評估中</small>
                                                 </div>
-                                                <small class="my-1">讓全館優惠和小分類優惠可以設定</small>
+                                                <small class="my-1">限定等級，滿？元，折扣？%、折扣？元、送點數</small>
                                             </a>
                                             <a href="#" class="list-group-item list-group-item-action" aria-current="true">
                                                 <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">折扣碼/優惠卷綁定優惠</h5>
+                                                    <h5 class="my-1">折扣碼</h5>
                                                     <small class="text-secondary">評估中</small>
                                                 </div>
-                                                <small class="my-1">綁定全館或小分類</small>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action" aria-current="true">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">折扣碼/優惠卷限制條件</h5>
-                                                    <small class="text-secondary">評估中</small>
-                                                </div>
-                                                <small class="my-1">會員限制使用或使用次數</small>
+                                                <small class="my-1">限定等級，滿？元，折扣？%、折扣？元、送點數、會員限定使用一次</small>
                                             </a>
                                         </div>
                                     </div>
@@ -288,101 +275,101 @@
                             </div>
                         </div>
 
-                        <div class="col-12 col-md-6 p-2">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">商品倉儲系統</h5>
-                                    <div class="card-text">
-                                        <div class="list-group">
-                                            <a href="#" class="list-group-item list-group-item-action" aria-current="true">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">倉庫</h5>
-                                                    <small class="text-secondary">評估中</small>
-                                                </div>
-                                                <small class="my-1">多倉庫，門市，網路</small>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action" aria-current="true">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">庫存管理</h5>
-                                                    <small class="text-secondary">評估中</small>
-                                                </div>
-                                                <small class="my-1">商品規格出庫入庫、倉庫調撥、入庫成本、訂單商品出貨關聯出庫單、損外遺失報廢</small>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action" aria-current="true">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">倉庫綁定網路商店</h5>
-                                                    <small class="text-secondary">評估中</small>
-                                                </div>
-                                                <small class="my-1">例如蝦皮API串接，</small>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6 p-2">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">分析報表</h5>
-                                    <div class="card-text">
-                                        <div class="list-group">
-                                            <a href="#" class="list-group-item list-group-item-action" aria-current="true">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">會員分析</h5>
-                                                    <small class="text-secondary">評估中</small>
-                                                </div>
-                                                <small class="my-1">活動會員、冷會員</small>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action" aria-current="true">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">商品銷售分析</h5>
-                                                    <small class="text-secondary">評估中</small>
-                                                </div>
-                                                <small class="my-1">熱賣商品、追蹤商品</small>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action" aria-current="true">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">銷售利潤表</h5>
-                                                    <small class="text-secondary">評估中</small>
-                                                </div>
-                                                <small class="my-1">月份、年度</small>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+{{--                        <div class="col-12 col-md-6 p-2">--}}
+{{--                            <div class="card">--}}
+{{--                                <div class="card-body">--}}
+{{--                                    <h5 class="card-title">商品倉儲系統</h5>--}}
+{{--                                    <div class="card-text">--}}
+{{--                                        <div class="list-group">--}}
+{{--                                            <a href="#" class="list-group-item list-group-item-action" aria-current="true">--}}
+{{--                                                <div class="d-flex w-100 justify-content-between">--}}
+{{--                                                    <h5 class="my-1">倉庫</h5>--}}
+{{--                                                    <small class="text-secondary">評估中</small>--}}
+{{--                                                </div>--}}
+{{--                                                <small class="my-1">多倉庫，門市，網路</small>--}}
+{{--                                            </a>--}}
+{{--                                            <a href="#" class="list-group-item list-group-item-action" aria-current="true">--}}
+{{--                                                <div class="d-flex w-100 justify-content-between">--}}
+{{--                                                    <h5 class="my-1">庫存管理</h5>--}}
+{{--                                                    <small class="text-secondary">評估中</small>--}}
+{{--                                                </div>--}}
+{{--                                                <small class="my-1">商品規格出庫入庫、倉庫調撥、入庫成本、訂單商品出貨關聯出庫單、損外遺失報廢</small>--}}
+{{--                                            </a>--}}
+{{--                                            <a href="#" class="list-group-item list-group-item-action" aria-current="true">--}}
+{{--                                                <div class="d-flex w-100 justify-content-between">--}}
+{{--                                                    <h5 class="my-1">倉庫綁定網路商店</h5>--}}
+{{--                                                    <small class="text-secondary">評估中</small>--}}
+{{--                                                </div>--}}
+{{--                                                <small class="my-1">例如蝦皮API串接，</small>--}}
+{{--                                            </a>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="col-12 col-md-6 p-2">--}}
+{{--                            <div class="card">--}}
+{{--                                <div class="card-body">--}}
+{{--                                    <h5 class="card-title">分析報表</h5>--}}
+{{--                                    <div class="card-text">--}}
+{{--                                        <div class="list-group">--}}
+{{--                                            <a href="#" class="list-group-item list-group-item-action" aria-current="true">--}}
+{{--                                                <div class="d-flex w-100 justify-content-between">--}}
+{{--                                                    <h5 class="my-1">會員分析</h5>--}}
+{{--                                                    <small class="text-secondary">評估中</small>--}}
+{{--                                                </div>--}}
+{{--                                                <small class="my-1">活動會員、冷會員</small>--}}
+{{--                                            </a>--}}
+{{--                                            <a href="#" class="list-group-item list-group-item-action" aria-current="true">--}}
+{{--                                                <div class="d-flex w-100 justify-content-between">--}}
+{{--                                                    <h5 class="my-1">商品銷售分析</h5>--}}
+{{--                                                    <small class="text-secondary">評估中</small>--}}
+{{--                                                </div>--}}
+{{--                                                <small class="my-1">熱賣商品、追蹤商品</small>--}}
+{{--                                            </a>--}}
+{{--                                            <a href="#" class="list-group-item list-group-item-action" aria-current="true">--}}
+{{--                                                <div class="d-flex w-100 justify-content-between">--}}
+{{--                                                    <h5 class="my-1">銷售利潤表</h5>--}}
+{{--                                                    <small class="text-secondary">評估中</small>--}}
+{{--                                                </div>--}}
+{{--                                                <small class="my-1">月份、年度</small>--}}
+{{--                                            </a>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
 
                         <div class="col-12 col-md-6 p-2">
 
                         </div>
 
-                        <div class="col-12 col-md-6 p-2">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">存證信函寄送服務</h5>
-                                    <div class="card-text">
-                                        <div class="list-group">
-                                            <a href="#" class="list-group-item list-group-item-action" aria-current="true">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">存證信函管理</h5>
-                                                    <small class="text-secondary">評估中</small>
-                                                </div>
-                                                <small class="my-1">建立存證信函>預覽內容</small>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action" aria-current="true">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">存證信函寄送(訂單)</h5>
-                                                    <small class="text-secondary">評估中</small>
-                                                </div>
-                                                <small class="my-1">選擇存證信函>寄送>付款(綠界)</small>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+{{--                        <div class="col-12 col-md-6 p-2">--}}
+{{--                            <div class="card">--}}
+{{--                                <div class="card-body">--}}
+{{--                                    <h5 class="card-title">存證信函寄送服務</h5>--}}
+{{--                                    <div class="card-text">--}}
+{{--                                        <div class="list-group">--}}
+{{--                                            <a href="#" class="list-group-item list-group-item-action" aria-current="true">--}}
+{{--                                                <div class="d-flex w-100 justify-content-between">--}}
+{{--                                                    <h5 class="my-1">存證信函管理</h5>--}}
+{{--                                                    <small class="text-secondary">評估中</small>--}}
+{{--                                                </div>--}}
+{{--                                                <small class="my-1">建立存證信函>預覽內容</small>--}}
+{{--                                            </a>--}}
+{{--                                            <a href="#" class="list-group-item list-group-item-action" aria-current="true">--}}
+{{--                                                <div class="d-flex w-100 justify-content-between">--}}
+{{--                                                    <h5 class="my-1">存證信函寄送(訂單)</h5>--}}
+{{--                                                    <small class="text-secondary">評估中</small>--}}
+{{--                                                </div>--}}
+{{--                                                <small class="my-1">選擇存證信函>寄送>付款(綠界)</small>--}}
+{{--                                            </a>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
 
                     </div>
