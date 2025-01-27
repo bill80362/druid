@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            <a href="{{route('goods.index')}}">{{ __('主商品管理') }}</a>
+            <a href="{{route('goods.index')}}">{{ __('電商主商品管理') }}</a>
 
             > {{ __('新增') }}
         </h2>

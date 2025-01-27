@@ -16,7 +16,7 @@ class ExcelController extends Controller
 {
     public function export()
     {
-        return (new GoodsExport())->download('主商品'.date("YmdHis").'.xlsx');
+        return (new GoodsExport())->download('電商主商品'.date("YmdHis").'.xlsx');
     }
     public function import()
     {

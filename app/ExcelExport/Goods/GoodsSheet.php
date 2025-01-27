@@ -11,7 +11,7 @@ class GoodsSheet implements FromQuery, WithTitle, WithHeadings
 {
     public function title(): string
     {
-        return '主商品';
+        return '電商主商品';
     }
 
     public function query()

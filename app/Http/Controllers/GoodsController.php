@@ -13,7 +13,7 @@ class GoodsController extends Controller
      */
     public function index()
     {
-        if (!Gate::allows('主商品管理_讀取')) {
+        if (!Gate::allows('電商主商品管理_讀取')) {
             abort(403);
         }
         //
@@ -25,7 +25,7 @@ class GoodsController extends Controller
      */
     public function create()
     {
-        if (!Gate::allows('主商品管理_新增')) {
+        if (!Gate::allows('電商主商品管理_新增')) {
             abort(403);
         }
         //
@@ -41,7 +41,7 @@ class GoodsController extends Controller
      */
     public function store(Request $request)
     {
-        if (!Gate::allows('主商品管理_新增')) {
+        if (!Gate::allows('電商主商品管理_新增')) {
             abort(403);
         }
         //
@@ -64,7 +64,7 @@ class GoodsController extends Controller
      */
     public function edit(Goods $Goods)
     {
-        if (!Gate::allows('主商品管理_修改')) {
+        if (!Gate::allows('電商主商品管理_修改')) {
             abort(403);
         }
         //
@@ -78,7 +78,7 @@ class GoodsController extends Controller
      */
     public function update(Request $request, Goods $Goods)
     {
-        if (!Gate::allows('主商品管理_修改')) {
+        if (!Gate::allows('電商主商品管理_修改')) {
             abort(403);
         }
         $Goods->fill($request->only(["name", "content"]));
@@ -92,7 +92,7 @@ class GoodsController extends Controller
      */
     public function destroy(Goods $Goods)
     {
-        if (!Gate::allows('主商品管理_刪除')) {
+        if (!Gate::allows('電商主商品管理_刪除')) {
             abort(403);
         }
         $Goods->delete();
@@ -101,7 +101,7 @@ class GoodsController extends Controller
 
     public function edit2(Goods $Goods)
     {
-        if (!Gate::allows('主商品管理_修改')) {
+        if (!Gate::allows('電商主商品管理_修改')) {
             abort(403);
         }
         //

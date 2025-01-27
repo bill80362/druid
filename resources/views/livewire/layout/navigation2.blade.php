@@ -24,7 +24,7 @@ new class extends Component {
             "active" => "",
             "submenus" => [
                 [
-                    "title" => __("主商品管理"),
+                    "title" => __("電商主商品管理"),
                     "href" => route('goods.index'),
                     "active" => request()->routeIs('goods.index'),
                 ],

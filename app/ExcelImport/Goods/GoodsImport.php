@@ -14,7 +14,7 @@ class GoodsImport implements WithMultipleSheets
     public function sheets(): array
     {
         return [
-            "主商品" => new GoodsSheetImport(),
+            "電商主商品" => new GoodsSheetImport(),
             "規格群組" => new SpecSheetImport(),
             "規格選項" => new SpecOptionSheetImport(),
             "商品明細" => new GoodsDetailSheetImport(),

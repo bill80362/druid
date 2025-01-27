@@ -14,7 +14,7 @@ return new class extends Migration
         //
         $g = \App\Models\PermissionGroup::findOrNew(4);
         $g->id = 4;
-        $g->name = "主商品管理";
+        $g->name = "電商主商品管理";
         $g->save();
         //
         $p = \App\Models\Permission::findOrNew(13);

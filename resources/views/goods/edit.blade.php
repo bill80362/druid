@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            <a href="{{route('goods.index')}}">{{ __('主商品管理') }}</a>
+            <a href="{{route('goods.index')}}">{{ __('電商主商品管理') }}</a>
 
             > {{ __('編輯') }} : {{$item->name}}
         </h2>
@@ -9,7 +9,7 @@
     <x-slot name="header_tool">
         <div class="d-flex">
             <a class="btn btn-primary mr-2" href="{{route('goods.edit2',['goods'=>$item])}}">商品描述</a>
-            @can('主商品管理_刪除')
+            @can('電商主商品管理_刪除')
                 <form method="post" action="{{route('goods.destroy',['goods'=>$item->id])}}">
                     @csrf
                     @method('delete')

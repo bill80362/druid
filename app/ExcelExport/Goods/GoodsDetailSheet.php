@@ -36,7 +36,7 @@ class GoodsDetailSheet implements FromGenerator, WithTitle, WithHeadings
     public function headings(): array
     {
         return [
-            '編號', '主商品編號', '名稱', 'sku', '價格', '狀態', '排序', '規格選項編號(逗號分隔)',
+            '編號', '電商主商品編號', '名稱', 'sku', '價格', '狀態', '排序', '規格選項編號(逗號分隔)',
         ];
     }
 }
