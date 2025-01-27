@@ -13,5 +13,8 @@ class Member extends Model
     {
         static::creating(fn($model) => $model->slug = rand(1000000000,9999999999));
     }
-
+    public function level(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Level::class);
+    }
 }

@@ -181,6 +181,11 @@ new class extends Component {
                     "href" => route('payments.index'),
                     "active" => request()->routeIs('payments.index'),
                 ],
+                [
+                    "title" => __("等級管理"),
+                    "href" => route('levels.index'),
+                    "active" => request()->routeIs('levels.index'),
+                ],
             ],
         ]);
         //

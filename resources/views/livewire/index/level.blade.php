@@ -3,19 +3,11 @@
         <form>
             <div class="row">
                 <div class="col-12 col-md-3">
-                    <input class="form-control form-control-sm w-100" type="text" wire:model.live="id" placeholder="編號" />
+                    <input class="form-control form-control-sm w-100" type="text" wire:model.live="name" placeholder="名稱" />
                 </div>
-                <div class="col-12 col-md-3">
-                    <input class="form-control form-control-sm w-100" type="text" wire:model.live="name" placeholder="名字" />
-                </div>
-                <div class="col-12 col-md-3">
-                    <select class="form-control form-control-sm w-100" wire:model.live="status" >
-                        <option value="">狀態:不限制</option>
-                        @foreach(\App\Enum\MemberStatusEnum::cases() as $enum)
-                            <option value="{{$enum}}">{{$enum->text()}}</option>
-                        @endforeach
-                    </select>
-                </div>
+{{--                <div class="col-12 col-md-3">--}}
+{{--                    <input class="form-control form-control-sm w-100" type="text" wire:model.live="content" placeholder="描述" />--}}
+{{--                </div>--}}
 
             </div>
         </form>
@@ -27,32 +19,26 @@
             <th
                 wire:click="sortBy('name')" :sortDirection="$sortByColumn=='name'?$sortByDirection:null"
                 class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center">
-                名字
+                名稱
                 <x-table-sort-icon :sortByColumn="$sortByColumn" :sortByDirection="$sortByDirection" column="name" />
             </th>
             <th
-                wire:click="sortBy('status')" :sortDirection="$sortByColumn=='status'?$sortByDirection:null"
+                wire:click="sortBy('sort')" :sortDirection="$sortByColumn=='sort'?$sortByDirection:null"
                 class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center">
-                狀態
-                <x-table-sort-icon :sortByColumn="$sortByColumn" :sortByDirection="$sortByDirection" column="status"  />
+                等級排序
+                <x-table-sort-icon :sortByColumn="$sortByColumn" :sortByDirection="$sortByDirection" column="sort"  />
             </th>
             <th
-                wire:click="sortBy('account')" :sortDirection="$sortByColumn=='account'?$sortByDirection:null"
+                wire:click="sortBy('upgrade')" :sortDirection="$sortByColumn=='upgrade'?$sortByDirection:null"
                 class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center">
-                帳號
-                <x-table-sort-icon :sortByColumn="$sortByColumn" :sortByDirection="$sortByDirection" column="account"  />
+                升等門檻
+                <x-table-sort-icon :sortByColumn="$sortByColumn" :sortByDirection="$sortByDirection" column="upgrade"  />
             </th>
             <th
-                wire:click="sortBy('slug')" :sortDirection="$sortByColumn=='slug'?$sortByDirection:null"
+                wire:click="sortBy('degrade')" :sortDirection="$sortByColumn=='degrade'?$sortByDirection:null"
                 class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center">
-                卡號
-                <x-table-sort-icon :sortByColumn="$sortByColumn" :sortByDirection="$sortByDirection" column="slug"  />
-            </th>
-            <th
-                wire:click="sortBy('level_id')" :sortDirection="$sortByColumn=='level_id'?$sortByDirection:null"
-                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center">
-                等級
-                <x-table-sort-icon :sortByColumn="$sortByColumn" :sortByDirection="$sortByDirection" column="level_id"  />
+                續等門檻
+                <x-table-sort-icon :sortByColumn="$sortByColumn" :sortByDirection="$sortByDirection" column="degrade"  />
             </th>
             <th
                 wire:click="sortBy('updated_at')" :sortDirection="$sortByColumn=='updated_at'?$sortByDirection:null"
@@ -81,17 +67,15 @@
                     </div>
                 </td>
                 <td class="px-6 py-2 border-b border-gray-200 text-center">
-                    <div class="text-sm leading-5 text-gray-500">{{ \App\Enum\MemberStatusEnum::tryFrom($item->status)->text() }}</div>
+                    <div class="text-sm leading-5 text-gray-500">{{ $item->sort }}</div>
                 </td>
                 <td class="px-6 py-2 border-b border-gray-200 text-center">
-                    <div class="text-sm leading-5 text-gray-500">{{ $item->account }}</div>
+                    <div class="text-sm leading-5 text-gray-500">{{ $item->upgrade }}</div>
                 </td>
                 <td class="px-6 py-2 border-b border-gray-200 text-center">
-                    <div class="text-sm leading-5 text-gray-500">{{ $item->slug }}</div>
+                    <div class="text-sm leading-5 text-gray-500">{{ $item->degrade }}</div>
                 </td>
-                <td class="px-6 py-2 border-b border-gray-200 text-center">
-                    <div class="text-sm leading-5 text-gray-500">{{ $item->level?->name }}</div>
-                </td>
+
                 <td
                     class="px-6 py-2 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200 text-center">
                     {{ $item->updated_at }}</td>
@@ -101,8 +85,8 @@
 
                 <td
                     class="px-6 py-2 text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-200 text-center">
-                    @can('會員管理管理_修改')
-                        <a class="btn btn-sm btn-primary" href="{{route('members.edit',["member"=>$item->id])}}">編輯</a>
+                    @can('等級管理_修改')
+                        <a class="btn btn-sm btn-primary" href="{{route('levels.edit',["level"=>$item->id])}}">編輯</a>
                     @endcan
                 </td>
             </tr>
