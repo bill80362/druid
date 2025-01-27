@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
     <x-slot name="header_tool">
-        <button class="btn btn-primary" type="button">結帳</button>
+        <button class="btn btn-primary" type="button" onclick="document.getElementById('orderForm').submit();">結帳</button>
         <button class="btn btn-outline-secondary" type="button">選擇會員</button>
         <button class="btn btn-outline-secondary" type="button">選擇商品</button>
         <button class="btn btn-outline-secondary" type="button">選擇折扣</button>
@@ -187,11 +187,14 @@
                                                 </tr>
                                             @endforeach
                                         </table>
-                                        <label>結帳備註</label>
-                                        <div class="mb-3">
-                                            <textarea class="form-control"></textarea>
-                                        </div>
-                                        <button class="btn btn-primary w-full" type="button">結帳</button>
+                                        <form method="post" id="orderForm">
+                                            @csrf
+                                            <label>結帳備註</label>
+                                            <div class="mb-3">
+                                                <textarea class="form-control" name="memo"></textarea>
+                                            </div>
+                                            <button class="btn btn-primary w-full" type="submit">結帳</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
