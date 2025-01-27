@@ -6,7 +6,7 @@
             @csrf
             <div class="row">
                 <div class="col-6">
-                    <h3>資訊</h3>
+                    <h3>設定</h3>
                     <div class="mb-3">
                         <label class="form-label">狀態</label>
                         <select class="form-control" wire:model="status" >
