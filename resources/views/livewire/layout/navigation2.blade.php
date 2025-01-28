@@ -37,6 +37,19 @@ new class extends Component {
         ]);
         //
         $menus->push([
+            "title" => __("折扣管理"),
+            "href" => "#",
+            "active" => "",
+            "submenus" => [
+                [
+                    "title" => __("折扣管理"),
+                    "href" => route('discounts.index'),
+                    "active" => request()->routeIs('discounts.index'),
+                ],
+            ],
+        ]);
+        //
+        $menus->push([
             "title" => __("訂單管理"),
             "href" => "#",
             "active" => "",

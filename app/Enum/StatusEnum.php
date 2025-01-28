@@ -9,8 +9,8 @@ enum StatusEnum: string
     public function text(): string
     {
         return match ($this){
-            self::N => '隱藏',
-            self::Y => '顯示',
+            self::N => '停用',
+            self::Y => '啟用',
         };
     }
 }
