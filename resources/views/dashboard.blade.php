@@ -248,27 +248,27 @@
                                     <h5 class="card-title">商品優惠</h5>
                                     <div class="card-text">
                                         <div class="list-group">
-                                            <a href="#" class="list-group-item list-group-item-action" aria-current="true">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">全館優惠</h5>
-                                                    <small class="text-secondary">評估中</small>
-                                                </div>
-                                                <small class="my-1">限定等級，滿？元，折扣？%、折扣？元、送點數</small>
-                                            </a>
+{{--                                            <a href="#" class="list-group-item list-group-item-action" aria-current="true">--}}
+{{--                                                <div class="d-flex w-100 justify-content-between">--}}
+{{--                                                    <h5 class="my-1">全館優惠</h5>--}}
+{{--                                                    <small class="text-secondary">評估中</small>--}}
+{{--                                                </div>--}}
+{{--                                                <small class="my-1">限定等級，滿？元，折扣？%、折扣？元、送點數</small>--}}
+{{--                                            </a>--}}
                                             <a href="#" class="list-group-item list-group-item-action" aria-current="true">
                                                 <div class="d-flex w-100 justify-content-between">
                                                     <h5 class="my-1">商品優惠</h5>
-                                                    <small class="text-secondary">評估中</small>
+                                                    <small class="text-primary">已完成</small>
                                                 </div>
-                                                <small class="my-1">限定等級，滿？元，折扣？%、折扣？元、送點數</small>
+                                                <small class="my-1">限定等級(未完成)，滿？元，折扣？%、折扣？元、送點數(未完成)</small>
                                             </a>
-                                            <a href="#" class="list-group-item list-group-item-action" aria-current="true">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">折扣碼</h5>
-                                                    <small class="text-secondary">評估中</small>
-                                                </div>
-                                                <small class="my-1">限定等級，滿？元，折扣？%、折扣？元、送點數、會員限定使用一次</small>
-                                            </a>
+{{--                                            <a href="#" class="list-group-item list-group-item-action" aria-current="true">--}}
+{{--                                                <div class="d-flex w-100 justify-content-between">--}}
+{{--                                                    <h5 class="my-1">折扣碼</h5>--}}
+{{--                                                    <small class="text-secondary">評估中</small>--}}
+{{--                                                </div>--}}
+{{--                                                <small class="my-1">限定等級，滿？元，折扣？%、折扣？元、送點數、會員限定使用一次</small>--}}
+{{--                                            </a>--}}
                                         </div>
                                     </div>
                                 </div>

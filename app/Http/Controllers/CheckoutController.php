@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Discount;
 use App\Models\GoodsDetail;
 use App\Models\Member;
 use App\Models\Order;
@@ -11,11 +12,12 @@ use App\Models\Payment;
 use App\Models\ShoppingCart;
 use App\Models\ShoppingCartGoods;
 use App\Models\ShoppingPayment;
+use App\Services\CheckoutService;
 use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
 {
-    public function checkout()
+    public function checkout(CheckoutService $checkoutService)
     {
         //購物車
         $shoppingCard = ShoppingCart::where("user_id", auth()->user()->id)->first();
@@ -25,35 +27,45 @@ class CheckoutController extends Controller
         $shoppingCartPaymentItems = ShoppingPayment::with(["payment"])->where("user_id", auth()->user()->id)->get();
         //結帳會員
         $member = Member::find($shoppingCard?->data["member_id"] ?? "");
-
+        //折扣規則
+        $discounts = Discount::where("status","Y")->orderBy("sort")->get();
+        //優惠計算
+        $shoppingCartGoodsItems = $checkoutService->cashier($shoppingCartGoodsItems,$discounts);
+        $discountLogs = $checkoutService->discountLogs;
         //
         return view('checkout/checkout', [
             "shoppingCartGoodsItems" => $shoppingCartGoodsItems,
             "shoppingCartPaymentItems" => $shoppingCartPaymentItems,
             "shoppingCard" => $shoppingCard,
             "member" => $member,
-            "paymentItems" => Payment::where("status", "Y")->get(),
+            "paymentItems" => Payment::where("status", "Y")->orderBy("sort")->get(),
+            "discountLogs" => $discountLogs,
         ]);
     }
 
-    public function finish(Request $request)
+    public function finish(CheckoutService $checkoutService,Request $request)
     {
         //購物車
         $shoppingCard = ShoppingCart::where("user_id", auth()->user()->id)->first();
         $shoppingCartGoodsItems = ShoppingCartGoods::with(["goodsDetail"])->where("user_id", auth()->user()->id)->get();
         $shoppingCartPaymentItems = ShoppingPayment::with(["payment"])->where("user_id", auth()->user()->id)->get();
+        //折扣規則
+        $discounts = Discount::where("status","Y")->orderBy("sort")->get();
+        //優惠計算
+        $shoppingCartGoodsItems = $checkoutService->cashier($shoppingCartGoodsItems,$discounts);
+        $discountLogs = $checkoutService->discountLogs;
         //驗證購物車
         if (!$shoppingCartGoodsItems?->count()) {
             return redirect()->route("checkout.checkout")->with("success", ["購物車無商品"]);
         }
-        if ($shoppingCartGoodsItems->sum("goodsDetail.price") != $shoppingCartPaymentItems->sum("money")) {
+        if ($shoppingCartGoodsItems->sum("discount_price") != $shoppingCartPaymentItems->sum("money")) {
             return redirect()->route("checkout.checkout")->with("success", ["購物車結帳金額與付款金額不符"]);
         }
         //建立訂單
         $order = new Order();
         $order->status = "finish";
-        $order->detail_subtotal = $shoppingCartGoodsItems->sum("goodsDetail.price");
-        $order->total = $shoppingCartGoodsItems->sum("goodsDetail.price");
+        $order->detail_subtotal = $shoppingCartGoodsItems->sum("discount_price");
+        $order->total = $shoppingCartGoodsItems->sum("discount_price");
         $order->memo = $request->get("memo");
         $order->member_id = $shoppingCard?->data["member_id"] ?? null;
         $order->user_id = auth()->user()->id;

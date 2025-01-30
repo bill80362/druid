@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            門市結帳 | 結帳金額 {{$shoppingCartGoodsItems?->sum("goodsDetail.price")}} | 已付款 {{$shoppingCartPaymentItems->sum("money")}} | 還需支付 {{$shoppingCartGoodsItems?->sum("goodsDetail.price")-$shoppingCartPaymentItems->sum("money")}}
+            門市結帳 | 結帳金額 {{$shoppingCartGoodsItems?->sum("discount_price")}} | 已付款 {{$shoppingCartPaymentItems->sum("money")}} | 還需支付 {{$shoppingCartGoodsItems?->sum("discount_price")-$shoppingCartPaymentItems->sum("money")}}
         </h2>
     </x-slot>
     <x-slot name="header_tool">
@@ -52,7 +52,7 @@
                                             結帳商品 ({{$shoppingCartGoodsItems?->count()}})
                                         </div>
                                         <div>
-                                            小計 $ {{$shoppingCartGoodsItems?->sum("goodsDetail.price")}}
+                                            小計 $ {{$shoppingCartGoodsItems?->sum("discount_price")}}
                                         </div>
                                     </h5>
                                     <div class="card-text">
@@ -73,8 +73,12 @@
                                                     <td>{{$item->goodsDetail->name}}</td>
                                                     <td>{{$item->goodsDetail->sku}}</td>
                                                     <td>{{$item->goodsDetail->price}}</td>
-                                                    <td>{{$item->goodsDetail->price}}</td>
-                                                    <td></td>
+                                                    <td>{{$item->discount_price}}</td>
+                                                    <td>
+                                                        @foreach($discountLogs[$item->id]??[] as $discount)
+                                                            <span class="badge bg-secondary">{{$discount["name"]}}</span>
+                                                        @endforeach
+                                                    </td>
                                                     <td>
                                                         <a class="btn btn-sm btn-outline-secondary" href="{{route("checkout.remove.goods")}}?id={{$item->id}}">移除</a>
                                                     </td>
