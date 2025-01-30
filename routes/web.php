@@ -49,6 +49,7 @@ Route::middleware(['auth'])->group(function (){
     Route::resource('payments', \App\Http\Controllers\PaymentController::class);
     Route::resource('levels', \App\Http\Controllers\LevelController::class);
     Route::resource('discounts', \App\Http\Controllers\DiscountController::class);
+    Route::resource('points', \App\Http\Controllers\PointController::class);
 
     Route::get('goods/edit2/{goods}', [\App\Http\Controllers\GoodsController::class, 'edit2'])->name("goods.edit2");
     Route::post('goods/update2/{goods}', [\App\Http\Controllers\GoodsController::class, 'update2'])->name("goods.update2");
