@@ -150,6 +150,15 @@
                                             </tr>
                                             </thead>
                                             <tbody>
+                                            @if($point)
+                                                <tr>
+                                                    <td>贈送點數</td>
+                                                    <td></td>
+                                                    <td>{{$point}}點</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            @endif
                                             </tbody>
                                         </table>
                                     </div>

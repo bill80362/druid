@@ -3,11 +3,13 @@
 namespace App\Services;
 
 use App\Models\Discount;
+use App\Models\Level;
 
 class CheckoutService
 {
     public array $discountLogs = [];
-    public function cashier($shoppingCartGoodsItems, $discounts)
+    public int $point = 0;
+    public function cashier($shoppingCartGoodsItems, $discounts, $level_id)
     {
         //初始化價格
         $shoppingCartGoodsItems->load(["goodsDetail"]);
@@ -64,6 +66,12 @@ class CheckoutService
                 //
                 return $item;
             });
+        }
+        //
+        $final_price = $shoppingCartGoodsItems->sum("discount_price");
+        $level = Level::find($level_id);
+        if($level?->point_from_money){
+            $this->point = floor($final_price/$level->point_from_money);
         }
         //
         return $shoppingCartGoodsItems;

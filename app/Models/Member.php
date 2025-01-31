@@ -11,10 +11,17 @@ class Member extends Model
 
     public static function booted(): void
     {
-        static::creating(fn($model) => $model->slug = rand(1000000000,9999999999));
+        static::creating(function($model){
+            $model->slug = rand(1000000000,9999999999);
+            if(!$model->level_id) $model->level_id = Level::orderBy("sort")->first()->id;
+        });
     }
     public function level(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Level::class);
+    }
+    public function points(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Point::class);
     }
 }

@@ -23,6 +23,11 @@
                 <small class="text-danger">@error('degrade') {{ $message }} @enderror</small>
             </div>
             <div class="mb-3">
+                <label class="form-label">消費滿多少送1點(累加)</label>
+                <input type="text" class="form-control" wire:model="point_from_money">
+                <small class="text-danger">@error('point_from_money') {{ $message }} @enderror</small>
+            </div>
+            <div class="mb-3">
                 <div class="flex justify-content-between">
                     <div wire:dirty>
                         <button type="submit" class="btn btn-primary">

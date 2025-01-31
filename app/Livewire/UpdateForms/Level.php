@@ -12,12 +12,14 @@ class Level extends Component
 
     #[Validate(['required','min:1','max:20'], as: '名稱')]
     public string $name = "";
-    #[Validate(['required','unique:levels,sort'], as: '等級排序')]
+    #[Validate(['required'], as: '等級排序')]
     public string $sort = "";
     #[Validate([])]
     public string $upgrade = "";
     #[Validate([])]
     public string $degrade = "";
+    #[Validate([])]
+    public string $point_from_money = "";
     //
     public string $actionMessage = "";
 
@@ -30,10 +32,14 @@ class Level extends Component
         $this->sort = $item?->sort ?? "";
         $this->upgrade = $item?->upgrade ?? "";
         $this->degrade = $item?->degrade ?? "";
+        $this->point_from_money = $item?->point_from_money ?? "";
     }
 
     public function submit()
     {
+        $this->validate([
+            "sort" => ["unique:levels,sort,".$this->levelId],
+        ]);
         //
         //if(!$this->levelId){
         //    $this->validate([
@@ -50,6 +56,7 @@ class Level extends Component
         $item->sort = $this->sort;
         $item->upgrade = $this->upgrade;
         $item->degrade = $this->degrade;
+        $item->point_from_money = $this->point_from_money;
         $item->save();
         //
         if ($this->levelId) {
