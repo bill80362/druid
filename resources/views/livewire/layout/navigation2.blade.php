@@ -153,6 +153,11 @@ new class extends Component {
             "href" => route('users.index'),
             "active" => "",
             "submenus" => [
+                [
+                    "title" => __("系統設定"),
+                    "href" => route('settings.edit',["setting" => 1]),
+                    "active" => request()->routeIs('settings.edit'),
+                ],
 //                [
 //                    "title" => __("頁面管理"),
 //                    "href" => route('pages.index'),
