@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            門市結帳 | 結帳金額 {{$shoppingCartGoodsItems?->sum("discount_price")}} | 已付款 {{$shoppingCartPaymentItems->sum("money")}} | 還需支付 {{$shoppingCartGoodsItems?->sum("discount_price")-$shoppingCartPaymentItems->sum("money")}}
+            結帳金額 {{$shoppingCartGoodsItems?->sum("discount_price")}}元 ｜ 點數折抵{{$memberUsePoint*$pointToMoney}}元 | 已付款{{$shoppingCartPaymentItems->sum("money")}}元 | 還需支付{{$shoppingCartGoodsItems?->sum("discount_price")-$shoppingCartPaymentItems->sum("money")-$memberUsePoint*$pointToMoney}}元
         </h2>
     </x-slot>
     <x-slot name="header_tool">
@@ -114,21 +114,31 @@
                                                 </tr>
                                                 <tr>
                                                     <td>名字</td>
-                                                    <td>{{{$member?->name}}}</td>
+                                                    <td>{{$member?->name}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>手機</td>
-                                                    <td>{{{$member?->phone}}}</td>
+                                                    <td>{{$member?->phone}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>剩餘點數</td>
-                                                    <td>300</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>歷史訂單</td>
-                                                    <td>$300 (5)</td>
+                                                    <td>{{$member?->points_sum_point}}</td>
                                                 </tr>
                                             </table>
+                                        @endif
+                                        @if($member?->points_sum_point)
+                                            <div>
+                                                <form method="post" action="{{route("checkout.use.point")}}">
+                                                    <input type="hidden" name="member_slug" value="{{$member->slug}}">
+                                                    @csrf
+                                                    <div class="input-group mb-3">
+                                                        <input type="text" class="form-control" name="use_point" value="{{$member?->points_sum_point}}" max="{{$member?->points_sum_point}}">
+                                                        <div class="input-group-append">
+                                                            <button class="btn btn-outline-secondary" type="submit">使用點數</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
                                         @endif
                                     </div>
                                 </div>
@@ -157,6 +167,22 @@
                                                     <td>會員等級贈點</td>
                                                     <td>-</td>
                                                     <td>-</td>
+                                                </tr>
+                                            @endif
+                                            @if($memberUsePoint)
+                                                <tr>
+                                                    <td>使用點數{{$memberUsePoint}}點</td>
+                                                    <td>-</td>
+                                                    <td>使用點數</td>
+                                                    <td>{{$memberUsePoint*$pointToMoney}}</td>
+                                                    <td>
+                                                        <form method="post" action="{{route("checkout.use.point")}}">
+                                                            @csrf
+                                                            <input type="hidden" name="member_slug" value="{{$member->slug}}">
+                                                            <input type="hidden" name="use_point" value="0">
+                                                            <button class="btn btn-outline-secondary" type="submit">移除</button>
+                                                        </form>
+                                                    </td>
                                                 </tr>
                                             @endif
                                             </tbody>

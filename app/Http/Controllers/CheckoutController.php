@@ -10,6 +10,7 @@ use App\Models\OrderDetail;
 use App\Models\OrderPayment;
 use App\Models\Payment;
 use App\Models\Point;
+use App\Models\Setting;
 use App\Models\ShoppingCart;
 use App\Models\ShoppingCartGoods;
 use App\Models\ShoppingPayment;
@@ -20,6 +21,10 @@ class CheckoutController extends Controller
 {
     public function checkout(CheckoutService $checkoutService)
     {
+        //系統設定
+        $setting = Setting::where("id","1")->first();
+        $systemSetting = $setting?->content;
+        $pointToMoney = $systemSetting["point_to_money"]??1;
         //購物車
         $shoppingCard = ShoppingCart::where("user_id", auth()->user()->id)->first();
         //購物車商品
@@ -27,13 +32,15 @@ class CheckoutController extends Controller
         //購物車結帳
         $shoppingCartPaymentItems = ShoppingPayment::with(["payment"])->where("user_id", auth()->user()->id)->get();
         //結帳會員
-        $member = Member::find($shoppingCard?->data["member_id"] ?? "");
+        $member = Member::withSum('points','point')->find($shoppingCard?->data["member_id"] ?? "");
         //折扣規則
         $discounts = Discount::where("status", "Y")->orderBy("sort")->get();
-        //優惠計算
+        //優惠計算member_use_point
         $shoppingCartGoodsItems = $checkoutService->cashier($shoppingCartGoodsItems, $discounts, $member?->level_id);
         $discountLogs = $checkoutService->discountLogs;
         $levelPoint = $checkoutService->levelPoint;
+        //
+        $memberUsePoint = $shoppingCard?->data["member_use_point"]??0;
         //
         return view('checkout/checkout', [
             "shoppingCartGoodsItems" => $shoppingCartGoodsItems,
@@ -43,11 +50,17 @@ class CheckoutController extends Controller
             "paymentItems" => Payment::where("status", "Y")->orderBy("sort")->get(),
             "discountLogs" => $discountLogs,
             "levelPoint" => $levelPoint,
+            "memberUsePoint" => $memberUsePoint,
+            "pointToMoney" => $pointToMoney,
         ]);
     }
 
     public function finish(CheckoutService $checkoutService, Request $request)
     {
+        //系統設定
+        $setting = Setting::where("id","1")->first();
+        $systemSetting = $setting?->content;
+        $pointToMoney = $systemSetting["point_to_money"]??1;
         //購物車
         $shoppingCard = ShoppingCart::where("user_id", auth()->user()->id)->first();
         $shoppingCartGoodsItems = ShoppingCartGoods::with(["goodsDetail"])->where("user_id", auth()->user()->id)->get();
@@ -59,18 +72,20 @@ class CheckoutController extends Controller
         $shoppingCartGoodsItems = $checkoutService->cashier($shoppingCartGoodsItems, $discounts, $member?->level_id);
         $discountLogs = $checkoutService->discountLogs;
         $levelPoint = $checkoutService->levelPoint;
+        //使用點數
+        $memberUsePoint = $shoppingCard?->data["member_use_point"]??0;
         //驗證購物車
         if (!$shoppingCartGoodsItems?->count()) {
             return redirect()->route("checkout.checkout")->with("success", ["購物車無商品"]);
         }
-        if ($shoppingCartGoodsItems->sum("discount_price") != $shoppingCartPaymentItems->sum("money")) {
+        if ( ($shoppingCartGoodsItems->sum("discount_price")-$memberUsePoint*$pointToMoney) != $shoppingCartPaymentItems->sum("money")) {
             return redirect()->route("checkout.checkout")->with("success", ["購物車結帳金額與付款金額不符"]);
         }
         //建立訂單
         $order = new Order();
         $order->status = "finish";
         $order->detail_subtotal = $shoppingCartGoodsItems->sum("discount_price");
-        $order->total = $shoppingCartGoodsItems->sum("discount_price");
+        $order->total = $shoppingCartGoodsItems->sum("discount_price")-$memberUsePoint*$pointToMoney;
         $order->memo = $request->get("memo");
         $order->member_id = $shoppingCard?->data["member_id"] ?? null;
         $order->user_id = auth()->user()->id;
@@ -114,6 +129,8 @@ class CheckoutController extends Controller
         $shoppingCard->save();
         $shoppingCartGoodsItems->map(fn($i) => $i->delete());
         $shoppingCartPaymentItems->map(fn($i) => $i->delete());
+        //計算是否升等
+
         //檢查訂單金額
         return redirect()->route("checkout.checkout")->with("success", ["結帳完成"]);
     }
@@ -167,6 +184,7 @@ class CheckoutController extends Controller
         $shoppingCard->user_id = auth()->user()->id;
         $data = $shoppingCard->data ?? [];
         $data["member_id"] = "";
+        $data["member_use_point"] = 0;
         $shoppingCard->data = $data;
         $shoppingCard->save();
         //
@@ -205,5 +223,27 @@ class CheckoutController extends Controller
         $item->delete();
         //
         return redirect()->route("checkout.checkout")->with("success", ["移除付款方式成功"]);
+    }
+    public function usePoint(Request $request)
+    {
+        //
+        $item = Member::withSum('points','point')->where("slug", request()->get("member_slug"))->first();
+        if ( ((int)$item?->points_sum_point) < $request->get("use_point")) {
+            return back()->with("success", ["點數不足"]);
+        }
+        //
+        $shoppingCard = ShoppingCart::where("user_id", auth()->user()->id)->firstOrNew();
+        $shoppingCard->user_id = auth()->user()->id;
+        $data = $shoppingCard->data ?? [];
+        $data["member_use_point"] = $request->get("use_point");
+        $shoppingCard->data = $data;
+        $shoppingCard->save();
+        //
+        if($request->get("use_point")){
+            return redirect()->route("checkout.checkout")->with("success", ["使用點數成功"]);
+        }else{
+            return redirect()->route("checkout.checkout")->with("success", ["移除點數成功"]);
+        }
+
     }
 }
