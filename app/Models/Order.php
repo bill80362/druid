@@ -21,4 +21,8 @@ class Order extends Model
     {
         return $this->belongsTo(Member::class);
     }
+    public function points(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Point::class);
+    }
 }

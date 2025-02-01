@@ -109,8 +109,8 @@ class CheckoutController extends Controller
             $orderPayment->payment_id = $item->payment_id;
             $orderPayment->status = "Y";
             $orderPayment->type = $payment->type;
-            $orderPayment->money = $payment->money;
-            $orderPayment->memo = $payment->memo;
+            $orderPayment->money = $item->money;
+            $orderPayment->memo = $item->memo;
             return $orderPayment;
         });
         $order->orderPayments()->saveMany($orderPayments);

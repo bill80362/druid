@@ -23,11 +23,11 @@ new class extends Component {
             "href" => "#",
             "active" => "",
             "submenus" => [
-                [
-                    "title" => __("電商主商品管理"),
-                    "href" => route('goods.index'),
-                    "active" => request()->routeIs('goods.index'),
-                ],
+//                [
+//                    "title" => __("電商主商品管理"),
+//                    "href" => route('goods.index'),
+//                    "active" => request()->routeIs('goods.index'),
+//                ],
                 [
                     "title" => __("商品明細管理"),
                     "href" => route('goods_details.index'),

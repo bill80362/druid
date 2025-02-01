@@ -3,9 +3,9 @@
         <form method="post" wire:submit="submit()">
             @csrf
             <div class="row">
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-4">
                     <div class="mb-3">
-                        <h4>訂單處理</h4>
+                        <h4>訂單時間：{{$created_at}}</h4>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">狀態</label>
@@ -19,119 +19,98 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label">訂單備註(會員可看到)</label>
-                        <input type="text" class="form-control" wire:model="memo">
+                        <textarea class="form-control" wire:model="memo"></textarea>
                         <small class="text-danger">@error('memo') {{ $message }} @enderror</small>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">管理者內部備註(會員不會看到)</label>
-                        <input type="text" class="form-control" wire:model="memo_admin">
+                        <textarea class="form-control" wire:model="memo_admin"></textarea>
                         <small class="text-danger">@error('memo_admin') {{ $message }} @enderror</small>
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label">行銷代碼</label>
-                        <input type="text" class="form-control" wire:model="promotion_code">
-                        <small class="text-danger">@error('promotion_code') {{ $message }} @enderror</small>
-                    </div>
                 </div>
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-4">
                     <div class="mb-3">
-                        <h4>訂單資訊</h4>
+                        <h4>訂單金額</h4>
                     </div>
                     <div class="mb-3">
-                        <div>訂單時間：{{$created_at}}</div>
-                        <div class="mb-3"></div>
-                        <div>訂單金額</div>
                         <div>訂單明細小計：{{$detail_subtotal}}</div>
-                        <div>金流手續費：{{$payment_fee}}</div>
-                        <div>物流手續費：{{$shipping_fee}}</div>
+                        <div>點數折抵金額：{{(int)$points?->where("point",">","0")?->first()?->point * $pointToMoney}}</div>
                         <div>訂單總金額：{{$total}}</div>
-                        <div class="mb-3"></div>
-                        <div>金流(3)</div>
-                        <div>類型：信用卡</div>
-                        <div>服務商：綠界</div>
-                        <div>服務商編號：A123456789</div>
-                        <div>狀態：未付款</div>
-                        <div>金額：1000</div>
-                        <div>付款時間：2022-02-02 12:12:12</div>
-                        <div class="mb-3"></div>
-                        <div>物流</div>
-                        <div>類型：宅配</div>
-                        <div>第三方類型：綠界</div>
-                        <div>第三方編號：A123456789</div>
-                        <div>狀態：未付款</div>
-                        <div>金額：1000</div>
-                        <div>付款時間：2022-02-02 12:12:12</div>
+                    </div>
+                    <div class="mb-3">
+                        <h4>付款方式</h4>
+                    </div>
+                    <div class="mb-3">
+                        @foreach($orderPayments??[] as $orderPayment)
+                            <div>{{$orderPayment?->payment?->name}}:{{$orderPayment?->money??0}}元</div>
+                        @endforeach
                     </div>
                 </div>
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-4">
                     <div class="mb-3">
-                        <h4>收件人資訊</h4>
+                        <h4>會員資訊</h4>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">收件人</label>
-                        <input type="text" class="form-control" wire:model="receiver_name">
-                        <small class="text-danger">@error('receiver_name') {{ $message }} @enderror</small>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">收件人手機</label>
-                        <input type="text" class="form-control" wire:model="receiver_phone">
-                        <small class="text-danger">@error('receiver_phone') {{ $message }} @enderror</small>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">收件人郵遞區號</label>
-                        <input type="text" class="form-control" wire:model="receiver_postal_code">
-                        <small class="text-danger">@error('receiver_postal_code') {{ $message }} @enderror</small>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">收件人地址</label>
-                        <input type="text" class="form-control" wire:model="receiver_address">
-                        <small class="text-danger">@error('receiver_address') {{ $message }} @enderror</small>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">收件人備註</label>
-                        <input type="text" class="form-control" wire:model="receiver_memo">
-                        <small class="text-danger">@error('receiver_memo') {{ $message }} @enderror</small>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">購買人</label>
-                        <input type="text" class="form-control" wire:model="buyer_name">
-                        <small class="text-danger">@error('buyer_name') {{ $message }} @enderror</small>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">購買人電話</label>
-                        <input type="text" class="form-control" wire:model="buyer_phone">
-                        <small class="text-danger">@error('buyer_phone') {{ $message }} @enderror</small>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">訂購會員編號</label>
-                        <input type="text" class="form-control" wire:model="member_id">
-                        <small class="text-danger">@error('member_id') {{ $message }} @enderror</small>
-                    </div>
-                    <div class="mb-3">
-                        <div>會員帳號：{{$member?->account}}</div>
-                        <div>會員名字：{{$member?->name}}</div>
+                        <div>名稱：{{$member?->name}}</div>
+                        <div>手機：{{$member?->phone}}</div>
                     </div>
                 </div>
-                <div class="col-12 col-md-6">
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-12">
                     <div class="mb-3">
-                        <h4>發票</h4>
+                        <div class="flex justify-content-between">
+                            <div wire:dirty>
+                                <button type="submit" class="btn btn-primary">
+                                    儲存
+                                    <div wire:loading>
+                                        儲存中
+                                    </div>
+                                </button>
+                                <button type="button" class="btn btn-secondary" wire:click="$refresh">取消</button>
+                            </div>
+                        </div>
                     </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    <div class="mb-3">
+                        <h4>訂單商品</h4>
+                    </div>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>商品</th>
+                            <th>SKU</th>
+                            <th>原價</th>
+                            <th>折扣後</th>
+                            <th>使用優惠</th>
+{{--                            <th>操作</th>--}}
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($orderDetails as $item)
+                            <tr>
+                                <td>{{$item->name}}</td>
+                                <td>{{$item->goods_sku}}</td>
+                                <td>{{$item->price_origin}}</td>
+                                <td>{{$item->price}}</td>
+                                <td>
+{{--                                    @foreach($discountLogs[$item->id]??[] as $discount)--}}
+{{--                                        <span class="badge bg-secondary">{{$discount["name"]}}</span>--}}
+{{--                                    @endforeach--}}
+                                </td>
+                                <td>
+{{--                                    <a class="btn btn-sm btn-outline-secondary" href="{{route("checkout.remove.goods")}}?id={{$item->id}}">移除</a>--}}
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
-            <div class="mb-3">
-                <div class="flex justify-content-between">
-                    <div wire:dirty>
-                        <button type="submit" class="btn btn-primary">
-                            儲存
-                            <div wire:loading>
-                                儲存中
-                            </div>
-                        </button>
-                        <button type="button" class="btn btn-secondary" wire:click="$refresh">取消</button>
-                    </div>
-                </div>
-            </div>
             @if($actionMessage)
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     <strong>{{$actionMessage}}</strong>

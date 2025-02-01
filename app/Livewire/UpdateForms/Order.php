@@ -3,6 +3,7 @@
 namespace App\Livewire\UpdateForms;
 
 use App\Models\PermissionGroup;
+use App\Models\Setting;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
@@ -46,14 +47,22 @@ class Order extends Component
     public string $member_id = "";
     //
     public mixed $member;
+    public mixed $points;
+    public mixed $orderPayments;
+    public mixed $orderDetails;
+    public int $pointToMoney;
     //
     public string $actionMessage = "";
 
     public function mount($id)
     {
         $this->orderId = $id;
+        //系統設定
+        $setting = Setting::where("id","1")->first();
+        $systemSetting = $setting?->content;
+        $this->pointToMoney = (int)$systemSetting["point_to_money"]??1;
         //
-        $item = \App\Models\Order::with(["member"])->find($this->orderId);
+        $item = \App\Models\Order::with(["member","points","orderPayments.payment","orderDetails.goodsDetail"])->find($this->orderId);
         $this->status = $item?->status ?? "";
         $this->detail_subtotal = $item?->detail_subtotal ?? "";
         $this->payment_fee = $item?->payment_fee ?? "";
@@ -72,6 +81,9 @@ class Order extends Component
         $this->member_id = $item?->member_id ?? "";
         //
         $this->member = $item?->member;
+        $this->points = $item?->points;
+        $this->orderPayments = $item?->orderPayments;
+        $this->orderDetails = $item?->orderDetails;
     }
 
     public function submit()

@@ -116,13 +116,13 @@
                                     <h5 class="card-title">商品管理</h5>
                                     <div class="card-text">
                                         <div class="list-group">
-                                            <a href="#" class="list-group-item list-group-item-action" aria-current="true">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">電商主商品</h5>
-                                                    <small class="text-primary">已完成</small>
-                                                </div>
-                                                <small class="my-1">門市系統請不要使用，未來保留給電子商務用</small>
-                                            </a>
+{{--                                            <a href="#" class="list-group-item list-group-item-action" aria-current="true">--}}
+{{--                                                <div class="d-flex w-100 justify-content-between">--}}
+{{--                                                    <h5 class="my-1">電商主商品</h5>--}}
+{{--                                                    <small class="text-primary">已完成</small>--}}
+{{--                                                </div>--}}
+{{--                                                <small class="my-1">門市系統請不要使用，未來保留給電子商務用</small>--}}
+{{--                                            </a>--}}
                                             <a href="#" class="list-group-item list-group-item-action">
                                                 <div class="d-flex w-100 justify-content-between">
                                                     <h5 class="my-1">商品明細</h5>

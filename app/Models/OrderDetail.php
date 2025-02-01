@@ -13,4 +13,8 @@ class OrderDetail extends Model
     {
         return $this->belongsTo(Order::class);
     }
+    public function goodsDetail(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(GoodsDetail::class);
+    }
 }
