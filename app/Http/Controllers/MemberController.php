@@ -14,7 +14,7 @@ class MemberController extends Controller
      */
     public function index()
     {
-        if (! Gate::allows('會員管理管理_讀取')) {
+        if (! Gate::allows('會員管理_讀取')) {
             abort(403);
         }
         //
@@ -26,7 +26,7 @@ class MemberController extends Controller
      */
     public function create()
     {
-        if (! Gate::allows('會員管理管理_新增')) {
+        if (! Gate::allows('會員管理_新增')) {
             abort(403);
         }
         //
@@ -42,7 +42,7 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        if (! Gate::allows('會員管理管理_新增')) {
+        if (! Gate::allows('會員管理_新增')) {
             abort(403);
         }
         //
@@ -65,7 +65,7 @@ class MemberController extends Controller
      */
     public function edit(Member $Member)
     {
-        if (! Gate::allows('會員管理管理_修改')) {
+        if (! Gate::allows('會員管理_修改')) {
             abort(403);
         }
         //
@@ -79,7 +79,7 @@ class MemberController extends Controller
      */
     public function update(Request $request, Member $Member)
     {
-        if (! Gate::allows('會員管理管理_修改')) {
+        if (! Gate::allows('會員管理_修改')) {
             abort(403);
         }
         $Member->fill($request->only(["name","content"]));
@@ -93,7 +93,7 @@ class MemberController extends Controller
      */
     public function destroy(Member $Member)
     {
-        if (! Gate::allows('會員管理管理_刪除')) {
+        if (! Gate::allows('會員管理_刪除')) {
             abort(403);
         }
         $Member->delete();

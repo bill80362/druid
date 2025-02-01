@@ -91,7 +91,7 @@
 
                 <td
                     class="px-6 py-2 text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-200 text-center">
-                    @can('訂單管理管理_修改')
+                    @can('訂單管理_修改')
                         <a class="btn btn-sm btn-primary" href="{{route('orders.edit',["order"=>$item->id])}}">編輯</a>
                     @endcan
                 </td>

@@ -14,13 +14,13 @@ class Order extends Component
     #[Validate(['required','in:created,pay,ship,cod,arrive,delivery,finish,cancel'], as: '狀態')]
     public string $status = "";
     #[Validate([])]
-    public string $detail_subtotal = "";
+    public int $detail_subtotal = 0;
     #[Validate([])]
-    public string $payment_fee = "";
+    public int $payment_fee = 0;
     #[Validate([])]
-    public string $shipping_fee = "";
+    public int $shipping_fee = 0;
     #[Validate([])]
-    public string $total = "";
+    public int $total = 0;
     #[Validate([])]
     public string $buyer_name = "";
     #[Validate([])]
@@ -64,10 +64,10 @@ class Order extends Component
         //
         $item = \App\Models\Order::with(["member","points","orderPayments.payment","orderDetails.goodsDetail"])->find($this->orderId);
         $this->status = $item?->status ?? "";
-        $this->detail_subtotal = $item?->detail_subtotal ?? "";
-        $this->payment_fee = $item?->payment_fee ?? "";
-        $this->shipping_fee = $item?->shipping_fee ?? "";
-        $this->total = $item?->total ?? "";
+        $this->detail_subtotal = $item?->detail_subtotal ?? 0;
+        $this->payment_fee = $item?->payment_fee ?? 0;
+        $this->shipping_fee = $item?->shipping_fee ?? 0;
+        $this->total = $item?->total ?? 0;
         $this->buyer_name = $item?->buyer_name ?? "";
         $this->buyer_phone = $item?->buyer_phone ?? "";
         $this->receiver_name = $item?->receiver_name ?? "";
@@ -101,10 +101,10 @@ class Order extends Component
         //
         $item = \App\Models\Order::with(["member"])->findOrNew($this->orderId);
         $item->status = $this->status;
-        $item->detail_subtotal = $this->detail_subtotal ?? "";
-        $item->payment_fee = $this->payment_fee ?? "";
-        $item->shipping_fee = $this->shipping_fee ?? "";
-        $item->total = $this->total ?? "";
+        $item->detail_subtotal = $this->detail_subtotal ?? 0;
+        $item->payment_fee = $this->payment_fee ?? 0;
+        $item->shipping_fee = $this->shipping_fee ?? 0;
+        $item->total = $this->total ?? 0;
         $item->buyer_name = $this->buyer_name ?? "";
         $item->buyer_phone = $this->buyer_phone ?? "";
         $item->receiver_name = $this->receiver_name ?? "";

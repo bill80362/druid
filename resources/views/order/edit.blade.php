@@ -1,13 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            <a href="{{route('orders.index')}}">{{ __('訂單管理管理') }}</a>
+            <a href="{{route('orders.index')}}">{{ __('訂單管理') }}</a>
 
-            > {{ __('編輯') }} : {{$item->name}}
+            > 編輯訂單 : {{$item->created_at}}
         </h2>
     </x-slot>
     <x-slot name="header_tool">
-        @can('訂單管理管理_刪除')
+        @can('訂單管理_刪除')
             <form method="post" action="{{route('orders.destroy',['order'=>$item->id])}}">
                 @csrf
                 @method('delete')

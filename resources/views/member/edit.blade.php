@@ -7,7 +7,7 @@
         </h2>
     </x-slot>
     <x-slot name="header_tool">
-        @can('會員管理管理_刪除')
+        @can('會員管理_刪除')
             <form method="post" action="{{route('members.destroy',['member'=>$item->id])}}">
                 @csrf
                 @method('delete')

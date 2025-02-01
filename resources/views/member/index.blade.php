@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
     <x-slot name="header_tool">
-        @can('會員管理管理_新增')
+        @can('會員管理_新增')
             <a class="btn btn-primary" href="{{route('members.create')}}">新增</a>
         @endcan
     </x-slot>

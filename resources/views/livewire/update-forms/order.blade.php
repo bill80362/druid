@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-12 col-md-4">
                     <div class="mb-3">
-                        <h4>訂單時間：{{$created_at}}</h4>
+                        <h4>訂單編輯</h4>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">狀態</label>
@@ -86,7 +86,6 @@
                             <th>原價</th>
                             <th>折扣後</th>
                             <th>使用優惠</th>
-{{--                            <th>操作</th>--}}
                         </tr>
                         </thead>
                         <tbody>
@@ -97,12 +96,9 @@
                                 <td>{{$item->price_origin}}</td>
                                 <td>{{$item->price}}</td>
                                 <td>
-{{--                                    @foreach($discountLogs[$item->id]??[] as $discount)--}}
-{{--                                        <span class="badge bg-secondary">{{$discount["name"]}}</span>--}}
-{{--                                    @endforeach--}}
-                                </td>
-                                <td>
-{{--                                    <a class="btn btn-sm btn-outline-secondary" href="{{route("checkout.remove.goods")}}?id={{$item->id}}">移除</a>--}}
+                                    @foreach($item->discount_log??[] as $discount)
+                                        <span class="badge bg-secondary">{{$discount["name"]??""}}</span>
+                                    @endforeach
                                 </td>
                             </tr>
                         @endforeach

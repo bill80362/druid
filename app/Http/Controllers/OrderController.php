@@ -15,7 +15,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        if (! Gate::allows('訂單管理管理_讀取')) {
+        if (! Gate::allows('訂單管理_讀取')) {
             abort(403);
         }
         //
@@ -27,7 +27,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        if (! Gate::allows('訂單管理管理_新增')) {
+        if (! Gate::allows('訂單管理_新增')) {
             abort(403);
         }
         //
@@ -43,7 +43,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        if (! Gate::allows('訂單管理管理_新增')) {
+        if (! Gate::allows('訂單管理_新增')) {
             abort(403);
         }
         //
@@ -66,7 +66,7 @@ class OrderController extends Controller
      */
     public function edit(Order $Order)
     {
-        if (! Gate::allows('訂單管理管理_修改')) {
+        if (! Gate::allows('訂單管理_修改')) {
             abort(403);
         }
         //
@@ -80,7 +80,7 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $Order)
     {
-        if (! Gate::allows('訂單管理管理_修改')) {
+        if (! Gate::allows('訂單管理_修改')) {
             abort(403);
         }
         $Order->fill($request->only(["name","content"]));
@@ -94,7 +94,7 @@ class OrderController extends Controller
      */
     public function destroy(Order $Order)
     {
-        if (! Gate::allows('訂單管理管理_刪除')) {
+        if (! Gate::allows('訂單管理_刪除')) {
             abort(403);
         }
         $Order->delete();

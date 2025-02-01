@@ -1,11 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('訂單管理管理') }}
+            {{ __('訂單管理') }}
         </h2>
     </x-slot>
     <x-slot name="header_tool">
-        @can('訂單管理管理_新增')
+        @can('訂單管理_新增')
             <a class="btn btn-primary" href="{{route('orders.create')}}">新增</a>
         @endcan
     </x-slot>
