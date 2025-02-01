@@ -180,7 +180,7 @@
                                                             @csrf
                                                             <input type="hidden" name="member_slug" value="{{$member->slug}}">
                                                             <input type="hidden" name="use_point" value="0">
-                                                            <button class="btn btn-outline-secondary" type="submit">移除</button>
+                                                            <button class="btn btn-sm btn-outline-secondary" type="submit">移除</button>
                                                         </form>
                                                     </td>
                                                 </tr>
