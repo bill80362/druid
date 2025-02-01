@@ -53,6 +53,7 @@
                     <div class="mb-3">
                         <div>名稱：{{$member?->name}}</div>
                         <div>手機：{{$member?->phone}}</div>
+                        <div>等級：{{$member?->level?->name}}</div>
                     </div>
                 </div>
             </div>

@@ -62,7 +62,7 @@ class Order extends Component
         $systemSetting = $setting?->content;
         $this->pointToMoney = (int)$systemSetting["point_to_money"]??1;
         //
-        $item = \App\Models\Order::with(["member","points","orderPayments.payment","orderDetails.goodsDetail"])->find($this->orderId);
+        $item = \App\Models\Order::with(["member.level","points","orderPayments.payment","orderDetails.goodsDetail"])->find($this->orderId);
         $this->status = $item?->status ?? "";
         $this->detail_subtotal = $item?->detail_subtotal ?? 0;
         $this->payment_fee = $item?->payment_fee ?? 0;
