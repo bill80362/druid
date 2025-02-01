@@ -84,7 +84,7 @@
                     <small class="text-danger">@error('event_money_threshold') {{ $message }} @enderror</small>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">折扣商品限定</label>
+                    <label class="form-label">折扣商品限定『未啟用』</label>
                     <select class="form-control" wire:model="discount_goods_status" >
                         <option value="">請選擇</option>
                         @foreach(\App\Enum\DiscountGoodsStatusEnum::cases() as $enum)
@@ -94,7 +94,7 @@
                     <small class="text-danger">@error('discount_goods_status') {{ $message }} @enderror</small>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">商品sku(逗號分隔)</label>
+                    <label class="form-label">商品sku(逗號分隔)『未啟用』</label>
                     <input type="text" class="form-control" wire:model="discount_goods_sku">
                     <small class="text-danger">@error('discount_goods_sku') {{ $message }} @enderror</small>
                 </div>

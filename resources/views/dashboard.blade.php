@@ -158,7 +158,7 @@
                                             <a href="#" class="list-group-item list-group-item-action" aria-current="true">
                                                 <div class="d-flex w-100 justify-content-between">
                                                     <h5 class="my-1">訂單管理</h5>
-                                                    <small class="text-secondary">製作中</small>
+                                                    <small class="text-primary">已完成</small>
                                                 </div>
                                                 <small class="my-1">訂單資訊、訂單商品</small>
                                             </a>
