@@ -2,12 +2,15 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('LINE對話記錄管理') }}
+            <select>
+                <option>全部</option>
+            </select>
         </h2>
     </x-slot>
     <x-slot name="header_tool">
-        @can('LINE對話記錄管理_新增')
-            <a class="btn btn-primary" href="{{route('line_messages.create')}}">新增</a>
-        @endcan
+{{--        @can('LINE對話記錄管理_新增')--}}
+{{--            <a class="btn btn-primary" href="{{route('line_messages.create')}}">新增</a>--}}
+{{--        @endcan--}}
     </x-slot>
 
     <div class="py-6">

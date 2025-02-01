@@ -12,7 +12,7 @@
                 @csrf
                 @method('delete')
                 <button class="btn btn-danger" onclick="confirm('是否確認刪除')">刪除</button>
-            </form>Z
+            </form>
         @endcan
     </x-slot>
 

@@ -5,9 +5,9 @@
         </h2>
     </x-slot>
     <x-slot name="header_tool">
-        @can('Meta對話記錄管理_新增')
-            <a class="btn btn-primary" href="{{route('meta_messages.create')}}">新增</a>
-        @endcan
+{{--        @can('Meta對話記錄管理_新增')--}}
+{{--            <a class="btn btn-primary" href="{{route('meta_messages.create')}}">新增</a>--}}
+{{--        @endcan--}}
     </x-slot>
 
     <div class="py-6">
