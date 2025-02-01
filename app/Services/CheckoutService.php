@@ -8,7 +8,7 @@ use App\Models\Level;
 class CheckoutService
 {
     public array $discountLogs = [];
-    public int $point = 0;
+    public int $levelPoint = 0;
     public function cashier($shoppingCartGoodsItems, $discounts, $level_id)
     {
         //初始化價格
@@ -67,11 +67,11 @@ class CheckoutService
                 return $item;
             });
         }
-        //
+        //計算等級贈點
         $final_price = $shoppingCartGoodsItems->sum("discount_price");
         $level = Level::find($level_id);
         if($level?->point_from_money){
-            $this->point = floor($final_price/$level->point_from_money);
+            $this->levelPoint = floor($final_price/$level->point_from_money);
         }
         //
         return $shoppingCartGoodsItems;

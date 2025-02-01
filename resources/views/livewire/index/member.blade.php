@@ -55,17 +55,23 @@
                 <x-table-sort-icon :sortByColumn="$sortByColumn" :sortByDirection="$sortByDirection" column="level_id"  />
             </th>
             <th
+                wire:click="sortBy('points_sum_point')" :sortDirection="$sortByColumn=='points_sum_point'?$sortByDirection:null"
+                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center">
+                點數
+                <x-table-sort-icon :sortByColumn="$sortByColumn" :sortByDirection="$sortByDirection" column="points_sum_point"  />
+            </th>
+            <th
                 wire:click="sortBy('updated_at')" :sortDirection="$sortByColumn=='updated_at'?$sortByDirection:null"
                 class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center">
                 最後更新時間
                 <x-table-sort-icon :sortByColumn="$sortByColumn" :sortByDirection="$sortByDirection" column="updated_at"  />
             </th>
-            <th
-                wire:click="sortBy('created_at')" :sortDirection="$sortByColumn=='created_at'?$sortByDirection:null"
-                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center">
-                建立時間
-                <x-table-sort-icon :sortByColumn="$sortByColumn" :sortByDirection="$sortByDirection" column="created_at"  />
-            </th>
+{{--            <th--}}
+{{--                wire:click="sortBy('created_at')" :sortDirection="$sortByColumn=='created_at'?$sortByDirection:null"--}}
+{{--                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center">--}}
+{{--                建立時間--}}
+{{--                <x-table-sort-icon :sortByColumn="$sortByColumn" :sortByDirection="$sortByDirection" column="created_at"  />--}}
+{{--            </th>--}}
             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center">
                 管理
             </th>
@@ -92,12 +98,15 @@
                 <td class="px-6 py-2 border-b border-gray-200 text-center">
                     <div class="text-sm leading-5 text-gray-500">{{ $item->level?->name }}</div>
                 </td>
+                <td class="px-6 py-2 border-b border-gray-200 text-center">
+                    <div class="text-sm leading-5 text-gray-500">{{ $item->points_sum_point }}</div>
+                </td>
                 <td
                     class="px-6 py-2 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200 text-center">
                     {{ $item->updated_at }}</td>
-                <td
-                    class="px-6 py-2 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200 text-center">
-                    {{ $item->created_at }}</td>
+{{--                <td--}}
+{{--                    class="px-6 py-2 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200 text-center">--}}
+{{--                    {{ $item->created_at }}</td>--}}
 
                 <td
                     class="px-6 py-2 text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-200 text-center">

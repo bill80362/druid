@@ -69,7 +69,7 @@ class Member extends Component
         if ($this->sortByColumn) {
             $query->orderBy($this->sortByColumn, $this->sortByDirection);
         }
-        $paginator = $query->with(["level"])->paginate();
+        $paginator = $query->with(["level"])->withSum('points','point')->paginate();
         //
         return view('livewire.index.member', [
             "paginator" => $paginator,

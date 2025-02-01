@@ -150,13 +150,13 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @if($point)
+                                            @if($levelPoint)
                                                 <tr>
-                                                    <td>贈送點數</td>
-                                                    <td></td>
-                                                    <td>{{$point}}點</td>
-                                                    <td></td>
-                                                    <td></td>
+                                                    <td>贈送點數{{$levelPoint}}點</td>
+                                                    <td>-</td>
+                                                    <td>會員等級贈點</td>
+                                                    <td>-</td>
+                                                    <td>-</td>
                                                 </tr>
                                             @endif
                                             </tbody>

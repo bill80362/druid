@@ -40,7 +40,7 @@ class GoodsDetail extends Component
         $this->price = $item?->price ?? "";
         $this->status = $item?->status ?? "";
         $this->sort = $item?->sort ?? "";
-        $this->spec_options = $item->specOptions?->toArray()??[];
+        $this->spec_options = $item?->specOptions?->toArray()??[];
     }
 
     public function submit()

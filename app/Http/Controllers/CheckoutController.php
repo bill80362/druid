@@ -29,11 +29,11 @@ class CheckoutController extends Controller
         //結帳會員
         $member = Member::find($shoppingCard?->data["member_id"] ?? "");
         //折扣規則
-        $discounts = Discount::where("status","Y")->orderBy("sort")->get();
+        $discounts = Discount::where("status", "Y")->orderBy("sort")->get();
         //優惠計算
-        $shoppingCartGoodsItems = $checkoutService->cashier($shoppingCartGoodsItems,$discounts,$member?->level_id);
+        $shoppingCartGoodsItems = $checkoutService->cashier($shoppingCartGoodsItems, $discounts, $member?->level_id);
         $discountLogs = $checkoutService->discountLogs;
-        $point = $checkoutService->point;
+        $levelPoint = $checkoutService->levelPoint;
         //
         return view('checkout/checkout', [
             "shoppingCartGoodsItems" => $shoppingCartGoodsItems,
@@ -42,23 +42,23 @@ class CheckoutController extends Controller
             "member" => $member,
             "paymentItems" => Payment::where("status", "Y")->orderBy("sort")->get(),
             "discountLogs" => $discountLogs,
-            "point" => $point,
+            "levelPoint" => $levelPoint,
         ]);
     }
 
-    public function finish(CheckoutService $checkoutService,Request $request)
+    public function finish(CheckoutService $checkoutService, Request $request)
     {
         //購物車
         $shoppingCard = ShoppingCart::where("user_id", auth()->user()->id)->first();
         $shoppingCartGoodsItems = ShoppingCartGoods::with(["goodsDetail"])->where("user_id", auth()->user()->id)->get();
         $shoppingCartPaymentItems = ShoppingPayment::with(["payment"])->where("user_id", auth()->user()->id)->get();
         //折扣規則
-        $discounts = Discount::where("status","Y")->orderBy("sort")->get();
+        $discounts = Discount::where("status", "Y")->orderBy("sort")->get();
         //優惠計算
-        $member = Member::find($shoppingCard?->data["member_id"]??"");
-        $shoppingCartGoodsItems = $checkoutService->cashier($shoppingCartGoodsItems,$discounts,$member?->level_id);
+        $member = Member::find($shoppingCard?->data["member_id"] ?? "");
+        $shoppingCartGoodsItems = $checkoutService->cashier($shoppingCartGoodsItems, $discounts, $member?->level_id);
         $discountLogs = $checkoutService->discountLogs;
-        $point = $checkoutService->point;
+        $levelPoint = $checkoutService->levelPoint;
         //驗證購物車
         if (!$shoppingCartGoodsItems?->count()) {
             return redirect()->route("checkout.checkout")->with("success", ["購物車無商品"]);
@@ -100,13 +100,13 @@ class CheckoutController extends Controller
         });
         $order->orderPayments()->saveMany($orderPayments);
         //
-        $member = Member::find($shoppingCard?->data["member_id"]??"");
-        if($member&&$point){
+        $member = Member::find($shoppingCard?->data["member_id"] ?? "");
+        if ($member && $levelPoint) {
             $pointItem = new Point();
             $pointItem->name = "會員等級贈點";
             $pointItem->member_id = $member->id;
             $pointItem->order_id = $order->id;
-            $pointItem->point = $point;
+            $pointItem->point = $levelPoint;
             $pointItem->save();
         }
         //清空購物車
