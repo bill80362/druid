@@ -52,6 +52,9 @@ Route::middleware(['auth'])->group(function (){
     Route::resource('points', \App\Http\Controllers\PointController::class);
 //    Route::resource('settings', \App\Http\Controllers\SettingController::class)->only(["edit","update"]);
 
+    Route::resource('bind/line/members', \App\Http\Controllers\BindLineMemberController::class)->only(["index","update"])->names("bind_line_members");
+
+
     Route::get('settings/{setting}/edit', [\App\Http\Controllers\SettingController::class, 'edit'])->name("settings.edit");
     Route::post('settings/{setting}/update', [\App\Http\Controllers\SettingController::class, 'update'])->name("settings.update");
 

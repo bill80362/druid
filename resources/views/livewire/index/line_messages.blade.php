@@ -42,7 +42,7 @@
                                 {{ $item->member?->name }}
                             @else
                                 {{ $item->member_line_id }}
-                                <button type="button" class="btn btn-sm btn-primary">綁定會員</button>
+                                <a class="btn btn-sm btn-primary" href="{{route("bind_line_members.index",["bind_line_id"=>$item->member_line_id])}}">綁定會員</a>
                             @endif
                         </div>
                     </div>

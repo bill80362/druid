@@ -87,6 +87,11 @@ new class extends Component {
                     "href" => route('meta_messages.index'),
                     "active" => request()->routeIs('meta_messages.index'),
                 ],
+                [
+                    "title" => __("Line綁定會員"),
+                    "href" => route('bind_line_members.index'),
+                    "active" => request()->routeIs('bind_line_members.index'),
+                ],
             ],
         ]);
         //
