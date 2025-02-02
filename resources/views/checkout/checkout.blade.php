@@ -6,9 +6,50 @@
     </x-slot>
     <x-slot name="header_tool">
         <button class="btn btn-primary" type="button" onclick="document.getElementById('orderForm').submit();">結帳</button>
-        <button class="btn btn-outline-secondary" type="button">選擇會員</button>
-        <button class="btn btn-outline-secondary" type="button">選擇商品</button>
-        <button class="btn btn-outline-secondary" type="button">選擇折扣</button>
+
+        <!-- 選擇商品 -->
+        <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#choseGoodsModal">
+            選擇商品
+        </button>
+        <div class="modal modal-lg fade" id="choseGoodsModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">選擇商品</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <livewire:checkout.goods_detail />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉視窗</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 選擇會員 -->
+        <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#choseMemberModal">
+            選擇會員
+        </button>
+        <div class="modal modal-lg fade" id="choseMemberModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">選擇會員</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <livewire:checkout.member />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉視窗</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </x-slot>
 
     <div class="py-6">
