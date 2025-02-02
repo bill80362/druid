@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Level;
 use App\Models\Line;
 use App\Models\LineMessages;
 use App\Models\Member;
 use App\Models\Reply;
+use App\Models\Setting;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
@@ -49,15 +51,44 @@ class WebhookLineController extends Controller
                     $reply = Reply::where("name",$event['message']['text']??"")->first();
                     if($reply){
                         //
-                        $member = Member::withSum('points','point')->where("line_id",$event['source']['userId']??"")->first();
+                        $member = Member::withSum('points','point')->withSum('orders','total')->with(["level"])->where("line_id",$event['source']['userId']??"")->first();
                         //
                         $replyContent = $reply->content;
-                        if(str_contains($replyContent,'{{$point}}')){
+                        if(str_contains($replyContent,'{{')){
                             if(!$member){
-                                $replyContent = "您的Line目前尚未綁定帳號，請先[綁定會員]或[建立新會員]";
+                                //系統設定
+                                $setting = Setting::where("id","1")->first();
+                                $systemSetting = $setting?->content;
+                                $reply_without_register = $systemSetting["reply_without_register"]??"您的Line目前尚未綁定帳號，請先[綁定會員]或[建立新會員]";
+                                $replyContent = $reply_without_register;
                             }else{
+                                //點數
                                 $point = $member?->points_sum_point??0;
                                 $replyContent = str_replace('{{$point}}',$point,$replyContent);
+                                //會員名字
+                                $member_name = $member?->name;
+                                $replyContent = str_replace('{{$member_name}}',$member_name,$replyContent);
+                                //會員名字
+                                $member_phone = $member?->phone;
+                                $replyContent = str_replace('{{$member_phone}}',$member_phone,$replyContent);
+                                //等級
+                                $member_level = $member?->level?->name;
+                                $replyContent = str_replace('{{$member_level}}',$member_level,$replyContent);
+                                //距離下次升等還差
+                                if(str_contains($replyContent,'{{$member_upgrade_gap}}')){
+                                    $nextLevel = null;
+                                    $upgrade_gap = 0;
+                                    if($member?->level?->sort){
+                                        $nextLevel = Level::where("sort",">",$member?->level?->sort)->orderBy("sort")->first();
+                                    }
+                                    if($nextLevel){
+                                        $gap = (int)$member?->level->upgrade - (int)$member?->orders_sum_total;
+                                        $upgrade_gap = max($gap,0);
+                                    }
+                                    $replyContent = str_replace('{{$member_upgrade_gap}}',$upgrade_gap,$replyContent);
+                                }
+
+
                             }
                         }
                         //

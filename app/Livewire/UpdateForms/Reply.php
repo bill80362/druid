@@ -61,4 +61,20 @@ class Reply extends Component
     {
         $this->content .= '{{$point}}';
     }
+    public function addMemberNameText()
+    {
+        $this->content .= '{{$member_name}}';
+    }
+    public function addMemberPhoneText()
+    {
+        $this->content .= '{{$member_phone}}';
+    }
+    public function addMemberLevelText()
+    {
+        $this->content .= '{{$member_level}}';
+    }
+    public function addMemberUpgradeGapText()
+    {
+        $this->content .= '{{$member_upgrade_gap}}';
+    }
 }

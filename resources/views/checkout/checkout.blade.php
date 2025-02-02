@@ -168,7 +168,7 @@
                                                 @if($nextLevel)
                                                     <tr>
                                                         <td>距離[{{$nextLevel->name}}]</td>
-                                                        <td>{{$member?->level->upgrade-$member?->orders_sum_total}}</td>
+                                                        <td>{{(int)$member?->level->upgrade-(int)$member?->orders_sum_total}}</td>
                                                     </tr>
                                                 @endif
                                                 <tr>

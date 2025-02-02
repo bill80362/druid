@@ -35,6 +35,7 @@ class SettingController extends Controller
         $setting->name = "系統設定";
         $setting->content = [
             "point_to_money" => $request->get("point_to_money"),
+            "reply_without_register" => $request->get("reply_without_register"),
         ];
         $setting->save();
         //

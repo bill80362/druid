@@ -23,6 +23,11 @@
                                         <small class="text-danger"></small>
                                     </div>
                                     <div class="mb-3">
+                                        <label class="form-label">自動回應，當LINE尚未登入的回應內文</label>
+                                        <input type="text" class="form-control" name="reply_without_register" value="{{$item?->content['reply_without_register']??""}}">
+                                        <small class="text-danger"></small>
+                                    </div>
+                                    <div class="mb-3">
                                         <button type="submit" class="btn btn-primary">
                                             儲存
                                         </button>

@@ -9,7 +9,11 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">回應訊息</label>
-                <button type="button" class="btn btn-sm btn-primary" wire:click="addPointText">加入顯示點數</button>
+                <button type="button" class="btn btn-sm btn-primary" wire:click="addPointText()">加入顯示點數</button>
+                <button type="button" class="btn btn-sm btn-primary" wire:click="addMemberNameText()">加入會員名字</button>
+                <button type="button" class="btn btn-sm btn-primary" wire:click="addMemberPhoneText()">加入會員電話</button>
+                <button type="button" class="btn btn-sm btn-primary" wire:click="addMemberLevelText()">加入會員等級</button>
+                <button type="button" class="btn btn-sm btn-primary" wire:click="addMemberUpgradeGapText()">加入會員升等差距</button>
                 <textarea class="form-control" id="content" wire:model="content" rows="5"></textarea>
                 <small class="text-danger">@error('content') {{ $message }} @enderror</small>
             </div>
