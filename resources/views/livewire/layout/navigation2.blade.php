@@ -78,19 +78,19 @@ new class extends Component {
                     "active" => request()->routeIs('points.index'),
                 ],
                 [
-                    "title" => __("LINE對話紀錄"),
+                    "title" => __("Line對話紀錄"),
                     "href" => route('line_messages.index'),
                     "active" => request()->routeIs('line_messages.index'),
-                ],
-                [
-                    "title" => __("Meta對話紀錄"),
-                    "href" => route('meta_messages.index'),
-                    "active" => request()->routeIs('meta_messages.index'),
                 ],
                 [
                     "title" => __("Line綁定會員"),
                     "href" => route('bind_line_members.index'),
                     "active" => request()->routeIs('bind_line_members.index'),
+                ],
+                [
+                    "title" => __("Meta對話紀錄"),
+                    "href" => route('meta_messages.index'),
+                    "active" => request()->routeIs('meta_messages.index'),
                 ],
             ],
         ]);
