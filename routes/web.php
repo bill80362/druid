@@ -50,6 +50,7 @@ Route::middleware(['auth'])->group(function (){
     Route::resource('levels', \App\Http\Controllers\LevelController::class);
     Route::resource('discounts', \App\Http\Controllers\DiscountController::class);
     Route::resource('points', \App\Http\Controllers\PointController::class);
+    Route::resource('replies', \App\Http\Controllers\ReplyController::class);
 //    Route::resource('settings', \App\Http\Controllers\SettingController::class)->only(["edit","update"]);
 
     Route::resource('bind/line/members', \App\Http\Controllers\BindLineMemberController::class)->only(["index","update"])->names("bind_line_members");

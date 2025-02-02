@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Line;
 use App\Models\LineMessages;
+use App\Models\Member;
+use App\Models\Reply;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
@@ -43,15 +45,32 @@ class WebhookLineController extends Controller
                 $lineMessages->save();
                 //回應訊息
                 try{
-                    $response_http = Http::withToken($line->access_token)->post("https://api.line.me/v2/bot/message/reply",[
-                        'replyToken' => $event['replyToken']??"",
-                        'messages' => [
-                            [
-                                'type' => 'text',//限制300字
-                                'text' => '這是'.config('app.name')."自動回應文字範本\n我是換行",
+                    //
+                    $reply = Reply::where("name",$event['message']['text']??"")->first();
+                    if($reply){
+                        //
+                        $member = Member::withSum('points','point')->where("line_id",$event['source']['userId']??"")->first();
+                        //
+                        $replyContent = $reply->content;
+                        if(str_contains($replyContent,'{{$point}}')){
+                            if(!$member){
+                                $replyContent = "您的Line目前尚未綁定帳號，請先[綁定會員]或[建立新會員]";
+                            }else{
+                                $point = $member?->points_sum_point??0;
+                                $replyContent = str_replace('{{$point}}',$point,$replyContent);
+                            }
+                        }
+                        //
+                        $response_http = Http::withToken($line->access_token)->post("https://api.line.me/v2/bot/message/reply",[
+                            'replyToken' => $event['replyToken']??"",
+                            'messages' => [
+                                [
+                                    'type' => 'text',//限制300字
+                                    'text' => $replyContent,
+                                ]
                             ]
-                        ]
-                    ]);
+                        ]);
+                    }
                 }catch (Exception $e){
                     Log::debug("Line回應錯誤訊息:".$e->getMessage());
                 }

@@ -78,6 +78,11 @@ new class extends Component {
                     "active" => request()->routeIs('points.index'),
                 ],
                 [
+                    "title" => __("自動回應"),
+                    "href" => route('replies.index'),
+                    "active" => request()->routeIs('replies.index'),
+                ],
+                [
                     "title" => __("Line對話紀錄"),
                     "href" => route('line_messages.index'),
                     "active" => request()->routeIs('line_messages.index'),
