@@ -162,9 +162,20 @@
                                                     <td>{{$member?->phone}}</td>
                                                 </tr>
                                                 <tr>
+                                                    <td>消費累積</td>
+                                                    <td>{{$member?->orders_sum_total}}</td>
+                                                </tr>
+                                                @if($nextLevel)
+                                                    <tr>
+                                                        <td>距離[{{$nextLevel->name}}]</td>
+                                                        <td>{{$member?->level->upgrade-$member?->orders_sum_total}}</td>
+                                                    </tr>
+                                                @endif
+                                                <tr>
                                                     <td>剩餘點數</td>
                                                     <td>{{$member?->points_sum_point}}</td>
                                                 </tr>
+
                                             </table>
                                         @endif
                                         @if($member?->points_sum_point)

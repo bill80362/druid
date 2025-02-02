@@ -33,7 +33,9 @@ class CheckoutController extends Controller
         //購物車結帳
         $shoppingCartPaymentItems = ShoppingPayment::with(["payment"])->where("user_id", auth()->user()->id)->get();
         //結帳會員
-        $member = Member::withSum('points','point')->find($shoppingCard?->data["member_id"] ?? "");
+        $member = Member::withSum('points','point')->withSum('orders','total')->with(["level"])->find($shoppingCard?->data["member_id"] ?? "");
+        //
+        $nextLevel = Level::where("sort",">",$member?->level?->sort)->orderBy("sort")->first();
         //折扣規則
         $discounts = Discount::where("status", "Y")->orderBy("sort")->get();
         //優惠計算member_use_point
@@ -48,6 +50,7 @@ class CheckoutController extends Controller
             "shoppingCartPaymentItems" => $shoppingCartPaymentItems,
             "shoppingCard" => $shoppingCard,
             "member" => $member,
+            "nextLevel" => $nextLevel,
             "paymentItems" => Payment::where("status", "Y")->orderBy("sort")->get(),
             "discountLogs" => $discountLogs,
             "levelPoint" => $levelPoint,
@@ -131,15 +134,18 @@ class CheckoutController extends Controller
         $shoppingCartGoodsItems->map(fn($i) => $i->delete());
         $shoppingCartPaymentItems->map(fn($i) => $i->delete());
         //計算會員是否升等
-        $orders_sum_total = Order::where("member_id",$member->id)->sum("total");
-        if($member->level->upgrade > $orders_sum_total){
-            //升等
-            $level = Level::where("sort",">",$member->level->sort)->orderBy("sort")->first();
-            if(!$level?->id){
-                $member->level_id = $level?->id;
-                $member->save();
+        if($member){
+            $orders_sum_total = Order::where("member_id",$member->id)->sum("total");
+            if($orders_sum_total > $member->level->upgrade){
+                //升等
+                $level = Level::where("sort",">",$member->level->sort)->orderBy("sort")->first();
+                if($level?->id){
+                    $member->level_id = $level?->id;
+                    $member->save();
+                }
             }
         }
+
 
         //檢查訂單金額
         return redirect()->route("checkout.checkout")->with("success", ["結帳完成"]);
