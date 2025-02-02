@@ -47,8 +47,8 @@ class WebhookLineController extends Controller
                         'replyToken' => $event['replyToken']??"",
                         'messages' => [
                             [
-                                'type' => 'text',
-                                'text' => '這是'.config('app.name').'自動回應文字範本',
+                                'type' => 'text',//限制300字
+                                'text' => '這是'.config('app.name')."自動回應文字範本\n我是換行",
                             ]
                         ]
                     ]);
