@@ -35,7 +35,10 @@ class CheckoutController extends Controller
         //結帳會員
         $member = Member::withSum('points','point')->withSum('orders','total')->with(["level"])->find($shoppingCard?->data["member_id"] ?? "");
         //
-        $nextLevel = Level::where("sort",">",$member?->level?->sort)->orderBy("sort")->first();
+        $nextLevel = null;
+        if($member?->level?->sort){
+            $nextLevel = Level::where("sort",">",$member?->level?->sort)->orderBy("sort")->first();
+        }
         //折扣規則
         $discounts = Discount::where("status", "Y")->orderBy("sort")->get();
         //優惠計算member_use_point
