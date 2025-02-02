@@ -68,12 +68,12 @@
                             </form>
                         </div>
                         <div class="col-4">
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="折扣碼">
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="button">刷入折扣碼</button>
-                                </div>
-                            </div>
+{{--                            <div class="input-group mb-3">--}}
+{{--                                <input type="text" class="form-control" placeholder="折扣碼">--}}
+{{--                                <div class="input-group-append">--}}
+{{--                                    <button class="btn btn-outline-secondary" type="button">刷入折扣碼</button>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                         </div>
                         <div class="col-4">
                             <form action="{{route("checkout.set.member")}}">

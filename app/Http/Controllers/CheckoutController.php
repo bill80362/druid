@@ -182,6 +182,7 @@ class CheckoutController extends Controller
         $shoppingCard->user_id = auth()->user()->id;
         $data = $shoppingCard->data ?? [];
         $data["member_id"] = $item->id;
+        $data["member_use_point"] = 0;
         $shoppingCard->data = $data;
         $shoppingCard->save();
         //
