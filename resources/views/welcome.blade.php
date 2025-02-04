@@ -30,27 +30,10 @@
                     <main class="mt-6">
                         <div class="row">
                             <div class="col-12 text-center py-10">
-                                <h1>希望製作內容</h1>
+                                <h1>商品優惠管理+門市結帳+會員管理+LINE行銷</h1>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6 text-center py-10">
-                                <h1>會員管理</h1>
-                            </div>
-                            <div class="col-6 text-center py-10">
-                                <h1>庫存管理</h1>
-                            </div>
-                            <div class="col-6 text-center py-10">
-                                <h1>EC電子商務</h1>
-                            </div>
-                            <div class="col-6 text-center py-10">
-                                <h1>門市POS</h1>
-                            </div>
-                            <div class="col-6 text-center py-10">
-                                <h1>各大商場串接庫存</h1>
-                            </div>
-                            <div class="col-6 text-center py-10">
-                                <h1>折扣活動管理</h1>
+                            <div>
+                                <img src="/image/flowchart.png" />
                             </div>
                         </div>
                     </main>
