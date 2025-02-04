@@ -64,7 +64,7 @@
                                                     <h5 class="my-1">等級設定</h5>
                                                     <small class="text-primary">已完成</small>
                                                 </div>
-                                                <small class="my-1">升降等門檻</small>
+                                                <small class="my-1">升降等門檻、滿額贈點</small>
                                             </a>
                                             <a href="#" class="list-group-item list-group-item-action">
                                                 <div class="d-flex w-100 justify-content-between">
