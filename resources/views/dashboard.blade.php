@@ -239,11 +239,25 @@
                                             </a>
                                             <a href="#" class="list-group-item list-group-item-action">
                                                 <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="my-1">meta對話紀錄</h5>
+                                                    <h5 class="my-1">自動回應</h5>
                                                     <small class="text-primary">已完成</small>
                                                 </div>
-                                                <small class="my-1">meta可以雙向抓到完整的客服和會員的對話紀錄，並且也能自動回應</small>
+                                                <small class="my-1">讓會員可以透過LINE查詢資訊，ex:我的點數、等級、升等資訊、相關折扣</small>
                                             </a>
+                                            <a href="#" class="list-group-item list-group-item-action">
+                                                <div class="d-flex w-100 justify-content-between">
+                                                    <h5 class="my-1">點數管理</h5>
+                                                    <small class="text-primary">已完成</small>
+                                                </div>
+                                                <small class="my-1">消費可獲的點數，可以在下次消費折抵金額</small>
+                                            </a>
+{{--                                            <a href="#" class="list-group-item list-group-item-action">--}}
+{{--                                                <div class="d-flex w-100 justify-content-between">--}}
+{{--                                                    <h5 class="my-1">meta對話紀錄</h5>--}}
+{{--                                                    <small class="text-primary">已完成</small>--}}
+{{--                                                </div>--}}
+{{--                                                <small class="my-1">meta可以雙向抓到完整的客服和會員的對話紀錄，並且也能自動回應</small>--}}
+{{--                                            </a>--}}
                                         </div>
                                     </div>
                                 </div>
