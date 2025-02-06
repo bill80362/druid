@@ -42,6 +42,7 @@
         .barcode {
             text-align: center;
             margin-top: 20px;
+            /*width: 300px;*/
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
@@ -65,7 +66,9 @@
         JsBarcode("#barcode", "{{$member?->slug}}", {
             format: "CODE128",
             displayValue: true,
-            fontSize: 18
+            fontSize: 18,
+            width:3,
+            // height:60,
         });
     });
 </script>
