@@ -14,6 +14,11 @@ Route::view('info/privacy', 'info/privacy');
 Route::view('info/service', 'info/service');
 Route::view('info/remove', 'info/remove');
 
+//line_liff
+Route::view('line_liff/login', 'line_liff/login');
+Route::get('line_liff/profile', [\App\Http\Controllers\LineLiffController::class, 'profile'])->name("settings.edit");
+Route::post('line_liff/register', [\App\Http\Controllers\LineLiffController::class, 'register'])->name("settings.edit");
+
 //會員登入模擬
 Route::get('member/{id}', [\App\Http\Controllers\Front\MemberController::class, "member"]);
 

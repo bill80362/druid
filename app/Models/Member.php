@@ -13,6 +13,7 @@ class Member extends Model
     {
         static::creating(function($model){
             $model->slug = rand(1000000000,9999999999);
+            $model->status = "n";
             if(!$model->level_id) $model->level_id = Level::orderBy("sort")->first()->id;
         });
     }
