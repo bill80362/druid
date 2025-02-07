@@ -38,6 +38,10 @@
                             <label for="phone" class="form-label">電話</label>
                             <input type="text" class="form-control" id="phone" name="phone" required>
                         </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">生日</label>
+                            <input type="date" class="form-control" id="birthday" name="birthday">
+                        </div>
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary">送出</button>
                         </div>

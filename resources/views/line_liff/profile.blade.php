@@ -55,6 +55,7 @@
     <div class="card-body">
         <p class="card-text"><strong>名稱:</strong> {{$member?->name}}</p>
         <p class="card-text"><strong>電話:</strong> {{$member?->phone}}</p>
+        <p class="card-text"><strong>生日:</strong> {{$member?->birthday}}</p>
         <div class="barcode">
             <svg id="barcode"></svg>
         </div>

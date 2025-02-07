@@ -1,18 +1,28 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            <a href="{{route('orders.index')}}">{{ __('訂單管理') }}</a>
-
-            > 編輯訂單 : {{$item->created_at}}
-        </h2>
+        <span class="font-semibold text-gray-800 leading-tight">
+{{--            <a href="{{route('orders.index')}}">{{ __('訂單管理') }}</a>--}}
+            訂單狀態:
+            @if($item->status=="created")
+                <span class="text-danger h2">{{\App\Enum\OrderStatusEnum::tryFrom($item->status)->text()}}</span>
+            @elseif($item->status=="finish")
+                <span class="text-info h2">{{\App\Enum\OrderStatusEnum::tryFrom($item->status)->text()}}</span>
+            @else
+                <span class="text-primary h2">{{\App\Enum\OrderStatusEnum::tryFrom($item->status)->text()}}</span>
+            @endif
+            | 建立時間:
+            {{$item->created_at}}
+        </span>
     </x-slot>
     <x-slot name="header_tool">
         @can('訂單管理_刪除')
-            <form method="post" action="{{route('orders.destroy',['order'=>$item->id])}}">
-                @csrf
-                @method('delete')
-                <button class="btn btn-danger" onclick="confirm('是否確認刪除')">刪除</button>
-            </form>
+            @if($item->status=="finish")
+                <form method="post" action="{{route('orders.destroy',['order'=>$item->id])}}">
+                    @csrf
+                    @method('delete')
+                    <button class="btn btn-danger" onclick="confirm('是否確認取消')">取消</button>
+                </form>
+            @endif
         @endcan
     </x-slot>
 

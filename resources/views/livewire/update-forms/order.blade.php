@@ -7,16 +7,16 @@
                     <div class="mb-3">
                         <h4>訂單編輯</h4>
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label">狀態</label>
-                        <select class="form-control" wire:model="status" >
-                            <option value="">請選擇</option>
-                            @foreach(\App\Enum\OrderStatusEnum::cases() as $enum)
-                                <option value="{{$enum}}">{{$enum->text()}}</option>
-                            @endforeach
-                        </select>
-                        <small class="text-danger">@error('status') {{ $message }} @enderror</small>
-                    </div>
+{{--                    <div class="mb-3">--}}
+{{--                        <label class="form-label">狀態</label>--}}
+{{--                        <select class="form-control" wire:model="status" >--}}
+{{--                            <option value="">請選擇</option>--}}
+{{--                            @foreach(\App\Enum\OrderStatusEnum::cases() as $enum)--}}
+{{--                                <option value="{{$enum}}">{{$enum->text()}}</option>--}}
+{{--                            @endforeach--}}
+{{--                        </select>--}}
+{{--                        <small class="text-danger">@error('status') {{ $message }} @enderror</small>--}}
+{{--                    </div>--}}
                     <div class="mb-3">
                         <label class="form-label">訂單備註(會員可看到)</label>
                         <textarea class="form-control" wire:model="memo"></textarea>

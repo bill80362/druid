@@ -39,6 +39,11 @@
                         <small class="text-danger">@error('phone') {{ $message }} @enderror</small>
                     </div>
                     <div class="mb-3">
+                        <label class="form-label">生日</label>
+                        <input type="date" class="form-control" wire:model="birthday">
+                        <small class="text-danger">@error('birthday') {{ $message }} @enderror</small>
+                    </div>
+                    <div class="mb-3">
                         <label class="form-label">郵遞區號</label>
                         <input type="text" class="form-control" wire:model="postal_code">
                         <small class="text-danger">@error('postal_code') {{ $message }} @enderror</small>

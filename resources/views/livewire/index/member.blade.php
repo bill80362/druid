@@ -55,6 +55,12 @@
                 <x-table-sort-icon :sortByColumn="$sortByColumn" :sortByDirection="$sortByDirection" column="level_id"  />
             </th>
             <th
+                wire:click="sortBy('birthday')" :sortDirection="$sortByColumn=='birthday'?$sortByDirection:null"
+                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center">
+                等級
+                <x-table-sort-icon :sortByColumn="$sortByColumn" :sortByDirection="$sortByDirection" column="birthday"  />
+            </th>
+            <th
                 wire:click="sortBy('points_sum_point')" :sortDirection="$sortByColumn=='points_sum_point'?$sortByDirection:null"
                 class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center">
                 點數
@@ -97,6 +103,9 @@
                 </td>
                 <td class="px-6 py-2 border-b border-gray-200 text-center">
                     <div class="text-sm leading-5 text-gray-500">{{ $item->level?->name }}</div>
+                </td>
+                <td class="px-6 py-2 border-b border-gray-200 text-center">
+                    <div class="text-sm leading-5 text-gray-500">{{ $item->birthday }}</div>
                 </td>
                 <td class="px-6 py-2 border-b border-gray-200 text-center">
                     <div class="text-sm leading-5 text-gray-500">{{ $item->points_sum_point }}</div>

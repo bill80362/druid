@@ -46,6 +46,7 @@ class LineLiffController extends Controller
         $member->phone = request()->get("phone");
         $member->name = request()->get("name");
         $member->line_id = request()->get("line_id");
+        $member->birthday = request()->get("birthday");
         $member->save();
         //
         return redirect()->to("/line_liff/profile?userId=".$member->line_id);

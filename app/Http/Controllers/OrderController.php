@@ -97,7 +97,10 @@ class OrderController extends Controller
         if (! Gate::allows('訂單管理_刪除')) {
             abort(403);
         }
-        $Order->delete();
-        return redirect()->route('orders.index')->with("success",["刪除成功"]);
+        $Order->status = "cancel";
+        $Order->save();
+//        $Order->delete();
+        return redirect()->route('orders.edit', ["order" => $Order])->with("success",["取消成功"]);
+//        return redirect()->route('orders.index')->with("success",["刪除成功"]);
     }
 }

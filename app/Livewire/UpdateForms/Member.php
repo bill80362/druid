@@ -28,6 +28,8 @@ class Member extends Component
     public string $address = "";
     #[Validate([])]
     public string $level_id = "";
+    #[Validate([])]
+    public string $birthday = "";
 
     //
     public string $actionMessage = "";
@@ -46,6 +48,7 @@ class Member extends Component
         $this->postal_code = $item?->postal_code ?? "";
         $this->address = $item?->address ?? "";
         $this->level_id = $item?->level_id ?? "";
+        $this->birthday = $item?->birthday ?? "";
     }
 
     public function submit()
@@ -71,6 +74,7 @@ class Member extends Component
         $item->postal_code = $this->postal_code;
         $item->address = $this->address;
         $item->level_id = $this->level_id;
+        $item->birthday = $this->birthday;
         $item->save();
         //
         if ($this->memberId) {

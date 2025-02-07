@@ -162,6 +162,10 @@
                                                     <td>{{$member?->phone}}</td>
                                                 </tr>
                                                 <tr>
+                                                    <td>生日</td>
+                                                    <td>{{$member?->birthday}}</td>
+                                                </tr>
+                                                <tr>
                                                     <td>消費累積</td>
                                                     <td>{{$member?->orders_sum_total}}</td>
                                                 </tr>
