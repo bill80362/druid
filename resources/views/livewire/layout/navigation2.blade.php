@@ -100,19 +100,6 @@ new class extends Component {
             ],
         ]);
         //
-        $menus->push([
-            "title" => __("門市管理"),
-            "href" => "#",
-            "active" => "",
-            "submenus" => [
-                [
-                    "title" => __("收銀台結帳1"),
-                    "href" => route('checkout.checkout'),
-                    "active" => request()->routeIs('checkout.checkout'),
-                ],
-            ],
-        ]);
-        //
 //        $menus->push([
 //            "title" => __("存證信函管理"),
 //            "href" => "#",
@@ -131,6 +118,18 @@ new class extends Component {
 //            ],
 //        ]);
         //
+        return $menus;
+    }
+    public function middleMenus(): \Illuminate\Support\Collection
+    {
+        $menus = collect();
+        //
+        $menus->push([
+            "title" => __("門市結帳"),
+            "href" => route('checkout.checkout'),
+            "active" => request()->routeIs('checkout.checkout'),
+            "submenus" => [],
+        ]);
         return $menus;
     }
     /**
@@ -270,6 +269,11 @@ new class extends Component {
             </ul>
             <div class="d-flex">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                @foreach($this->middleMenus() as $menu)
+                    <li class="nav-item mr-2">
+                        <a class="btn btn-outline-danger" href="{{$menu["href"]}}">{{ $menu["title"]  }}</a>
+                    </li>
+                @endforeach
                 @foreach($this->rightMenus() as $menu)
                     <li class="nav-item dropdown">
                         <a class="nav-link active @if(!empty($menu["submenus"]))  dropdown-toggle @endif"

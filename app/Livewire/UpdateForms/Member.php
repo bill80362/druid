@@ -30,6 +30,9 @@ class Member extends Component
     public string $level_id = "";
     #[Validate([])]
     public string $birthday = "";
+    #[Validate([])]
+    public mixed $points_sum_point = [];
+    public mixed $points = [];
 
     //
     public string $actionMessage = "";
@@ -38,7 +41,7 @@ class Member extends Component
     {
         $this->memberId = $id;
         //
-        $item = \App\Models\Member::find($this->memberId);
+        $item = \App\Models\Member::with(["points"])->withSum('points','point')->find($this->memberId);
         $this->name = $item?->name ?? "";
         $this->status = $item?->status ?? "";
         $this->account = $item?->account ?? "";
@@ -49,6 +52,8 @@ class Member extends Component
         $this->address = $item?->address ?? "";
         $this->level_id = $item?->level_id ?? "";
         $this->birthday = $item?->birthday ?? "";
+        $this->points_sum_point = $item?->points_sum_point ?? "";
+        $this->points = $item?->points ?? collect([]);
     }
 
     public function submit()
