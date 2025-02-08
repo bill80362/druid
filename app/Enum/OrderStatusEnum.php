@@ -5,11 +5,11 @@ namespace App\Enum;
 enum OrderStatusEnum: string
 {
     case created = 'created';
-    case pay = 'pay';
-    case ship = 'ship';
-    case cod = 'cod';
-    case arrive = 'arrive';
-    case delivery = 'delivery';
+//    case pay = 'pay';
+//    case ship = 'ship';
+//    case cod = 'cod';
+//    case arrive = 'arrive';
+//    case delivery = 'delivery';
     case finish = 'finish';
     case cancel = 'cancel';
 

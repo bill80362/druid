@@ -37,7 +37,7 @@ class Order extends Component
         if ($this->sortByColumn) {
             $query->orderBy($this->sortByColumn, $this->sortByDirection);
         }
-        $paginator = $query->paginate();
+        $paginator = $query->with(["member.level","orderDetails","orderPayments.payment"])->paginate();
         //
         return view('livewire.index.order', [
             "paginator" => $paginator,

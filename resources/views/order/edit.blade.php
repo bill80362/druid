@@ -2,6 +2,7 @@
     <x-slot name="header">
         <span class="font-semibold text-gray-800 leading-tight">
 {{--            <a href="{{route('orders.index')}}">{{ __('訂單管理') }}</a>--}}
+            <a class="btn btn-secondary mx-2" href="{{route('orders.index')}}"> < </a>
             訂單狀態:
             @if($item->status=="created")
                 <span class="text-danger h2">{{\App\Enum\OrderStatusEnum::tryFrom($item->status)->text()}}</span>

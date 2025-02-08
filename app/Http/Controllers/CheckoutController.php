@@ -105,7 +105,7 @@ class CheckoutController extends Controller
             $orderDetail->goods_sku = $goodsDetail->sku;
             $orderDetail->goods_detail_id = $goodsDetail->id;
             $orderDetail->price_origin = $goodsDetail->price;
-            $orderDetail->price = $item->price;
+            $orderDetail->price = $item->discount_price;
             return $orderDetail;
         });
         $order->orderDetails()->saveMany($orderDetails);
