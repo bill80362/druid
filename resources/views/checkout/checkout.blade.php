@@ -1,7 +1,10 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            結帳金額 {{$shoppingCartGoodsItems?->sum("discount_price")}}元 ｜ 點數折抵{{$memberUsePoint*$pointToMoney}}元 | 已付款{{$shoppingCartPaymentItems->sum("money")}}元 | 還需支付{{$shoppingCartGoodsItems?->sum("discount_price")-$shoppingCartPaymentItems->sum("money")-$memberUsePoint*$pointToMoney}}元
+            結帳金額 {{$shoppingCartGoodsItems?->sum("discount_price")}}元
+            | 點數折抵{{$memberUsePoint*$pointToMoney}}元
+            | 已付款{{$shoppingCartPaymentItems->sum("money")}}元
+            | 還需支付{{$shoppingCartGoodsItems?->sum("discount_price")-$shoppingCartPaymentItems->sum("money")-$memberUsePoint*$pointToMoney}}元
         </h2>
     </x-slot>
     <x-slot name="header_tool">

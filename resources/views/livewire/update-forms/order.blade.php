@@ -18,12 +18,12 @@
 {{--                        <small class="text-danger">@error('status') {{ $message }} @enderror</small>--}}
 {{--                    </div>--}}
                     <div class="mb-3">
-                        <label class="form-label">訂單備註(會員可看到)</label>
+                        <label class="form-label">訂單備註</label>
                         <textarea class="form-control" wire:model="memo"></textarea>
                         <small class="text-danger">@error('memo') {{ $message }} @enderror</small>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">管理者內部備註(會員不會看到)</label>
+                        <label class="form-label">管理者內部備註</label>
                         <textarea class="form-control" wire:model="memo_admin"></textarea>
                         <small class="text-danger">@error('memo_admin') {{ $message }} @enderror</small>
                     </div>
