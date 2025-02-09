@@ -40,7 +40,7 @@
     </head>
     <body class="font-sans antialiased">
         @if($errors->any() || Illuminate\Support\Facades\Session::has('success'))
-            <div class="position-absolute bottom-0 right-0 ">
+            <div class="fixed-top">
                 @foreach($errors as $error)
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
                         <strong>{{$error}}</strong>

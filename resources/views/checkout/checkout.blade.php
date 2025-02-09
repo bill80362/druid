@@ -96,7 +96,7 @@
                                             結帳商品 ({{$shoppingCartGoodsItems?->count()}})
                                         </div>
                                         <div>
-                                            小計 $ {{$shoppingCartGoodsItems?->sum("discount_price")}}
+                                            小計 ${{$shoppingCartGoodsItems?->sum("discount_price")}} 元
                                         </div>
                                     </h5>
                                     <div class="card-text">
@@ -253,7 +253,7 @@
                         <div class="col-4 p-2">
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">付款</h5>
+                                    <h5 class="card-title">付款 ${{$shoppingCartPaymentItems->sum("money")}} 元</h5>
                                     <div class="card-text">
                                         <form action="{{route("checkout.add.payment")}}">
                                             <div class="input-group mb-3">
@@ -262,10 +262,10 @@
                                                         <option value="{{$item->id}}">{{$item->name}}</option>
                                                     @endforeach
                                                 </select>
-                                                <input type="text" class="form-control" placeholder="金額" name="money">
+                                                <input type="text" class="form-control" placeholder="金額" name="money" value="{{$shoppingCartGoodsItems?->sum("discount_price")-$shoppingCartPaymentItems->sum("money")-$memberUsePoint*$pointToMoney}}">
                                                 <input type="text" class="form-control" placeholder="備註" name="memo">
                                                 <div class="input-group-append">
-                                                    <button class="btn btn-outline-secondary" type="submit">新增</button>
+                                                    <button class="btn btn-primary" type="submit">新增</button>
                                                 </div>
                                             </div>
                                         </form>
