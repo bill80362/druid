@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PermissionGroup;
 use App\Models\Member;
+use App\Models\Point;
 use Illuminate\Support\Facades\Gate;
 use Spatie\QueryBuilder\QueryBuilder;
 
@@ -98,5 +99,29 @@ class MemberController extends Controller
         }
         $Member->delete();
         return redirect()->route('members.index')->with("success",["刪除成功"]);
+    }
+
+    public function pointAdd($id)
+    {
+        $member = Member::find($id);
+        $point = new Point();
+        $point->point = request()->get("point");
+        $point->name = "手動補點";
+        $member->points()->save($point);
+        return redirect()->route('members.edit', ["member" => $member])->with("success",["補點成功"]);
+    }
+    public function pointMinus($id)
+    {
+        $member = Member::withSum('points','point')->find($id);
+        //
+        if($member->points_sum_point < (int)request()->get("point")){
+            return redirect()->route('members.edit', ["member" => $member])->with("success",["扣點失敗，餘額不足(".$member->points_sum_point.")"]);
+        }
+        //
+        $point = new Point();
+        $point->point = request()->get("point")*-1;
+        $point->name = "手動扣點";
+        $member->points()->save($point);
+        return redirect()->route('members.edit', ["member" => $member])->with("success",["扣點成功"]);
     }
 }

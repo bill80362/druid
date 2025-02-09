@@ -72,19 +72,25 @@
                         <input type="text" class="form-control" wire:model="password">
                         <small class="text-danger">@error('password') {{ $message }} @enderror</small>
                     </div>
-                    <h3>點數：{{$points_sum_point}} 點</h3>
+                    <h3>
+                        點數：{{$points_sum_point}} 點
+                        <button class="btn btn-primary ml-1" type="button" data-bs-toggle="modal" data-bs-target="#customPointMinus"> 扣點 </button>
+                        <button class="btn btn-primary ml-1" type="button" data-bs-toggle="modal" data-bs-target="#customPointAdd"> 補點 </button>
+                    </h3>
                     <div class="mb-3"></div>
                     <table class="w-full">
                         <thead>
                         <tr>
+                            <th class="border-b border-gray-200 bg-gray-50 text-center">#</th>
                             <th class="border-b border-gray-200 bg-gray-50 text-center">時間</th>
                             <th class="border-b border-gray-200 bg-gray-50 text-center">點數</th>
                             <th class="border-b border-gray-200 bg-gray-50 text-center">訂單編號</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($points?->sortByDesc("created_at") as $point)
+                        @foreach($points?->sortByDesc("created_at") as $key => $point)
                             <tr>
+                                <td class="text-center border-b">{{$point->id}}</td>
                                 <td class="text-center border-b">{{$point->created_at}}</td>
                                 <td class="text-center border-b">{{$point->point}}</td>
                                 <td class="text-center border-b">{{$point->order_id}}</td>

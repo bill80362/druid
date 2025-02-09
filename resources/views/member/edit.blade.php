@@ -23,4 +23,53 @@
             </div>
         </div>
     </div>
+
+    <!-- 手動補扣 -->
+    <div class="modal modal-sm fade" id="customPointMinus">
+        <div class="modal-dialog">
+            <form method="post" action="{{route("members.point.minus",["id"=>$item->id])}}">
+                @csrf
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">手動扣點</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">點數</label>
+                            <input type="number" min="1" class="form-control" name="point">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary">送出</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal modal-sm fade" id="customPointAdd">
+        <div class="modal-dialog">
+            <form method="post" action="{{route("members.point.add",["id"=>$item->id])}}">
+                @csrf
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">手動補點</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">點數</label>
+                            <input type="number" min="1" class="form-control" name="point">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary">送出</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
 </x-app-layout>
