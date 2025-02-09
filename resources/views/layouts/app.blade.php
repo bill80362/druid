@@ -40,7 +40,7 @@
     </head>
     <body class="font-sans antialiased">
         @if($errors->any() || Illuminate\Support\Facades\Session::has('success'))
-            <div class="position-absolute bottom-0 w-100">
+            <div class="position-absolute bottom-0 right-0 ">
                 @foreach($errors as $error)
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
                         <strong>{{$error}}</strong>
@@ -48,7 +48,7 @@
                     </div>
                 @endforeach
                 @foreach(Illuminate\Support\Facades\Session::get('success',[]) as $success)
-                    <div class="alert alert-success alert-dismissible fade show" role="alert" style="z-index: 99999;">
+                    <div class="alert alert-success alert-dismissible fade show m-2" role="alert" style="z-index: 99999;">
                         <strong>{{$success}}</strong>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
@@ -78,6 +78,18 @@
                 {{ $slot }}
             </main>
         </div>
+
+    <script>
+        //警示視窗自動關閉
+        document.addEventListener('DOMContentLoaded', (event) => {
+            setTimeout(() => {
+                var elements = document.getElementsByClassName('alert-dismissible');
+                for (var i = 0; i < elements.length; i++) {
+                    elements[i].style.display = 'none';
+                }
+            }, 3000);
+        });
+    </script>
 
     </body>
 </html>
