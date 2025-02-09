@@ -226,12 +226,12 @@ new class extends Component {
             ],
         ]);
         //
-        $menus->push([
-            "title" => __("登入")."(".auth()->user()?->name.")",
-            "href" => route('profile'),
-            "active" => request()->routeIs('profile'),
-            "submenus" => [],
-        ]);
+//        $menus->push([
+//            "title" => __("登入")."(".auth()->user()?->name.")",
+//            "href" => route('profile'),
+//            "active" => request()->routeIs('profile'),
+//            "submenus" => [],
+//        ]);
         //
         return $menus;
     }
@@ -294,7 +294,7 @@ new class extends Component {
                     </li>
                 @endforeach
                     <li class="nav-item dropdown">
-                        <a wire:click="logout" class="nav-link">{{__("Logout")}}</a>
+                        <a wire:click="logout" class="nav-link">{{__("Logout")}}{{auth()->user()?->name}}</a>
                     </li>
                 </ul>
             </div>

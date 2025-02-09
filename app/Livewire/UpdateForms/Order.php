@@ -114,7 +114,7 @@ class Order extends Component
         $item->receiver_memo = $this->receiver_memo ?? "";
         $item->memo = $this->memo ?? "";
         $item->memo_admin = $this->memo_admin ?? "";
-        $item->member_id = $this->member_id ?? "";
+//        $item->member_id = $this->member_id ?? "";
         $item->save();
         //
         $this->member = $item?->member;
