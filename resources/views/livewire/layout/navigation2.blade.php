@@ -34,7 +34,7 @@ new class extends Component {
                     "active" => request()->routeIs('goods_details.index'),
                 ],
                 [
-                    "title" => __("商品明細批次修改"),
+                    "title" => __("商品快速編輯"),
                     "href" => route('goods_details.batch.index'),
                     "active" => request()->routeIs('goods_details.batch.index'),
                 ],
