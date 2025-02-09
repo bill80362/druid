@@ -33,6 +33,11 @@ new class extends Component {
                     "href" => route('goods_details.index'),
                     "active" => request()->routeIs('goods_details.index'),
                 ],
+                [
+                    "title" => __("商品明細批次修改"),
+                    "href" => route('goods_details.batch.index'),
+                    "active" => request()->routeIs('goods_details.batch.index'),
+                ],
             ],
         ]);
         //

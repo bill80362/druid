@@ -8,9 +8,9 @@
                 <div class="col-12 col-md-3">
                     <select class="form-control form-control-sm w-100" wire:model.live="status" >
                         <option value="">狀態:不限制</option>
-                        @foreach(\App\Enum\StatusEnum::cases() as $enum)
+                       ` @foreach(\App\Enum\StatusEnum::cases() as $enum)
                             <option value="{{$enum}}">{{$enum->text()}}</option>
-                        @endforeach
+                        @endforeach`
                     </select>
                 </div>
 

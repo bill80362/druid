@@ -87,6 +87,9 @@ Route::middleware(['auth'])->group(function (){
     Route::get('checkout/remove/payment', [\App\Http\Controllers\CheckoutController::class, 'removePayment'])->name("checkout.remove.payment");
     Route::post('checkout/use/point', [\App\Http\Controllers\CheckoutController::class, 'usePoint'])->name("checkout.use.point");
 
+    Route::get('goods_detail/batch', [\App\Http\Controllers\GoodsDetailBatchController::class, 'index'])->name("goods_details.batch.index");
+    Route::post('goods_detail/batch', [\App\Http\Controllers\GoodsDetailBatchController::class, 'update'])->name("goods_details.batch.update");
+
 
 });
 
