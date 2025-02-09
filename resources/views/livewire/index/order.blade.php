@@ -34,10 +34,10 @@
                 會員
             </th>
             <th class="py-3 border-b border-gray-200 bg-gray-50 text-center">
-                商品
+                付款明細
             </th>
             <th class="py-3 border-b border-gray-200 bg-gray-50 text-center">
-                付款
+                商品明細
             </th>
 {{--            <th--}}
 {{--                wire:click="sortBy('updated_at')" :sortDirection="$sortByColumn=='updated_at'?$sortByDirection:null"--}}
@@ -67,7 +67,7 @@
                 </td>
                 <td class="py-2 border-b border-gray-200 text-center">
                     <div class="text-sm leading-5 text-gray-500">
-                        {{ \App\Enum\OrderStatusEnum::tryFrom($item->status)->text() }}
+                        {{ \App\Enum\OrderStatusEnum::tryFrom($item->status)?->text() }}
                     </div>
                 </td>
                 <td class="py-2 border-b border-gray-200 text-center">
@@ -89,21 +89,7 @@
                     @endif
                     </div>
                 </td>
-                <td class="py-2 border-b border-gray-200 text-left">
-                    <div class="text-sm leading-5 text-gray-500">
-                        @foreach($item->orderDetails??[] as $detail)
-                            <div>
-                                <a target="_blank" href="{{route("goods_details.edit",["goods_detail"=>$detail->goods_detail_id])}}">
-                                {{$detail->name}}
-                                [{{$detail->goods_sku}}]
-                                </a>
-                                {{$detail->price}}
-                            </div>
-                        @endforeach
-
-                    </div>
-                </td>
-                <td class="py-2 border-b border-gray-200 text-left">
+                <td class="py-2 border-b border-gray-200 text-center">
                     <div class="text-sm leading-5 text-gray-500">
                         @foreach($item->orderPayments??[] as $payment)
                             <div>
@@ -111,6 +97,25 @@
                             </div>
                             <div>
                                 {{$payment->memo}}
+                            </div>
+                        @endforeach
+                    </div>
+                </td>
+                <td class="py-2 border-b border-gray-200 text-left">
+                    <div class="text-sm leading-5 text-gray-500">
+                        @foreach($item->orderDetails??[] as $detail)
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <span>{{$detail->name}}</span>
+                                    <span class="ml-2">{{$detail->goods_sku}}</span>
+                                </div>
+                                <div>${{$detail->price??0}} 元</div>
+{{--                                <a target="_blank" href="{{route("goods_details.edit",["goods_detail"=>$detail->goods_detail_id])}}">--}}
+{{--                                    {{$detail->name}}[{{$detail->goods_sku}}]--}}
+{{--                                </a>--}}
+{{--                                <span>--}}
+{{--                                   ${{$detail->price??0}} 元--}}
+{{--                                </span>--}}
                             </div>
                         @endforeach
 
