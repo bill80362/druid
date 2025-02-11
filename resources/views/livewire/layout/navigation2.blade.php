@@ -51,6 +51,11 @@ new class extends Component {
                     "href" => route('discounts.index'),
                     "active" => request()->routeIs('discounts.index'),
                 ],
+                [
+                    "title" => __("優惠券管理"),
+                    "href" => route('coupons.index'),
+                    "active" => request()->routeIs('coupons.index'),
+                ],
             ],
         ]);
         //

@@ -56,6 +56,7 @@ Route::middleware(['auth'])->group(function (){
     Route::resource('discounts', \App\Http\Controllers\DiscountController::class);
     Route::resource('points', \App\Http\Controllers\PointController::class);
     Route::resource('replies', \App\Http\Controllers\ReplyController::class);
+    Route::resource('coupons', \App\Http\Controllers\CouponController::class);
 //    Route::resource('settings', \App\Http\Controllers\SettingController::class)->only(["edit","update"]);
 
     Route::post('members/{id}/point/add', [\App\Http\Controllers\MemberController::class, 'pointAdd'])->name("members.point.add");

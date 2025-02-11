@@ -8,9 +8,9 @@
                 <div class="col-12 col-md-3">
                     <select class="form-control form-control-sm w-100" wire:model.live="status" >
                         <option value="">狀態:不限制</option>
-                       ` @foreach(\App\Enum\StatusEnum::cases() as $enum)
+                       @foreach(\App\Enum\StatusEnum::cases() as $enum)
                             <option value="{{$enum}}">{{$enum->text()}}</option>
-                        @endforeach`
+                        @endforeach
                     </select>
                 </div>
 
@@ -90,22 +90,22 @@
                     </div>
                 </td>
                 <td class="px-6 py-2 border-b border-gray-200 text-center">
-                    <div class="text-sm leading-5 text-gray-500">{{ \App\Enum\StatusEnum::tryFrom($item->status)->text() }}</div>
+                    <div class="text-sm leading-5 text-gray-500">{{ \App\Enum\StatusEnum::tryFrom($item->status)?->text() }}</div>
                 </td>
                 <td class="px-6 py-2 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200 text-center">
-                    {{ $item->discount_start->format("Y-m-d") }}~{{ $item->discount_end->format("Y-m-d")  }}
+                    {{ $item->discount_start->format("Y-m-d H:i:s") }}~{{ $item->discount_end->format("Y-m-d H:i:s")  }}
                 </td>
                 <td class="px-6 py-2 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200 text-center">
                     {{ $item->sort }}
                 </td>
                 <td class="px-6 py-2 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200 text-center">
-                    {{ \App\Enum\DiscountEventTypeEnum::tryFrom($item->event_type)->text() }}
+                    {{ \App\Enum\DiscountEventTypeEnum::tryFrom($item->event_type)?->text() }}
                 </td>
                 <td class="px-6 py-2 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200 text-center">
-                    {{ \App\Enum\DiscountGoodsStatusEnum::tryFrom($item->discount_goods_status)->text() }}
+                    {{ \App\Enum\DiscountGoodsStatusEnum::tryFrom($item->discount_goods_status)?->text() }}
                 </td>
                 <td class="px-6 py-2 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200 text-center">
-                    {{ \App\Enum\DiscountTypeEnum::tryFrom($item->discount_type)->text() }}
+                    {{ \App\Enum\DiscountTypeEnum::tryFrom($item->discount_type)?->text() }}
                 </td>
 
                 <td

@@ -5,11 +5,11 @@
             <a class="btn btn-secondary mx-2" href="{{route('orders.index')}}"> < </a>
             訂單狀態:
             @if($item->status=="created")
-                <span class="text-danger h2">{{\App\Enum\OrderStatusEnum::tryFrom($item->status)->text()}}</span>
+                <span class="text-danger h2">{{\App\Enum\OrderStatusEnum::tryFrom($item->status)?->text()}}</span>
             @elseif($item->status=="finish")
-                <span class="text-info h2">{{\App\Enum\OrderStatusEnum::tryFrom($item->status)->text()}}</span>
+                <span class="text-info h2">{{\App\Enum\OrderStatusEnum::tryFrom($item->status)?->text()}}</span>
             @else
-                <span class="text-primary h2">{{\App\Enum\OrderStatusEnum::tryFrom($item->status)->text()}}</span>
+                <span class="text-primary h2">{{\App\Enum\OrderStatusEnum::tryFrom($item->status)?->text()}}</span>
             @endif
             | 建立時間:
             {{$item->created_at}}

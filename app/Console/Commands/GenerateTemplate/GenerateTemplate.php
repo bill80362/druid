@@ -40,9 +40,9 @@ class GenerateTemplate extends Command
 //            "active" => request()->routeIs('pages.index'),
 //        ],
         //需要設定的資料
-        $str = "reply";
-        $text = "自動回應";
-        $permissionGroupMaxId = 20;
+        $str = "coupon";
+        $text = "優惠券";
+        $permissionGroupMaxId = 21;
         //
         $stringSnake = Str::snake($str);//str_str
         $stringLowerCamel = Str::camel($str);//strStr
