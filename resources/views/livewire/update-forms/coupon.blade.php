@@ -52,7 +52,7 @@
                         <small class="text-danger">@error('discount_money') {{ $message }} @enderror</small>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">打幾折%(ex:90代表100x90%=90)</label>
+                        <label class="form-label">打幾折%(ex:結帳1000元，填入80%代表折扣金額為200元)</label>
                         <input type="number" class="form-control" wire:model="discount_ratio" max="100">
                         <small class="text-danger">@error('discount_ratio') {{ $message }} @enderror</small>
                     </div>

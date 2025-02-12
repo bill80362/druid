@@ -106,7 +106,7 @@
                     <div class="text-sm leading-5 text-gray-500">{{ \App\Enum\StatusEnum::tryFrom($item->status)?->text() }}</div>
                 </td>
                 <td class="px-6 py-2 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200 text-center">
-                    {{ $item->discount_start->format("Y-m-d") }}~{{ $item->discount_end->format("Y-m-d")  }}
+                    {{ $item->discount_start->format("Y-m-d H:i:s") }}~{{ $item->discount_end->format("Y-m-d H:i:s")  }}
                 </td>
 {{--                <td class="px-6 py-2 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200 text-center">--}}
 {{--                    {{ $item->sort }}--}}

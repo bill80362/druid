@@ -20,6 +20,8 @@ class Order extends Component
     #[Validate([])]
     public int $shipping_fee = 0;
     #[Validate([])]
+    public int $coupon_discount = 0;
+    #[Validate([])]
     public int $total = 0;
     #[Validate([])]
     public string $buyer_name = "";
@@ -50,6 +52,7 @@ class Order extends Component
     public mixed $points;
     public mixed $orderPayments;
     public mixed $orderDetails;
+    public mixed $coupon;
     public int $pointToMoney;
     //
     public string $actionMessage = "";
@@ -62,11 +65,12 @@ class Order extends Component
         $systemSetting = $setting?->content;
         $this->pointToMoney = (int)$systemSetting["point_to_money"]??1;
         //
-        $item = \App\Models\Order::with(["member.level","points","orderPayments.payment","orderDetails.goodsDetail"])->find($this->orderId);
+        $item = \App\Models\Order::with(["member.level","points","orderPayments.payment","orderDetails.goodsDetail","coupon"])->find($this->orderId);
         $this->status = $item?->status ?? "";
         $this->detail_subtotal = $item?->detail_subtotal ?? 0;
         $this->payment_fee = $item?->payment_fee ?? 0;
         $this->shipping_fee = $item?->shipping_fee ?? 0;
+        $this->coupon_discount = $item?->coupon_discount ?? 0;
         $this->total = $item?->total ?? 0;
         $this->buyer_name = $item?->buyer_name ?? "";
         $this->buyer_phone = $item?->buyer_phone ?? "";
@@ -84,6 +88,7 @@ class Order extends Component
         $this->points = $item?->points;
         $this->orderPayments = $item?->orderPayments;
         $this->orderDetails = $item?->orderDetails;
+        $this->coupon = $item?->coupon;
     }
 
     public function submit()
@@ -104,6 +109,7 @@ class Order extends Component
         $item->detail_subtotal = $this->detail_subtotal ?? 0;
         $item->payment_fee = $this->payment_fee ?? 0;
         $item->shipping_fee = $this->shipping_fee ?? 0;
+        $item->coupon_discount = $this->coupon_discount ?? 0;
         $item->total = $this->total ?? 0;
         $item->buyer_name = $this->buyer_name ?? "";
         $item->buyer_phone = $this->buyer_phone ?? "";

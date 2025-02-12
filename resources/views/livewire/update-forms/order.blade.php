@@ -33,9 +33,13 @@
                         <h4>訂單金額</h4>
                     </div>
                     <div class="mb-3">
-                        <div>訂單明細小計：{{$detail_subtotal}}</div>
-                        <div>點數折抵金額：{{(int)$points?->where("point",">","0")?->first()?->point * $pointToMoney}}</div>
-                        <div>訂單總金額：{{$total}}</div>
+                        <div>訂單明細小計：${{$detail_subtotal}} 元</div>
+                        @if($coupon_discount)
+                            <div>使用優惠卷折扣：${{$coupon_discount}} 元({{$coupon?->name}})</div>
+                        @endif
+                        <div>點數折抵金額：${{(int)$points?->where("point","<","0")?->first()?->point * $pointToMoney}} 元</div>
+                        <div>訂單總金額：${{$total}} 元</div>
+                        <div>獲得點數：{{(int)$points?->where("point",">","0")?->first()?->point}}點</div>
                     </div>
                     <div class="mb-3">
                         <h4>付款方式</h4>

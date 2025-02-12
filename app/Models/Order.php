@@ -25,4 +25,8 @@ class Order extends Model
     {
         return $this->hasMany(Point::class);
     }
+    public function coupon(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Coupon::class);
+    }
 }

@@ -97,7 +97,7 @@
                 <td
                     class="px-6 py-2 text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-200 text-center">
                     @if($item->slug)
-                        <a class="btn btn-sm btn-primary" href="{{route('checkout.set.member',["member"=>$item->id,"member_slug"=>$item->slug])}}">選擇</a>
+                        <a class="btn btn-sm btn-primary" href="{{route('checkout.add.goods',["event_data"=>$item->slug,"event"=>"刷入會員卡號"])}}">選擇</a>
                     @endif
                 </td>
             </tr>

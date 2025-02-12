@@ -85,7 +85,7 @@
                 <td
                     class="px-6 py-2 text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-200 text-center">
                     @if($item->sku)
-                        <a class="btn btn-sm btn-primary" href="{{route('checkout.add.goods',["goods_detail_sku"=>$item->sku])}}">選擇</a>
+                        <a class="btn btn-sm btn-primary" href="{{route('checkout.add.goods',["event_data"=>$item->sku,"event"=>"刷入商品"])}}">選擇</a>
                     @endif
                 </td>
             </tr>

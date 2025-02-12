@@ -2,9 +2,10 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             結帳金額 {{$shoppingCartGoodsItems?->sum("discount_price")}}元
+            | 優惠券折抵{{$coupon_discount}}元
             | 點數折抵{{$memberUsePoint*$pointToMoney}}元
             | 已付款{{$shoppingCartPaymentItems->sum("money")}}元
-            | 還需支付{{$shoppingCartGoodsItems?->sum("discount_price")-$shoppingCartPaymentItems->sum("money")-$memberUsePoint*$pointToMoney}}元
+            | 還需支付{{$shoppingCartGoodsItems?->sum("discount_price")-$coupon_discount-$shoppingCartPaymentItems->sum("money")-$memberUsePoint*$pointToMoney}}元
         </h2>
     </x-slot>
     <x-slot name="header_tool">
@@ -60,34 +61,32 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-3 text-gray-900">
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-12">
                             <form action="{{route("checkout.add.goods")}}">
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="商品sku" name="goods_detail_sku">
+                                    <input type="text" class="form-control" placeholder="商品/折扣碼/會員卡號" name="event_data">
                                     <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary" type="submit">刷入商品</button>
+                                        <input type="submit" class="btn btn-outline-secondary" name="event" value="刷入商品" />
+                                    </div>
+                                    <div class="input-group-append">
+                                        <input type="submit" class="btn btn-outline-secondary" name="event" value="刷入折扣碼" />
+                                    </div>
+                                    <div class="input-group-append">
+                                        <input type="submit" class="btn btn-outline-secondary" name="event" value="刷入會員卡號" />
                                     </div>
                                 </div>
                             </form>
                         </div>
-                        <div class="col-4">
-{{--                            <div class="input-group mb-3">--}}
-{{--                                <input type="text" class="form-control" placeholder="折扣碼">--}}
-{{--                                <div class="input-group-append">--}}
-{{--                                    <button class="btn btn-outline-secondary" type="button">刷入折扣碼</button>--}}
+{{--                        <div class="col-4">--}}
+{{--                            <form action="{{route("checkout.set.member")}}">--}}
+{{--                                <div class="input-group mb-3">--}}
+{{--                                    <input type="text" class="form-control" placeholder="結帳會員卡號" name="member_slug">--}}
+{{--                                    <div class="input-group-append">--}}
+{{--                                        <button class="btn btn-outline-secondary" type="submit">刷入卡號</button>--}}
+{{--                                    </div>--}}
 {{--                                </div>--}}
-{{--                            </div>--}}
-                        </div>
-                        <div class="col-4">
-                            <form action="{{route("checkout.set.member")}}">
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="結帳會員卡號" name="member_slug">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary" type="submit">刷入卡號</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+{{--                            </form>--}}
+{{--                        </div>--}}
                         <div class="col-8 p-2">
                             <div class="card">
                                 <div class="card-body">
@@ -206,7 +205,14 @@
                         <div class="col-8 p-2">
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">使用優惠</h5>
+                                    <h5 class="card-title flex justify-content-between">
+                                        <div>
+                                            使用優惠
+                                        </div>
+                                        <div>
+                                            ${{$coupon_discount+$memberUsePoint*$pointToMoney}} 元
+                                        </div>
+                                    </h5>
                                     <div class="card-text">
                                         <table class="table table-striped">
                                             <thead>
@@ -228,12 +234,32 @@
                                                     <td>-</td>
                                                 </tr>
                                             @endif
+                                            @if($coupon)
+                                                <tr>
+                                                    <td>使用優惠券{{$coupon->name}}</td>
+                                                    <td>{{$coupon->coupon_code}}</td>
+                                                    <td>
+                                                        {{ \App\Enum\CouponTypeEnum::tryFrom($coupon->coupon_type)?->text() }}
+                                                        @if($coupon->coupon_type=="M")
+                                                            ${{$coupon->discount_money}} 元
+                                                        @elseif($coupon->coupon_type=="R")
+                                                            {{$coupon->discount_ratio}}%
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        ${{$coupon_discount}} 元
+                                                    </td>
+                                                    <td>
+                                                        <a class="btn btn-sm btn-outline-secondary">移除</a>
+                                                    </td>
+                                                </tr>
+                                            @endif
                                             @if($memberUsePoint)
                                                 <tr>
                                                     <td>使用點數{{$memberUsePoint}}點</td>
                                                     <td>-</td>
                                                     <td>使用點數</td>
-                                                    <td>{{$memberUsePoint*$pointToMoney}}</td>
+                                                    <td>${{$memberUsePoint*$pointToMoney}} 元</td>
                                                     <td>
                                                         <form method="post" action="{{route("checkout.use.point")}}">
                                                             @csrf
@@ -253,7 +279,14 @@
                         <div class="col-4 p-2">
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">付款 ${{$shoppingCartPaymentItems->sum("money")}} 元</h5>
+                                    <h5 class="card-title flex justify-content-between">
+                                        <div>
+                                            付款
+                                        </div>
+                                        <div>
+                                            ${{$shoppingCartPaymentItems->sum("money")}} 元
+                                        </div>
+                                    </h5>
                                     <div class="card-text">
                                         <form action="{{route("checkout.add.payment")}}">
                                             <div class="input-group mb-3">
@@ -262,7 +295,7 @@
                                                         <option value="{{$item->id}}">{{$item->name}}</option>
                                                     @endforeach
                                                 </select>
-                                                <input type="text" class="form-control" placeholder="金額" name="money" value="{{$shoppingCartGoodsItems?->sum("discount_price")-$shoppingCartPaymentItems->sum("money")-$memberUsePoint*$pointToMoney}}">
+                                                <input type="text" class="form-control" placeholder="金額" name="money" value="{{$shoppingCartGoodsItems?->sum("discount_price")-$coupon_discount-$shoppingCartPaymentItems->sum("money")-$memberUsePoint*$pointToMoney}}">
                                                 <input type="text" class="form-control" placeholder="備註" name="memo">
                                                 <div class="input-group-append">
                                                     <button class="btn btn-primary" type="submit">新增</button>
