@@ -82,7 +82,8 @@ Route::middleware(['auth'])->group(function (){
     Route::post('checkout/checkout', [\App\Http\Controllers\CheckoutController::class, 'finish'])->name("checkout.finish");
     Route::get('checkout/add/goods', [\App\Http\Controllers\CheckoutController::class, 'addGoods'])->name("checkout.add.goods");
     Route::get('checkout/remove/goods', [\App\Http\Controllers\CheckoutController::class, 'removeGoods'])->name("checkout.remove.goods");
-    Route::get('checkout/set/member', [\App\Http\Controllers\CheckoutController::class, 'setMember'])->name("checkout.set.member");
+    Route::get('checkout/remove/coupon', [\App\Http\Controllers\CheckoutController::class, 'removeCoupon'])->name("checkout.remove.coupon");
+//    Route::get('checkout/set/member', [\App\Http\Controllers\CheckoutController::class, 'setMember'])->name("checkout.set.member");
     Route::get('checkout/reset/member', [\App\Http\Controllers\CheckoutController::class, 'resetMember'])->name("checkout.reset.member");
     Route::get('checkout/add/payment', [\App\Http\Controllers\CheckoutController::class, 'addPayment'])->name("checkout.add.payment");
     Route::get('checkout/remove/payment', [\App\Http\Controllers\CheckoutController::class, 'removePayment'])->name("checkout.remove.payment");

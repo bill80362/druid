@@ -236,7 +236,12 @@
                                             @endif
                                             @if($coupon)
                                                 <tr>
-                                                    <td>使用優惠券{{$coupon->name}}</td>
+                                                    <td>
+                                                        使用優惠券{{$coupon->name}}
+                                                        @if($couponUseCheck)
+                                                            <div><small class="text-danger">已使用過，不可重複使用</small></div>
+                                                        @endif
+                                                    </td>
                                                     <td>{{$coupon->coupon_code}}</td>
                                                     <td>
                                                         {{ \App\Enum\CouponTypeEnum::tryFrom($coupon->coupon_type)?->text() }}
@@ -250,7 +255,7 @@
                                                         ${{$coupon_discount}} 元
                                                     </td>
                                                     <td>
-                                                        <a class="btn btn-sm btn-outline-secondary">移除</a>
+                                                        <a class="btn btn-sm btn-outline-secondary" href="{{route("checkout.remove.coupon")}}">移除</a>
                                                     </td>
                                                 </tr>
                                             @endif

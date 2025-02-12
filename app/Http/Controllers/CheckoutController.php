@@ -59,6 +59,7 @@ class CheckoutController extends Controller
         }elseif($coupon?->coupon_type=="R"){
             $coupon_discount = $shoppingCartGoodsItems?->sum("discount_price")*(100-(int)$coupon->discount_ratio)/100;
         }
+        $couponUseCheck = Order::where("status","<>","cancel")->where("member_id",$member?->id)->where("coupon_id",$coupon?->id)->count();
         //
         return view('checkout/checkout', [
             "shoppingCartGoodsItems" => $shoppingCartGoodsItems,
@@ -73,6 +74,7 @@ class CheckoutController extends Controller
             "pointToMoney" => $pointToMoney,
             "coupon" => $coupon,
             "coupon_discount" => $coupon_discount,
+            "couponUseCheck" => $couponUseCheck,
         ]);
     }
 
@@ -105,6 +107,10 @@ class CheckoutController extends Controller
             $coupon_discount = min($shoppingCartGoodsItems?->sum("discount_price"),$coupon->discount_money);
         }elseif($coupon?->coupon_type=="R"){
             $coupon_discount = $shoppingCartGoodsItems?->sum("discount_price")*(100-(int)$coupon->discount_ratio)/100;
+        }
+        $couponUseCheck = Order::where("status","<>","cancel")->where("member_id",$member?->id)->where("coupon_id",$coupon?->id)->count();
+        if ($couponUseCheck) {
+            return redirect()->route("checkout.checkout")->with("success", ["此會員已使用過優惠券，請移除才可結帳"]);
         }
         //驗證購物車
         if (!$shoppingCartGoodsItems?->count()) {
@@ -212,8 +218,12 @@ class CheckoutController extends Controller
             if (empty($data["member_id"])) {
                 return back()->with("success", ["會員才能使用折扣碼"]);
             }
+            $couponUseCheck = Order::where("status","<>","cancel")->where("member_id",$data["member_id"])->where("coupon_id",$item?->id)->count();
+            if ($couponUseCheck) {
+                return redirect()->route("checkout.checkout")->with("success", ["此會員已使用過優惠券，請移除才可結帳"]);
+            }
             if (false) {
-                return back()->with("success", ["此會員已經使用過此折扣碼"]);
+                return back()->with("success", ["此會員已使用過優惠券，加入失敗"]);
             }
             $data["coupon_id"] = $item->id;
             $shoppingCard->data = $data;
@@ -248,10 +258,16 @@ class CheckoutController extends Controller
         return redirect()->route("checkout.checkout")->with("success", ["移除商品成功"]);
     }
 
-    public function setMember()
+    public function removeCoupon()
     {
+        $shoppingCard = ShoppingCart::where("user_id", auth()->user()->id)->firstOrNew();
+        $shoppingCard->user_id = auth()->user()->id;
+        $data = $shoppingCard->data ?? [];
+        $data["coupon_id"] = "";
+        $shoppingCard->data = $data;
+        $shoppingCard->save();
         //
-
+        return redirect()->route("checkout.checkout")->with("success", ["移除優惠券成功"]);
     }
 
     public function resetMember()
