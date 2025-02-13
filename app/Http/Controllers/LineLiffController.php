@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Coupon;
 use App\Models\Discount;
 use App\Models\GoodsDetail;
 use App\Models\Level;
@@ -24,9 +25,17 @@ class LineLiffController extends Controller
     {
         //
         $member = Member::with(["level"])->where("line_id",request()->get("userId"))->first();
+        //
         if($member){
+            //
+            $coupons = Coupon::where("status", "Y")
+                ->where("discount_start", "<=", date("Y-m-d H:i:s"))
+                ->where("discount_end", ">=", date("Y-m-d H:i:s"))
+                ->get();
+            //
             return view('line_liff/profile', [
                 "member" => $member,
+                "coupons" => $coupons,
             ]);
         }else{
             return view('line_liff/register');

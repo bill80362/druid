@@ -7,8 +7,8 @@
     <style>
         body, html {
             height: 100%;
-            margin: 0;
-            display: flex;
+            /*margin: 0;*/
+            /*display: flex;*/
             justify-content: center;
             align-items: center;
             background-color: #f3f3f3;
@@ -48,7 +48,7 @@
     <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
 </head>
 <body>
-<div class="card">
+<div class="card m-3">
     <div class="card-header">
         {{$member?->level->name}}
     </div>
@@ -61,6 +61,34 @@
         </div>
     </div>
 </div>
+<div style="height: 20px;">
+
+</div>
+<div class="card">
+    <div class="card-header">
+        優惠券
+    </div>
+    <div class="card-body">
+        @if($coupons?->count())
+            @foreach($coupons as $coupon)
+                <p class="card-text">
+                    <strong>{{$coupon?->name}}</strong>
+                    {{ \App\Enum\CouponTypeEnum::tryFrom($coupon->coupon_type)?->text() }}
+                    @if($coupon->coupon_type=="M")
+                        ${{$coupon->discount_money}} 元
+                    @elseif($coupon->coupon_type=="R")
+                        {{$coupon->discount_ratio}}%
+                    @endif
+                </p>
+                <div class="barcode">
+                    <svg id="coupon_barcode{{$coupon->id}}"></svg>
+                </div>
+            @endforeach
+        @else
+            <p class="card-text">沒有可以使用的優惠券</p>
+        @endif
+    </div>
+</div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -71,6 +99,15 @@
             width:3,
             // height:60,
         });
+        @foreach($coupons as $coupon)
+            JsBarcode("#coupon_barcode{{$coupon->id}}", "{{$coupon?->coupon_code}}", {
+                format: "CODE128",
+                displayValue: true,
+                fontSize: 18,
+                width:3,
+                // height:60,
+            });
+        @endforeach
     });
 </script>
 </body>
