@@ -10,4 +10,9 @@ class Coupon extends Model
         "discount_start" => "datetime",
         "discount_end" => "datetime",
     ];
+
+    public function orders(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Order::class);
+    }
 }
