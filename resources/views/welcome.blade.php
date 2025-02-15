@@ -47,7 +47,7 @@
                     </main>
 
                     <footer class="py-16 text-center text-sm text-black dark:text-white/70">
-                        Design By 俊瑋 Bill 0921-515-408 Line:bill80362
+                        <h2>俊瑋 Bill 0921-515-408 Line:bill80362</h2>
                     </footer>
                 </div>
             </div>
