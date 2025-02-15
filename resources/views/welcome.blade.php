@@ -29,11 +29,19 @@
 
                     <main class="mt-6">
                         <div class="row">
-                            <div class="col-12 text-center py-10">
-                                <h1>商品優惠管理+門市結帳+會員管理+LINE行銷</h1>
-                            </div>
+{{--                            <div class="col-12 text-center py-10">--}}
+{{--                                <h1>商品優惠管理+門市結帳+會員管理+LINE行銷</h1>--}}
+{{--                            </div>--}}
                             <div>
-                                <img src="/image/flowchart.png" />
+                                <img src="/ptt/0215/1.png" />
+                                <img src="/ptt/0215/2.png" />
+                                <img src="/ptt/0215/3.png" />
+                                <img src="/ptt/0215/4.png" />
+                                <img src="/ptt/0215/5.png" />
+                                <img src="/ptt/0215/6.png" />
+                                <img src="/ptt/0215/7.png" />
+                                <img src="/ptt/0215/8.png" />
+                                <img src="/ptt/0215/9.png" />
                             </div>
                         </div>
                     </main>
