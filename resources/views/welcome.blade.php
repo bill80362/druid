@@ -33,22 +33,22 @@
 {{--                                <h1>商品優惠管理+門市結帳+會員管理+LINE行銷</h1>--}}
 {{--                            </div>--}}
                             <div>
-                                <img src="/ptt/0215/1.png" />
-                                <img src="/ptt/0215/2.png" />
-                                <img src="/ptt/0215/3.png" />
-                                <img src="/ptt/0215/4.png" />
-                                <img src="/ptt/0215/5.png" />
-                                <img src="/ptt/0215/6.png" />
-                                <img src="/ptt/0215/7.png" />
-                                <img src="/ptt/0215/8.png" />
-                                <img src="/ptt/0215/9.png" />
-                                <img src="/ptt/0215/10.png" />
+                                <img src="/ptt/0215/1.jpg" />
+                                <img src="/ptt/0215/2.jpg" />
+                                <img src="/ptt/0215/3.jpg" />
+                                <img src="/ptt/0215/4.jpg" />
+                                <img src="/ptt/0215/5.jpg" />
+                                <img src="/ptt/0215/6.jpg" />
+                                <img src="/ptt/0215/7.jpg" />
+                                <img src="/ptt/0215/8.jpg" />
+                                <img src="/ptt/0215/9.jpg" />
+                                <img src="/ptt/0215/10.jpg" />
                             </div>
                         </div>
                     </main>
 
                     <footer class="py-16 text-center text-sm text-black dark:text-white/70">
-                        <h2>俊瑋 Bill 0921-515-408 Line:bill80362</h2>
+                        <h2>俊瑋 0921-515-408 Line:bill80362</h2>
                     </footer>
                 </div>
             </div>
