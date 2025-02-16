@@ -22,6 +22,10 @@ Route::post('line_liff/register', [\App\Http\Controllers\LineLiffController::cla
 //會員登入模擬
 Route::get('member/{id}', [\App\Http\Controllers\Front\MemberController::class, "member"]);
 
+//
+Route::get('login', [\App\Http\Controllers\LoginController::class, "login"])->name("login");
+Route::post('login', [\App\Http\Controllers\LoginController::class, "loginAction"]);
+
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
