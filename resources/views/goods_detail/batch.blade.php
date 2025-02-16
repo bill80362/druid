@@ -16,44 +16,46 @@
                 <div class="p-3 text-gray-900">
                     <form method="post" id="myForm">
                         @csrf
-                        <table class="w-full" id="myTable">
-                            <thead>
-                            <tr>
-                                <th>名稱</th>
-                                <th>SKU</th>
-                                <th>價格</th>
-                                <th>狀態</th>
-                            </tr>
-                            </thead>
-                            <tbody class="bg-white">
-                            @foreach ($items as $item)
+                        <div class="table-responsive">
+                            <table class="table" id="myTable">
+                                <thead>
                                 <tr>
-                                    <td><input type="text" name="goods_detail_update[{{$item->id}}][name]" value="{{ $item->name }}"></td>
-                                    <td><input type="text" name="goods_detail_update[{{$item->id}}][sku]" value="{{ $item->sku }}"></td>
-                                    <td><input type="text" name="goods_detail_update[{{$item->id}}][price]" value="{{ $item->price }}"></td>
+                                    <th>名稱</th>
+                                    <th>SKU</th>
+                                    <th>價格</th>
+                                    <th>狀態</th>
+                                </tr>
+                                </thead>
+                                <tbody class="bg-white">
+                                @foreach ($items as $item)
+                                    <tr>
+                                        <td><input type="text" name="goods_detail_update[{{$item->id}}][name]" value="{{ $item->name }}"></td>
+                                        <td><input type="text" name="goods_detail_update[{{$item->id}}][sku]" value="{{ $item->sku }}"></td>
+                                        <td><input type="text" name="goods_detail_update[{{$item->id}}][price]" value="{{ $item->price }}"></td>
+                                        <td>
+                                            @foreach(\App\Enum\StatusEnum::cases() as $enum)
+                                                <label>
+                                                    <input type="radio" name="goods_detail_update[{{$item->id}}][status]" value="{{$enum->value}}" @checked($item->status==$enum->value) >
+                                                    <span class="ml-1">{{$enum->text()}}</span>
+                                                </label>
+                                            @endforeach
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                <tr>
+                                    <td colspan="4" class="h4 p-2"><hr /></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" name="goods_detail_create[name][]" value=""></td>
+                                    <td><input type="text" name="goods_detail_create[sku][]" value=""></td>
+                                    <td><input type="text" name="goods_detail_create[price][]" value=""></td>
                                     <td>
-                                        @foreach(\App\Enum\StatusEnum::cases() as $enum)
-                                            <label>
-                                                <input type="radio" name="goods_detail_update[{{$item->id}}][status]" value="{{$enum->value}}" @checked($item->status==$enum->value) >
-                                                <span class="ml-1">{{$enum->text()}}</span>
-                                            </label>
-                                        @endforeach
+                                        預設停用
                                     </td>
                                 </tr>
-                            @endforeach
-                            <tr>
-                                <td colspan="4" class="h4 p-2"><hr /></td>
-                            </tr>
-                            <tr>
-                                <td><input type="text" name="goods_detail_create[name][]" value=""></td>
-                                <td><input type="text" name="goods_detail_create[sku][]" value=""></td>
-                                <td><input type="text" name="goods_detail_create[price][]" value=""></td>
-                                <td>
-                                    預設停用
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </div>
                         <div class="p-3">
                             <button type="button" class="w-100 btn btn-primary" id="addBtn" >複製新增欄位</button>
                         </div>
