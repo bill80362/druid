@@ -13,68 +13,71 @@
         </form>
     </div>
     <div class="alert alert-primary w-full" wire:loading>載入中...</div>
-    <table class="w-full">
-        <thead>
-        <tr>
-            <th
-                wire:click="sortBy('name')" :sortDirection="$sortByColumn=='name'?$sortByDirection:null"
-                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center">
-                名稱
-                <x-table-sort-icon :sortByColumn="$sortByColumn" :sortByDirection="$sortByDirection" column="name" />
-            </th>
-            <th
-                wire:click="sortBy('member_id')" :sortDirection="$sortByColumn=='member_id'?$sortByDirection:null"
-                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center">
-                會員
-                <x-table-sort-icon :sortByColumn="$sortByColumn" :sortByDirection="$sortByDirection" column="member_id"  />
-            </th>
-            <th
-                wire:click="sortBy('point')" :sortDirection="$sortByColumn=='point'?$sortByDirection:null"
-                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center">
-                點數
-                <x-table-sort-icon :sortByColumn="$sortByColumn" :sortByDirection="$sortByDirection" column="point"  />
-            </th>
-            <th
-                wire:click="sortBy('updated_at')" :sortDirection="$sortByColumn=='updated_at'?$sortByDirection:null"
-                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center">
-                最後更新時間
-                <x-table-sort-icon :sortByColumn="$sortByColumn" :sortByDirection="$sortByDirection" column="updated_at"  />
-            </th>
-            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center">
-                管理
-            </th>
-        </tr>
-        </thead>
-
-        <tbody class="bg-white">
-        @foreach ($paginator->items() as $item)
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
             <tr>
-                <td class="px-6 py-2 border-b border-gray-200">
-                    <div class="text-sm font-medium leading-5 text-gray-900">
-                        {{ $item->name }}
-                    </div>
-                </td>
-                <td class="px-6 py-2 border-b border-gray-200 text-center">
-                    <div class="text-sm leading-5 text-gray-500">{{ $item->member?->name }}</div>
-                </td>
-                <td class="px-6 py-2 border-b border-gray-200 text-center">
-                    <div class="text-sm leading-5 text-gray-500">{{ $item->point }}</div>
-                </td>
-
-                <td
-                    class="px-6 py-2 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200 text-center">
-                    {{ $item->updated_at }}</td>
-
-                <td
-                    class="px-6 py-2 text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-200 text-center">
-                    @can('點數管理_修改')
-                        <a class="btn btn-sm btn-primary" href="{{route('points.edit',["point"=>$item->id])}}">編輯</a>
-                    @endcan
-                </td>
+                <th
+                    wire:click="sortBy('name')" :sortDirection="$sortByColumn=='name'?$sortByDirection:null"
+                    class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center">
+                    名稱
+                    <x-table-sort-icon :sortByColumn="$sortByColumn" :sortByDirection="$sortByDirection" column="name" />
+                </th>
+                <th
+                    wire:click="sortBy('member_id')" :sortDirection="$sortByColumn=='member_id'?$sortByDirection:null"
+                    class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center">
+                    會員
+                    <x-table-sort-icon :sortByColumn="$sortByColumn" :sortByDirection="$sortByDirection" column="member_id"  />
+                </th>
+                <th
+                    wire:click="sortBy('point')" :sortDirection="$sortByColumn=='point'?$sortByDirection:null"
+                    class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center">
+                    點數
+                    <x-table-sort-icon :sortByColumn="$sortByColumn" :sortByDirection="$sortByDirection" column="point"  />
+                </th>
+                <th
+                    wire:click="sortBy('updated_at')" :sortDirection="$sortByColumn=='updated_at'?$sortByDirection:null"
+                    class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center">
+                    最後更新時間
+                    <x-table-sort-icon :sortByColumn="$sortByColumn" :sortByDirection="$sortByDirection" column="updated_at"  />
+                </th>
+                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center">
+                    管理
+                </th>
             </tr>
-        @endforeach
-        </tbody>
-    </table>
+            </thead>
+
+            <tbody class="bg-white">
+            @foreach ($paginator->items() as $item)
+                <tr>
+                    <td class="px-6 py-2 border-b border-gray-200">
+                        <div class="text-sm font-medium leading-5 text-gray-900">
+                            {{ $item->name }}
+                        </div>
+                    </td>
+                    <td class="px-6 py-2 border-b border-gray-200 text-center">
+                        <div class="text-sm leading-5 text-gray-500">{{ $item->member?->name }}</div>
+                    </td>
+                    <td class="px-6 py-2 border-b border-gray-200 text-center">
+                        <div class="text-sm leading-5 text-gray-500">{{ $item->point }}</div>
+                    </td>
+
+                    <td
+                        class="px-6 py-2 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200 text-center">
+                        {{ $item->updated_at }}</td>
+
+                    <td
+                        class="px-6 py-2 text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-200 text-center">
+                        @can('點數管理_修改')
+                            <a class="btn btn-sm btn-primary" href="{{route('points.edit',["point"=>$item->id])}}">編輯</a>
+                        @endcan
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    </div>
+
     <div class="p-2">
         {!! $paginator->links() !!}
     </div>
