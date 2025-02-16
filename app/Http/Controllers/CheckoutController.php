@@ -17,6 +17,7 @@ use App\Models\ShoppingCart;
 use App\Models\ShoppingCartGoods;
 use App\Models\ShoppingPayment;
 use App\Services\CheckoutService;
+use App\Services\LevelService;
 use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
@@ -78,7 +79,7 @@ class CheckoutController extends Controller
         ]);
     }
 
-    public function finish(CheckoutService $checkoutService, Request $request)
+    public function finish(CheckoutService $checkoutService,LevelService $levelService, Request $request)
     {
         //系統設定
         $setting = Setting::where("id", "1")->first();
@@ -170,19 +171,21 @@ class CheckoutController extends Controller
         $shoppingCartGoodsItems->map(fn($i) => $i->delete());
         $shoppingCartPaymentItems->map(fn($i) => $i->delete());
         //計算會員是否升等
-        if ($member) {
-            $orders_sum_total = Order::where("member_id", $member->id)->sum("total");
-            if ($orders_sum_total > $member->level->upgrade) {
-                //升等
-                $level = Level::where("sort", ">", $member->level->sort)->orderBy("sort")->first();
-                if ($level?->id) {
-                    $member->level_id = $level?->id;
-                    $member->save();
-                }
-            }
+//        if ($member) {
+//            $orders_sum_total = Order::where("member_id", $member->id)->sum("total");
+//            if ($orders_sum_total > $member->level->upgrade) {
+//                //升等
+//                $level = Level::where("sort", ">", $member->level->sort)->orderBy("sort")->first();
+//                if ($level?->id) {
+//                    $member->level_id = $level?->id;
+//                    $member->save();
+//                }
+//            }
+//        }
+        //刷新會員等級
+        if($member){
+            $levelService->update($member->id);
         }
-
-
         //檢查訂單金額
         return redirect()->route("checkout.checkout")->with("success", ["結帳完成"]);
     }
