@@ -12,13 +12,6 @@ new class extends Component {
         $menus = collect();
         //
         $menus->push([
-            "title" => __("使用說明書"),
-            "href" => route('dashboard'),
-            "active" => request()->routeIs('dashboard'),
-            "submenus" => [],
-        ]);
-        //
-        $menus->push([
             "title" => __("商品管理"),
             "href" => "#",
             "active" => "",
@@ -166,12 +159,23 @@ new class extends Component {
                 ],
             ],
         ]);
+//        $menus->push([
+//            "title" => __("使用說明書"),
+//            "href" => route('dashboard'),
+//            "active" => request()->routeIs('dashboard'),
+//            "submenus" => [],
+//        ]);
         //
         $menus->push([
             "title" => __("系統設定"),
             "href" => route('users.index'),
             "active" => "",
             "submenus" => [
+                [
+                    "title" => __("使用說明書"),
+                    "href" => route('dashboard'),
+                    "active" => request()->routeIs('dashboard'),
+                ],
                 [
                     "title" => __("系統設定"),
                     "href" => route('settings.edit',["setting" => 1]),
@@ -264,7 +268,7 @@ new class extends Component {
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 @foreach($this->menus() as $menu)
                     <li class="nav-item dropdown">
-                        <a class="nav-link active @if(!empty($menu["submenus"]))  dropdown-toggle @endif"
+                        <a class="nav-link @if(!empty($menu["submenus"]))  dropdown-toggle @endif"
                            role="button"
                            href="{{$menu["href"]}}" id="{{ $menu["title"]  }}"
                            @if(!empty($menu["submenus"])) data-bs-toggle="dropdown" aria-expanded="false" @endif
@@ -286,7 +290,7 @@ new class extends Component {
                 @endforeach
                 @foreach($this->rightMenus() as $menu)
                     <li class="nav-item dropdown">
-                        <a class="nav-link active @if(!empty($menu["submenus"]))  dropdown-toggle @endif"
+                        <a class="nav-link @if(!empty($menu["submenus"]))  dropdown-toggle @endif"
                            role="button"
                            href="{{$menu["href"]}}" id="{{ $menu["title"]  }}"
                            @if(!empty($menu["submenus"])) data-bs-toggle="dropdown" aria-expanded="false" @endif
