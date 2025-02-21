@@ -1,15 +1,15 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            結帳金額 {{$shoppingCartGoodsItems?->sum("discount_price")}}元
+        <h5 class="font-semibold mt-1 text-gray-800 leading-tight">
+            結帳金額{{$shoppingCartGoodsItems?->sum("discount_price")}}元
             | 優惠券折抵{{$coupon_discount}}元
             | 點數折抵{{$memberUsePoint*$pointToMoney}}元
             | 已付款{{$shoppingCartPaymentItems->sum("money")}}元
             | 還需支付{{$shoppingCartGoodsItems?->sum("discount_price")-$coupon_discount-$shoppingCartPaymentItems->sum("money")-$memberUsePoint*$pointToMoney}}元
-        </h2>
+        </h5>
     </x-slot>
     <x-slot name="header_tool">
-        <button class="btn btn-primary" type="button" onclick="document.getElementById('orderForm').submit();">結帳</button>
+{{--        <button class="btn btn-primary" type="button" onclick="document.getElementById('orderForm').submit();">結帳</button>--}}
 
         <!-- 選擇商品 -->
         <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#choseGoodsModal">
