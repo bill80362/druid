@@ -35,6 +35,7 @@
             /*    display: none;*/
             /*}*/
 
+            /*nav有使用bootstrap 5 collapse 會看不到，需要加這個，bug? */
             .collapse {
                 visibility: visible;
             }
