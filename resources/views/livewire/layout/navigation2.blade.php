@@ -11,12 +11,12 @@ new class extends Component {
     {
         $menus = collect();
         //
-        $menus->push([
-            "title" => __("使用說明書"),
-            "href" => route('dashboard'),
-            "active" => request()->routeIs('dashboard'),
-            "submenus" => [],
-        ]);
+//        $menus->push([
+//            "title" => __("使用說明書"),
+//            "href" => route('dashboard'),
+//            "active" => request()->routeIs('dashboard'),
+//            "submenus" => [],
+//        ]);
         //
         $menus->push([
             "title" => __("商品管理"),
@@ -173,6 +173,11 @@ new class extends Component {
             "active" => "",
             "submenus" => [
                 [
+                    "title" => __("使用說明書"),
+                    "href" => route('dashboard'),
+                    "active" => request()->routeIs('dashboard'),
+                ],
+                [
                     "title" => __("系統設定"),
                     "href" => route('settings.edit',["setting" => 1]),
                     "active" => request()->routeIs('settings.edit'),
@@ -253,89 +258,126 @@ new class extends Component {
 };
 ?>
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Expand at md</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarsExample04">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled">Disabled</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">Dropdown</a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
-        </ul>
-        <form class="form-inline my-2 my-md-0">
-            <input class="form-control" type="text" placeholder="Search">
-        </form>
-    </div>
-</nav>
-
-
 {{--<nav class="navbar navbar-expand-lg navbar-light bg-light">--}}
 {{--    <div class="container-fluid">--}}
-{{--        <a class="navbar-brand" href="#">{{config("app.name")}}</a>--}}
-{{--        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"--}}
-{{--                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">--}}
+{{--        <a class="navbar-brand" href="#">Navbar123</a>--}}
+{{--        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">--}}
 {{--            <span class="navbar-toggler-icon"></span>--}}
 {{--        </button>--}}
 {{--        <div class="collapse navbar-collapse" id="navbarSupportedContent">--}}
 {{--            <ul class="navbar-nav me-auto mb-2 mb-lg-0">--}}
-{{--                @foreach($this->menus() as $menu)--}}
-{{--                    <li class="nav-item dropdown">--}}
-{{--                        <a class="nav-link active @if(!empty($menu["submenus"]))  dropdown-toggle @endif"--}}
-{{--                           role="button"--}}
-{{--                           href="{{$menu["href"]}}" id="{{ $menu["title"]  }}"--}}
-{{--                           @if(!empty($menu["submenus"])) data-bs-toggle="dropdown" aria-expanded="false" @endif--}}
-{{--                        >{{ $menu["title"]  }}</a>--}}
-{{--                        <ul class="dropdown-menu" aria-labelledby="{{ $menu["title"]  }}">--}}
-{{--                            @foreach($menu["submenus"] as $submenu)--}}
-{{--                                <li><a class="dropdown-item" href="{{$submenu["href"]}}">{{$submenu["title"]}}</a></li>--}}
-{{--                            @endforeach--}}
-{{--                        </ul>--}}
-{{--                    </li>--}}
-{{--                @endforeach--}}
+{{--                <li class="nav-item">--}}
+{{--                    <a class="nav-link active" aria-current="page" href="#">Home</a>--}}
+{{--                </li>--}}
+{{--                <li class="nav-item">--}}
+{{--                    <a class="nav-link" href="#">Link</a>--}}
+{{--                </li>--}}
+{{--                <li class="nav-item dropdown">--}}
+{{--                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">--}}
+{{--                        Dropdown--}}
+{{--                    </a>--}}
+{{--                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">--}}
+{{--                        <li><a class="dropdown-item" href="#">Action</a></li>--}}
+{{--                        <li><a class="dropdown-item" href="#">Another action</a></li>--}}
+{{--                        <li><hr class="dropdown-divider"></li>--}}
+{{--                        <li><a class="dropdown-item" href="#">Something else here</a></li>--}}
+{{--                    </ul>--}}
+{{--                </li>--}}
+{{--                <li class="nav-item">--}}
+{{--                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>--}}
+{{--                </li>--}}
 {{--            </ul>--}}
-{{--            <div class="d-flex">--}}
-{{--                <ul class="navbar-nav me-auto mb-2 mb-lg-0">--}}
-{{--                @foreach($this->middleMenus() as $menu)--}}
-{{--                    <li class="nav-item mr-2">--}}
-{{--                        <a class="btn btn-outline-danger" href="{{$menu["href"]}}">{{ $menu["title"]  }}</a>--}}
-{{--                    </li>--}}
-{{--                @endforeach--}}
-{{--                @foreach($this->rightMenus() as $menu)--}}
-{{--                    <li class="nav-item dropdown">--}}
-{{--                        <a class="nav-link active @if(!empty($menu["submenus"]))  dropdown-toggle @endif"--}}
-{{--                           role="button"--}}
-{{--                           href="{{$menu["href"]}}" id="{{ $menu["title"]  }}"--}}
-{{--                           @if(!empty($menu["submenus"])) data-bs-toggle="dropdown" aria-expanded="false" @endif--}}
-{{--                        >{{ $menu["title"]  }}</a>--}}
-{{--                        <ul class="dropdown-menu" aria-labelledby="{{ $menu["title"]  }}">--}}
-{{--                            @foreach($menu["submenus"] as $submenu)--}}
-{{--                                <li><a class="dropdown-item" href="{{$submenu["href"]}}">{{$submenu["title"]}}</a></li>--}}
-{{--                            @endforeach--}}
-{{--                        </ul>--}}
-{{--                    </li>--}}
-{{--                @endforeach--}}
-{{--                    <li class="nav-item dropdown">--}}
-{{--                        <a wire:click="logout" class="nav-link">{{__("Logout")}}{{auth()->user()?->name}}</a>--}}
-{{--                    </li>--}}
-{{--                </ul>--}}
-{{--            </div>--}}
+{{--            <form class="d-flex">--}}
+{{--                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">--}}
+{{--                <button class="btn btn-outline-success" type="submit">Search</button>--}}
+{{--            </form>--}}
 {{--        </div>--}}
 {{--    </div>--}}
 {{--</nav>--}}
+
+{{--<nav class="navbar navbar-expand-md navbar-dark bg-dark">--}}
+{{--    <a class="navbar-brand" href="#">Expand at md</a>--}}
+{{--    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">--}}
+{{--        <span class="navbar-toggler-icon"></span>--}}
+{{--    </button>--}}
+
+{{--    <div class="collapse navbar-collapse" id="navbarsExample04">--}}
+{{--        <ul class="navbar-nav mr-auto">--}}
+{{--            <li class="nav-item active">--}}
+{{--                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>--}}
+{{--            </li>--}}
+{{--            <li class="nav-item">--}}
+{{--                <a class="nav-link" href="#">Link</a>--}}
+{{--            </li>--}}
+{{--            <li class="nav-item">--}}
+{{--                <a class="nav-link disabled">Disabled</a>--}}
+{{--            </li>--}}
+{{--            <li class="nav-item dropdown">--}}
+{{--                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">Dropdown</a>--}}
+{{--                <div class="dropdown-menu">--}}
+{{--                    <a class="dropdown-item" href="#">Action</a>--}}
+{{--                    <a class="dropdown-item" href="#">Another action</a>--}}
+{{--                    <a class="dropdown-item" href="#">Something else here</a>--}}
+{{--                </div>--}}
+{{--            </li>--}}
+{{--        </ul>--}}
+{{--        <form class="form-inline my-2 my-md-0">--}}
+{{--            <input class="form-control" type="text" placeholder="Search">--}}
+{{--        </form>--}}
+{{--    </div>--}}
+{{--</nav>--}}
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">{{config("app.name")}}</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                @foreach($this->middleMenus() as $menu)
+                    <li class="nav-item mr-2">
+                        <a class="nav-link text-danger" href="{{$menu["href"]}}">{{ $menu["title"]  }}</a>
+                    </li>
+                @endforeach
+                @foreach($this->menus() as $menu)
+                    <li class="nav-item dropdown">
+                        <a class="nav-link active @if(!empty($menu["submenus"]))  dropdown-toggle @endif"
+                           role="button"
+                           href="{{$menu["href"]}}" id="{{ $menu["title"]  }}"
+                           @if(!empty($menu["submenus"])) data-bs-toggle="dropdown" aria-expanded="false" @endif
+                        >{{ $menu["title"]  }}</a>
+                        <ul class="dropdown-menu" aria-labelledby="{{ $menu["title"]  }}">
+                            @foreach($menu["submenus"] as $submenu)
+                                <li><a class="dropdown-item" href="{{$submenu["href"]}}">{{$submenu["title"]}}</a></li>
+                            @endforeach
+                        </ul>
+                    </li>
+                @endforeach
+            </ul>
+            <div class="d-flex">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                @foreach($this->rightMenus() as $menu)
+                    <li class="nav-item dropdown">
+                        <a class="nav-link active @if(!empty($menu["submenus"]))  dropdown-toggle @endif"
+                           role="button"
+                           href="{{$menu["href"]}}" id="{{ $menu["title"]  }}"
+                           @if(!empty($menu["submenus"])) data-bs-toggle="dropdown" aria-expanded="false" @endif
+                        >{{ $menu["title"]  }}</a>
+                        <ul class="dropdown-menu" aria-labelledby="{{ $menu["title"]  }}">
+                            @foreach($menu["submenus"] as $submenu)
+                                <li><a class="dropdown-item" href="{{$submenu["href"]}}">{{$submenu["title"]}}</a></li>
+                            @endforeach
+                        </ul>
+                    </li>
+                @endforeach
+                    <li class="nav-item dropdown">
+                        <a wire:click="logout" class="nav-link">{{__("Logout")}}{{auth()->user()?->name}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>

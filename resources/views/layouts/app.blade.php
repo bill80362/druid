@@ -34,6 +34,11 @@
             /*.fr-wrapper > div:first-child {*/
             /*    display: none;*/
             /*}*/
+
+            .collapse {
+                visibility: visible;
+            }
+
         </style>
 
 
