@@ -40,6 +40,9 @@
                             <small>{{ $item->message_at }}</small>
                             @if($item->member?->name)
                                 {{ $item->member?->name }}
+                                <a class="btn btn-sm btn-primary" href="{{route("members.edit",["member"=>$item->member?->id])}}">
+                                    查看
+                                </a>
                             @else
                                 {{ $item->member_line_id }}
                                 <a class="btn btn-sm btn-primary" href="{{route("bind_line_members.index",["bind_line_id"=>$item->member_line_id])}}">綁定會員</a>
