@@ -96,6 +96,8 @@ Route::middleware(['auth'])->group(function (){
     Route::get('goods_detail/batch', [\App\Http\Controllers\GoodsDetailBatchController::class, 'index'])->name("goods_details.batch.index");
     Route::post('goods_detail/batch', [\App\Http\Controllers\GoodsDetailBatchController::class, 'update'])->name("goods_details.batch.update");
 
+    Route::get('reports/day', [\App\Http\Controllers\ReportController::class, "day"])->name("reports.day");
+
 
 });
 

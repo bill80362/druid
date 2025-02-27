@@ -65,6 +65,11 @@ new class extends Component {
             "active" => "",
             "submenus" => [
                 [
+                    "title" => __("訂單報表"),
+                    "href" => route('reports.day'),
+                    "active" => request()->routeIs('reports.day'),
+                ],
+                [
                     "title" => __("訂單管理"),
                     "href" => route('orders.index'),
                     "active" => request()->routeIs('orders.index'),
