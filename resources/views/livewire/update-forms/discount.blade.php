@@ -56,7 +56,7 @@
                     <small class="text-danger">@error('discount_ratio') {{ $message }} @enderror</small>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">固定金額</label>
+                    <label class="form-label">固定金額『未啟用』</label>
                     <input type="text" class="form-control" wire:model="discount_static">
                     <small class="text-danger">@error('discount_static') {{ $message }} @enderror</small>
                 </div>

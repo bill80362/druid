@@ -67,14 +67,14 @@
     </div>
     <script>
         document.getElementById('addBtn').addEventListener('click', function() {
-            // Get the table by ID
-            var table = document.getElementById('myTable');
+            // Get the table body by ID
+            var tbody = document.getElementById('myTable').getElementsByTagName('tbody')[0];
             // Get the last row
-            var lastRow = table.rows[table.rows.length - 1];
+            var lastRow = tbody.rows[tbody.rows.length - 1];
             // Clone the last row
             var newRow = lastRow.cloneNode(true);
-            // Append the cloned row to the table
-            table.appendChild(newRow);
+            // Append the cloned row to the table body
+            tbody.appendChild(newRow);
         });
     </script>
 </x-app-layout>
