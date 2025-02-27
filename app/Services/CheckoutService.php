@@ -52,7 +52,7 @@ class CheckoutService
                     //
                 }elseif($discount->discount_type=="R" && $discount->discount_ratio > 0){
                     //打折
-                    $new = $item->discount_price*$discount->discount_ratio;
+                    $new = $item->discount_price*$discount->discount_ratio/100;
                     $new = max($new,0);
                     $item->discount_price = min($item->discount_price,$new);
                     $this->discountLogs[$item->id][] = $discount->toArray();
