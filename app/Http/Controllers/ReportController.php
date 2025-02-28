@@ -18,7 +18,6 @@ class ReportController extends Controller
                 return [
                     "title" => number_format($item->sum_total) . "(" . $item->count_total . ")",
                     "start" => $item->created_at->format("Y-m-d"),
-                    "description" => "ABC",
                 ];
             })->all();
 //        dd($dayReports);

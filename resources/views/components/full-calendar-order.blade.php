@@ -14,7 +14,8 @@
                 height: 'auto',
                 contentHeight: 'auto',
                 eventClick: function(info) {
-                    alert(info.event.title);
+                    alert(new Date(info.event.start).toLocaleDateString('en-CA') + ' 消費 ' + info.event.title);
+                    // alert(info.event.start + ':' + info.event.title);
                     //修改當下的event
                     // info.el.style.borderColor = 'red';
                 }
