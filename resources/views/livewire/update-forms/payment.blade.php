@@ -25,7 +25,9 @@
                 <label class="form-label">類型</label>
                 <select class="form-control" wire:model="type" >
                     <option value="">請選擇</option>
-                    <option value="N">無串接</option>
+                    @foreach(\App\Enum\PaymentTypeEnum::cases() as $enum)
+                        <option value="{{$enum}}">{{$enum->text()}}</option>
+                    @endforeach
                 </select>
                 <small class="text-danger">@error('type') {{ $message }} @enderror</small>
             </div>

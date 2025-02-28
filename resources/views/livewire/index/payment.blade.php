@@ -77,7 +77,7 @@
                     </td>
                     <td class="px-6 py-2 border-b border-gray-200 text-center">
                         <div class="text-sm leading-5 text-gray-500">
-                            {{ $item->type=="N"?"無串接":"" }}
+                            {{\App\Enum\PaymentTypeEnum::tryFrom($item->type)?->text()}}
                         </div>
                     </td>
                     <td class="px-6 py-2 border-b border-gray-200 text-center">
