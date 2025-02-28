@@ -26,9 +26,7 @@
                         <div class="p-2 font-semibold text-xl text-gray-800 leading-tight">
                             <h2>每日營業額</h2>
                         </div>
-                        <div class="p-2">
-                            <div id='calendar'></div>
-                        </div>
+                        <div id='calendar'></div>
                     </div>
                 </div>
             </div>
@@ -43,6 +41,16 @@
                 timeZone: 'Asia/Taipei',
                 locale: 'tw',
                 events: @json($dayReports),
+                height: 'auto',
+                contentHeight: 'auto',
+                // eventRender: function(info) {
+                //     var tooltip = new Tooltip(info.el, {
+                //         title: info.event.description,//you can give data for tooltip
+                //         placement: 'top',
+                //         trigger: 'hover',
+                //         container: 'body'
+                //     });
+                // },
             });
             calendar.render();
         });
