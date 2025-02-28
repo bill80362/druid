@@ -26,34 +26,11 @@
                         <div class="p-2 font-semibold text-xl text-gray-800 leading-tight">
                             <h2>每日營業額</h2>
                         </div>
-                        <div id='calendar'></div>
+                        <x-full-calendar-order :dayReports="$dayReports"></x-full-calendar-order>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var calendarEl = document.getElementById('calendar');
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth',
-                timeZone: 'Asia/Taipei',
-                locale: 'tw',
-                events: @json($dayReports),
-                height: 'auto',
-                contentHeight: 'auto',
-                // eventRender: function(info) {
-                //     var tooltip = new Tooltip(info.el, {
-                //         title: info.event.description,//you can give data for tooltip
-                //         placement: 'top',
-                //         trigger: 'hover',
-                //         container: 'body'
-                //     });
-                // },
-            });
-            calendar.render();
-        });
 
-    </script>
 </x-app-layout>

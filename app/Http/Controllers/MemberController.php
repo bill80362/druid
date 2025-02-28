@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\PermissionGroup;
 use App\Models\Member;
 use App\Models\Point;
@@ -70,8 +71,22 @@ class MemberController extends Controller
             abort(403);
         }
         //
+        $dayReports = Order::where("status", "finish")
+            ->where("member_id", $Member->id)
+            ->selectRaw("DATE(created_at) as created_at,SUM(total) as sum_total,COUNT(total) as count_total")
+            ->groupByRaw("DATE(created_at)")
+            ->get()
+            ->map(function ($item) {
+                return [
+                    "title" => number_format($item->sum_total) . "(" . $item->count_total . ")",
+                    "start" => $item->created_at->format("Y-m-d"),
+                    "description" => "ABC",
+                ];
+            })->all();
+        //
         return view('member.edit', [
             "item" => $Member,
+            "dayReports" => $dayReports,
         ]);
     }
 

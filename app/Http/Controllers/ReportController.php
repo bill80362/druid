@@ -16,7 +16,7 @@ class ReportController extends Controller
             ->get()
             ->map(function ($item) {
                 return [
-                    "title" => "$ ".number_format($item->sum_total) . "(" . $item->count_total . ")",
+                    "title" => number_format($item->sum_total) . "(" . $item->count_total . ")",
                     "start" => $item->created_at->format("Y-m-d"),
                     "description" => "ABC",
                 ];

@@ -21,6 +21,14 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <livewire:update-forms.member :id="$item->id" />
             </div>
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-4">
+                <div class="p-2 font-semibold text-xl text-gray-800 leading-tight">
+                    <h2>每日消費額度</h2>
+                </div>
+                <div class="p-4">
+                    <x-full-calendar-order :dayReports="$dayReports"></x-full-calendar-order>
+                </div>
+            </div>
         </div>
     </div>
 
