@@ -81,8 +81,8 @@ class WebhookLineController extends Controller
                                     if($member?->level?->sort){
                                         $nextLevel = Level::where("sort",">",$member?->level?->sort)->orderBy("sort")->first();
                                     }
-                                    if($nextLevel){
-                                        $gap = (int)$member?->level->upgrade - (int)$member?->orders_sum_total;
+                                    if($nextLevel?->id){
+                                        $gap = (int)$nextLevel->upgrade - (int)$member?->orders_sum_total;
                                         $upgrade_gap = max($gap,0);
                                     }
                                     $replyContent = str_replace('{{$member_upgrade_gap}}',$upgrade_gap,$replyContent);
