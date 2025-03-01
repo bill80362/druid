@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PermissionGroup;
 use App\Models\Order;
+use App\Services\LevelService;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Request;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -78,13 +79,17 @@ class OrderController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Order $Order)
+    public function update(LevelService $levelService,Request $request, Order $Order)
     {
         if (! Gate::allows('訂單管理_修改')) {
             abort(403);
         }
         $Order->fill($request->only(["name","content"]));
         $Order->save();
+        //刷新會員等級
+        if($Order?->member_id){
+            $levelService->update($Order?->member_id);
+        }
         //
         return redirect()->route('orders.edit', ["order" => $Order])->with("success",["儲存成功"]);
     }
@@ -92,7 +97,7 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Order $Order)
+    public function destroy(LevelService $levelService,Order $Order)
     {
         if (! Gate::allows('訂單管理_刪除')) {
             abort(403);
@@ -100,6 +105,10 @@ class OrderController extends Controller
         $Order->status = "cancel";
         $Order->save();
 //        $Order->delete();
+        //刷新會員等級
+        if($Order?->member_id){
+            $levelService->update($Order?->member_id);
+        }
         return redirect()->route('orders.edit', ["order" => $Order])->with("success",["取消成功"]);
 //        return redirect()->route('orders.index')->with("success",["刪除成功"]);
     }
