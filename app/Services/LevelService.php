@@ -15,6 +15,7 @@ class LevelService
         $lastPeriodStart = Carbon::now()->modify("-1 year")->startOfYear()->startOfDay();
         $lastPeriodEnd = Carbon::now()->modify("-1 year")->endOfYear()->endOfDay();
         $lastOrders = Order::where("status","finish")
+            ->where("member_id", $member_id)
             ->where("created_at",">=",$lastPeriodStart)
             ->where("created_at","<=",$lastPeriodEnd)
             ->get();
@@ -23,6 +24,7 @@ class LevelService
         $thisPeriodStart = Carbon::now()->startOfYear()->startOfDay();
         $thisPeriodEnd = Carbon::now()->endOfYear()->endOfDay();
         $thisOrders = Order::where("status","finish")
+            ->where("member_id", $member_id)
             ->where("created_at",">=",$thisPeriodStart)
             ->where("created_at","<=",$thisPeriodEnd)
             ->get();
