@@ -109,7 +109,10 @@ class CheckoutController extends Controller
         }elseif($coupon?->coupon_type=="R"){
             $coupon_discount = $shoppingCartGoodsItems?->sum("discount_price")*(100-(int)$coupon->discount_ratio)/100;
         }
-        $couponUseCheck = Order::where("status","<>","cancel")->where("member_id",$member?->id)->where("coupon_id",$coupon?->id)->count();
+        $couponUseCheck = null;
+        if($coupon?->id){
+            $couponUseCheck = Order::where("status","<>","cancel")->where("member_id",$member?->id)->where("coupon_id",$coupon?->id)->count();
+        }
         if ($couponUseCheck) {
             return redirect()->route("checkout.checkout")->with("success", ["此會員已使用過優惠券，請移除才可結帳"]);
         }

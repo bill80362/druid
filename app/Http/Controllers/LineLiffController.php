@@ -33,9 +33,21 @@ class LineLiffController extends Controller
                 ->where("discount_end", ">=", date("Y-m-d H:i:s"))
                 ->get();
             //
+            if($coupons?->count()){
+                $couponUsed = Order::where("status","<>","cancel")
+                    ->where("member_id",$member->id)
+                    ->whereIn("coupon_id",$coupons->pluck("id")->toArray())
+                    ->get()->pluck("coupon_id")->filter()->toArray();
+//                dd($couponUsed);
+                if($couponUsed){
+                    $coupons = $coupons->filter(fn($i)=>!in_array($i->id,$couponUsed));
+                }
+            }
+            //
             return view('line_liff/profile', [
                 "member" => $member,
                 "coupons" => $coupons,
+                "couponUsed" => $couponUsed,
             ]);
         }else{
             return view('line_liff/register');
