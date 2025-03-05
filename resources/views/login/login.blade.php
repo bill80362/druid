@@ -47,7 +47,13 @@
 <main class="form-signin w-100 m-auto">
     <form method="post">
         @csrf
-        <h1 class="h3 mb-3 fw-normal">登入試用<br />demo@demo.com<br />12345678</h1>
+        <h1 class="h3 mb-3 fw-normal">
+            會員透過LINE官方帳號串接綁定
+            快加入 @640niflo<br />
+            登入試用<br />
+            demo@demo.com<br />
+            12345678
+        </h1>
 
         <div class="form-floating">
             <input type="text" class="form-control" name="email" id="floatingInput" placeholder="帳號" value="demo@demo.com">
