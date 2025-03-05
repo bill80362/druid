@@ -47,15 +47,15 @@
 <main class="form-signin w-100 m-auto">
     <form method="post">
         @csrf
-        <h1 class="h3 mb-3 fw-normal">店家登入</h1>
+        <h1 class="h3 mb-3 fw-normal">登入試用<br />demo@demo.com<br />12345678</h1>
 
         <div class="form-floating">
-            <input type="text" class="form-control" name="email" id="floatingInput" placeholder="帳號">
+            <input type="text" class="form-control" name="email" id="floatingInput" placeholder="帳號" value="demo@demo.com">
             <label for="floatingInput">帳號</label>
             <small class="text-danger">@error('email') {{ $message }} @enderror</small>
         </div>
         <div class="form-floating">
-            <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="密碼">
+            <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="密碼" value="12345678">
             <label for="floatingPassword">密碼</label>
         </div>
 
