@@ -48,9 +48,9 @@
     <form method="post">
         @csrf
         <h1 class="h3 mb-3 fw-normal">
-            會員透過LINE官方帳號串接綁定
-            快加入 @640niflo<br />
-            登入試用<br />
+            會員透過LINE查詢會員相關資訊
+            加入Line @640niflo<br />
+            登入商家試用帳號<br />
             demo@demo.com<br />
             12345678
         </h1>
