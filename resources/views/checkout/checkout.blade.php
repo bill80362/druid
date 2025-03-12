@@ -307,27 +307,43 @@
                                 <div class="card-body">
                                     <h5 class="card-title flex justify-content-between">
                                         <div>
-                                            付款
+                                            一般付款
                                         </div>
-                                        <div>
-                                            ${{$shoppingCartPaymentItems->sum("money")}} 元
-                                        </div>
+{{--                                        <div>--}}
+{{--                                            ${{$shoppingCartPaymentItems->sum("money")}} 元--}}
+{{--                                        </div>--}}
                                     </h5>
                                     <div class="card-text">
                                         <form action="{{route("checkout.add.payment")}}">
                                             <div class="input-group mb-3">
                                                 <select class="form-control" name="payment_id">
-                                                    @foreach($paymentItems as $item)
+                                                    @foreach($paymentItems->where("type","N") as $item)
                                                         <option value="{{$item->id}}">{{$item->name}}</option>
                                                     @endforeach
                                                 </select>
                                                 <input type="text" class="form-control" placeholder="金額" name="money" value="{{$shoppingCartGoodsItems?->sum("discount_price")-$coupon_discount-$shoppingCartPaymentItems->sum("money")-$memberUsePoint*$pointToMoney}}">
-                                                <input type="text" class="form-control" placeholder="備註" name="memo">
+{{--                                                <input type="text" class="form-control" placeholder="備註" name="memo">--}}
                                                 <div class="input-group-append">
                                                     <button class="btn btn-primary" type="submit">新增</button>
                                                 </div>
                                             </div>
                                         </form>
+                                        @foreach($paymentItems->where("type","S") as $item)
+                                            <h5 class="card-title flex justify-content-between">
+                                                <div>{{$item->name}}</div>
+                                                <div>結帳送出時扣款</div>
+                                            </h5>
+                                            <form action="{{route("checkout.add.payment")}}">
+                                                <input type="hidden" name="payment_id" value="{{$item->id}}">
+                                                <div class="input-group mb-3">
+                                                    <input type="text" class="form-control" placeholder="刷入條碼" name="memo">
+                                                    <input type="text" class="form-control" placeholder="金額" name="money" value="{{$shoppingCartGoodsItems?->sum("discount_price")-$coupon_discount-$shoppingCartPaymentItems->sum("money")-$memberUsePoint*$pointToMoney}}">
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-primary" type="submit">新增</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        @endforeach
                                         <table class="table table-striped">
                                             <tr>
                                                 <td>付款方式</td>

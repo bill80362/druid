@@ -18,6 +18,7 @@ use App\Models\ShoppingCartGoods;
 use App\Models\ShoppingPayment;
 use App\Services\CheckoutService;
 use App\Services\LevelService;
+use App\Services\LinePay\LinePayPos;
 use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
@@ -290,7 +291,6 @@ class CheckoutController extends Controller
     }
 
     public function addPayment()
-
     {
         //
         $item = Payment::find(request()->get("payment_id"));
@@ -302,6 +302,17 @@ class CheckoutController extends Controller
         }
         if (request()->get("money") < 0) {
             return back()->with("success", ["支付金額需要大於0"]);
+        }
+        //
+        if($item->type=="S"){
+            $linePayPos = new LinePayPos();
+            try{
+                $response = $linePayPos->pay("AAA","100","A123","123");
+                dd($response);
+            }catch (\Exception $e){
+                return back()->with("success", [$e->getMessage()]);
+            }
+            return back()->with("success", ["LinePay支付串接異常"]);
         }
         //
         $shoppingPayment = new ShoppingPayment();
