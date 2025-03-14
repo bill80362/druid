@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Http;
 class LinePayPos
 {
     public function __construct(
-        public string $channelId = "12345678",
-        public string $channelSecret = "12345678",
+        public string $channelId = "",
+        public string $channelSecret = "",
         public string $deviceType = "pos",
         public string $deviceProfileId = "pos",
         public string $orderIdPreCode = "pos",

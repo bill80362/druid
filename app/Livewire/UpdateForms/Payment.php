@@ -18,6 +18,10 @@ class Payment extends Component
     public string $type = "N";
     #[Validate([])]
     public string $sort = "";
+    #[Validate([])]
+    public string $line_pay_channel_id = "";
+    #[Validate([])]
+    public string $line_pay_channel_secret = "";
     //
     public string $actionMessage = "";
 
@@ -30,6 +34,8 @@ class Payment extends Component
         $this->status = $item?->status ?? "";
         $this->type = $item?->type ?? "N";
         $this->sort = $item?->sort ?? "1";
+        $this->line_pay_channel_id = $item?->line_pay_channel_id ?? "";
+        $this->line_pay_channel_secret = $item?->line_pay_channel_secret ?? "";
     }
 
     public function submit()
@@ -50,6 +56,8 @@ class Payment extends Component
         $item->status = $this->status;
         $item->type = $this->type;
         $item->sort = $this->sort;
+        $item->line_pay_channel_id = $this->line_pay_channel_id;
+        $item->line_pay_channel_secret = $this->line_pay_channel_secret;
         $item->save();
         //
         if ($this->paymentId) {

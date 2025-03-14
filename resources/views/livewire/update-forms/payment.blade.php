@@ -32,6 +32,16 @@
                 <small class="text-danger">@error('type') {{ $message }} @enderror</small>
             </div>
             <div class="mb-3">
+                <label class="form-label">line_pay_channel_id</label>
+                <input type="text" class="form-control" wire:model="line_pay_channel_id">
+                <small class="text-danger">@error('line_pay_channel_id') {{ $message }} @enderror</small>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">line_pay_channel_secret</label>
+                <input type="text" class="form-control" wire:model="line_pay_channel_secret">
+                <small class="text-danger">@error('line_pay_channel_secret') {{ $message }} @enderror</small>
+            </div>
+            <div class="mb-3">
                 <div class="flex justify-content-between">
                     <div wire:dirty>
                         <button type="submit" class="btn btn-primary">
