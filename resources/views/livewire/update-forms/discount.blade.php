@@ -62,7 +62,7 @@
                 </div>
             </div>
             <div class="col-6 p-2">
-                <h3>折扣條件</h3>
+                <h3>折扣條件設定</h3>
                 <div class="mb-3">
                     <label class="form-label">折扣條件</label>
                     <select class="form-control" wire:model="event_type" >

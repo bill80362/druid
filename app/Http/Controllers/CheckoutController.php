@@ -126,21 +126,21 @@ class CheckoutController extends Controller
             return redirect()->route("checkout.checkout")->with("success", ["購物車結帳金額與付款金額不符"]);
         }
         //付款方式-LINE PAY串接
-        foreach ($shoppingCartPaymentItems as $shoppingCartPaymentItem){
-            if($shoppingCartPaymentItem->type=="S"){
-                $orderId = Str::uuid()->toString();
-                try {
-
-                    $linePayPos = new LinePayPos();
-                    $response = $linePayPos->pay("購物商品", $shoppingCartPaymentItem->money , $orderId , $shoppingCartPaymentItem->memo);
-                    if ($response["returnCode"] != "0000") {
-                        throw new \Exception($response["returnCode"]);
-                    }
-                } catch (\Exception $e) {
-                    return back()->with("success", ["LinePay支付串接異常:" . $e->getMessage()]);
-                }
-            }
-        }
+//        foreach ($shoppingCartPaymentItems as $shoppingCartPaymentItem){
+//            if($shoppingCartPaymentItem->type=="S"){
+//                $orderId = Str::uuid()->toString();
+//                try {
+//
+//                    $linePayPos = new LinePayPos();
+//                    $response = $linePayPos->pay("購物商品", $shoppingCartPaymentItem->money , $orderId , $shoppingCartPaymentItem->memo);
+//                    if ($response["returnCode"] != "0000") {
+//                        throw new \Exception($response["returnCode"]);
+//                    }
+//                } catch (\Exception $e) {
+//                    return back()->with("success", ["LinePay支付串接異常:" . $e->getMessage()]);
+//                }
+//            }
+//        }
         //建立訂單
         $order = new Order();
         $order->status = "finish";
@@ -177,12 +177,13 @@ class CheckoutController extends Controller
             return $orderPayment;
         });
         $order->orderPayments()->saveMany($orderPayments);
+        /**開始外部串接*/
         //LinePay串接
         foreach ($orderPayments as $orderPayment) {
-            if($orderPayment->type=="S"){
+            if( in_array($orderPayment->type,["S","L"])){
                 $orderPayment->load(["payment"]);
                 try {
-                    $linePayPos = new LinePayPos($orderPayment->payment->line_pay_channel_id,$orderPayment->payment->line_pay_channel_secret);
+                    $linePayPos = new LinePayPos($orderPayment->payment->line_pay_channel_id,$orderPayment->payment->line_pay_channel_secret,$orderPayment->type=="S");
                     $response = $linePayPos->pay("購物商品", $orderPayment->money , $order->id , $orderPayment->memo);
                     if ($response["returnCode"] != "0000") {
                         throw new \Exception($response["returnCode"]);
@@ -190,17 +191,17 @@ class CheckoutController extends Controller
                     $orderPayment->payment_info = json_encode($response);
                     $orderPayment->save();
                 } catch (\Exception $e) {
-                    //
-                    $orderPayment->memo .= "串接失敗";
+                    //串接失敗
+                    $orderPayment->payment_info = json_encode(["error"=>$e->getMessage()]);
                     $orderPayment->save();
-                    //
-
+                    //取消訂單
+                    $order->status = "cancel";
                     //
                     return back()->with("success", ["LinePay支付串接異常:" . $e->getMessage()]);
                 }
-
             }
         }
+        /**交易成功*/
         //會員等級贈點
         $member = Member::with(["level"])->find($shoppingCard?->data["member_id"] ?? "");
         if ($member && $levelPoint) {

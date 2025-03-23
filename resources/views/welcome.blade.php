@@ -29,9 +29,7 @@
 
                     <main class="mt-6">
                         <div class="row">
-{{--                            <div class="col-12 text-center py-10">--}}
-{{--                                <h1>商品優惠管理+門市結帳+會員管理+LINE行銷</h1>--}}
-{{--                            </div>--}}
+                            <x-info.intro />
                             <div>
                                 <img src="/ptt/0215/1.jpg" />
                                 <img src="/ptt/0215/2.jpg" />

@@ -9,14 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <div class="row">
-                        <div class="col-12 text-center py-10">
-                            <h1>商品優惠管理+門市結帳+會員管理+LINE行銷</h1>
-                        </div>
-                        <div>
-                            <img src="/image/flowchart.png" />
-                        </div>
-                    </div>
+                    <x-info.intro />
                     <div class="row">
                         <div class="col-12 col-md-6 p-2">
                             <div class="card">

@@ -11,10 +11,19 @@ class LinePayPos
     public function __construct(
         public string $channelId = "",
         public string $channelSecret = "",
+        public bool   $sandbox = true,
         public string $deviceType = "pos",
         public string $deviceProfileId = "pos",
         public string $orderIdPreCode = "pos",
-    ){}
+        public string $url = "",
+    )
+    {
+        if ($this->sandbox) {
+            $this->url = "https://sandbox-api-pay.line.me";
+        } else {
+            $this->url = "https://api.line.me";
+        }
+    }
 
     /**
      * @throws ConnectionException
@@ -22,7 +31,7 @@ class LinePayPos
      */
     public function pay($productName, $amount, $orderId, $oneTimeKey)
     {
-        $url = "https://sandbox-api-pay.line.me/v2/payments/oneTimeKeys/pay";
+        $url = $this->url . "/v2/payments/oneTimeKeys/pay";
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
             'X-LINE-ChannelId' => $this->channelId,
@@ -57,7 +66,7 @@ class LinePayPos
 
     public function check($orderId)
     {
-        $url = "https://sandbox-api-pay.line.me/v2/payments/orders/$orderId/check";
+        $url = $this->url . "/v2/payments/orders/$orderId/check";
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
             'X-LINE-ChannelId' => $this->channelId,
