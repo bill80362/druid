@@ -23,6 +23,8 @@ class Discount extends Component
     #[Validate([])]
     public string $event_type = "";
     #[Validate([])]
+    public string|null $level_id = "";
+    #[Validate([])]
     public string $event_count_threshold = "";
     #[Validate([])]
     public string $event_money_threshold = "";
@@ -51,6 +53,7 @@ class Discount extends Component
         $this->discount_start = $item?->discount_start->format("Y-m-d") ?? date("Y-m-d");
         $this->discount_end = $item?->discount_end->format("Y-m-d") ?? date("Y-m-d",strtotime("+1 months"));
         $this->sort = $item?->sort ?? ((int)\App\Models\Discount::max("sort"))+1;
+        $this->level_id = $item?->level_id ?? 0;
         $this->event_type = $item?->event_type ?? "N";
         $this->event_count_threshold = $item?->event_count_threshold??"";
         $this->event_money_threshold = $item?->event_money_threshold??"";
@@ -81,6 +84,7 @@ class Discount extends Component
         $item->discount_start = $this->discount_start;
         $item->discount_end = $this->discount_end;
         $item->sort = $this->sort;
+        $item->level_id = $this->level_id?:null;
         $item->event_type = $this->event_type;
         $item->event_count_threshold = $this->event_count_threshold?:null;
         $item->event_money_threshold = $this->event_money_threshold?:null;

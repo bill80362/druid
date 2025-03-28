@@ -15,4 +15,8 @@ class Discount extends Model
     {
         return $this->belongsToMany(Level::class,PivotDiscountLevel::class);
     }
+    public function level(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Level::class);
+    }
 }

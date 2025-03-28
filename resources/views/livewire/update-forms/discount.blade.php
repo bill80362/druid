@@ -64,6 +64,16 @@
             <div class="col-6 p-2">
                 <h3>折扣條件設定</h3>
                 <div class="mb-3">
+                    <label class="form-label">限制等級</label>
+                    <select class="form-control" wire:model="level_id" >
+                        <option value="">不限</option>
+                        @foreach(\App\Models\Level::get() as $level)
+                            <option value="{{$level->id}}">{{$level->name}}</option>
+                        @endforeach
+                    </select>
+                    <small class="text-danger">@error('event_type') {{ $message }} @enderror</small>
+                </div>
+                <div class="mb-3">
                     <label class="form-label">折扣條件</label>
                     <select class="form-control" wire:model="event_type" >
                         <option value="">請選擇</option>

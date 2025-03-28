@@ -44,7 +44,9 @@ class CheckoutController extends Controller
             $nextLevel = Level::where("sort", ">", $member?->level?->sort)->orderBy("sort")->first();
         }
         //折扣規則
-        $discounts = Discount::where("status", "Y")->orderBy("sort")->get();
+        $discounts = Discount::where("status", "Y")->where(function ($query) use ($member) {
+            $query->whereNull("level_id")->orWhere("level_id", $member?->level_id);
+        })->orderBy("sort")->get();
         //優惠計算member_use_point
         $shoppingCartGoodsItems = $checkoutService->cashier($shoppingCartGoodsItems, $discounts, $member?->level_id);
         $discountLogs = $checkoutService->discountLogs;

@@ -37,7 +37,7 @@ class Discount extends Component
         if ($this->sortByColumn) {
             $query->orderBy($this->sortByColumn, $this->sortByDirection);
         }
-        $paginator = $query->paginate();
+        $paginator = $query->with(["level"])->paginate();
         //
         return view('livewire.index.discount', [
             "paginator" => $paginator,

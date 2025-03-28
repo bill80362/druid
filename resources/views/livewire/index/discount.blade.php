@@ -49,8 +49,14 @@
                 <th
                     wire:click="sortBy('event_type')" :sortDirection="$sortByColumn=='event_type'?$sortByDirection:null"
                     class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center">
-                    條件
+                    限定等級
                     <x-table-sort-icon :sortByColumn="$sortByColumn" :sortByDirection="$sortByDirection" column="event_type"  />
+                </th>
+                <th
+                    wire:click="sortBy('level_id')" :sortDirection="$sortByColumn=='level_id'?$sortByDirection:null"
+                    class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center">
+                    條件
+                    <x-table-sort-icon :sortByColumn="$sortByColumn" :sortByDirection="$sortByDirection" column="level_id"  />
                 </th>
                 <th
                     wire:click="sortBy('discount_goods_status')" :sortDirection="$sortByColumn=='discount_goods_status'?$sortByDirection:null"
@@ -98,6 +104,9 @@
                     </td>
                     <td class="px-6 py-2 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200 text-center">
                         {{ $item->sort }}
+                    </td>
+                    <td class="px-6 py-2 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200 text-center">
+                        {{ $item->level_id?$item->level?->name:"不限" }}
                     </td>
                     <td class="px-6 py-2 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200 text-center">
                         {{ \App\Enum\DiscountEventTypeEnum::tryFrom($item->event_type)?->text() }}
