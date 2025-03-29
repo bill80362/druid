@@ -379,7 +379,10 @@ new class extends Component {
                     </li>
                 @endforeach
                     <li class="nav-item dropdown">
-                        <a wire:click="logout" class="nav-link">{{__("Logout")}}{{auth()->user()?->name}}</a>
+                        <a wire:click="logout" class="nav-link">
+                            {{__("Logout")}}
+                            <span class="text-primary">({{auth()->user()?->name}})</span>
+                        </a>
                     </li>
                 </ul>
             </div>
