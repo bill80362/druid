@@ -47,13 +47,7 @@
 <main class="form-signin w-100 m-auto">
     <form method="post">
         @csrf
-        <h1 class="h3 mb-3 fw-normal">
-            會員透過LINE查詢會員相關資訊
-            加入Line @640niflo<br />
-            登入商家試用帳號<br />
-            demo@demo.com<br />
-            12345678
-        </h1>
+        <h1 class="h3 mb-3 fw-normal">門市人員系統登入</h1>
 
         <div class="form-floating">
             <input type="text" class="form-control" name="email" id="floatingInput" placeholder="帳號" value="demo@demo.com">
@@ -66,6 +60,11 @@
         </div>
 
         <button class="btn btn-primary w-100 py-2" type="submit">登入</button>
+        <p class="mt-4 text-body-secondary">會員可透過LINE查詢會員相關資訊：</p>
+        <p class="text-body-secondary">請先加入Line <a class="text-danger" target="_blank" href="https://liff.line.me/2006864821-j4QwEwe3">@640niflo</a> 試用</p>
+        <p class="text-body-secondary">登入商家試用帳號：</p>
+        <p class="text-body-secondary">demo@demo.com</p>
+        <p class="text-body-secondary">12345678</p>
         <p class="mt-4 text-body-secondary">有問題請聯絡：</p>
         <p class="text-body-secondary">俊瑋 0921-515408<br/>Line_ID bill80362</p>
     </form>
