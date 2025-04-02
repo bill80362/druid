@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Point extends Model
+class Point extends UserModel
 {
     public function member(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {

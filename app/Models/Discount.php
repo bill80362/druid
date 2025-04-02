@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Discount extends Model
+class Discount extends UserModel
 {
     protected $casts = [
         "discount_start" => "datetime",

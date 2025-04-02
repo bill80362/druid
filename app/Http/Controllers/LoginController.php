@@ -32,7 +32,7 @@ class LoginController extends Controller
         }
 
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+            'email' => '登入帳密錯誤，或請確認到期時間是否過期',
         ])->onlyInput('email');
     }
 }

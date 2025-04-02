@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PageCustomFieldValue extends Model
+class PageCustomFieldValue extends UserModel
 {
     use HasFactory;
 

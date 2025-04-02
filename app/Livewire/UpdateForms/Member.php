@@ -79,7 +79,7 @@ class Member extends Component
         $item->postal_code = $this->postal_code;
         $item->address = $this->address;
         $item->level_id = $this->level_id;
-        $item->birthday = $this->birthday;
+        $item->birthday = $this->birthday?:null;
         $item->save();
         //
         if ($this->memberId) {

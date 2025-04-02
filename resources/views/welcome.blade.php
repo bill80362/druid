@@ -31,22 +31,24 @@
                         <div class="row">
                             <x-info.intro />
                             <div>
-                                <img src="/ptt/0215/1.jpg" />
-                                <img src="/ptt/0215/2.jpg" />
-                                <img src="/ptt/0215/3.jpg" />
-                                <img src="/ptt/0215/4.jpg" />
-                                <img src="/ptt/0215/5.jpg" />
-                                <img src="/ptt/0215/6.jpg" />
-                                <img src="/ptt/0215/7.jpg" />
-                                <img src="/ptt/0215/8.jpg" />
-                                <img src="/ptt/0215/9.jpg" />
-                                <img src="/ptt/0215/10.jpg" />
+{{--                                <img src="/ptt/0215/1.jpg" />--}}
+{{--                                <img src="/ptt/0215/2.jpg" />--}}
+{{--                                <img src="/ptt/0215/3.jpg" />--}}
+{{--                                <img src="/ptt/0215/4.jpg" />--}}
+                                <img class="rounded" src="/ptt/0215/5.jpg"  alt=""/>
+{{--                                <img src="/ptt/0215/6.jpg" />--}}
+{{--                                <img src="/ptt/0215/7.jpg" />--}}
+{{--                                <img src="/ptt/0215/8.jpg" />--}}
+{{--                                <img src="/ptt/0215/9.jpg" />--}}
+{{--                                <img src="/ptt/0215/10.jpg" />--}}
                             </div>
                         </div>
                     </main>
 
                     <footer class="py-16 text-center text-sm text-black dark:text-white/70">
-                        <h2>俊瑋 0921-515-408 Line:bill80362</h2>
+{{--                        <h2>俊瑋 0921-515-408 Line:bill80362</h2>--}}
+                        <h1 class="display-4 fw-normal">俊瑋 0921-515-408</h1>
+                        <h1 class="display-4 fw-normal">Line:bill80362</h1>
                     </footer>
                 </div>
             </div>

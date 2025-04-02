@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Member extends Model
+class Member extends UserModel
 {
     use HasFactory;
 
@@ -16,6 +16,7 @@ class Member extends Model
             $model->status = "n";
             if(!$model->level_id) $model->level_id = Level::orderBy("sort")->first()->id;
         });
+        parent::booted();
     }
     public function level(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
