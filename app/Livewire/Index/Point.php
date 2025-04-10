@@ -27,7 +27,7 @@ class Point extends Component
     public function render()
     {
         //
-        $query = \App\Models\Point::query();
+        $query = \App\Models\Point::user();
         if ($this->name) {
             $query->where("name", "like", "%" . $this->name . "%");
         }

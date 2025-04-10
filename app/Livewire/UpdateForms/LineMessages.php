@@ -31,7 +31,7 @@ class LineMessages extends Component
     {
         $this->lineMessagesId = $id;
         //
-        $item = \App\Models\LineMessages::find($this->lineMessagesId);
+        $item = \App\Models\LineMessages::user()->find($this->lineMessagesId);
         $this->line_id = $item?->line_id ?? "";
         $this->status = $item?->status ?? "";
         $this->type = $item?->type ?? "";
@@ -54,7 +54,7 @@ class LineMessages extends Component
         //}
         $this->validate();
         //
-        $item = \App\Models\LineMessages::findOrNew($this->lineMessagesId);
+        $item = \App\Models\LineMessages::user()->findOrNew($this->lineMessagesId);
         $item->line_id = $this->line_id;
         $item->status = $this->status;
         $item->type = $this->type;

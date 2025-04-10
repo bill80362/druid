@@ -41,7 +41,7 @@ class Coupon extends Component
         $shoppingCard = ShoppingCart::where("user_id", auth()->user()->id)->firstOrNew();
         $this->member_id = $shoppingCard->data["member_id"]??"";
         //
-        $query = \App\Models\Coupon::query();
+        $query = \App\Models\Coupon::user();
         if ($this->name) {
             $query->where("name", "like", "%" . $this->name . "%");
         }

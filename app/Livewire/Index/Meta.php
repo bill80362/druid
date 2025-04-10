@@ -27,7 +27,7 @@ class Meta extends Component
     public function render()
     {
         //
-        $query = \App\Models\Meta::query();
+        $query = \App\Models\Meta::user();
         if ($this->name) {
             $query->where("name", "like", "%" . $this->name . "%");
         }

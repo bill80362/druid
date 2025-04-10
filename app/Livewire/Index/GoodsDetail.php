@@ -34,7 +34,7 @@ class GoodsDetail extends Component
     public function render()
     {
         //
-        $query = \App\Models\GoodsDetail::query();
+        $query = \App\Models\GoodsDetail::user();
         if ($this->name) {
             $query->where("name", "like", "%" . $this->name . "%");
         }

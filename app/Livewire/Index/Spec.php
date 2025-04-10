@@ -27,7 +27,7 @@ class Spec extends Component
     public function render()
     {
         //
-        $query = \App\Models\Spec::query();
+        $query = \App\Models\Spec::user();
         if ($this->name) {
             $query->where("name", "like", "%" . $this->name . "%");
         }

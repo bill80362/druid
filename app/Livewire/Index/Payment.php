@@ -31,7 +31,7 @@ class Payment extends Component
     public function render()
     {
         //
-        $query = \App\Models\Payment::query();
+        $query = \App\Models\Payment::user();
         if ($this->name) {
             $query->where("name", "like", "%" . $this->name . "%");
         }

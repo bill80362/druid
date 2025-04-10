@@ -22,7 +22,7 @@ class Reply extends Component
     {
         $this->replyId = $id;
         //
-        $item = \App\Models\Reply::find($this->replyId);
+        $item = \App\Models\Reply::user()->find($this->replyId);
         $this->name = $item?->name ?? "";
         $this->content = $item?->content ?? "";
     }
@@ -40,7 +40,7 @@ class Reply extends Component
         //}
         $this->validate();
         //
-        $item = \App\Models\Reply::findOrNew($this->replyId);
+        $item = \App\Models\Reply::user()->findOrNew($this->replyId);
         $item->name = $this->name;
         $item->content = $this->content;
         $item->save();

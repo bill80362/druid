@@ -47,7 +47,7 @@ class Goods extends Component
     {
         $this->goodsId = $id;
         //載入商品
-        $item = \App\Models\Goods::with([
+        $item = \App\Models\Goods::user()->with([
             "specs.specOptions",
             "goodsDetails.specs",
             "goodsDetails.specOptions",
@@ -128,7 +128,7 @@ class Goods extends Component
     {
         $this->validate();
         //
-        $item = \App\Models\Goods::with(["specs"])->findOrNew($this->goodsId);
+        $item = \App\Models\Goods::user()->with(["specs"])->findOrNew($this->goodsId);
         $item->name = $this->name;
         $item->sku = $this->sku;
         $item->price = $this->price;
@@ -169,7 +169,7 @@ class Goods extends Component
     public function resortPhotos(): bool
     {
         $updateItems = [];
-        $item = \App\Models\Goods::with([
+        $item = \App\Models\Goods::user()->with([
             "goodsPhotos" => fn($q) => $q->orderBy('sort'),
         ])->find($this->goodsId);
         foreach ($item?->goodsPhotos ?? [] as $newSort => $goodsPhotoItem) {
@@ -182,7 +182,7 @@ class Goods extends Component
 
     public function upPhoto(GoodsPhoto $goodsPhoto)
     {
-        $item = \App\Models\Goods::with([
+        $item = \App\Models\Goods::user()->with([
             "goodsPhotos" => fn($q) => $q->orderBy('sort'),
         ])->find($this->goodsId);
         //
@@ -211,7 +211,7 @@ class Goods extends Component
 
     public function downPhoto(GoodsPhoto $goodsPhoto)
     {
-        $item = \App\Models\Goods::with([
+        $item = \App\Models\Goods::user()->with([
             "goodsPhotos" => fn($q) => $q->orderBy('sort'),
         ])->find($this->goodsId);
         //
@@ -257,7 +257,7 @@ class Goods extends Component
     {
         //
         foreach ($this->details as $item) {
-            $goodsDetail = GoodsDetail::with(["specs", "specOptions"])->find($item["id"]);
+            $goodsDetail = GoodsDetail::user()->with(["specs", "specOptions"])->find($item["id"]);
             $goodsDetail->name = $item["name"];
             $goodsDetail->sku = $item["sku"];
             $goodsDetail->price = $item["price"];
@@ -271,7 +271,7 @@ class Goods extends Component
     {
         if (empty($this->detailCanBuilds[$key]["sku"])) return;
         //
-        $detail = GoodsDetail::where("sku", $this->detailCanBuilds[$key]["sku"])->firstOrNew();
+        $detail = GoodsDetail::user()->where("sku", $this->detailCanBuilds[$key]["sku"])->firstOrNew();
         $detail->sku = $this->detailCanBuilds[$key]["sku"];
         $detail->name = $this->detailCanBuilds[$key]["name"];
         $detail->price = $this->detailCanBuilds[$key]["price"];
@@ -288,7 +288,7 @@ class Goods extends Component
         }
         $detail->specs()->sync($detailSpec);
         //載入商品
-        $item = \App\Models\Goods::with([
+        $item = \App\Models\Goods::user()->with([
             "specs.specOptions",
             "goodsDetails.specs",
             "goodsDetails.specOptions",
@@ -303,7 +303,7 @@ class Goods extends Component
     {
         //
         return view('livewire.update-forms.goods', [
-            "specOptions" => \App\Models\Spec::get(),
+            "specOptions" => \App\Models\Spec::user()->get(),
         ]);
     }
 

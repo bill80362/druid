@@ -27,7 +27,7 @@ class Point extends Component
     {
         $this->pointId = $id;
         //
-        $item = \App\Models\Point::find($this->pointId);
+        $item = \App\Models\Point::user()->find($this->pointId);
         $this->name = $item?->name ?? "";
         $this->point = $item?->point ?? "";
         $this->member_id = $item?->member_id ?? "";
@@ -48,7 +48,7 @@ class Point extends Component
         //}
         $this->validate();
         //
-        $item = \App\Models\Point::findOrNew($this->pointId);
+        $item = \App\Models\Point::user()->findOrNew($this->pointId);
         $item->name = $this->name;
         $item->point = $this->point;
         $item->member_id = (int)$this->member_id;

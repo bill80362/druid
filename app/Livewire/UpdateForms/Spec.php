@@ -21,7 +21,7 @@ class Spec extends Component
     {
         $this->specId = $id;
         //
-        $item = \App\Models\Spec::find($this->specId);
+        $item = \App\Models\Spec::user()->find($this->specId);
         $this->name = $item?->name ?? "";
         $this->content = $item?->content ?? "";
     }
@@ -39,7 +39,7 @@ class Spec extends Component
         //}
         $this->validate();
         //
-        $item = \App\Models\Spec::findOrNew($this->specId);
+        $item = \App\Models\Spec::user()->findOrNew($this->specId);
         $item->name = $this->name;
         $item->content = $this->content;
         $item->save();

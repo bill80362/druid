@@ -27,7 +27,7 @@ class Meta extends Component
     {
         $this->metaId = $id;
         //
-        $item = \App\Models\Meta::find($this->metaId);
+        $item = \App\Models\Meta::user()->find($this->metaId);
         $this->name = $item?->name ?? "";
         $this->status = $item?->status ?? "";
         $this->page_id = $item?->page_id ?? "";
@@ -48,7 +48,7 @@ class Meta extends Component
         //}
         $this->validate();
         //
-        $item = \App\Models\Meta::findOrNew($this->metaId);
+        $item = \App\Models\Meta::user()->findOrNew($this->metaId);
         $item->name = $this->name;
         $item->status = $this->status;
         $item->page_id = $this->page_id;

@@ -31,7 +31,7 @@ class MetaMessages extends Component
     {
         $this->metaMessagesId = $id;
         //
-        $item = \App\Models\MetaMessage::find($this->metaMessagesId);
+        $item = \App\Models\MetaMessage::user()->find($this->metaMessagesId);
         $this->meta_id = $item?->meta_id ?? "";
         $this->status = $item?->status ?? "";
         $this->type = $item?->type ?? "";
@@ -54,7 +54,7 @@ class MetaMessages extends Component
         //}
         $this->validate();
         //
-        $item = \App\Models\MetaMessage::findOrNew($this->metaMessagesId);
+        $item = \App\Models\MetaMessage::user()->findOrNew($this->metaMessagesId);
         $item->meta_id = $this->meta_id;
         $item->status = $this->status;
         $item->type = $this->type;

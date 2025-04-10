@@ -25,7 +25,7 @@ class Line extends Component
     {
         $this->lineId = $id;
         //
-        $item = \App\Models\Line::find($this->lineId);
+        $item = \App\Models\Line::user()->find($this->lineId);
         $this->name = $item?->name ?? "";
         $this->status = $item?->status ?? "";
         $this->secret = $item?->secret ?? "";
@@ -45,7 +45,7 @@ class Line extends Component
         //}
         $this->validate();
         //
-        $item = \App\Models\Line::findOrNew($this->lineId);
+        $item = \App\Models\Line::user()->findOrNew($this->lineId);
         $item->name = $this->name;
         $item->status = $this->status;
         $item->secret = $this->secret;

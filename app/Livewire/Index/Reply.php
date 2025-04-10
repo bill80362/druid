@@ -27,7 +27,7 @@ class Reply extends Component
     public function render()
     {
         //
-        $query = \App\Models\Reply::query();
+        $query = \App\Models\Reply::user();
         if ($this->name) {
             $query->where("name", "like", "%" . $this->name . "%");
         }

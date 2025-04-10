@@ -33,7 +33,7 @@ class Coupon extends Component
     {
         $this->couponId = $id;
         //
-        $item = \App\Models\Coupon::find($this->couponId);
+        $item = \App\Models\Coupon::user()->find($this->couponId);
         $this->name = $item?->name ?? "";
         $this->coupon_code = $item?->coupon_code ?? "";
         $this->status = $item?->status ?? "Y";
@@ -57,7 +57,7 @@ class Coupon extends Component
         //}
         $this->validate();
         //
-        $item = \App\Models\Coupon::findOrNew($this->couponId);
+        $item = \App\Models\Coupon::user()->findOrNew($this->couponId);
         $item->name = $this->name;
         $item->coupon_code = $this->coupon_code;
         $item->status = $this->status;

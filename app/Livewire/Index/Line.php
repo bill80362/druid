@@ -27,7 +27,7 @@ class Line extends Component
     public function render()
     {
         //
-        $query = \App\Models\Line::query();
+        $query = \App\Models\Line::user();
         if ($this->name) {
             $query->where("name", "like", "%" . $this->name . "%");
         }

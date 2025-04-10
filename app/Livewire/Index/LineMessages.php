@@ -27,7 +27,7 @@ class LineMessages extends Component
     public function render()
     {
         //
-        $query = \App\Models\LineMessages::query();
+        $query = \App\Models\LineMessages::user();
         if ($this->message) {
             $query->where("message", "like", "%" . $this->message . "%");
         }

@@ -27,7 +27,7 @@ class MetaMessages extends Component
     public function render()
     {
         //
-        $query = \App\Models\MetaMessage::query();
+        $query = \App\Models\MetaMessage::user();
         if ($this->message) {
             $query->where("message", "like", "%" . $this->message . "%");
         }

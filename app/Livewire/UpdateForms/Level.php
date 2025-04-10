@@ -27,7 +27,7 @@ class Level extends Component
     {
         $this->levelId = $id;
         //
-        $item = \App\Models\Level::find($this->levelId);
+        $item = \App\Models\Level::user()->find($this->levelId);
         $this->name = $item?->name ?? "";
         $this->sort = $item?->sort ?? "";
         $this->upgrade = $item?->upgrade ?? "";
@@ -51,7 +51,7 @@ class Level extends Component
         //}
         $this->validate();
         //
-        $item = \App\Models\Level::findOrNew($this->levelId);
+        $item = \App\Models\Level::user()->findOrNew($this->levelId);
         $item->name = $this->name;
         $item->sort = $this->sort;
         $item->upgrade = $this->upgrade;

@@ -31,7 +31,7 @@ class SpecOption extends Component
     public function render()
     {
         //
-        $query = \App\Models\SpecOption::query();
+        $query = \App\Models\SpecOption::user();
         if ($this->name) {
             $query->where("name", "like", "%" . $this->name . "%");
         }

@@ -27,7 +27,7 @@ class Order extends Component
     public function render()
     {
         //
-        $query = \App\Models\Order::query();
+        $query = \App\Models\Order::user();
         if ($this->name) {
             $query->where("name", "like", "%" . $this->name . "%");
         }

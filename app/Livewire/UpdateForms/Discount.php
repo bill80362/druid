@@ -47,7 +47,7 @@ class Discount extends Component
     {
         $this->discountId = $id;
         //
-        $item = \App\Models\Discount::find($this->discountId);
+        $item = \App\Models\Discount::user()->find($this->discountId);
         $this->name = $item?->name ?? "";
         $this->status = $item?->status ?? "Y";
         $this->discount_start = $item?->discount_start->format("Y-m-d") ?? date("Y-m-d");
@@ -78,7 +78,7 @@ class Discount extends Component
         //}
         $this->validate();
         //
-        $item = \App\Models\Discount::findOrNew($this->discountId);
+        $item = \App\Models\Discount::user()->findOrNew($this->discountId);
         $item->name = $this->name;
         $item->status = $this->status;
         $item->discount_start = $this->discount_start;

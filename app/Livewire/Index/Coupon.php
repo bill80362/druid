@@ -29,7 +29,7 @@ class Coupon extends Component
     public function render()
     {
         //
-        $query = \App\Models\Coupon::query();
+        $query = \App\Models\Coupon::user();
         if ($this->name) {
             $query->where("name", "like", "%" . $this->name . "%");
         }

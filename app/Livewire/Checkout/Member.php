@@ -41,7 +41,7 @@ class Member extends Component
     public function render()
     {
         //
-        $query = \App\Models\Member::query();
+        $query = \App\Models\Member::user();
         if ($this->name) {
             $query->where("name", "like", "%" . $this->name . "%");
         }

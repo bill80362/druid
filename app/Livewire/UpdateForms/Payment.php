@@ -29,7 +29,7 @@ class Payment extends Component
     {
         $this->paymentId = $id;
         //
-        $item = \App\Models\Payment::find($this->paymentId);
+        $item = \App\Models\Payment::user()->find($this->paymentId);
         $this->name = $item?->name ?? "";
         $this->status = $item?->status ?? "";
         $this->type = $item?->type ?? "N";
@@ -51,7 +51,7 @@ class Payment extends Component
         //}
         $this->validate();
         //
-        $item = \App\Models\Payment::findOrNew($this->paymentId);
+        $item = \App\Models\Payment::user()->findOrNew($this->paymentId);
         $item->name = $this->name;
         $item->status = $this->status;
         $item->type = $this->type;

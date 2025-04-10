@@ -27,7 +27,7 @@ class SpecOption extends Component
     {
         $this->specOptionId = $id;
         //
-        $item = \App\Models\SpecOption::with(["spec"])->find($this->specOptionId);
+        $item = \App\Models\SpecOption::user()->with(["spec"])->find($this->specOptionId);
         $this->name = $item?->name ?? "";
         $this->content = $item?->content ?? "";
         $this->status = $item?->status ?? "";
@@ -38,7 +38,7 @@ class SpecOption extends Component
     {
         $this->validate();
         //
-        $item = \App\Models\SpecOption::findOrNew($this->specOptionId);
+        $item = \App\Models\SpecOption::user()->findOrNew($this->specOptionId);
         $item->name = $this->name;
         $item->sku = $this->sku;
         $item->content = $this->content;

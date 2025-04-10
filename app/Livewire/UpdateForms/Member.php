@@ -41,7 +41,7 @@ class Member extends Component
     {
         $this->memberId = $id;
         //
-        $item = \App\Models\Member::with(["points"])->withSum('points','point')->find($this->memberId);
+        $item = \App\Models\Member::user()->with(["points"])->withSum('points','point')->find($this->memberId);
         $this->name = $item?->name ?? "";
         $this->status = $item?->status ?? "";
         $this->account = $item?->account ?? "";
@@ -69,7 +69,7 @@ class Member extends Component
         //}
         $this->validate();
         //
-        $item = \App\Models\Member::findOrNew($this->memberId);
+        $item = \App\Models\Member::user()->findOrNew($this->memberId);
         $item->name = $this->name;
         $item->status = $this->status;
         $item->account = $this->account;

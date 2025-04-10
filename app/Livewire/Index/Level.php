@@ -31,7 +31,7 @@ class Level extends Component
     public function render()
     {
         //
-        $query = \App\Models\Level::query();
+        $query = \App\Models\Level::user();
         if ($this->name) {
             $query->where("name", "like", "%" . $this->name . "%");
         }

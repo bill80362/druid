@@ -34,7 +34,7 @@ class GoodsDetail extends Component
     {
         $this->goodsDetailId = $id;
         //
-        $item = \App\Models\GoodsDetail::with(["specs","specOptions"])->find($this->goodsDetailId);
+        $item = \App\Models\GoodsDetail::user()->with(["specs","specOptions"])->find($this->goodsDetailId);
         $this->name = $item?->name ?? "";
         $this->sku = $item?->sku ?? "";
         $this->price = $item?->price ?? "";
@@ -47,7 +47,7 @@ class GoodsDetail extends Component
     {
         $this->validate();
         //
-        $item = \App\Models\GoodsDetail::findOrNew($this->goodsDetailId);
+        $item = \App\Models\GoodsDetail::user()->findOrNew($this->goodsDetailId);
         $item->name = $this->name;
         $item->sku = $this->sku;
         $item->price = $this->price;

@@ -27,7 +27,7 @@ class Discount extends Component
     public function render()
     {
         //
-        $query = \App\Models\Discount::query();
+        $query = \App\Models\Discount::user();
         if ($this->name) {
             $query->where("name", "like", "%" . $this->name . "%");
         }
