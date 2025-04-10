@@ -16,4 +16,8 @@ class UserModel extends Model
         });
         parent::booted();
     }
+    public function scopeUser($query)
+    {
+        return $query->where("user_id",auth()?->user()?->id);
+    }
 }
