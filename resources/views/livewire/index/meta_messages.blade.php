@@ -44,7 +44,7 @@
                                 {{ $item->member?->name }}
                             @else
                                 {{ $item->member_meta_id }}
-                                <button type="button" class="btn btn-sm btn-primary">綁定會員</button>
+                                <button type="button" class="btn btn-sm btn-primary">綁定已存在的會員</button>
                             @endif
                         </div>
                     </div>

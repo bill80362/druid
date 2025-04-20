@@ -9,10 +9,15 @@ class UserModel extends Model
     public static function booted(): void
     {
         static::creating(function($model){
-            $model->user_id = auth()?->user()?->id;
+            if(!$model->user_id){
+                $model->user_id = auth()?->user()?->id;
+            }
+
         });
         static::updating(function($model){
-            $model->user_id = auth()?->user()?->id;
+            if(!$model->user_id){
+                $model->user_id = auth()?->user()?->id;
+            }
         });
         parent::booted();
     }

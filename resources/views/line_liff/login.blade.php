@@ -55,7 +55,7 @@
                 // document.getElementById('userId').textContent = profile.userId;
                 // document.getElementById('displayName').textContent = profile.displayName;
                 //
-                window.location = '/line_liff/profile?userId='+profile.userId+'&name='+profile.displayName;
+                window.location = '/line_liff/profile/{{$line->user_id}}?userId='+profile.userId+'&name='+profile.displayName;
             })
             .catch(err => {
                 console.error('Error getting profile', err);
@@ -63,7 +63,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', function() {
-        const myLiffId = '2006864821-j4QwEwe3'; // Replace with your LIFF ID
+        const myLiffId = '{{$line->liff_id}}'; // Replace with your LIFF ID
         initializeLiff(myLiffId);
     });
 </script>

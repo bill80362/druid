@@ -23,6 +23,7 @@ class WebhookLineController extends Controller
         $line = Line::findOrFail($id);
 
         $lineMessages = new LineMessages();
+        $lineMessages->user_id = $line->user_id;
         $lineMessages->status = "I";
         $lineMessages->line_id = $line->id;
         $lineMessages->log = json_encode([
