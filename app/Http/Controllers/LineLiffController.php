@@ -22,14 +22,16 @@ use Illuminate\Http\Request;
 
 class LineLiffController extends Controller
 {
-    public function login($id)
+    public function login($slug)
     {
         return view('line_liff/login',[
-            "line" => Line::find($id),
+            "line" => Line::where("slug",$slug)->first(),
         ]);
     }
-    public function profile($id)
+    public function profile($slug)
     {
+        //
+        $id = Line::where("slug",$slug)->firstOrFail()->user_id;
         //
         $member = Member::with(["level"])->where("user_id",$id)->where("line_id",request()->get("userId"))->first();
         //
@@ -65,8 +67,10 @@ class LineLiffController extends Controller
         }
 
     }
-    public function register($id)
+    public function register($slug)
     {
+        //
+        $id = Line::where("slug",$slug)->firstOrFail()->user_id;
         //
         $memberExist = Member::where("phone",request()->get("phone"))->where("user_id",$id)->first();
         if($memberExist){

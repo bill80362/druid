@@ -16,15 +16,36 @@
                 </select>
                 <small class="text-danger">@error('status') {{ $message }} @enderror</small>
             </div>
+            <div class="mb-3 text-primary">
+                <h1>從Line console(https://developers.line.biz/console)複製過來</h1>
+            </div>
             <div class="mb-3">
-                <label class="form-label">secret</label>
+                <label class="form-label">專案 > Line Login > Basic settings > Channel secret</label>
                 <input type="text" class="form-control" wire:model="secret">
                 <small class="text-danger">@error('secret') {{ $message }} @enderror</small>
             </div>
             <div class="mb-3">
-                <label class="form-label">access_token</label>
+                <label class="form-label">專案 > Line Login > LIFF > LIFF ID</label>
+                <input type="text" class="form-control" wire:model="liff_id">
+                <small class="text-danger">@error('liff_id') {{ $message }} @enderror</small>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">專案 > Messaging API > Messaging API > Channel access token </label>
                 <input type="text" class="form-control" wire:model="access_token">
                 <small class="text-danger">@error('access_token') {{ $message }} @enderror</small>
+            </div>
+            <div class="mb-3 text-primary">
+                <h1>從這邊貼到Line Console</h1>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">專案 > Line Login > LIFF > Endpoint URL</label>
+                <input type="text" class="form-control" value="{{$slug?'https://goodbodytw.com/line_liff/login/'.$slug:''}}" disabled>
+                <small class="text-danger">@error('slug') {{ $message }} @enderror</small>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">專案 > Messaging API > Messaging API > Webhook URL </label>
+                <input type="text" class="form-control" value="{{$slug?'https://goodbodytw.com/api/webhook/line/'.$slug:''}}" disabled>
+                <small class="text-danger">@error('slug') {{ $message }} @enderror</small>
             </div>
             <div class="mb-3">
                 <div class="flex justify-content-between">

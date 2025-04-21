@@ -55,7 +55,7 @@
                 // document.getElementById('userId').textContent = profile.userId;
                 // document.getElementById('displayName').textContent = profile.displayName;
                 //
-                window.location = '/line_liff/profile/{{$line->user_id}}?userId='+profile.userId+'&name='+profile.displayName;
+                window.location = '/line_liff/profile/{{$line->slug}}?userId='+profile.userId+'&name='+profile.displayName;
             })
             .catch(err => {
                 console.error('Error getting profile', err);

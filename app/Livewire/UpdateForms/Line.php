@@ -18,6 +18,10 @@ class Line extends Component
     public string $secret = "";
     #[Validate([])]
     public string $access_token = "";
+    #[Validate([])]
+    public string $liff_id = "";
+    #[Validate([])]
+    public string $slug = "";
     //
     public string $actionMessage = "";
 
@@ -30,6 +34,8 @@ class Line extends Component
         $this->status = $item?->status ?? "";
         $this->secret = $item?->secret ?? "";
         $this->access_token = $item?->access_token ?? "";
+        $this->liff_id = $item?->liff_id ?? "";
+        $this->slug = $item?->slug ?? "";
     }
 
     public function submit()
@@ -50,6 +56,8 @@ class Line extends Component
         $item->status = $this->status;
         $item->secret = $this->secret;
         $item->access_token = $this->access_token;
+        $item->liff_id = $this->liff_id;
+//        $item->slug = $this->slug;
         $item->save();
         //
         if ($this->lineId) {

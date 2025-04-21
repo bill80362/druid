@@ -18,9 +18,9 @@ use Illuminate\Support\Facades\Response;
 
 class WebhookLineController extends Controller
 {
-    public function line(Request $request,$id)
+    public function line(Request $request,$slug)
     {
-        $line = Line::findOrFail($id);
+        $line = Line::where("slug",$slug)->firstOrFail();
 
         $lineMessages = new LineMessages();
         $lineMessages->user_id = $line->user_id;
@@ -117,9 +117,11 @@ class WebhookLineController extends Controller
 
         return response("OK");
     }
-    public function image($id,$image)
+    public function image($slug,$image)
     {
-        $line = Line::findOrFail($id);
+        $line = Line::where("slug",$slug)->firstOrFail();
+        //
+//        $line = Line::findOrFail($id);
         $http_response = Http::withToken($line->access_token)->get("https://api-data.line.me/v2/bot/message/{$image}/content");
         $response = Response::make($http_response->body());
         $response->header("content-type",$http_response->header("content-type"));

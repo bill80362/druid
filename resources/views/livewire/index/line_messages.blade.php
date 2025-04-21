@@ -30,7 +30,7 @@
                     <div class="message-content">
                         <div>
                             @if($item->type=="I")
-                                <img src="/api/line/image/{{$item->line_id}}/{{ $item->message }}" />
+                                <img src="/api/line/image/{{$item->line?->slug}}/{{ $item->message }}" />
                             @else
                                 {{ $item->message }}
                             @endif

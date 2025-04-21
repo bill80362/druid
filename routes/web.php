@@ -15,9 +15,9 @@ Route::view('info/service', 'info/service');
 Route::view('info/remove', 'info/remove');
 
 //line_liff
-Route::get('line_liff/login/{id}', [\App\Http\Controllers\LineLiffController::class, 'login'])->name("line.liff.login");;
-Route::get('line_liff/profile/{id}', [\App\Http\Controllers\LineLiffController::class, 'profile'])->name("line.liff.profile");
-Route::post('line_liff/register/{id}', [\App\Http\Controllers\LineLiffController::class, 'register'])->name("line.liff.register");
+Route::get('line_liff/login/{slug}', [\App\Http\Controllers\LineLiffController::class, 'login'])->name("line.liff.login")->whereUuid("slug");
+Route::get('line_liff/profile/{slug}', [\App\Http\Controllers\LineLiffController::class, 'profile'])->name("line.liff.profile")->whereUuid("slug");
+Route::post('line_liff/register/{slug}', [\App\Http\Controllers\LineLiffController::class, 'register'])->name("line.liff.register")->whereUuid("slug");
 
 //會員登入模擬
 Route::get('member/{id}', [\App\Http\Controllers\Front\MemberController::class, "member"]);
