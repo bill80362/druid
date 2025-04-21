@@ -6,7 +6,7 @@
             @csrf
             <div class="row">
                 <div class="col-6">
-                    <h3>設定</h3>
+                    <h3 class="text-primary">設定</h3>
                     <div class="mb-3">
                         <label class="form-label">狀態</label>
                         <select class="form-control" wire:model="status" >
@@ -27,7 +27,7 @@
                         </select>
                         <small class="text-danger">@error('level_id') {{ $message }} @enderror</small>
                     </div>
-                    <h3>基本資料</h3>
+                    <h3 class="text-primary">基本資料</h3>
                     <div class="mb-3">
                         <label class="form-label">名字</label>
                         <input type="text" class="form-control" wire:model="name">
@@ -55,13 +55,13 @@
                     </div>
                 </div>
                 <div class="col-6">
-                    <h3>第三方登入</h3>
+                    <h3 class="text-primary">第三方登入</h3>
                     <div class="mb-3">
                         <label class="form-label">LineID</label>
                         <input type="text" class="form-control" wire:model="line_id">
                         <small class="text-danger">@error('line_id') {{ $message }} @enderror</small>
                     </div>
-                    <h3>官網</h3>
+                    <h3 class="text-primary">官網</h3>
                     <div class="mb-3">
                         <label class="form-label">帳號</label>
                         <input type="text" class="form-control" wire:model="account">
