@@ -27,7 +27,7 @@ class CheckoutController extends Controller
     public function checkout(CheckoutService $checkoutService)
     {
         //系統設定
-        $setting = Setting::where("id", "1")->first();
+        $setting = Setting::user()->first();
         $systemSetting = $setting?->content;
         $pointToMoney = $systemSetting["point_to_money"] ?? 1;
         //購物車
@@ -41,10 +41,10 @@ class CheckoutController extends Controller
         //
         $nextLevel = null;
         if ($member?->level?->sort) {
-            $nextLevel = Level::where("sort", ">", $member?->level?->sort)->orderBy("sort")->first();
+            $nextLevel = Level::user()->where("sort", ">", $member?->level?->sort)->orderBy("sort")->first();
         }
         //折扣規則
-        $discounts = Discount::where("status", "Y")->where(function ($query) use ($member) {
+        $discounts = Discount::user()->where("status", "Y")->where(function ($query) use ($member) {
             $query->whereNull("level_id")->orWhere("level_id", $member?->level_id);
         })->orderBy("sort")->get();
         //優惠計算member_use_point
@@ -55,7 +55,7 @@ class CheckoutController extends Controller
         $memberUsePoint = $shoppingCard?->data["member_use_point"] ?? 0;
         //使用折扣碼
         $coupon_discount = 0;
-        $coupon = Coupon::where("status", "Y")
+        $coupon = Coupon::user()->where("status", "Y")
             ->where("discount_start", "<=", date("Y-m-d H:i:s"))
             ->where("discount_end", ">=", date("Y-m-d H:i:s"))
             ->find($shoppingCard?->data["coupon_id"] ?? "");
@@ -64,7 +64,7 @@ class CheckoutController extends Controller
         }elseif($coupon?->coupon_type=="R"){
             $coupon_discount = $shoppingCartGoodsItems?->sum("discount_price")*(100-(int)$coupon->discount_ratio)/100;
         }
-        $couponUseCheck = Order::where("status","<>","cancel")->where("member_id",$member?->id)->where("coupon_id",$coupon?->id)->count();
+        $couponUseCheck = Order::user()->where("status","<>","cancel")->where("member_id",$member?->id)->where("coupon_id",$coupon?->id)->count();
         //
         return view('checkout/checkout', [
             "shoppingCartGoodsItems" => $shoppingCartGoodsItems,
@@ -72,7 +72,7 @@ class CheckoutController extends Controller
             "shoppingCard" => $shoppingCard,
             "member" => $member,
             "nextLevel" => $nextLevel,
-            "paymentItems" => Payment::where("status", "Y")->orderBy("sort")->get(),
+            "paymentItems" => Payment::user()->where("status", "Y")->orderBy("sort")->get(),
             "discountLogs" => $discountLogs,
             "levelPoint" => $levelPoint,
             "memberUsePoint" => $memberUsePoint,
@@ -86,7 +86,7 @@ class CheckoutController extends Controller
     public function finish(CheckoutService $checkoutService,LevelService $levelService, Request $request)
     {
         //系統設定
-        $setting = Setting::where("id", "1")->first();
+        $setting = Setting::user()->first();
         $systemSetting = $setting?->content;
         $pointToMoney = $systemSetting["point_to_money"] ?? 1;
         //購物車
@@ -212,6 +212,7 @@ class CheckoutController extends Controller
             $pointItem->member_id = $member->id;
             $pointItem->order_id = $order->id;
             $pointItem->point = $levelPoint;
+            $pointItem->user_id = auth()->user()->id;
             $pointItem->save();
         }
         //清空購物車
@@ -255,7 +256,7 @@ class CheckoutController extends Controller
             return redirect()->route("checkout.checkout")->with("success", ["新增商品成功"]);
         } elseif (request()->get("event") == "刷入折扣碼") {
             //
-            $item = Coupon::where("status", "Y")
+            $item = Coupon::user()->where("status", "Y")
                 ->where("discount_start", "<=", date("Y-m-d H:i:s"))
                 ->where("discount_end", ">=", date("Y-m-d H:i:s"))
                 ->where("coupon_code", request()->get("event_data"))
@@ -270,7 +271,7 @@ class CheckoutController extends Controller
             if (empty($data["member_id"])) {
                 return back()->with("success", ["會員才能使用折扣碼"]);
             }
-            $couponUseCheck = Order::where("status","<>","cancel")->where("member_id",$data["member_id"])->where("coupon_id",$item?->id)->count();
+            $couponUseCheck = Order::user()->where("status","<>","cancel")->where("member_id",$data["member_id"])->where("coupon_id",$item?->id)->count();
             if ($couponUseCheck) {
                 return redirect()->route("checkout.checkout")->with("success", ["此會員已使用過優惠券，請移除才可結帳"]);
             }
@@ -283,7 +284,7 @@ class CheckoutController extends Controller
             //
             return redirect()->route("checkout.checkout")->with("success", ["新增優惠卷成功"]);
         } elseif (request()->get("event") == "刷入會員卡號") {
-            $item = Member::where("slug", request()->get("event_data"))->first();
+            $item = Member::user()->where("slug", request()->get("event_data"))->first();
             if (!$item) {
                 return back()->with("success", ["卡號異常"]);
             }
@@ -338,7 +339,7 @@ class CheckoutController extends Controller
     public function addPayment()
     {
         //
-        $item = Payment::find(request()->get("payment_id"));
+        $item = Payment::user()->find(request()->get("payment_id"));
         if (!$item) {
             return back()->with("success", ["支付方式異常"]);
         }

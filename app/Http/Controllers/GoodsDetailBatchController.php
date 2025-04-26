@@ -18,7 +18,7 @@ class GoodsDetailBatchController extends Controller
             abort(403);
         }
         //
-        $items = GoodsDetail::orderBy("sku")->get();
+        $items = GoodsDetail::user()->orderBy("sku")->get();
         //
         return view('goods_detail.batch',[
             "items" => $items,

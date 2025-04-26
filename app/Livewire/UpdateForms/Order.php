@@ -61,9 +61,9 @@ class Order extends Component
     {
         $this->orderId = $id;
         //系統設定
-        $setting = Setting::user()->where("id","1")->first();
+        $setting = Setting::user()->first();
         $systemSetting = $setting?->content;
-        $this->pointToMoney = (int)$systemSetting["point_to_money"]??1;
+        $this->pointToMoney = (int)($systemSetting["point_to_money"]??1);
         //
         $item = \App\Models\Order::user()->with(["member.level","points","orderPayments.payment","orderDetails.goodsDetail","coupon"])->find($this->orderId);
         $this->status = $item?->status ?? "";

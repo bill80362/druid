@@ -58,7 +58,7 @@ class WebhookLineController extends Controller
                         if(str_contains($replyContent,'{{')){
                             if(!$member){
                                 //系統設定
-                                $setting = Setting::where("id","1")->first();
+                                $setting = Setting::user()->first();
                                 $systemSetting = $setting?->content;
                                 $reply_without_register = $systemSetting["reply_without_register"]??"您的Line目前尚未綁定帳號，請先[綁定會員]或[建立新會員]";
                                 $replyContent = $reply_without_register;

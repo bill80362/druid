@@ -18,7 +18,7 @@ class SettingController extends Controller
         }
         //
         return view('setting.edit', [
-            "item" => Setting::find($id),
+            "item" => Setting::user()->first(),
         ]);
     }
 
@@ -30,8 +30,8 @@ class SettingController extends Controller
         if (! Gate::allows('系統設定管理_修改')) {
             abort(403);
         }
-        $setting = Setting::findOrNew($id);
-        $setting->id = $id;
+        $setting = Setting::user()->firstOrNew();
+        $setting->user_id = auth()->user()->id;
         $setting->name = "系統設定";
         $setting->content = [
             "point_to_money" => $request->get("point_to_money"),
