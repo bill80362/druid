@@ -40,6 +40,7 @@ class Payment extends Component
 
     public function submit()
     {
+        $this->actionMessage = "";
         //
         //if(!$this->paymentId){
         //    $this->validate([

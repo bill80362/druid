@@ -43,6 +43,7 @@ class LineMessages extends Component
 
     public function submit()
     {
+        $this->actionMessage = "";
         //
         //if(!$this->lineMessagesId){
         //    $this->validate([

@@ -37,6 +37,9 @@ class Level extends Component
 
     public function submit()
     {
+        //
+        $this->actionMessage = "";
+        //
         $this->validate([
             "sort" => ["unique:levels,sort,".$this->levelId],
         ]);

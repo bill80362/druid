@@ -84,12 +84,12 @@
                     <small class="text-danger">@error('event_type') {{ $message }} @enderror</small>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">滿額門檻</label>
+                    <label class="form-label">滿件門檻</label>
                     <input type="number" class="form-control" wire:model="event_count_threshold" step="1">
                     <small class="text-danger">@error('event_count_threshold') {{ $message }} @enderror</small>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">滿件門檻</label>
+                    <label class="form-label">滿額門檻</label>
                     <input type="number" class="form-control" wire:model="event_money_threshold" step="1">
                     <small class="text-danger">@error('event_money_threshold') {{ $message }} @enderror</small>
                 </div>

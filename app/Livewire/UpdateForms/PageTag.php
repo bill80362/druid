@@ -43,6 +43,8 @@ class PageTag extends Component
 
     public function submit()
     {
+        $this->actionMessage = "";
+        //
         $this->validate();
         //
         $item = \App\Models\PageTag::findOrNew($this->pageTagId);

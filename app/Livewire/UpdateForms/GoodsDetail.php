@@ -52,6 +52,9 @@ class GoodsDetail extends Component
 
     public function submit()
     {
+        //
+        $this->actionMessage = "";
+        //
         $this->validate();
         //
         $item = \App\Models\GoodsDetail::user()->findOrNew($this->goodsDetailId);

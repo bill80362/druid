@@ -28,6 +28,7 @@ class Spec extends Component
 
     public function submit()
     {
+        $this->actionMessage = "";
         //
         //if(!$this->specId){
         //    $this->validate([

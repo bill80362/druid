@@ -12,22 +12,29 @@ class Coupon extends Component
 
     #[Validate(['required','min:1','max:20'], as: '名稱')]
     public string $name = "";
-    #[Validate([])]
+//    #[Validate([])]
     public string $coupon_code = "";
     #[Validate([])]
     public string $status = "";
-    #[Validate([])]
+    #[Validate(["required","date"], as: "折扣時段開始")]
     public string $discount_start = "";
-    #[Validate([])]
+    #[Validate(["required","date","after_or_equal:discount_start"], as: "折扣時段結束")]
     public string $discount_end = "";
-    #[Validate([])]
+    #[Validate(["in:M,R"], as: '類型')]
     public string $coupon_type = "";
-    #[Validate([])]
+    #[Validate(["required_if:coupon_type,==,M","integer","min:1","max:2000"],as: '折抵多少錢', message: ["required_if"=>"當類型為折抵時候必填"])]
     public string $discount_money = "";
-    #[Validate([])]
+    #[Validate(["required_if:coupon_type,==,R","integer","min:50","max:100"],as: '打幾折%', message: ["required_if"=>"當類型為打折時候必填"])]
     public string $discount_ratio = "";
     //
     public string $actionMessage = "";
+    //
+    public function rules(): array
+    {
+        return [
+            'coupon_code' => 'required|unique:coupons,coupon_code,'.$this->couponId.',id',
+        ];
+    }
 
     public function mount($id)
     {
@@ -46,6 +53,7 @@ class Coupon extends Component
 
     public function submit()
     {
+        $this->actionMessage = "";
         //
         //if(!$this->couponId){
         //    $this->validate([
@@ -55,7 +63,7 @@ class Coupon extends Component
         //}else{
         //    $this->validate();
         //}
-        $this->validate();
+        $validated = $this->validate();
         //
         $item = \App\Models\Coupon::user()->findOrNew($this->couponId);
         $item->name = $this->name;

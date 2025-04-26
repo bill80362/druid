@@ -37,6 +37,7 @@ class Meta extends Component
 
     public function submit()
     {
+        $this->actionMessage = "";
         //
         //if(!$this->metaId){
         //    $this->validate([

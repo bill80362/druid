@@ -93,6 +93,7 @@ class Order extends Component
 
     public function submit()
     {
+        $this->actionMessage = "";
         //
         //if(!$this->orderId){
         //    $this->validate([

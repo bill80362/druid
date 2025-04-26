@@ -58,6 +58,9 @@ class LegalAttestLetter extends Component
 
     public function submit()
     {
+        //
+        $this->actionMessage = "";
+        //
         $this->validate();
         //
         $item = \App\Models\LegalAttestLetter::findOrNew($this->legalAttestLetterId);

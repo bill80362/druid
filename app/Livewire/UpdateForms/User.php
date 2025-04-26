@@ -34,6 +34,8 @@ class User extends Component
     public function submit()
     {
         //
+        $this->actionMessage = "";
+        //
         if(!$this->userId){
             $this->validate([
                 "name" => ["required"],

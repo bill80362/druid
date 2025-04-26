@@ -29,6 +29,7 @@ class Reply extends Component
 
     public function submit()
     {
+        $this->actionMessage = "";
         //
         //if(!$this->replyId){
         //    $this->validate([

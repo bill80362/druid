@@ -38,6 +38,8 @@ class Point extends Component
     public function submit()
     {
         //
+        $this->actionMessage = "";
+        //
         //if(!$this->pointId){
         //    $this->validate([
         //        "name" => ["required"],

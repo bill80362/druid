@@ -58,6 +58,7 @@ class Member extends Component
 
     public function submit()
     {
+        $this->actionMessage = "";
         //
         //if(!$this->memberId){
         //    $this->validate([

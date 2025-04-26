@@ -41,6 +41,8 @@ class Line extends Component
     public function submit()
     {
         //
+        $this->actionMessage = "";
+        //
         //if(!$this->lineId){
         //    $this->validate([
         //        "name" => ["required"],

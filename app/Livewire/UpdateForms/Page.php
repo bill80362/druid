@@ -38,6 +38,8 @@ class Page extends Component
 
     public function submit()
     {
+        $this->actionMessage = "";
+        //
         $this->validate();
         //
         $item = \App\Models\Page::findOrNew($this->pageId);

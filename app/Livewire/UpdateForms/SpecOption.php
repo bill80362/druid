@@ -36,6 +36,9 @@ class SpecOption extends Component
 
     public function submit()
     {
+        //
+        $this->actionMessage = "";
+        //
         $this->validate();
         //
         $item = \App\Models\SpecOption::user()->findOrNew($this->specOptionId);

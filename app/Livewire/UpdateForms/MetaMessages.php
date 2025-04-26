@@ -43,6 +43,7 @@ class MetaMessages extends Component
 
     public function submit()
     {
+        $this->actionMessage = "";
         //
         //if(!$this->metaMessagesId){
         //    $this->validate([

@@ -14,29 +14,39 @@ class Discount extends Component
     public string $name = "";
     #[Validate([])]
     public string $status = "";
-    #[Validate([])]
+    #[Validate(["required","date"], as: "折扣時段開始")]
     public string $discount_start = "";
-    #[Validate([])]
+    #[Validate(["required","date","after_or_equal:discount_start"], as: "折扣時段結束")]
     public string $discount_end = "";
-    #[Validate([])]
+    #[Validate(['required','integer','min:1',], as: '折扣計算順序')]
     public string $sort = "";
     #[Validate([])]
     public string $event_type = "";
     #[Validate([])]
     public string|null $level_id = "";
-    #[Validate([])]
+    #[Validate([
+        "required_if:event_type,==,C",
+        "required_if:event_type,==,E",
+        "required_if:event_type,==,B",
+        "integer","min:1",
+    ],as: '滿件門檻', message: ["required_if"=>"滿件門檻為必填"])]
     public string $event_count_threshold = "";
-    #[Validate([])]
+    #[Validate([
+        "required_if:event_type,==,M",
+        "required_if:event_type,==,E",
+        "required_if:event_type,==,B",
+        "integer","min:1",
+    ],as: '滿額門檻', message: ["required_if"=>"滿額門檻為必填"])]
     public string $event_money_threshold = "";
     #[Validate([])]
     public string $discount_goods_status = "";
     #[Validate([])]
     public string $discount_goods_sku = "";
-    #[Validate([])]
+    #[Validate(["in:M,R"], as: '類型')]
     public string $discount_type = "";
-    #[Validate([])]
+    #[Validate(["required_if:discount_type,==,M","integer","min:1","max:2000"],as: '折抵多少錢', message: ["required_if"=>"當類型為折抵時候必填"])]
     public string $discount_money = "";
-    #[Validate([])]
+    #[Validate(["required_if:discount_type,==,R","integer","min:50","max:100"],as: '打幾折%',message: ["required_if"=>"當類型為打折時候必填"])]
     public string $discount_ratio = "";
     #[Validate([])]
     public string $discount_static = "";
@@ -67,6 +77,8 @@ class Discount extends Component
 
     public function submit()
     {
+        //
+        $this->actionMessage = "";
         //
         //if(!$this->discountId){
         //    $this->validate([
