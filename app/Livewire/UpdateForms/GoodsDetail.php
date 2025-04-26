@@ -12,7 +12,7 @@ class GoodsDetail extends Component
 
     #[Validate(['required','min:1','max:20'], as: '名稱')]
     public string $name = "";
-    #[Validate(['required'], as: 'SKU')]
+
     public string $sku = "";
     #[Validate([], as: '價格')]
     public string $price = "";
@@ -22,6 +22,13 @@ class GoodsDetail extends Component
     public string $sort = "1";
     #[Validate([], as: '規格')]
     public array $spec_options = [];
+    //
+    public function rules(): array
+    {
+        return [
+            'sku' => 'required|unique:goods_details,sku,'.$this->goodsDetailId.',id',
+        ];
+    }
     //
     public array $statusText = [
         "Y" => "顯示",
