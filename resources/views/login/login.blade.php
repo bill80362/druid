@@ -61,7 +61,7 @@
 
         <button class="btn btn-primary w-100 py-2" type="submit">登入</button>
         <p class="mt-4 text-body-secondary">會員可透過LINE查詢會員相關資訊：</p>
-        <p class="text-body-secondary">請先加入Line <a class="text-danger" target="_blank" href="https://liff.line.me/2006864821-j4QwEwe3">@640niflo</a> 試用</p>
+        <p class="text-body-secondary">建議加入Line帳號 <a class="text-danger" target="_blank" href="https://liff.line.me/2006864821-j4QwEwe3">@640niflo</a>並且互動看看 </p>
         <p class="text-body-secondary">登入商家試用帳號：</p>
         <p class="text-body-secondary">demo</p>
         <p class="text-body-secondary">12345678</p>

@@ -16,7 +16,7 @@ class SpecSheet implements FromQuery, WithTitle , WithHeadings
     }
     public function query()
     {
-        return Spec::select(["id","name","content"]);
+        return Spec::user()->select(["id","name","content"]);
     }
     public function headings(): array
     {

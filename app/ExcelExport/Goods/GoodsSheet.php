@@ -16,7 +16,7 @@ class GoodsSheet implements FromQuery, WithTitle, WithHeadings
 
     public function query()
     {
-        return Goods::select(["id", "name", "sku", "price", "status", "sort", "content1"]);
+        return Goods::user()->select(["id", "name", "sku", "price", "status", "sort", "content1"]);
     }
 
     public function headings(): array

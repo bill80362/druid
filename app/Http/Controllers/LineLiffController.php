@@ -59,10 +59,12 @@ class LineLiffController extends Controller
                 "member" => $member,
                 "coupons" => $coupons,
                 "couponUsed" => $couponUsed,
+                "slug" => $slug,
             ]);
         }else{
             return view('line_liff/register',[
                 "user_id" => $id,
+                "slug" => $slug,
             ]);
         }
 
@@ -86,7 +88,7 @@ class LineLiffController extends Controller
         $member->birthday = request()->get("birthday");
         $member->save();
         //
-        return redirect()->to("/line_liff/profile/{$id}?userId=".$member->line_id);
+        return redirect()->to("/line_liff/profile/{$slug}?userId=".$member->line_id);
     }
 
 

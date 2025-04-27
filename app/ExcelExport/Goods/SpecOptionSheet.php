@@ -17,7 +17,7 @@ class SpecOptionSheet implements FromQuery, WithTitle , WithHeadings
     }
     public function query()
     {
-        return SpecOption::select(["id","name","sku","content","status","sort","spec_id"]);
+        return SpecOption::user()->select(["id","name","sku","content","status","sort","spec_id"]);
     }
     public function headings(): array
     {

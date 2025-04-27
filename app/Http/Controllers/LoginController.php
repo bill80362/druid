@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class LoginController extends Controller
 {
@@ -17,6 +18,9 @@ class LoginController extends Controller
     }
     public function loginAction(Request $request)
     {
+        //
+        Log::info($request->getClientIp());
+        //
         $credentials = $request->validate([
             'email' => ['required'],
             'password' => ['required'],

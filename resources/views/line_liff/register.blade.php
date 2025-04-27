@@ -27,7 +27,7 @@
 {{--                    <div class="alert alert-danger text-center" role="alert">--}}
 {{--                        會員手機已註冊過了，請告知店家協助綁定帳號即可--}}
 {{--                    </div>--}}
-                    <form action="/line_liff/register/{{$user_id}}" method="post">
+                    <form action="/line_liff/register/{{$slug}}" method="post">
                         @csrf
                         <input type="hidden" name="line_id" value="{{request()->get("userId")}}">
                         <div class="mb-3">

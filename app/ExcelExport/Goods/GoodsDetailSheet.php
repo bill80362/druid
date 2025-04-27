@@ -17,7 +17,7 @@ class GoodsDetailSheet implements FromGenerator, WithTitle, WithHeadings
 
     public function generator(): Generator
     {
-        $goodsDetails = GoodsDetail::with("specOptions")->get();
+        $goodsDetails = GoodsDetail::user()->with("specOptions")->get();
         foreach ($goodsDetails as $item) {
             yield [
                 $item->id,

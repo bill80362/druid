@@ -12,6 +12,17 @@
 
         <!-- Styles -->
         @vite(['resources/css/app.scss', 'resources/js/app.js'])
+
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-9TY90628RM"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-9TY90628RM');
+        </script>
+
     </head>
     <body class="antialiased font-sans">
         <div class=" text-black/50 dark:bg-black dark:text-white/50" style="background-color: #a0aec0;">
@@ -28,6 +39,11 @@
                     </header>
 
                     <main class="mt-6">
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <h1 class="display-4 fw-normal">右上方[登入]，試用看看</h1>
+                            </div>
+                        </div>
                         <div class="row">
                             <x-info.intro />
                             <div>

@@ -17,7 +17,7 @@ class GoodsPhotoSheet implements FromQuery, WithTitle , WithHeadings
     }
     public function query()
     {
-        return GoodsPhoto::select(["id","goods_id","name","sort"]);
+        return GoodsPhoto::user()->select(["id","goods_id","name","sort"]);
     }
     public function headings(): array
     {
