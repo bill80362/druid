@@ -14,11 +14,11 @@ class GoodsDetail extends Component
     public string $name = "";
 
     public string $sku = "";
-    #[Validate([], as: '價格')]
+    #[Validate(['required','integer','min:1'], as: '價格')]
     public string $price = "";
     #[Validate(['required'], as: '狀態')]
     public string $status = "Y";
-    #[Validate(['required'], as: '排序')]
+    #[Validate(['required','integer','min:1'], as: '排序')]
     public string $sort = "1";
     #[Validate([], as: '規格')]
     public array $spec_options = [];

@@ -24,7 +24,7 @@
                             </table>
                         </div>
                         <div class="p-2 font-semibold text-xl text-gray-800 leading-tight">
-                            <h2>每日營業額</h2>
+                            <h2>每日業績:營業額(訂單數)</h2>
                         </div>
                         <x-full-calendar-order :dayReports="$dayReports"></x-full-calendar-order>
                     </div>

@@ -1,8 +1,9 @@
 <div class="row">
     <div class="col-12">
         <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
-            <h1 class="display-4 fw-normal">每年Ｘ元</h1>
-            <p class="fs-5 text-muted">使用瀏覽器操作，支援電腦、平板、手機，簡單快速</p>
+            <h1 class="display-4 fw-normal">每年5000元</h1>
+            <p class="fs-5 text-muted">系統透過瀏覽器操作，所以支援電腦、平板、手機，不挑設備</p>
+            <p class="fs-5 text-muted">自備一台低成本平板或手機就能開始囉</p>
         </div>
         <div class="row row-cols-1 row-cols-md-4 mb-3">
             <div class="col">
