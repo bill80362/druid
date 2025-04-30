@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Goods;
 use App\Models\GoodsDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
-use function PHPUnit\Framework\isInt;
-use function PHPUnit\Framework\isNumeric;
 
 class GoodsDetailBatchController extends Controller
 {
@@ -54,7 +51,7 @@ class GoodsDetailBatchController extends Controller
                 $errorMessage[] = "商品".($item["sku"]??"")."錯誤，價格為必填";
                 continue;
             }
-            if(!isInt($item["price"]) || $item["price"]<=0){
+            if(!is_numeric($item["price"]) || $item["price"]<=0){
                 $errorMessage[] = "商品".($item["sku"]??"")."錯誤，價格必須為正整數";
                 continue;
             }
