@@ -2,6 +2,19 @@
 
 use Illuminate\Support\Facades\Route;
 
+//我是保母
+Route::get('babysitter/login/redirect', [\App\Http\Controllers\Babysitter\BabysitterLoginController::class, 'loginRedirect'])->name("babysitter.login.redirect");
+Route::get('babysitter/login/login', [\App\Http\Controllers\Babysitter\BabysitterLoginController::class, 'login'])->name("babysitter.login");
+Route::post('babysitter/login/submit', [\App\Http\Controllers\Babysitter\BabysitterLoginController::class, 'loginSubmit'])->name("babysitter.login.submit");
+//找保母
+Route::get('babysitter/search/redirect', [\App\Http\Controllers\Babysitter\BabysitterSearchController::class, 'searchRedirect'])->name("babysitter.search.redirect");
+Route::get('babysitter/search/search', [\App\Http\Controllers\Babysitter\BabysitterSearchController::class, 'search'])->name("babysitter.search");
+Route::post('babysitter/search/submit', [\App\Http\Controllers\Babysitter\BabysitterSearchController::class, 'searchSubmit'])->name("babysitter.search.submit");
+//保母 webhook
+Route::post('babysitter/webhook', [\App\Http\Controllers\LineLiffController::class, 'webhook'])->name("babysitter.login");
+
+
+
 //首頁
 Route::view('/', 'welcome');
 
