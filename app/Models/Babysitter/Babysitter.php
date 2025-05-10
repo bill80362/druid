@@ -8,6 +8,10 @@ use Illuminate\Support\Str;
 
 class Babysitter extends Model
 {
+    protected $attributes = [
+        "status" => "Y",
+        "apply_money" => "Y",
+    ];
     public static function booted(): void
     {
         static::creating(function($model){
@@ -18,6 +22,6 @@ class Babysitter extends Model
 
     public function services(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(BabysitterService::class, PivotDiscountLevel::class);
+        return $this->belongsToMany(BabysitterService::class, PivotBabysitterService::class);
     }
 }
