@@ -45,13 +45,15 @@
                 <label>縣市區域</label>
                 <div class="input-group">
                     <select class="form-control" name="city" id="city" style="width: 120px;" onchange="updateRegionOptions(this.value)">
+                        <option value="0">請選擇</option>
                         @foreach(\App\Models\City::get() as $value)
                             <option value="{{$value->id}}" @selected($value->id==$item->city)>{{$value->name}}</option>
                         @endforeach
                     </select>
                     <select class="form-control" name="region" id="region" style="width: 120px;">
-                        @foreach(\App\Models\Region::where("city_id",$item->city)->get() as $value)
-                            <option value="{{$value->id}}" @selected($value->id=$item->region)>{{$value->name}}</option>
+                    <option value="0">請選擇</option>
+                    @foreach(\App\Models\Region::where("city_id",$item->city)->get() as $value)
+                            <option value="{{$value->id}}" @selected($value->id==$item->region)>{{$value->name}}</option>
                         @endforeach
                     </select>
                 </div>

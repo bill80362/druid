@@ -42,6 +42,8 @@ class BabysitterLoginController extends Controller
         $item->line_id = request('userId');
         $item->name = request('name');
         $item->cellphone = request('cellphone');
+        $item->city = request('city');
+        $item->region = request('region');
         $item->address = request('address');
         $item->save();
         //
