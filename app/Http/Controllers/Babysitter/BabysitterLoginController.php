@@ -39,6 +39,7 @@ class BabysitterLoginController extends Controller
     {
         //
         $item = Babysitter::where("line_id",request('userId'))->firstOrNew();
+        $item->status = request('status');
         $item->line_id = request('userId');
         $item->name = request('name');
         $item->cellphone = request('cellphone');

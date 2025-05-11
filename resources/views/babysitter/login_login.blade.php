@@ -32,6 +32,17 @@
         </div>
         <div class="card-body">
             <div class="form-group mb-2">
+                <label>是否被搜尋到</label>
+                <div>
+                    @foreach(\App\Enum\Babysitter\BabySitterStatusEnum::cases() as $enum)
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="status{{$enum}}" name="status" value="{{$enum}}" @checked($item->status==$enum->value)>
+                            <label class="form-check-label" for="status{{$enum}}">{{$enum->text()}}</label>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+            <div class="form-group mb-2">
                 <label>名稱</label>
                 <input type="text" class="form-control" name="name" value="{{$item->name}}">
                 <small class="text-danger">@error('name') {{ $message['name']??"" }} @enderror</small>

@@ -14,7 +14,7 @@ class BabysitterSearchController extends Controller
     public function search()
     {
         //
-        $paginator = Babysitter::with(["services"])->paginate();
+        $paginator = Babysitter::where("status","Y")->with(["services"])->paginate();
         //
         return view('babysitter/search_search',[
             "paginator" => $paginator,
