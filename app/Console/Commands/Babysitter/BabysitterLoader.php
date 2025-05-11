@@ -40,6 +40,7 @@ class BabysitterLoader extends Command
         }
         $html = $this->post($csrf, $cookieString );
         //
+        dd($html);
 
     }
 

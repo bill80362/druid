@@ -42,7 +42,24 @@
                 <small class="text-danger">@error('cellphone') {{ $message['cellphone']??"" }} @enderror</small>
             </div>
             <div class="form-group mb-2">
-                <label>地址</label>
+                <label>縣市區域</label>
+                <div class="input-group">
+                    <select class="form-control" name="city" id="city" style="width: 120px;" onchange="updateRegionOptions(this.value)">
+                        @foreach(\App\Models\City::get() as $value)
+                            <option value="{{$value->id}}" @selected($value->id==$item->city)>{{$value->name}}</option>
+                        @endforeach
+                    </select>
+                    <select class="form-control" name="region" id="region" style="width: 120px;">
+                        @foreach(\App\Models\Region::where("city_id",$item->city)->get() as $value)
+                            <option value="{{$value->id}}" @selected($value->id=$item->region)>{{$value->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <small class="text-danger">@error('city') {{ $message['city']??"" }} @enderror</small>
+                <small class="text-danger">@error('region') {{ $message['region']??"" }} @enderror</small>
+            </div>
+            <div class="form-group mb-2">
+                <label>詳細地址</label>
                 <input type="text" class="form-control" name="address" value="{{$item->address}}">
                 <small class="text-danger">@error('address') {{ $message['address']??"" }} @enderror</small>
             </div>
@@ -91,7 +108,23 @@
 
 
 <script>
+    const cityRegion = @json($cities);
 
+    function updateRegionOptions(cityId) {
+        const regionSelect = document.getElementById('region');
+        regionSelect.innerHTML = ''; // Clear existing options
+
+        cityRegion.forEach(city => {
+            if (city.id == cityId) {
+                city.regions.forEach(region => {
+                    const option = document.createElement('option');
+                    option.value = region.id;
+                    option.textContent = region.name;
+                    regionSelect.appendChild(option);
+                });
+            }
+        });
+    }
 </script>
 </body>
 </html>

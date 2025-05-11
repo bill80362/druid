@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Babysitter;
 
 use App\Http\Controllers\Controller;
 use App\Models\Babysitter\Babysitter;
+use App\Models\City;
+use function Laravel\Prompts\select;
 
 class BabysitterLoginController extends Controller
 {
@@ -25,8 +27,11 @@ class BabysitterLoginController extends Controller
             $item->name = $name;
         }
         //
+        $cities = City::select(["id","name"])->with(["regions"])->get();
+        //
         return view('babysitter/login_login',[
             "item" => $item,
+            "cities" => $cities,
         ]);
     }
     //POST babysitter/login/login
