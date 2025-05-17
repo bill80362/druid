@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>我的保母資料</title>
+    <title>找保母</title>
     @vite(['resources/css/app.scss', 'resources/js/app.js'])
 </head>
 <body>
@@ -47,13 +47,13 @@
                                     <div>{{$item->name}}</div>
                                     <div>
                                         @foreach($item?->services??[] as $service)
-                                            <span>{{$service->name}}</span>
+                                            <span class="badge bg-primary">{{$service->name}}</span>
                                         @endforeach
                                     </div>
                                 </div>
                                 <h6 class="card-subtitle mb-2 text-muted">{{$item->address}}</h6>
                                 <p class="card-text my-2">{{$item->info}}</p>
-                                <button type="button" class="btn btn-sm btn-primary card-link">收藏</button>
+                                <button type="button" class="btn btn-sm btn-primary card-link">追蹤</button>
                                 @if($item->link)
                                     <a href="{{$item->link}}" class="card-link">詳細資訊</a>
                                 @endif
