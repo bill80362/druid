@@ -33,7 +33,7 @@
                     找保母
                 </div>
                 <div>
-                    <button type="button" class="btn btn-sm btn-outline-primary">搜尋條件</button>
+                    <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">搜尋條件</button>
                 </div>
             </div>
         </div>
@@ -52,8 +52,9 @@
                                     </div>
                                 </div>
                                 <h6 class="card-subtitle mb-2 text-muted">{{$item->address}}</h6>
+                                <p class="card-text my-2">{{$item->addressCity?->name}}{{$item->addressRegion?->name}}{{$item->address}}</p>
                                 <p class="card-text my-2">{{$item->info}}</p>
-                                <button type="button" class="btn btn-sm btn-primary card-link">追蹤</button>
+{{--                                <button type="button" class="btn btn-sm btn-primary card-link">追蹤</button>--}}
                                 @if($item->link)
                                     <a href="{{$item->link}}" class="card-link">詳細資訊</a>
                                 @endif
@@ -78,9 +79,71 @@
     </div>
 </form>
 
+<!-- Modal -->
+<form>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">篩選</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group mb-2">
+                        <label>地區</label>
+                        <div class="input-group">
+                            <select class="form-control" name="filter_city" id="city" style="width: 120px;" onchange="updateRegionOptions(this.value)">
+                                <option value="0">不限制</option>
+                                @foreach(\App\Models\City::get() as $value)
+                                    <option value="{{$value->id}}" @selected($value->id==request()->get("filter_city"))>{{$value->name}}</option>
+                                @endforeach
+                            </select>
+                            <select class="form-control" name="filter_region" id="region" style="width: 120px;">
+                                <option value="0">不限制</option>
+                                @foreach(\App\Models\Region::where("city_id",request()->get("filter_city"))->get() as $value)
+                                    <option value="{{$value->id}}" @selected($value->id==request()->get("filter_region"))>{{$value->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <small class="text-danger">@error('filter_city') {{ $message['filter_city']??"" }} @enderror</small>
+                        <small class="text-danger">@error('filter_region') {{ $message['filter_region']??"" }} @enderror</small>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="{{route('babysitter.search')}}" class="btn btn-secondary" data-bs-dismiss="modal">清空</a>
+                    <button type="submit" class="btn btn-primary">篩選</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
 
 <script>
+    const cityRegion = @json($cities);
 
+    function updateRegionOptions(cityId) {
+        const regionSelect = document.getElementById('region');
+        regionSelect.innerHTML = ''; // Clear existing options
+
+        //
+        const option = document.createElement('option');
+        option.value = '0';
+        option.textContent = '不限制';
+        regionSelect.appendChild(option)
+        //
+        cityRegion.forEach(city => {
+            if (city.id == cityId) {
+                city.regions.forEach(region => {
+                    const option = document.createElement('option');
+                    option.value = region.id;
+                    option.textContent = region.name;
+                    regionSelect.appendChild(option);
+                });
+            }
+        });
+    }
 </script>
 </body>
 </html>
