@@ -39,8 +39,9 @@
         </div>
         <div class="card-body">
             <div class="row">
+                @foreach($paginator as $item)
                 <div class="col-12 col-md-6 col-lg-3">
-                    @foreach($paginator as $item)
+
                         <div class="card mb-2">
                             <div class="card-body">
                                 <div class="flex justify-content-between mb-2">
@@ -56,12 +57,13 @@
                                 <p class="card-text my-2">{{$item->info}}</p>
 {{--                                <button type="button" class="btn btn-sm btn-primary card-link">追蹤</button>--}}
                                 @if($item->url)
-                                    <a href="{{$item->url}}" class="card-link">詳細資訊</a>
+                                    <a href="{{$item->url}}" class="card-link btn btn-sm btn-outline-primary">詳細資訊</a>
                                 @endif
                             </div>
                         </div>
-                    @endforeach
+
                 </div>
+                @endforeach
             </div>
             <div class="row">
                 <div class="col-12">
@@ -110,8 +112,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a href="{{route('babysitter.search')}}" class="btn btn-secondary">清空</a>
                     <button type="submit" class="btn btn-primary">篩選</button>
+                    <a href="{{route('babysitter.search')}}" class="btn btn-secondary">清空</a>
                 </div>
             </div>
         </div>
