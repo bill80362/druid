@@ -110,7 +110,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a href="{{route('babysitter.search')}}" class="btn btn-secondary" data-bs-dismiss="modal">清空</a>
+                    <a href="{{route('babysitter.search')}}" class="btn btn-secondary">清空</a>
                     <button type="submit" class="btn btn-primary">篩選</button>
                 </div>
             </div>
