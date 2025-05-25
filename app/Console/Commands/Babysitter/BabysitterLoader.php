@@ -2,6 +2,8 @@
 
 namespace App\Console\Commands\Babysitter;
 
+use App\Models\Babysitter\Babysitter;
+use App\Models\City;
 use App\Services\LevelService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
@@ -20,14 +22,15 @@ class BabysitterLoader extends Command
      *
      * @var string
      */
-    protected $description = '爬入保母資訊';
+    protected $description = '載入保母資訊';
 
     /**
      * Execute the console command.
      */
     public function handle()
     {
-        list($html,$cookies,$headers) = $this->get();
+        //
+        list($html,$cookies,$headers) = $this->get("https://ncwisweb.sfaa.gov.tw/home/nanny");
         //
         $csrf = "";
         if (preg_match('/<meta\s+name="_csrf"\s+content="([^"]+)"\s*\/?>/i', $html, $matches)) {
@@ -38,17 +41,40 @@ class BabysitterLoader extends Command
         foreach ($cookies as $key => $value){
             $cookieString .= $key."=".$value."; ";
         }
-        $html = $this->post($csrf, $cookieString );
+        $html = $this->post($csrf, $cookieString, 0 );
+        //頁碼資訊
+        preg_match_all('/ 筆資料．第 <span\s\s                class="text-danger">(\d*)\/(\d*)<\/span> 頁．每頁顯示 15 筆\s\s/', $html, $matches);
+        $nowPage = $matches[1][0];
+        $total = $matches[2][0];
         //
-        dd($html);
-
+        $data = $this->getInfo($html);
+        for ($page = 1; $page < $total; $page++) {
+            sleep(rand(1,3));
+            $html = $this->post($csrf, $cookieString, $page );
+            $infos = $this->getInfo($html);
+            $data = array_merge($infos, $data);
+        }
+//        dd($data);
+        //
+        foreach ($data as $key => $value){
+            $babysitter = Babysitter::where("certification", $value["id"])->firstOrNew();
+            $babysitter->status = "I";
+            $babysitter->apply_money = "Y";
+            $babysitter->certification = $value["id"];
+            $babysitter->name = $value["name"];
+            $babysitter->city = $value["city_id"];
+            $babysitter->region = $value["region_id"];
+            $babysitter->address = $value["address"];
+            $babysitter->url = $value["url"];
+            $babysitter->save();
+        }
     }
 
-    public function get()
+    public function get($uri)
     {
         $ch = curl_init();
 
-        curl_setopt($ch, CURLOPT_URL, "https://ncwisweb.sfaa.gov.tw/home/nanny");
+        curl_setopt($ch, CURLOPT_URL, $uri);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
             "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
@@ -100,13 +126,13 @@ class BabysitterLoader extends Command
         return [$body,$cookies,$headers];
     }
 
-    public function post($csrf, $cookieString)
+    public function post($csrf, $cookieString, $page = 0)
     {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "https://ncwisweb.sfaa.gov.tw/home/nanny");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, "_csrf={$csrf}&cityId=4bc1e2f27af6e832017af6eeff860176&townId=4bc1e2f27af6e832017af6ef04980328&latitude=&longitude=&locateType=1&address=&distance=1.0&targetKind=1&careStatus=&cwregno=&cwregno2=&langFlag=&page=0");
+        curl_setopt($ch, CURLOPT_POSTFIELDS, "_csrf={$csrf}&cityId=4bc1e2f27af6e832017af6eeff860176&townId=&latitude=&longitude=&locateType=1&address=&distance=1.0&targetKind=1&careStatus=&cwregno=&cwregno2=&langFlag=&page=".$page);
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
             "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
             "Accept-Language: zh-TW,zh-CN;q=0.9,zh;q=0.8,en-US;q=0.7,en;q=0.6",
@@ -141,6 +167,56 @@ class BabysitterLoader extends Command
         curl_close($ch);
 
         return $response;
+    }
+
+    public function getInfo($html)
+    {
+        //地址
+        $cities = City::select(["id","name"])->with(["regions"])->get();
+        //保母
+        preg_match_all('/保母編號\/姓名｜">(.*)<br>(.*)<\/td>\s\s/', $html, $matches);
+        $ids = $matches[1]??[];
+        $names = $matches[2]??[];
+        //地址
+        preg_match_all('/托育服務地址｜">\d*(.*)<\/td>\s\s/', $html, $matches);
+        $addresses = $matches[1]??[];
+        //詳細地址
+        preg_match_all('/\'\/home\/nanny\/detail(.*)\'/', $html, $matches);
+        $urls = $matches[1]??[];
+        //
+        $data = [];
+        foreach ($ids as $key => $detailUrl){
+            //
+            $city_id = 0;
+            $region_id = 0;
+            $address = $addresses[$key]??"";
+            $address = str_replace("臺", "台", $address);
+            foreach ($cities as $city){
+                if(str_starts_with($address, $city->name)) {
+                    //
+                    $city_id = $city->id;
+                    $address = str_replace($city->name, "", $address);
+                    //
+                    foreach ($city->regions ?? [] as $region) {
+                        if (str_contains($address, $region->name)) {
+                            $region_id = $region->id;
+                            $address = str_replace($region->name, "", $address);
+                        }
+                    }
+                }
+            }
+            //
+            $data[] = [
+                "id" => $ids[$key]??"",
+                "name" => $names[$key]??"",
+                "city_id" => $city_id,
+                "region_id" => $region_id,
+                "address" => $address,
+                "url" => "https://ncwisweb.sfaa.gov.tw/home/nanny/detail".$urls[$key]??"",
+            ];
+        }
+        //
+        return $data;
     }
 
 }

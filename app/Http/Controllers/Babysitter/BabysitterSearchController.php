@@ -15,7 +15,7 @@ class BabysitterSearchController extends Controller
     public function search()
     {
         //
-        $query = Babysitter::where("status","Y")->with(["services","addressCity","addressRegion"]);
+        $query = Babysitter::whereIn("status",["Y","I"])->with(["services","addressCity","addressRegion"]);
         if(request()->get("filter_city")){
             $query->where("city",request()->get("filter_city"));
         }

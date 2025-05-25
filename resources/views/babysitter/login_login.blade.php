@@ -35,6 +35,7 @@
                 <label>是否被搜尋到</label>
                 <div>
                     @foreach(\App\Enum\Babysitter\BabySitterStatusEnum::cases() as $enum)
+                        @continue($enum->value=="I")
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" id="status{{$enum}}" name="status" value="{{$enum}}" @checked($item->status==$enum->value)>
                             <label class="form-check-label" for="status{{$enum}}">{{$enum->text()}}</label>

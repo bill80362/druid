@@ -6,7 +6,7 @@ enum BabySitterStatusEnum: string
 {
     case Y = 'Y';
     case N = 'N';
-//    case I = 'I';
+    case I = 'I';
     public function text(): string
     {
         return match ($this){
