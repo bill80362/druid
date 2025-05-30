@@ -46,7 +46,7 @@ class BabysitterWebhookController extends Controller
                     if($this->signIn($lineUserId,Carbon::now())){
                         $replyMessage = "打卡成功";
                     }else{
-                        $replyMessage = "打卡失敗";
+                        $replyMessage = "打卡失敗，請先登錄保母資訊。";
                     }
                 }
                 //

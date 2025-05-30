@@ -37,6 +37,7 @@ class BabysitterLoader extends Command
         //
         $count = $city->regions?->count()??0;
         foreach ($city->regions??[] as $index => $region) {
+            if($index<=9) continue;
             echo "正在執行{$city->name}{$region->name} 進度".($index+1)."/{$count}".PHP_EOL;
             $this->updateInfo($city->name, $region->name);
         }
