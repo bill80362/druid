@@ -1,0 +1,869 @@
+[
+    {
+        "@id": {
+            "name": "新營區",
+            "id": "4bc1e2f27af6e832017af6ef00dc01f1"
+        },
+        "id": "4bc1e2f27af6e832017af6ef00dc01f1",
+        "createUserId": "admin",
+        "createTime": "2021-07-30T18:21:36.347",
+        "modifyUserId": "admin",
+        "modifyTime": "2021-07-30T18:21:36.347",
+        "disabled": null,
+        "note": null,
+        "sort": null,
+        "deleted": false,
+        "code": "6700001000",
+        "name": "新營區",
+        "zip": "730",
+        "type": "鄉鎮區",
+        "parent": {
+            "@id": {
+                "name": "臺南市",
+                "id": "4bc1e2f27af6e832017af6eeff4a0162"
+            },
+            "id": "4bc1e2f27af6e832017af6eeff4a0162",
+            "createUserId": "admin",
+            "createTime": "2021-07-30T18:21:35.947",
+            "modifyUserId": "admin",
+            "modifyTime": "2021-07-30T18:21:35.947",
+            "disabled": null,
+            "note": null,
+            "sort": 5,
+            "deleted": false,
+            "code": "6700000000",
+            "name": "臺南市",
+            "zip": null,
+            "type": "縣市",
+            "parent": null
+        }
+    },
+    {
+        "@id": {
+            "name": "鹽水區",
+            "id": "4bc1e2f27af6e832017af6ef001201a2"
+        },
+        "id": "4bc1e2f27af6e832017af6ef001201a2",
+        "createUserId": "admin",
+        "createTime": "2021-07-30T18:21:36.147",
+        "modifyUserId": "admin",
+        "modifyTime": "2021-07-30T18:21:36.147",
+        "disabled": null,
+        "note": null,
+        "sort": null,
+        "deleted": false,
+        "code": "6700002000",
+        "name": "鹽水區",
+        "zip": "737",
+        "type": "鄉鎮區",
+        "parent": {
+            "name": "臺南市",
+            "id": "4bc1e2f27af6e832017af6eeff4a0162"
+        }
+    },
+    {
+        "@id": {
+            "name": "白河區",
+            "id": "4bc1e2f27af6e832017af6ef001901a5"
+        },
+        "id": "4bc1e2f27af6e832017af6ef001901a5",
+        "createUserId": "admin",
+        "createTime": "2021-07-30T18:21:36.153",
+        "modifyUserId": "admin",
+        "modifyTime": "2021-07-30T18:21:36.153",
+        "disabled": null,
+        "note": null,
+        "sort": null,
+        "deleted": false,
+        "code": "6700003000",
+        "name": "白河區",
+        "zip": "732",
+        "type": "鄉鎮區",
+        "parent": {
+            "name": "臺南市",
+            "id": "4bc1e2f27af6e832017af6eeff4a0162"
+        }
+    },
+    {
+        "@id": {
+            "name": "柳營區",
+            "id": "4bc1e2f27af6e832017af6ef001c01a6"
+        },
+        "id": "4bc1e2f27af6e832017af6ef001c01a6",
+        "createUserId": "admin",
+        "createTime": "2021-07-30T18:21:36.157",
+        "modifyUserId": "admin",
+        "modifyTime": "2021-07-30T18:21:36.157",
+        "disabled": null,
+        "note": null,
+        "sort": null,
+        "deleted": false,
+        "code": "6700004000",
+        "name": "柳營區",
+        "zip": "736",
+        "type": "鄉鎮區",
+        "parent": {
+            "name": "臺南市",
+            "id": "4bc1e2f27af6e832017af6eeff4a0162"
+        }
+    },
+    {
+        "@id": {
+            "name": "後壁區",
+            "id": "4bc1e2f27af6e832017af6ef0290026a"
+        },
+        "id": "4bc1e2f27af6e832017af6ef0290026a",
+        "createUserId": "admin",
+        "createTime": "2021-07-30T18:21:36.783",
+        "modifyUserId": "admin",
+        "modifyTime": "2021-07-30T18:21:36.783",
+        "disabled": null,
+        "note": null,
+        "sort": null,
+        "deleted": false,
+        "code": "6700005000",
+        "name": "後壁區",
+        "zip": "731",
+        "type": "鄉鎮區",
+        "parent": {
+            "name": "臺南市",
+            "id": "4bc1e2f27af6e832017af6eeff4a0162"
+        }
+    },
+    {
+        "@id": {
+            "name": "東山區",
+            "id": "4bc1e2f27af6e832017af6ef00d201ed"
+        },
+        "id": "4bc1e2f27af6e832017af6ef00d201ed",
+        "createUserId": "admin",
+        "createTime": "2021-07-30T18:21:36.337",
+        "modifyUserId": "admin",
+        "modifyTime": "2021-07-30T18:21:36.337",
+        "disabled": null,
+        "note": null,
+        "sort": null,
+        "deleted": false,
+        "code": "6700006000",
+        "name": "東山區",
+        "zip": "733",
+        "type": "鄉鎮區",
+        "parent": {
+            "name": "臺南市",
+            "id": "4bc1e2f27af6e832017af6eeff4a0162"
+        }
+    },
+    {
+        "@id": {
+            "name": "麻豆區",
+            "id": "4bc1e2f27af6e832017af6ef0294026b"
+        },
+        "id": "4bc1e2f27af6e832017af6ef0294026b",
+        "createUserId": "admin",
+        "createTime": "2021-07-30T18:21:36.787",
+        "modifyUserId": "admin",
+        "modifyTime": "2021-07-30T18:21:36.787",
+        "disabled": null,
+        "note": null,
+        "sort": null,
+        "deleted": false,
+        "code": "6700007000",
+        "name": "麻豆區",
+        "zip": "721",
+        "type": "鄉鎮區",
+        "parent": {
+            "name": "臺南市",
+            "id": "4bc1e2f27af6e832017af6eeff4a0162"
+        }
+    },
+    {
+        "@id": {
+            "name": "下營區",
+            "id": "4bc1e2f27af6e832017af6ef04aa032e"
+        },
+        "id": "4bc1e2f27af6e832017af6ef04aa032e",
+        "createUserId": "admin",
+        "createTime": "2021-07-30T18:21:37.323",
+        "modifyUserId": "admin",
+        "modifyTime": "2021-07-30T18:21:37.323",
+        "disabled": null,
+        "note": null,
+        "sort": null,
+        "deleted": false,
+        "code": "6700008000",
+        "name": "下營區",
+        "zip": "735",
+        "type": "鄉鎮區",
+        "parent": {
+            "name": "臺南市",
+            "id": "4bc1e2f27af6e832017af6eeff4a0162"
+        }
+    },
+    {
+        "@id": {
+            "name": "六甲區",
+            "id": "4bc1e2f27af6e832017af6ef05680369"
+        },
+        "id": "4bc1e2f27af6e832017af6ef05680369",
+        "createUserId": "admin",
+        "createTime": "2021-07-30T18:21:37.513",
+        "modifyUserId": "admin",
+        "modifyTime": "2021-07-30T18:21:37.513",
+        "disabled": null,
+        "note": null,
+        "sort": null,
+        "deleted": false,
+        "code": "6700009000",
+        "name": "六甲區",
+        "zip": "734",
+        "type": "鄉鎮區",
+        "parent": {
+            "name": "臺南市",
+            "id": "4bc1e2f27af6e832017af6eeff4a0162"
+        }
+    },
+    {
+        "@id": {
+            "name": "官田區",
+            "id": "4bc1e2f27af6e832017af6ef056b036a"
+        },
+        "id": "4bc1e2f27af6e832017af6ef056b036a",
+        "createUserId": "admin",
+        "createTime": "2021-07-30T18:21:37.517",
+        "modifyUserId": "admin",
+        "modifyTime": "2021-07-30T18:21:37.517",
+        "disabled": null,
+        "note": null,
+        "sort": null,
+        "deleted": false,
+        "code": "6700010000",
+        "name": "官田區",
+        "zip": "720",
+        "type": "鄉鎮區",
+        "parent": {
+            "name": "臺南市",
+            "id": "4bc1e2f27af6e832017af6eeff4a0162"
+        }
+    },
+    {
+        "@id": {
+            "name": "大內區",
+            "id": "4bc1e2f27af6e832017af6ef01c20237"
+        },
+        "id": "4bc1e2f27af6e832017af6ef01c20237",
+        "createUserId": "admin",
+        "createTime": "2021-07-30T18:21:36.577",
+        "modifyUserId": "admin",
+        "modifyTime": "2021-07-30T18:21:36.577",
+        "disabled": null,
+        "note": null,
+        "sort": null,
+        "deleted": false,
+        "code": "6700011000",
+        "name": "大內區",
+        "zip": "742",
+        "type": "鄉鎮區",
+        "parent": {
+            "name": "臺南市",
+            "id": "4bc1e2f27af6e832017af6eeff4a0162"
+        }
+    },
+    {
+        "@id": {
+            "name": "佳里區",
+            "id": "4bc1e2f27af6e832017af6ef035402ac"
+        },
+        "id": "4bc1e2f27af6e832017af6ef035402ac",
+        "createUserId": "admin",
+        "createTime": "2021-07-30T18:21:36.98",
+        "modifyUserId": "admin",
+        "modifyTime": "2021-07-30T18:21:36.98",
+        "disabled": null,
+        "note": null,
+        "sort": null,
+        "deleted": false,
+        "code": "6700012000",
+        "name": "佳里區",
+        "zip": "722",
+        "type": "鄉鎮區",
+        "parent": {
+            "name": "臺南市",
+            "id": "4bc1e2f27af6e832017af6eeff4a0162"
+        }
+    },
+    {
+        "@id": {
+            "name": "學甲區",
+            "id": "4bc1e2f27af6e832017af6ef00e601f4"
+        },
+        "id": "4bc1e2f27af6e832017af6ef00e601f4",
+        "createUserId": "admin",
+        "createTime": "2021-07-30T18:21:36.36",
+        "modifyUserId": "admin",
+        "modifyTime": "2021-07-30T18:21:36.36",
+        "disabled": null,
+        "note": null,
+        "sort": null,
+        "deleted": false,
+        "code": "6700013000",
+        "name": "學甲區",
+        "zip": "726",
+        "type": "鄉鎮區",
+        "parent": {
+            "name": "臺南市",
+            "id": "4bc1e2f27af6e832017af6eeff4a0162"
+        }
+    },
+    {
+        "@id": {
+            "name": "西港區",
+            "id": "4bc1e2f27af6e832017af6ef040b02f1"
+        },
+        "id": "4bc1e2f27af6e832017af6ef040b02f1",
+        "createUserId": "admin",
+        "createTime": "2021-07-30T18:21:37.163",
+        "modifyUserId": "admin",
+        "modifyTime": "2021-07-30T18:21:37.163",
+        "disabled": null,
+        "note": null,
+        "sort": null,
+        "deleted": false,
+        "code": "6700014000",
+        "name": "西港區",
+        "zip": "723",
+        "type": "鄉鎮區",
+        "parent": {
+            "name": "臺南市",
+            "id": "4bc1e2f27af6e832017af6eeff4a0162"
+        }
+    },
+    {
+        "@id": {
+            "name": "七股區",
+            "id": "4bc1e2f27af6e832017af6ef035902ad"
+        },
+        "id": "4bc1e2f27af6e832017af6ef035902ad",
+        "createUserId": "admin",
+        "createTime": "2021-07-30T18:21:36.987",
+        "modifyUserId": "admin",
+        "modifyTime": "2021-07-30T18:21:36.987",
+        "disabled": null,
+        "note": null,
+        "sort": null,
+        "deleted": false,
+        "code": "6700015000",
+        "name": "七股區",
+        "zip": "724",
+        "type": "鄉鎮區",
+        "parent": {
+            "name": "臺南市",
+            "id": "4bc1e2f27af6e832017af6eeff4a0162"
+        }
+    },
+    {
+        "@id": {
+            "name": "將軍區",
+            "id": "4bc1e2f27af6e832017af6ef05660368"
+        },
+        "id": "4bc1e2f27af6e832017af6ef05660368",
+        "createUserId": "admin",
+        "createTime": "2021-07-30T18:21:37.51",
+        "modifyUserId": "admin",
+        "modifyTime": "2021-07-30T18:21:37.51",
+        "disabled": null,
+        "note": null,
+        "sort": null,
+        "deleted": false,
+        "code": "6700016000",
+        "name": "將軍區",
+        "zip": "725",
+        "type": "鄉鎮區",
+        "parent": {
+            "name": "臺南市",
+            "id": "4bc1e2f27af6e832017af6eeff4a0162"
+        }
+    },
+    {
+        "@id": {
+            "name": "北門區",
+            "id": "4bc1e2f27af6e832017af6ef036602b0"
+        },
+        "id": "4bc1e2f27af6e832017af6ef036602b0",
+        "createUserId": "admin",
+        "createTime": "2021-07-30T18:21:36.997",
+        "modifyUserId": "admin",
+        "modifyTime": "2021-07-30T18:21:36.997",
+        "disabled": null,
+        "note": null,
+        "sort": null,
+        "deleted": false,
+        "code": "6700017000",
+        "name": "北門區",
+        "zip": "727",
+        "type": "鄉鎮區",
+        "parent": {
+            "name": "臺南市",
+            "id": "4bc1e2f27af6e832017af6eeff4a0162"
+        }
+    },
+    {
+        "@id": {
+            "name": "新化區",
+            "id": "4bc1e2f27af6e832017af6ef036902b1"
+        },
+        "id": "4bc1e2f27af6e832017af6ef036902b1",
+        "createUserId": "admin",
+        "createTime": "2021-07-30T18:21:37",
+        "modifyUserId": "admin",
+        "modifyTime": "2021-07-30T18:21:37",
+        "disabled": null,
+        "note": null,
+        "sort": null,
+        "deleted": false,
+        "code": "6700018000",
+        "name": "新化區",
+        "zip": "712",
+        "type": "鄉鎮區",
+        "parent": {
+            "name": "臺南市",
+            "id": "4bc1e2f27af6e832017af6eeff4a0162"
+        }
+    },
+    {
+        "@id": {
+            "name": "善化區",
+            "id": "4bc1e2f27af6e832017af6ef00ca01ea"
+        },
+        "id": "4bc1e2f27af6e832017af6ef00ca01ea",
+        "createUserId": "admin",
+        "createTime": "2021-07-30T18:21:36.33",
+        "modifyUserId": "admin",
+        "modifyTime": "2021-07-30T18:21:36.33",
+        "disabled": null,
+        "note": null,
+        "sort": null,
+        "deleted": false,
+        "code": "6700019000",
+        "name": "善化區",
+        "zip": "741",
+        "type": "鄉鎮區",
+        "parent": {
+            "name": "臺南市",
+            "id": "4bc1e2f27af6e832017af6eeff4a0162"
+        }
+    },
+    {
+        "@id": {
+            "name": "新市區",
+            "id": "4bc1e2f27af6e832017af6ef001001a1"
+        },
+        "id": "4bc1e2f27af6e832017af6ef001001a1",
+        "createUserId": "admin",
+        "createTime": "2021-07-30T18:21:36.143",
+        "modifyUserId": "admin",
+        "modifyTime": "2021-07-30T18:21:36.143",
+        "disabled": null,
+        "note": null,
+        "sort": null,
+        "deleted": false,
+        "code": "6700020000",
+        "name": "新市區",
+        "zip": "744",
+        "type": "鄉鎮區",
+        "parent": {
+            "name": "臺南市",
+            "id": "4bc1e2f27af6e832017af6eeff4a0162"
+        }
+    },
+    {
+        "@id": {
+            "name": "安定區",
+            "id": "4bc1e2f27af6e832017af6ef040102ed"
+        },
+        "id": "4bc1e2f27af6e832017af6ef040102ed",
+        "createUserId": "admin",
+        "createTime": "2021-07-30T18:21:37.153",
+        "modifyUserId": "admin",
+        "modifyTime": "2021-07-30T18:21:37.153",
+        "disabled": null,
+        "note": null,
+        "sort": null,
+        "deleted": false,
+        "code": "6700021000",
+        "name": "安定區",
+        "zip": "745",
+        "type": "鄉鎮區",
+        "parent": {
+            "name": "臺南市",
+            "id": "4bc1e2f27af6e832017af6eeff4a0162"
+        }
+    },
+    {
+        "@id": {
+            "name": "山上區",
+            "id": "4bc1e2f27af6e832017af6ef03fc02eb"
+        },
+        "id": "4bc1e2f27af6e832017af6ef03fc02eb",
+        "createUserId": "admin",
+        "createTime": "2021-07-30T18:21:37.147",
+        "modifyUserId": "admin",
+        "modifyTime": "2021-07-30T18:21:37.147",
+        "disabled": null,
+        "note": null,
+        "sort": null,
+        "deleted": false,
+        "code": "6700022000",
+        "name": "山上區",
+        "zip": "743",
+        "type": "鄉鎮區",
+        "parent": {
+            "name": "臺南市",
+            "id": "4bc1e2f27af6e832017af6eeff4a0162"
+        }
+    },
+    {
+        "@id": {
+            "name": "玉井區",
+            "id": "4bc1e2f27af6e832017af6ef002101a8"
+        },
+        "id": "4bc1e2f27af6e832017af6ef002101a8",
+        "createUserId": "admin",
+        "createTime": "2021-07-30T18:21:36.16",
+        "modifyUserId": "admin",
+        "modifyTime": "2021-07-30T18:21:36.16",
+        "disabled": null,
+        "note": null,
+        "sort": null,
+        "deleted": false,
+        "code": "6700023000",
+        "name": "玉井區",
+        "zip": "714",
+        "type": "鄉鎮區",
+        "parent": {
+            "name": "臺南市",
+            "id": "4bc1e2f27af6e832017af6eeff4a0162"
+        }
+    },
+    {
+        "@id": {
+            "name": "楠西區",
+            "id": "4bc1e2f27af6e832017af6ef02a50273"
+        },
+        "id": "4bc1e2f27af6e832017af6ef02a50273",
+        "createUserId": "admin",
+        "createTime": "2021-07-30T18:21:36.807",
+        "modifyUserId": "admin",
+        "modifyTime": "2021-07-30T18:21:36.807",
+        "disabled": null,
+        "note": null,
+        "sort": null,
+        "deleted": false,
+        "code": "6700024000",
+        "name": "楠西區",
+        "zip": "715",
+        "type": "鄉鎮區",
+        "parent": {
+            "name": "臺南市",
+            "id": "4bc1e2f27af6e832017af6eeff4a0162"
+        }
+    },
+    {
+        "@id": {
+            "name": "南化區",
+            "id": "4bc1e2f27af6e832017af6ef04be0334"
+        },
+        "id": "4bc1e2f27af6e832017af6ef04be0334",
+        "createUserId": "admin",
+        "createTime": "2021-07-30T18:21:37.343",
+        "modifyUserId": "admin",
+        "modifyTime": "2021-07-30T18:21:37.343",
+        "disabled": null,
+        "note": null,
+        "sort": null,
+        "deleted": false,
+        "code": "6700025000",
+        "name": "南化區",
+        "zip": "716",
+        "type": "鄉鎮區",
+        "parent": {
+            "name": "臺南市",
+            "id": "4bc1e2f27af6e832017af6eeff4a0162"
+        }
+    },
+    {
+        "@id": {
+            "name": "左鎮區",
+            "id": "4bc1e2f27af6e832017af6ef040602ef"
+        },
+        "id": "4bc1e2f27af6e832017af6ef040602ef",
+        "createUserId": "admin",
+        "createTime": "2021-07-30T18:21:37.157",
+        "modifyUserId": "admin",
+        "modifyTime": "2021-07-30T18:21:37.157",
+        "disabled": null,
+        "note": null,
+        "sort": null,
+        "deleted": false,
+        "code": "6700026000",
+        "name": "左鎮區",
+        "zip": "713",
+        "type": "鄉鎮區",
+        "parent": {
+            "name": "臺南市",
+            "id": "4bc1e2f27af6e832017af6eeff4a0162"
+        }
+    },
+    {
+        "@id": {
+            "name": "仁德區",
+            "id": "4bc1e2f27af6e832017af6ef02810265"
+        },
+        "id": "4bc1e2f27af6e832017af6ef02810265",
+        "createUserId": "admin",
+        "createTime": "2021-07-30T18:21:36.77",
+        "modifyUserId": "admin",
+        "modifyTime": "2021-07-30T18:21:36.77",
+        "disabled": null,
+        "note": null,
+        "sort": null,
+        "deleted": false,
+        "code": "6700027000",
+        "name": "仁德區",
+        "zip": "717",
+        "type": "鄉鎮區",
+        "parent": {
+            "name": "臺南市",
+            "id": "4bc1e2f27af6e832017af6eeff4a0162"
+        }
+    },
+    {
+        "@id": {
+            "name": "歸仁區",
+            "id": "4bc1e2f27af6e832017af6ef00be01e6"
+        },
+        "id": "4bc1e2f27af6e832017af6ef00be01e6",
+        "createUserId": "admin",
+        "createTime": "2021-07-30T18:21:36.317",
+        "modifyUserId": "admin",
+        "modifyTime": "2021-07-30T18:21:36.317",
+        "disabled": null,
+        "note": null,
+        "sort": null,
+        "deleted": false,
+        "code": "6700028000",
+        "name": "歸仁區",
+        "zip": "711",
+        "type": "鄉鎮區",
+        "parent": {
+            "name": "臺南市",
+            "id": "4bc1e2f27af6e832017af6eeff4a0162"
+        }
+    },
+    {
+        "@id": {
+            "name": "關廟區",
+            "id": "4bc1e2f27af6e832017af6ef002301a9"
+        },
+        "id": "4bc1e2f27af6e832017af6ef002301a9",
+        "createUserId": "admin",
+        "createTime": "2021-07-30T18:21:36.163",
+        "modifyUserId": "admin",
+        "modifyTime": "2021-07-30T18:21:36.163",
+        "disabled": null,
+        "note": null,
+        "sort": null,
+        "deleted": false,
+        "code": "6700029000",
+        "name": "關廟區",
+        "zip": "718",
+        "type": "鄉鎮區",
+        "parent": {
+            "name": "臺南市",
+            "id": "4bc1e2f27af6e832017af6eeff4a0162"
+        }
+    },
+    {
+        "@id": {
+            "name": "龍崎區",
+            "id": "4bc1e2f27af6e832017af6ef040402ee"
+        },
+        "id": "4bc1e2f27af6e832017af6ef040402ee",
+        "createUserId": "admin",
+        "createTime": "2021-07-30T18:21:37.157",
+        "modifyUserId": "admin",
+        "modifyTime": "2021-07-30T18:21:37.157",
+        "disabled": null,
+        "note": null,
+        "sort": null,
+        "deleted": false,
+        "code": "6700030000",
+        "name": "龍崎區",
+        "zip": "719",
+        "type": "鄉鎮區",
+        "parent": {
+            "name": "臺南市",
+            "id": "4bc1e2f27af6e832017af6eeff4a0162"
+        }
+    },
+    {
+        "@id": {
+            "name": "永康區",
+            "id": "4bc1e2f27af6e832017af6ef0571036c"
+        },
+        "id": "4bc1e2f27af6e832017af6ef0571036c",
+        "createUserId": "admin",
+        "createTime": "2021-07-30T18:21:37.52",
+        "modifyUserId": "admin",
+        "modifyTime": "2021-07-30T18:21:37.52",
+        "disabled": null,
+        "note": null,
+        "sort": null,
+        "deleted": false,
+        "code": "6700031000",
+        "name": "永康區",
+        "zip": "710",
+        "type": "鄉鎮區",
+        "parent": {
+            "name": "臺南市",
+            "id": "4bc1e2f27af6e832017af6eeff4a0162"
+        }
+    },
+    {
+        "@id": {
+            "name": "東區",
+            "id": "4bc1e2f27af6e832017af6ef05590363"
+        },
+        "id": "4bc1e2f27af6e832017af6ef05590363",
+        "createUserId": "admin",
+        "createTime": "2021-07-30T18:21:37.497",
+        "modifyUserId": "admin",
+        "modifyTime": "2021-07-30T18:21:37.497",
+        "disabled": null,
+        "note": null,
+        "sort": null,
+        "deleted": false,
+        "code": "6700032000",
+        "name": "東區",
+        "zip": "701",
+        "type": "鄉鎮區",
+        "parent": {
+            "name": "臺南市",
+            "id": "4bc1e2f27af6e832017af6eeff4a0162"
+        }
+    },
+    {
+        "@id": {
+            "name": "南區",
+            "id": "4bc1e2f27af6e832017af6ef02890267"
+        },
+        "id": "4bc1e2f27af6e832017af6ef02890267",
+        "createUserId": "admin",
+        "createTime": "2021-07-30T18:21:36.777",
+        "modifyUserId": "admin",
+        "modifyTime": "2021-07-30T18:21:36.777",
+        "disabled": null,
+        "note": null,
+        "sort": null,
+        "deleted": false,
+        "code": "6700033000",
+        "name": "南區",
+        "zip": "702",
+        "type": "鄉鎮區",
+        "parent": {
+            "name": "臺南市",
+            "id": "4bc1e2f27af6e832017af6eeff4a0162"
+        }
+    },
+    {
+        "@id": {
+            "name": "北區",
+            "id": "4bc1e2f27af6e832017af6ef057c0370"
+        },
+        "id": "4bc1e2f27af6e832017af6ef057c0370",
+        "createUserId": "admin",
+        "createTime": "2021-07-30T18:21:37.533",
+        "modifyUserId": "admin",
+        "modifyTime": "2021-07-30T18:21:37.533",
+        "disabled": null,
+        "note": null,
+        "sort": null,
+        "deleted": false,
+        "code": "6700034000",
+        "name": "北區",
+        "zip": "704",
+        "type": "鄉鎮區",
+        "parent": {
+            "name": "臺南市",
+            "id": "4bc1e2f27af6e832017af6eeff4a0162"
+        }
+    },
+    {
+        "@id": {
+            "name": "安南區",
+            "id": "4bc1e2f27af6e832017af6ef05540361"
+        },
+        "id": "4bc1e2f27af6e832017af6ef05540361",
+        "createUserId": "admin",
+        "createTime": "2021-07-30T18:21:37.493",
+        "modifyUserId": "admin",
+        "modifyTime": "2021-07-30T18:21:37.493",
+        "disabled": null,
+        "note": null,
+        "sort": null,
+        "deleted": false,
+        "code": "6700035000",
+        "name": "安南區",
+        "zip": "709",
+        "type": "鄉鎮區",
+        "parent": {
+            "name": "臺南市",
+            "id": "4bc1e2f27af6e832017af6eeff4a0162"
+        }
+    },
+    {
+        "@id": {
+            "name": "安平區",
+            "id": "4bc1e2f27af6e832017af6ef04c10335"
+        },
+        "id": "4bc1e2f27af6e832017af6ef04c10335",
+        "createUserId": "admin",
+        "createTime": "2021-07-30T18:21:37.347",
+        "modifyUserId": "admin",
+        "modifyTime": "2021-07-30T18:21:37.347",
+        "disabled": null,
+        "note": null,
+        "sort": null,
+        "deleted": false,
+        "code": "6700036000",
+        "name": "安平區",
+        "zip": "708",
+        "type": "鄉鎮區",
+        "parent": {
+            "name": "臺南市",
+            "id": "4bc1e2f27af6e832017af6eeff4a0162"
+        }
+    },
+    {
+        "@id": {
+            "name": "中西區",
+            "id": "4bc1e2f27af6e832017af6ef01b30232"
+        },
+        "id": "4bc1e2f27af6e832017af6ef01b30232",
+        "createUserId": "admin",
+        "createTime": "2021-07-30T18:21:36.563",
+        "modifyUserId": "admin",
+        "modifyTime": "2021-07-30T18:21:36.563",
+        "disabled": null,
+        "note": null,
+        "sort": null,
+        "deleted": false,
+        "code": "6700037000",
+        "name": "中西區",
+        "zip": "700",
+        "type": "鄉鎮區",
+        "parent": {
+            "name": "臺南市",
+            "id": "4bc1e2f27af6e832017af6eeff4a0162"
+        }
+    }
+]

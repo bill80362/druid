@@ -40,7 +40,7 @@ class BabysitterWebhookController extends Controller
                 $timestamp = $event['timestamp']??"";
                 $timestampCarbon = Carbon::createFromTimestampMs($event['timestamp']??"")->setTimezone(config("app.timezone"));
                 $replyToken = $event['replyToken']??"";
-                $replyMessage = "請使用操作面板給予指令，謝謝。";
+                $replyMessage = $this->basicMessage();
                 //回應訊息
                 if($text=="保母打卡"){
                     if($this->signIn($lineUserId,Carbon::now())){
@@ -96,5 +96,21 @@ class BabysitterWebhookController extends Controller
         $babysitter->sign_at = $timestamp;
         $babysitter->save();
         return true;
+    }
+
+    public function basicMessage(): string
+    {
+        return "你好，感謝使用本系統，保母資訊來源為：\n" .
+            "1.政府的媒合平台\n" .
+            "https://ncwisweb.sfaa.gov.tw/home/nanny\n" .
+            "2.保母自行登錄\n" .
+            "\n" .
+            "如果您是保母，請使用[保母登錄]功能，進行登錄，並定期打卡，有利於查找時優先曝光！\n" .
+            "\n" .
+            "如果您是家長，可直接使用[找保母]功能，開始進行查詢，請注意此系統沒有審核保母制度，請自行評估保母！\n" .
+            "\n" .
+            "此系統目前皆為免費，如果有遇到相關收費資訊，都是詐騙！\n" .
+            "\n" .
+            "如果真的遇到煩請通報管理員(line_id:bill80362)，謝謝。";
     }
 }
