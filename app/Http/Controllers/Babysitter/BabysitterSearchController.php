@@ -22,7 +22,7 @@ class BabysitterSearchController extends Controller
         if(request()->get("filter_region")){
             $query->where("region",request()->get("filter_region"));
         }
-        $paginator = $query->paginate()->withQueryString();
+        $paginator = $query->orderBy('sign_at','desc')->paginate()->withQueryString();
         //
         $cities = City::select(["id","name"])->with(["regions"])->get();
         //

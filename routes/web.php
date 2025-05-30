@@ -10,8 +10,6 @@ Route::post('babysitter/login/submit', [\App\Http\Controllers\Babysitter\Babysit
 Route::get('babysitter/search/redirect', [\App\Http\Controllers\Babysitter\BabysitterSearchController::class, 'searchRedirect'])->name("babysitter.search.redirect");
 Route::get('babysitter/search/search', [\App\Http\Controllers\Babysitter\BabysitterSearchController::class, 'search'])->name("babysitter.search");
 Route::post('babysitter/search/submit', [\App\Http\Controllers\Babysitter\BabysitterSearchController::class, 'searchSubmit'])->name("babysitter.search.submit");
-//保母 webhook
-Route::post('babysitter/webhook', [\App\Http\Controllers\LineLiffController::class, 'webhook'])->name("babysitter.webhook");
 
 
 

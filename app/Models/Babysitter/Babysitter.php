@@ -22,6 +22,10 @@ class Babysitter extends Model
         parent::booted();
     }
 
+    protected $casts = [
+        'sign_at' => 'datetime',
+    ];
+
     public function services(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(BabysitterService::class, PivotBabysitterService::class);

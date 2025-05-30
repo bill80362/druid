@@ -12,3 +12,6 @@ Route::get('line/image/{slug}/{image}', [\App\Http\Controllers\Api\WebhookLineCo
 
 Route::get('webhook/fb/{id}', [\App\Http\Controllers\Api\WebhookFbController::class, "verify"]);
 Route::post('webhook/fb/{id}', [\App\Http\Controllers\Api\WebhookFbController::class, "webhook"]);
+
+//保母 webhook
+Route::post('webhook/babysitter', [\App\Http\Controllers\Babysitter\BabysitterWebhookController::class, 'line'])->name("babysitter.webhook");
