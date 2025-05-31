@@ -39,9 +39,13 @@
         </div>
         <div class="card-body">
             <div class="row">
+                <div class="col-12 mb-2">
+                    <h5 class="text-danger">注意：衛福部的網站被line視為不安全，因此出現『此網站不安全』，請選擇使用預設瀏覽器開啟就可以了。</h5>
+                </div>
+            </div>
+            <div class="row">
                 @foreach($paginator as $item)
                 <div class="col-12 col-md-6 col-lg-4">
-
                         <div class="card mb-2">
                             <div class="card-body">
                                 <div class="flex justify-content-between mb-2">
@@ -59,7 +63,7 @@
                                     <a href="tel:{{$item->cellphone}}" class="card-link btn btn-sm btn-outline-primary">撥打</a>
                                 @endif
                                 @if($item->url)
-                                    <a href="{{$item->url}}" class="card-link btn btn-sm btn-outline-primary">詳細資訊</a>
+                                    <a target="_blank" href="{{$item->url}}" class="card-link btn btn-sm btn-outline-primary">詳細資訊</a>
                                 @endif
                             </div>
                         </div>

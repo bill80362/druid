@@ -46,7 +46,7 @@ class LoadData
             $babysitter->city = $value["city_id"];
             $babysitter->region = $value["region_id"];
             $babysitter->address = $value["address"];
-            $babysitter->info = "資料來源：衛生部托育媒合平台[".date("Y-m-d H:i:s")."]";
+            $babysitter->info = "資料來源：衛福部托育媒合平台[".date("Y-m-d H:i:s")."]";
             $babysitter->url = $value["url"];
             $babysitter->save();
         }

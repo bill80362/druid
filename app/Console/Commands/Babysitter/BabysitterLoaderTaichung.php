@@ -7,7 +7,7 @@ use App\Services\Babysitter\LoadData;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
 
-class BabysitterLoader extends Command
+class BabysitterLoaderTaichung extends Command
 {
     /**
      * The name and signature of the console command.
