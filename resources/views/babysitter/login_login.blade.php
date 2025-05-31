@@ -112,7 +112,7 @@
                 <small class="text-danger">@error('url') {{ $message }} @enderror</small>
             </div>
             <div class="form-group mb-2">
-                <label>認證碼</label>
+                <label>登記證編號</label>
                 <input type="text" class="form-control" name="certification" value="{{old("certification")??$item->certification}}">
                 <small class="text-danger">@error('certification') {{ $message }} @enderror</small>
             </div>

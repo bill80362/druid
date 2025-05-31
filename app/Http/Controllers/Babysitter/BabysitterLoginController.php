@@ -46,7 +46,7 @@ class BabysitterLoginController extends Controller
             "address" => ["nullable","string","max:50"],
             "cellphone" => ["nullable","string","max:10"],
             "info" => ["nullable","string","max:200"],
-            "url" => ["nullable","string","max:150"],
+            "url" => ["nullable","string","max:200","active_url"],
             "certification" => ["nullable","string","max:50"],
         ],[
             "city.*" => "縣市為必填",
@@ -59,7 +59,7 @@ class BabysitterLoginController extends Controller
             "cellphone" => "手機",
             "info" => "說明",
             "url" => "網址連結",
-            "certification" => "認證碼",
+            "certification" => "登記證編號",
         ]);
         //
         $item = Babysitter::where("line_id",request('userId'))->firstOrNew();
