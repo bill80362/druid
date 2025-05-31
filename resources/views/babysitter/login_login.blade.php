@@ -44,14 +44,14 @@
                 </div>
             </div>
             <div class="form-group mb-2">
-                <label>名稱</label>
-                <input type="text" class="form-control" name="name" value="{{$item->name}}">
-                <small class="text-danger">@error('name') {{ $message['name']??"" }} @enderror</small>
+                <label>名稱<span class="text-danger">*</span></label>
+                <input type="text" class="form-control" name="name" value="{{old("name")??$item->name}}">
+                <small class="text-danger">@error('name') {{ $message }} @enderror</small>
             </div>
             <div class="form-group mb-2">
                 <label>手機</label>
-                <input type="text" class="form-control" name="cellphone" value="{{$item->cellphone}}">
-                <small class="text-danger">@error('cellphone') {{ $message['cellphone']??"" }} @enderror</small>
+                <input type="text" class="form-control" name="cellphone" value="{{old("cellphone")??$item->cellphone}}">
+                <small class="text-danger">@error('cellphone') {{ $message }} @enderror</small>
             </div>
             <div class="form-group mb-2">
                 <label>縣市區域</label>
@@ -69,13 +69,13 @@
                         @endforeach
                     </select>
                 </div>
-                <small class="text-danger">@error('city') {{ $message['city']??"" }} @enderror</small>
-                <small class="text-danger">@error('region') {{ $message['region']??"" }} @enderror</small>
+                <small class="text-danger">@error('city') {{ $message }} @enderror</small>
+                <small class="text-danger">@error('region') {{ $message }} @enderror</small>
             </div>
             <div class="form-group mb-2">
                 <label>詳細地址</label>
-                <input type="text" class="form-control" name="address" value="{{$item->address}}">
-                <small class="text-danger">@error('address') {{ $message['address']??"" }} @enderror</small>
+                <input type="text" class="form-control" name="address" value="{{old("address")??$item->address}}">
+                <small class="text-danger">@error('address') {{ $message }} @enderror</small>
             </div>
             <div class="form-group mb-2">
                 <label>可申請補助</label>
@@ -103,15 +103,18 @@
             </div>
             <div class="form-group mb-2">
                 <label>說明</label>
-                <textarea class="form-control" rows="6" name="info">{{$item->info}}</textarea>
+                <textarea class="form-control" rows="6" name="info">{{old("info")??$item->info}}</textarea>
+                <small class="text-danger">@error('info') {{ $message }} @enderror</small>
             </div>
             <div class="form-group mb-2">
                 <label>網址連結</label>
-                <input type="text" class="form-control" name="url" value="{{$item->url}}">
+                <input type="text" class="form-control" name="url" value="{{old("url")??$item->url}}">
+                <small class="text-danger">@error('url') {{ $message }} @enderror</small>
             </div>
             <div class="form-group mb-2">
-                <label>認證</label>
-                <input type="text" class="form-control" name="certification" value="{{$item->certification}}">
+                <label>認證碼</label>
+                <input type="text" class="form-control" name="certification" value="{{old("certification")??$item->certification}}">
+                <small class="text-danger">@error('certification') {{ $message }} @enderror</small>
             </div>
         </div>
         <div class="card-footer">
