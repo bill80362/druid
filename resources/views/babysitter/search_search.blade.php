@@ -40,7 +40,7 @@
         <div class="card-body">
             <div class="row">
                 @foreach($paginator as $item)
-                <div class="col-12 col-md-6 col-lg-3">
+                <div class="col-12 col-md-6 col-lg-4">
 
                         <div class="card mb-2">
                             <div class="card-body">
@@ -53,9 +53,7 @@
                                     </div>
                                 </div>
                                 <h6 class="card-subtitle mb-2 text-muted">{{$item->addressCity?->name}}{{$item->addressRegion?->name}}{{$item->address}}</h6>
-{{--                                <p class="card-text my-2">{{$item->addressCity?->name}}{{$item->addressRegion?->name}}{{$item->address}}</p>--}}
                                 <p class="card-text my-2">{{$item->info}}</p>
-{{--                                <button type="button" class="btn btn-sm btn-primary card-link">追蹤</button>--}}
                                 @if($item->url)
                                     <a href="{{$item->url}}" class="card-link btn btn-sm btn-outline-primary">詳細資訊</a>
                                 @endif
