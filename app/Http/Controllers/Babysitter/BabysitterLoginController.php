@@ -46,6 +46,9 @@ class BabysitterLoginController extends Controller
         $item->city = request('city');
         $item->region = request('region');
         $item->address = request('address');
+        $item->info = request('info');
+        $item->url = request('url');
+        $item->certification = request('certification');
         $item->save();
         //
         $item->services()->sync(request("services")??null);
