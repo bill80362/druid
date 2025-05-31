@@ -51,7 +51,8 @@ class BabysitterWebhookController extends Controller
                 }elseif($text=="追蹤保母"){
                     $replyMessage = "抱歉，此功能尚未製作";
                 }elseif($text=="家長注意事項"){
-                    $replyMessage = $this->basicMessage();
+                    $replyMessage = "";
+                    return response("OK");
                 }elseif($text=="保母注意事項"){
                     $replyMessage = $this->basicMessage();
                 }
@@ -113,15 +114,8 @@ class BabysitterWebhookController extends Controller
             "\n" .
             "如果您是保母，請使用[保母登錄]功能，進行登錄，並定期打卡，有利於查找時優先曝光！\n" .
             "\n" .
-            "如果您是家長，可直接使用[找保母]功能，開始進行查詢，請注意此系統沒有審核保母制度，請自行評估保母！\n" .
-            "家長找保母建議，先根據地區查詢後，如果有自行登錄的保母可以先詢問，其次才是去[衛福部托育媒合平台]找尋\n" .
-            "透過此系統可以先鎖定目標地區的保母基本資訊，再到[衛福部托育媒合平台]看看是否有聯絡方式\n" .
-            "真的沒有再打到[服務中心]看看是否有該保母的聯絡方式，[服務中心]也會給妳當下可以的保母\n" .
-            "\n" .
             "此系統目前皆為免費，如果有遇到相關收費資訊，都是詐騙！\n" .
-            "\n" .
             "如果真的遇到再通知我一下，謝謝。\n".
-            "\n" .
             "俊瑋 line_id:bill80362";
     }
 }

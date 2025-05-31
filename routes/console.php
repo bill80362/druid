@@ -8,5 +8,5 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote')->hourly();
 
 Artisan::command('load-taichung', function () {
-    $this->comment(\App\Console\Commands\Babysitter\BabysitterLoaderTaichung::class);
-})->purpose('載入台中保母資訊')->hourly();
+    $this->comment(\App\Console\Commands\Babysitter\BabysitterLoader::class);
+})->purpose('載入保母資訊')->everyTwoHours();
