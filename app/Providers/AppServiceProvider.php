@@ -24,6 +24,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
+        Paginator::useBootstrapFive();
+        //
         try{
             foreach (Permission::with(["group"])->get() as $permission){
                 Gate::define($permission?->group?->name."_".$permission->name, function (User $user) use ($permission) {

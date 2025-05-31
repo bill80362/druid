@@ -32,12 +32,12 @@ class BabysitterLoader extends Command
     {
         //
         $city = City::select(["id", "name"])
-            ->where("name",'台南市')
+            ->where("name",'高雄市')
             ->with(["regions"])->first();
         //
         $count = $city->regions?->count()??0;
         foreach ($city->regions??[] as $index => $region) {
-            if($index<=31) continue;
+            if($index<=2) continue;
             echo "正在執行{$city->name}{$region->name} 進度".($index+1)."/{$count}".PHP_EOL;
             $this->updateInfo($city->name, $region->name);
         }
