@@ -32,12 +32,12 @@ class BabysitterLoader extends Command
     {
         //
         $city = City::select(["id", "name"])
-            ->where("name",'新北市')
+            ->where("name",'台南市')
             ->with(["regions"])->first();
         //
         $count = $city->regions?->count()??0;
         foreach ($city->regions??[] as $index => $region) {
-            if($index<=15) continue;
+            if($index<=31) continue;
             echo "正在執行{$city->name}{$region->name} 進度".($index+1)."/{$count}".PHP_EOL;
             $this->updateInfo($city->name, $region->name);
         }
@@ -60,12 +60,12 @@ class BabysitterLoader extends Command
         $html = $this->post($csrf, $cookieString, $city, $town, 0);
         //頁碼資訊
         preg_match_all('/ 筆資料．第 <span\s\s                class="text-danger">(\d*)\/(\d*)<\/span> 頁．每頁顯示 15 筆\s\s/', $html, $matches);
-        $nowPage = $matches[1][0];
+//        $nowPage = $matches[1][0];
         $total = $matches[2][0];
         //
         $data = $this->getInfo($html,$city, $town);
         for ($page = 1; $page < $total; $page++) {
-            sleep(rand(1, 1));
+//            sleep(rand(1, 1));
             $html = $this->post($csrf, $cookieString, $city, $town, $page);
             $infos = $this->getInfo($html,$city, $town);
             $data = array_merge($infos, $data);
