@@ -210,29 +210,30 @@ class LoadData
             $address = str_replace("臺", "台", $address);
             //
             foreach ($cities as $city) {
-                $city_id = $city->id;
                 if (str_starts_with($address, $city->name)) {
+                    //
+                    $city_id = $city->id;
                     $address = str_replace($city->name, "", $address);
+                    //
                     foreach ($city->regions ?? [] as $region) {
-                        $region_id = $region->id;
                         if (str_contains($address, $region->name)) {
+                            $region_id = $region->id;
                             $address = str_replace($region->name, "", $address);
                         }
                     }
                 }
             }
-            //地址和區域登錄和搜尋異常，清空地址
-            if(!$city_id || !$region_id){
-                $address = "";
-            }
-            $data[] = [
-                "id" => $ids[$key] ?? "",
-                "name" => $names[$key] ?? "",
-                "city_id" => $city_id,
-                "region_id" => $region_id,
-                "address" => $address,
-                "url" => "https://ncwisweb.sfaa.gov.tw/home/nanny/detail" . $urls[$key] ?? "",
-            ];
+            //有地址和區域才登錄
+//            if($city_id && $region_id){
+                $data[] = [
+                    "id" => $ids[$key] ?? "",
+                    "name" => $names[$key] ?? "",
+                    "city_id" => $city_id,
+                    "region_id" => $region_id,
+                    "address" => $address,
+                    "url" => "https://ncwisweb.sfaa.gov.tw/home/nanny/detail" . $urls[$key] ?? "",
+                ];
+//            }
         }
         //
         return $data;

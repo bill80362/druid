@@ -30,7 +30,7 @@ class BabysitterLoader extends Command
     {
         //
         $citys = City::select(["id", "name"])
-//            ->where("name",'台中市')
+            ->whereIn("name",['台中市','台北市','新北市'])
             ->with(["regions"])
             ->where("sort",">","1")
             ->orderBy("sort","desc")
