@@ -198,7 +198,7 @@ class LoadData
         preg_match_all('/托育服務地址｜">\d*(.*)<\/td>\s\s/', $html, $matches);
         $addresses = $matches[1] ?? [];
         //詳細地址
-        preg_match_all('/\'\/home\/nanny\/detail(.*)\'/', $html, $matches);
+        preg_match_all('/href=\"\/home\/nanny\/detail(.*)/', $html, $matches);
         $urls = $matches[1] ?? [];
         //
         $data = [];
@@ -224,7 +224,7 @@ class LoadData
                 }
             }
             //有地址和區域才登錄
-            if($city_id && $region_id){
+//            if($city_id && $region_id){
                 $data[] = [
                     "id" => $ids[$key] ?? "",
                     "name" => $names[$key] ?? "",
@@ -233,7 +233,7 @@ class LoadData
                     "address" => $address,
                     "url" => "https://ncwisweb.sfaa.gov.tw/home/nanny/detail" . $urls[$key] ?? "",
                 ];
-            }
+//            }
         }
         //
         return $data;
