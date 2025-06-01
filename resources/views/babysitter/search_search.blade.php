@@ -58,7 +58,7 @@
                                 </div>
                                 <h6 class="card-subtitle mb-2">{{$item->cellphone}}</h6>
                                 <h6 class="card-subtitle mb-2 text-muted">{{$item->addressCity?->name}}{{$item->addressRegion?->name}}{{$item->address}}</h6>
-                                <p class="card-text my-2">{!! nl2br($item->info) !!}</p>
+                                <p class="card-text my-2">{!! nl2br($item?->info??'') !!}</p>
                                 @if($item->cellphone)
                                     <a href="tel:{{$item->cellphone}}" class="card-link btn btn-sm btn-outline-primary">撥打</a>
                                 @endif

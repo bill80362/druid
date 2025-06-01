@@ -32,6 +32,7 @@ class BabysitterLoader extends Command
         $citys = City::select(["id", "name"])
 //            ->where("name",'台中市')
             ->with(["regions"])
+            ->where("sort",">","1")
             ->orderBy("sort","desc")
             ->get();
         //
