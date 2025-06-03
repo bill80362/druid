@@ -28,8 +28,8 @@ class BabysitterLoader extends Command
      */
     public function handle(LoadData $loadData)
     {
-        //
-        $cities = City::whereIn("name",['台中市','台北市','新北市','基隆市','桃園市','新竹縣','新竹市'])
+        //'桃園市','新竹縣','新竹市'
+        $cities = City::whereIn("name",['台中市','台北市','新北市','基隆市',])
             ->with(["regions"])
             ->where("sort",">","1")
             ->orderBy("sort","desc")
