@@ -60,7 +60,7 @@ class BabysitterCityTown extends Command
             $city->save();
         }
         //
-        foreach (["台北市","新北市","台中市","台南市","新竹市","新竹縣","桃園市"] as $cityName) {
+        foreach (["台北市","新北市","台中市","台南市","新竹市","新竹縣","桃園市","基隆市"] as $cityName) {
             $json = Storage::get($cityName.'.json');
             if($json){
                 $json = json_decode($json, true);
