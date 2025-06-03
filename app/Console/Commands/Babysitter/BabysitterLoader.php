@@ -29,18 +29,17 @@ class BabysitterLoader extends Command
     public function handle(LoadData $loadData)
     {
         //
-        $citys = City::select(["id", "name"])
-            ->whereIn("name",['台中市','台北市','新北市'])
+        $cities = City::whereIn("name",['台中市','台北市','新北市'])
             ->with(["regions"])
             ->where("sort",">","1")
             ->orderBy("sort","desc")
             ->get();
         //
-        foreach ($citys as $city) {
+        foreach ($cities as $city) {
             $count = $city->regions?->count()??0;
             foreach ($city->regions??[] as $index => $region) {
                 Log::info("正在執行{$city->name}{$region->name} 進度".($index+1)."/{$count}");
-                $loadData->updateInfo($city->name, $region->name);
+                $loadData->updateInfo($city, $region);
             }
         }
 

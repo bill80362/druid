@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 
 class LoadData
 {
-    public function updateInfo($city, $town)
+    public function updateInfo($city, $region)
     {
         //
         list($html, $cookies, $headers) = $this->get("https://ncwisweb.sfaa.gov.tw/home/nanny");
@@ -22,17 +22,17 @@ class LoadData
         foreach ($cookies as $key => $value) {
             $cookieString .= $key . "=" . $value . "; ";
         }
-        $html = $this->post($csrf, $cookieString, $city, $town, 0);
+        $html = $this->post($csrf, $cookieString, $city->slug, $region->slug, 0);
         //頁碼資訊
         preg_match_all('/ 筆資料．第 <span\s\s                class="text-danger">(\d*)\/(\d*)<\/span> 頁．每頁顯示 15 筆\s\s/', $html, $matches);
 //        $nowPage = $matches[1][0];
         $total = $matches[2][0];
         //
-        $data = $this->getInfo($html,$city, $town);
+        $data = $this->getInfo($html,$city->name, $region->name );
         for ($page = 1; $page < $total; $page++) {
 //            sleep(rand(1, 1));
-            $html = $this->post($csrf, $cookieString, $city, $town, $page);
-            $infos = $this->getInfo($html,$city, $town);
+            $html = $this->post($csrf, $cookieString, $city->slug, $region->slug, $page);
+            $infos = $this->getInfo($html,$city->name, $region->name );
             $data = array_merge($infos, $data);
         }
 //        dd($data);
@@ -108,44 +108,14 @@ class LoadData
         return [$body, $cookies, $headers];
     }
 
-    public function post($csrf, $cookieString, $cityName, $townName ,$page = 0)
+    public function post($csrf, $cookieString, $citySlug, $townSlug ,$page = 0)
     {
-        $cityIdSlug = [
-            '新北市' => '4bc1e2f27af6e832017af6eeff7a0172',
-            '台北市' => '4bc1e2f27af6e832017af6eeff750170',
-            '桃園市' => '4bc1e2f27af6e832017af6eeff7d0173',
-            '台中市' => '4bc1e2f27af6e832017af6eeff860176',
-            '台南市' => '4bc1e2f27af6e832017af6eeff4a0162',
-            '高雄市' => '4bc1e2f27af6e832017af6eeff8c0178',
-            '宜蘭縣' => '4bc1e2f27af6e832017af6eeff580166',
-            '新竹縣' => '4bc1e2f27af6e832017af6eeff890177',
-            '苗栗縣' => '4bc1e2f27af6e832017af6eeff72016f',
-            '彰化縣' => '4bc1e2f27af6e832017af6eeff5d0168',
-            '南投縣' => '4bc1e2f27af6e832017af6eeff830175',
-            '雲林縣' => '4bc1e2f27af6e832017af6eeff6f016e',
-            '嘉義縣' => '4bc1e2f27af6e832017af6eeff63016a',
-            '屏東縣' => '4bc1e2f27af6e832017af6eeff3e015d',
-            '台東縣' => '4bc1e2f27af6e832017af6eeff67016b',
-            '花蓮縣' => '4bc1e2f27af6e832017af6eeff600169',
-            '澎湖縣' => '4bc1e2f27af6e832017af6eeff770171',
-            '基隆市' => '4bc1e2f27af6e832017af6eeff460160',
-            '新竹市' => '4bc1e2f27af6e832017af6eeff480161',
-            '嘉義市' => '4bc1e2f27af6e832017af6eeff43015f',
-            '連江縣' => '4bc1e2f27af6e832017af6eeff6c016d',
-            '金門縣' => '4bc1e2f27af6e832017af6eeff38015c',
-        ];
-        //
-        $cityId = $cityIdSlug[$cityName];
-        $json = Storage::get('台中市.json');
-        $json = json_decode($json, true);
-        $json = collect($json)->pluck("id", "name")->toArray();
-        $townId = $json["北區"]??'';
         //
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "https://ncwisweb.sfaa.gov.tw/home/nanny");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, "_csrf={$csrf}&cityId={$cityId}&townId={$townId}&latitude=&longitude=&locateType=1&address=&distance=1.0&targetKind=1&careStatus=&cwregno=&cwregno2=&langFlag=&page=" . $page);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, "_csrf={$csrf}&cityId={$citySlug}&townId={$townSlug}&latitude=&longitude=&locateType=1&address=&distance=1.0&targetKind=1&careStatus=&cwregno=&cwregno2=&langFlag=&page=" . $page);
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
             "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
             "Accept-Language: zh-TW,zh-CN;q=0.9,zh;q=0.8,en-US;q=0.7,en;q=0.6",
