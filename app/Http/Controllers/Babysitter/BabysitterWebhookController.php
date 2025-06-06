@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Babysitter;
 
 use App\Http\Controllers\Controller;
 use App\Models\Babysitter\Babysitter;
+use App\Models\Babysitter\BabysitterSearchLog;
 use App\Models\Level;
 use App\Models\Line;
 use App\Models\LineMessages;
@@ -55,6 +56,9 @@ class BabysitterWebhookController extends Controller
                     return response("OK");
                 }elseif($text=="保母注意事項"){
                     $replyMessage = $this->basicMessage();
+                }elseif($text=="系統資訊"){
+                    $replyMessage = "保母自行登錄數:".Babysitter::where("status","Y")->count()."\n";
+                    $replyMessage .= "家長搜尋人數:".BabysitterSearchLog::select('line_user_id')->whereNotNull('line_user_id')->distinct()->count();
                 }
                 //
                 try{
