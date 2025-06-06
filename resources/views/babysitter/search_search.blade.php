@@ -104,13 +104,13 @@
                             <select class="form-control" name="filter_city" id="city" style="width: 120px;" onchange="updateRegionOptions(this.value)">
                                 <option value="0">不限制</option>
                                 @foreach(\App\Models\City::get() as $value)
-                                    <option value="{{$value->id}}" @selected($value->id==request()->get("filter_city"))>{{$value->name}}</option>
+                                    <option value="{{$value->id}}" @selected($value->id==$filter_city)>{{$value->name}}</option>
                                 @endforeach
                             </select>
                             <select class="form-control" name="filter_region" id="region" style="width: 120px;">
                                 <option value="0">不限制</option>
-                                @foreach(\App\Models\Region::where("city_id",request()->get("filter_city"))->get() as $value)
-                                    <option value="{{$value->id}}" @selected($value->id==request()->get("filter_region"))>{{$value->name}}</option>
+                                @foreach(\App\Models\Region::where("city_id",$filter_city)->get() as $value)
+                                    <option value="{{$value->id}}" @selected($value->id==$filter_region)>{{$value->name}}</option>
                                 @endforeach
                             </select>
                         </div>
