@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Babysitter;
 
 use App\Http\Controllers\Controller;
 use App\Models\Babysitter\Babysitter;
+use App\Models\Babysitter\BabysitterLike;
 use App\Models\Babysitter\BabysitterSearchLog;
 use App\Models\City;
 
@@ -38,12 +39,30 @@ class BabysitterSearchController extends Controller
         //
         $cities = City::select(["id","name"])->with(["regions"])->get();
         //
+        $likeIds = BabysitterLike::where("line_user_id",request()->get("userId"))->get()->pluck("babysitter_id")->toArray();
+        //
         return view('babysitter/search_search',[
             "paginator" => $paginator,
             "cities" => $cities,
             "filter_city" => $filter_city,
             "filter_region" => $filter_region,
+            "likeIds" => $likeIds,
         ]);
+    }
+    public function like()
+    {
+        $line_user_id = request()->get("line_user_id");
+        $babysitter_id = request()->get("babysitter_id");
+        $like_type = request()->get("like_type");
+        if($like_type==1){
+            $item = BabysitterLike::where("line_user_id",$line_user_id)->where("babysitter_id",$babysitter_id)->firstOrNew();
+            $item->line_user_id = $line_user_id;
+            $item->babysitter_id = $babysitter_id;
+            $item->save();
+        }elseif($like_type==2){
+            BabysitterLike::where("line_user_id",$line_user_id)->where("babysitter_id",$babysitter_id)->delete();
+        }
+        return response()->json(["success"=>true]);
     }
     public function searchSubmit()
     {

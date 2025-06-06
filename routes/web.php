@@ -9,6 +9,7 @@ Route::post('babysitter/login/submit', [\App\Http\Controllers\Babysitter\Babysit
 //找保母
 Route::get('babysitter/search/redirect', [\App\Http\Controllers\Babysitter\BabysitterSearchController::class, 'searchRedirect'])->name("babysitter.search.redirect");
 Route::get('babysitter/search/search', [\App\Http\Controllers\Babysitter\BabysitterSearchController::class, 'search'])->name("babysitter.search");
+Route::post('babysitter/search/like', [\App\Http\Controllers\Babysitter\BabysitterSearchController::class, 'like'])->name("babysitter.search.like");
 Route::post('babysitter/search/submit', [\App\Http\Controllers\Babysitter\BabysitterSearchController::class, 'searchSubmit'])->name("babysitter.search.submit");
 
 

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>找保母</title>
     @vite(['resources/css/app.scss', 'resources/js/app.js'])
 </head>
@@ -59,11 +60,14 @@
                                 <h6 class="card-subtitle mb-2">{{$item->cellphone}}</h6>
                                 <h6 class="card-subtitle mb-2 text-muted">{{$item->addressCity?->name}}{{$item->addressRegion?->name}}{{$item->address}}</h6>
                                 <p class="card-text my-2">{!! nl2br($item?->info??'') !!}</p>
-                                @if($item->cellphone)
-                                    <a href="tel:{{$item->cellphone}}" class="card-link btn btn-sm btn-outline-primary">撥打</a>
+                                {{--追蹤--}}
+                                <button type="button" class="card-link btn btn-sm btn-danger ms-1 likeBtn " @style(['display:none'=>!in_array($item->id,$likeIds)]) data-id="{{$item->id}}" data-like-type="2">取消追蹤</button>
+                                <button type="button" class="card-link btn btn-sm btn-outline-primary ms-1 likeBtn " @style(['display:none'=>in_array($item->id,$likeIds)])  data-id="{{$item->id}}" data-like-type="1">追蹤</button>
+                            @if($item->cellphone)
+                                    <a href="tel:{{$item->cellphone}}" class="card-link btn btn-sm btn-outline-primary ms-1">撥打</a>
                                 @endif
                                 @if($item->url)
-                                    <a target="_blank" href="{{$item->url}}" class="card-link btn btn-sm btn-outline-primary">詳細資訊</a>
+                                    <a target="_blank" href="{{$item->url}}" class="card-link btn btn-sm btn-outline-primary ms-1">詳細資訊</a>
                                 @endif
                             </div>
                         </div>
@@ -153,6 +157,46 @@
             }
         });
     }
+
+    // 處理所有追蹤按鈕的點擊事件
+    document.querySelectorAll('.likeBtn').forEach(button => {
+        button.addEventListener('click', function() {
+            const userId = '{{request()->get('userId')}}';
+            const babysitterId = this.getAttribute('data-id');
+            const likeType = this.getAttribute('data-like-type');
+
+            fetch('{{route("babysitter.search.like")}}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
+                body: JSON.stringify({
+                    like_type: likeType,
+                    line_user_id: userId,
+                    babysitter_id: babysitterId
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // 找到 data-like-type 的另一顆按鈕
+                const anotherType = likeType%2+1;
+                const likeButton = document.querySelector(`button[data-like-type="${anotherType}"][data-id="${babysitterId}"]`);
+                if (likeButton) {
+                    // 移除 display: none
+                    likeButton.style.display = '';
+                }
+                // 隱藏當前點擊的按鈕
+                this.style.display = 'none';
+
+                console.log('成功:', data);
+            })
+            .catch(error => {
+                console.error('錯誤:', error);
+            });
+        });
+    });
 </script>
 </body>
 </html>
+
