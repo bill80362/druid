@@ -53,6 +53,8 @@ class BabysitterSearchController extends Controller
             "filter_region" => $filter_region,
             "filter_show_like" => $filter_show_like,
             "likeIds" => $likeIds,
+            "userId" => request()->get('userId'),
+            "formAction" => route('babysitter.login.submit'),
         ]);
     }
     public function like()

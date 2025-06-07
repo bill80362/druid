@@ -12,10 +12,10 @@ Route::get('babysitter/search/search', [\App\Http\Controllers\Babysitter\Babysit
 Route::post('babysitter/search/like', [\App\Http\Controllers\Babysitter\BabysitterSearchController::class, 'like'])->name("babysitter.search.like");
 Route::post('babysitter/search/submit', [\App\Http\Controllers\Babysitter\BabysitterSearchController::class, 'searchSubmit'])->name("babysitter.search.submit");
 
+//首頁-找保母使用
+Route::get('/', [\App\Http\Controllers\Babysitter\BabysitterHomepageController::class, 'index'])->name("babysitter.homepage.index");;
 
 
-//首頁
-Route::view('/', 'welcome');
 
 //webhook
 Route::get('webhooks', [\App\Http\Controllers\Api\WebhookFbController::class, "verify"]);
