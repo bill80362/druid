@@ -50,7 +50,28 @@ class BabysitterWebhookController extends Controller
                         $replyMessage = "打卡失敗，請先登錄保母資訊。";
                     }
                 }elseif($text=="追蹤保母"){
-                    $replyMessage = "抱歉，此功能尚未製作";
+                    $replyMessage = "";
+                    $babysitters = Babysitter::whereIn("status",["Y","I"])
+                        ->with(["services","addressCity","addressRegion"])
+                        ->whereHas("likes", fn($q) => $q->where("line_user_id", $lineUserId ))
+                        ->get();
+                    foreach ($babysitters as $i => $babysitter) {
+                        $replyMessage .= ($i + 1) . ". " . $babysitter->name . "\n";
+                        if($babysitter->cellphone){
+                            $replyMessage .= $babysitter->cellphone . "\n";
+                        }
+                        $replyMessage .= $babysitter->addressCity?->name . $babysitter->addressRegion?->name . $babysitter->address . "\n";
+                        if($babysitter?->services?->pluck('name')?->implode(',')){
+                            $replyMessage .= $babysitter?->services?->pluck('name')?->implode('、') . "\n";
+                        }
+                        if($babysitter->url){
+                            $replyMessage .= $babysitter->url . "\n";
+                        }
+                        $replyMessage .= "\n";
+                    }
+                    if(!$replyMessage){
+                        $replyMessage = "目前沒有追蹤中的保母";
+                    }
                 }elseif($text=="家長注意事項"){
                     $replyMessage = "";
                     return response("OK");
