@@ -54,7 +54,8 @@ class BabysitterSearchController extends Controller
             "filter_show_like" => $filter_show_like,
             "likeIds" => $likeIds,
             "userId" => request()->get('userId'),
-            "formAction" => route('babysitter.login.submit'),
+            "city" => $filter_city?\App\Models\City::find($filter_city):null,
+            "region" => $filter_region?\App\Models\Region::find($filter_region):null,
         ]);
     }
     public function like()

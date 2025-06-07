@@ -4,7 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>找保母</title>
+    <title>{{ $city?->name }}{{ $region?->name }}找保母 - 專業保母媒合平台，免費登錄、迅速媒合</title>
+    <meta name="description" content="尋找{{ $city?->name }}{{ $region?->name }}保母，讓您安心工作無後顧之憂。免費登錄，迅速媒合。">
+    <meta name="keywords" content="保母, 托育, 照顧, 保姆, 育兒, {{ $city?->name}}, {{ $region?->name }}">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="{{ $city?->name }}{{ $region?->name }}找保母 - 專業保母媒合平台，免費登錄、迅速媒合">
+    <meta property="og:description" content="尋找{{ $city?->name }}{{ $region?->name }}保母，免費登錄、迅速媒合。">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ url()->current() }}">
+    <meta property="twitter:title" content="{{ $city?->name }}{{ $region?->name }}找保母 - 專業保母媒合平台，免費登錄、迅速媒合">
+    <meta property="twitter:description" content="尋找{{ $city?->name }}{{ $region?->name }}保母，免費登錄、迅速媒合。">
+
+    <link rel="canonical" href="{{ url()->current() }}">
+
     @vite(['resources/css/app.scss', 'resources/js/app.js'])
 </head>
 <body>
@@ -24,91 +41,88 @@
         @endforeach
     </div>
 @endif
-<form method="post" name="userId" action="{{$formAction}}">
-    @csrf
-    @if($userId)
-    <input type="hidden" name="userId" value="{{$userId}}">
-    @endif
-    <div class="card m-3">
-        <div class="card-header">
-            <div class="flex justify-content-between">
-                <div>
-                    找保母
-                </div>
-                <div>
-                    <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">搜尋條件</button>
-                </div>
+
+<div class="card m-3">
+    <div class="card-header">
+        <div class="flex justify-content-between">
+            <div>
+                {{ $city?->name }}{{ $region?->name }}找保母、免費登錄、迅速媒合 <a target="_blank" href="https://goodbodytw.com">https://goodbodytw.com</a>
+            </div>
+            <div>
+                <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">搜尋條件</button>
             </div>
         </div>
-        <div class="card-body">
-            @if($userId)
-                <div class="row">
-                    <div class="col-12 mb-2">
-                        <h5 class="text-danger">注意：衛福部的網站被line視為不安全，因此出現『此網站不安全』，請選擇使用預設瀏覽器開啟就可以了。</h5>
-                    </div>
-                </div>
-            @else
-                <div class="row">
-                    <div class="col-12 mb-2">
-                        <h5 class="text-danger">如果您是保母，歡迎<a target="_blank" href="https://lin.ee/fJCswPC">加入Line(ID:@926shklf)</a>，進行免費登錄，就可以在這邊被找到囉！</h5>
-                    </div>
-                </div>
-            @endif
+    </div>
+    <div class="card-body">
+        @if($userId)
             <div class="row">
-                @foreach($paginator as $item)
+                <div class="col-12 mb-2">
+                    <h5 class="text-danger">注意：衛福部的網站被line視為不安全，因此出現『此網站不安全』，請選擇使用預設瀏覽器開啟就可以了。(不是每個手機都會發生)</h5>
+                    <h5 class="text-danger">另一個方式，不要使用Line瀏覽器，使用一般瀏覽器到<a target="_blank" href="https://goodbodytw.com">https://goodbodytw.com</a>進行尋找保母</h5>
+                </div>
+            </div>
+        @else
+            <div class="row">
+                <div class="col-12 mb-2">
+                    <h5 class="text-danger">如果您是保母，歡迎<a target="_blank" href="https://lin.ee/fJCswPC">加入Line(ID:@926shklf)</a>，進行免費登錄，就可以在這邊被找到囉！</h5>
+                </div>
+            </div>
+        @endif
+        <div class="row">
+            @foreach($paginator as $item)
                 <div class="col-12 col-md-6 col-lg-4">
-                        <div class="card mb-2">
-                            <div class="card-body">
-                                <div class="flex justify-content-between mb-2">
-                                    <div>{{$item->name}}</div>
-                                    <div>
-                                        @foreach($item?->services??[] as $service)
-                                            <span class="badge bg-primary">{{$service->name}}</span>
-                                        @endforeach
-                                    </div>
+                    <div class="card mb-2">
+                        <div class="card-body">
+                            <div class="flex justify-content-between mb-2">
+                                <div>{{$item->name}}</div>
+                                <div>
+                                    @foreach($item?->services??[] as $service)
+                                        <span class="badge bg-primary">{{$service->name}}</span>
+                                    @endforeach
                                 </div>
-                                <h6 class="card-subtitle mb-2">{{$item->cellphone}}</h6>
-                                <h6 class="card-subtitle mb-2 text-muted">{{$item->addressCity?->name}}{{$item->addressRegion?->name}}{{$item->address}}</h6>
-                                <p class="card-text my-2">{!! nl2br($item?->info??'') !!}</p>
-                                @if($userId)
-                                    {{--追蹤--}}
-                                    <button type="button" class="card-link btn btn-sm btn-danger ms-1 likeBtn " @style(['display:none'=>!in_array($item->id,$likeIds)]) data-id="{{$item->id}}" data-like-type="2">取消追蹤</button>
-                                    <button type="button" class="card-link btn btn-sm btn-outline-primary ms-1 likeBtn " @style(['display:none'=>in_array($item->id,$likeIds)])  data-id="{{$item->id}}" data-like-type="1">追蹤</button>
-                                @else
-                                    <button type="button" class="card-link btn btn-sm btn-outline-primary ms-1 " onclick="alert('請使用line才能開啟此功能')">追蹤</button>
-                                @endif
-
-                                @if($item->cellphone)
-                                    <a href="tel:{{$item->cellphone}}" class="card-link btn btn-sm btn-outline-primary ms-1">撥打</a>
-                                @endif
-                                @if($item->url)
-                                    <a target="_blank" href="{{$item->url}}" class="card-link btn btn-sm btn-outline-primary ms-1">詳細資訊</a>
-                                @endif
                             </div>
+                            <h6 class="card-subtitle mb-2">{{$item->cellphone}}</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">{{$item->addressCity?->name}}{{$item->addressRegion?->name}}{{$item->address}}</h6>
+                            <p class="card-text my-2">{!! nl2br($item?->info??'') !!}</p>
+                            @if($userId)
+                                {{--追蹤--}}
+                                <button type="button" class="card-link btn btn-sm btn-danger ms-1 likeBtn " @style(['display:none'=>!in_array($item->id,$likeIds)]) data-id="{{$item->id}}" data-like-type="2">取消追蹤</button>
+                                <button type="button" class="card-link btn btn-sm btn-outline-primary ms-1 likeBtn " @style(['display:none'=>in_array($item->id,$likeIds)])  data-id="{{$item->id}}" data-like-type="1">追蹤</button>
+                            @else
+                                <button type="button" class="card-link btn btn-sm btn-outline-primary ms-1 " onclick="alert('請使用line才能開啟此功能')">追蹤</button>
+                            @endif
+
+                            @if($item->cellphone)
+                                <a href="tel:{{$item->cellphone}}" class="card-link btn btn-sm btn-outline-primary ms-1">撥打</a>
+                            @endif
+                            @if($item->url)
+                                <a target="_blank" href="{{$item->url}}" class="card-link btn btn-sm btn-outline-primary ms-1">詳細資訊</a>
+                            @endif
                         </div>
+                    </div>
 
                 </div>
-                @endforeach
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    {{ $paginator->links() }}
-                </div>
-            </div>
-
+            @endforeach
         </div>
-        <div class="card-footer">
-
+        <div class="row">
+            <div class="col-12">
+                {{ $paginator->links() }}
+            </div>
         </div>
-    </div>
-    <div style="height: 100px;">
 
     </div>
-</form>
+    <div class="card-footer">
+
+    </div>
+</div>
+<div style="height: 100px;"></div>
+
 
 <!-- Modal -->
 <form>
-    <input type="hidden" name="userId" value="{{$userId}}">
+    @if($userId)
+        <input type="hidden" name="userId" value="{{$userId}}">
+    @endif
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -227,6 +241,24 @@
     @endif
 
 </script>
+
+<!-- 結構化資料標記 -->
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "{{ $city?->name }}{{ $region?->name }}找保母，專業保母媒合平台，免費登錄、迅速媒合",
+      "description": "提供{{ $city?->name }}{{ $region?->name }}地區的專業保母媒合服務，幫助家長尋找合適的托育人員。",
+      "provider": {
+        "@type": "Organization",
+        "name": "專業保母媒合平台",
+        "url": "{{ url('/') }}"
+      },
+      "areaServed": "{{ $city?->name }}{{ $region?->name }}",
+      "serviceType": "托育媒合服務"
+    }
+</script>
+
 </body>
 </html>
 

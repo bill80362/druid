@@ -33,7 +33,8 @@ class BabysitterHomepageController extends Controller
             "filter_show_like" => "",
             "likeIds" => [],
             "userId" => "",
-            "formAction" => route('babysitter.login.submit'),
+            "city" => $filter_city?\App\Models\City::find($filter_city):null,
+            "region" => $filter_region?\App\Models\Region::find($filter_region):null,
         ]);
     }
 
