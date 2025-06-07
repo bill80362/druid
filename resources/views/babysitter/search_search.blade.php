@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ $city?->name }}{{ $region?->name }}找保母 - 專業保母媒合平台，免費登錄、迅速媒合</title>
-    <meta name="description" content="尋找{{ $city?->name }}{{ $region?->name }}保母，讓您安心工作無後顧之憂。免費登錄，迅速媒合。">
+    <meta name="description" content="尋找{{ $city?->name }}{{ $region?->name }}保母，讓您安心工作無後顧之憂。免費登錄、迅速媒合。">
     <meta name="keywords" content="保母, 托育, 照顧, 保姆, 育兒, {{ $city?->name}}, {{ $region?->name }}">
+    <link rel="icon" href="{{ asset('/logo/logo_50.png') }}" type="image/png">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -45,8 +46,11 @@
 <div class="card m-3">
     <div class="card-header">
         <div class="flex justify-content-between">
-            <div>
-                {{ $city?->name }}{{ $region?->name }}找保母、免費登錄、迅速媒合 <a target="_blank" href="https://goodbodytw.com">https://goodbodytw.com</a>
+            <div class="d-flex align-items-center">
+                <img src="{{ asset('/logo/logo_50.png') }}" alt="logo" class="me-2" />
+                <div>
+                    {{ $city?->name }}{{ $region?->name }}找保母、免費登錄、迅速媒合 <a target="_blank" href="https://goodbodytw.com">https://goodbodytw.com</a>
+                </div>
             </div>
             <div>
                 <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">搜尋條件</button>
