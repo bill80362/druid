@@ -38,4 +38,8 @@ class Babysitter extends Model
     {
         return $this->belongsTo(Region::class, 'region');
     }
+    public function likes(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(BabysitterLike::class);
+    }
 }

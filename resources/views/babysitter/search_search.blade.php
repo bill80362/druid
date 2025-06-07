@@ -121,6 +121,16 @@
                         <small class="text-danger">@error('filter_city') {{ $message['filter_city']??"" }} @enderror</small>
                         <small class="text-danger">@error('filter_region') {{ $message['filter_region']??"" }} @enderror</small>
                     </div>
+                    <div class="form-group mb-2">
+                        <label>追蹤</label>
+                        <div class="input-group">
+                            <select class="form-control" name="filter_show_like">
+                                <option value="0" @selected(1!=$filter_show_like)>全部</option>
+                                <option value="1" @selected(1==$filter_show_like)>追蹤中</option>
+                            </select>
+                        </div>
+                        <small class="text-danger">@error('filter_show_like') {{ $message['filter_show_like']??"" }} @enderror</small>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">篩選</button>
