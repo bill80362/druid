@@ -168,7 +168,7 @@ class LoadData
         preg_match_all('/托育服務地址｜">\d*(.*)<\/td>\s\s/', $html, $matches);
         $addresses = $matches[1] ?? [];
         //詳細地址
-        preg_match_all('/href=\"\/home\/nanny\/detail(.*)/', $html, $matches);
+        preg_match_all('/href=\"\/home\/nanny\/detail(.*)\"/', $html, $matches);
         $urls = $matches[1] ?? [];
         //
         $data = [];
