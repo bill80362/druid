@@ -63,12 +63,14 @@
                 <div class="col-12 mb-2">
                     <h5 class="text-danger">注意：衛福部的網站被line視為不安全，因此出現『此網站不安全』，請選擇使用預設瀏覽器開啟就可以了。(不是每個手機都會發生)</h5>
                     <h5 class="text-danger">另一個方式，不要使用Line瀏覽器，使用一般瀏覽器到<a target="_blank" href="https://goodbodytw.com">https://goodbodytw.com</a>進行尋找保母</h5>
+                    <h5 class="text-danger">如為自行登錄，需自行注意是否為合法可申請補助之保母</h5>
                 </div>
             </div>
         @else
             <div class="row">
                 <div class="col-12 mb-2">
                     <h5 class="text-danger">如果您是保母，歡迎<a target="_blank" href="https://lin.ee/fJCswPC">加入Line(ID:@926shklf)</a>，進行免費登錄，就可以在這邊被找到囉！</h5>
+                    <h5 class="text-danger">如為自行登錄，需自行注意是否為合法可申請補助之保母</h5>
                 </div>
             </div>
         @endif
@@ -87,7 +89,12 @@
                             </div>
                             <h6 class="card-subtitle mb-2">{{$item->cellphone}}</h6>
                             <h6 class="card-subtitle mb-2 text-muted">{{$item->addressCity?->name}}{{$item->addressRegion?->name}}{{$item->address}}</h6>
-                            <p class="card-text my-2">{!! nl2br($item?->info??'') !!}</p>
+                            <p class="card-text my-2">
+                                @if($item->status=="Y")
+                                    資料來源：自行登錄<br/>
+                                @endif
+                                {!! nl2br($item?->info??'') !!}
+                            </p>
                             @if($userId)
                                 {{--追蹤--}}
                                 <button type="button" class="card-link btn btn-sm btn-danger ms-1 likeBtn " @style(['display:none'=>!in_array($item->id,$likeIds)]) data-id="{{$item->id}}" data-like-type="2">取消追蹤</button>
