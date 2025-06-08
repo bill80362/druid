@@ -73,10 +73,16 @@ class BabysitterWebhookController extends Controller
                         $replyMessage = "目前沒有追蹤中的保母";
                     }
                 }elseif($text=="家長注意事項"){
-                    $replyMessage = "";
-                    return response("OK");
+                    $replyMessage = "家長你好，感謝使用本系統，保母資訊來源為保母自行登錄，請自行評估保母是否為合法保母\n" .
+                        "如有遇到有問題的保母，煩請通報管理員。\n" .
+                        "此系統目前皆為免費，如果有遇到相關收費資訊，都是詐騙！\n" .
+                        "如果真的遇到煩請通報管理員，謝謝。";
                 }elseif($text=="保母注意事項"){
-                    $replyMessage = $this->basicMessage();
+                    $replyMessage = "您好，感謝使用本系統，保母刊登之資料，請符合法規。\n" .
+                        "保母如上傳包含個人資料，未來如果不想出現請在刊登介面自行刪除即可，本系統不會備份\n" .
+                        "如有遭遇到檢舉或違反法規之情事，本系統有停止您刊登資料之權利。\n" .
+                        "此系統目前皆為免費，如果有遇到相關收費資訊，都是詐騙！\n" .
+                        "如果真的遇到煩請通報管理員，謝謝。";
                 }elseif($text=="系統資訊"){
                     $replyMessage = "保母自行登錄數:".Babysitter::where("status","Y")->count()."\n";
                     $replyMessage .= "家長搜尋人數:".BabysitterSearchLog::select('line_user_id')->whereNotNull('line_user_id')->distinct()->count();
