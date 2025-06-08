@@ -132,14 +132,10 @@ class BabysitterWebhookController extends Controller
 
     public function basicMessage(): string
     {
-        return "你好，感謝使用本系統，保母資訊來源為：\n" .
-            "1.政府的媒合平台\n" .
-            "https://ncwisweb.sfaa.gov.tw/home/nanny\n" .
-            "2.保母自行登錄\n" .
-            "\n" .
-            "如果您是保母，請使用[保母登錄]功能，進行登錄，並定期打卡，有利於查找時優先曝光！\n" .
+        return "你好，感謝使用本系統，保母資訊來源為保母自行登錄，請自行評估保母是否為合法保母\n" .
             "\n" .
             "此系統目前皆為免費，如果有遇到相關收費資訊，都是詐騙！\n" .
+            "\n" .
             "如果真的遇到再通知我一下，謝謝。\n".
             "俊瑋 line_id:bill80362";
     }

@@ -5,3 +5,7 @@
 LINE官方帳號連結:https://lin.ee/fJCswPC
 Line ID:@926shklf
 
+
+###
+
+-*/30 * * * * /usr/bin/php83 /home/bill/druid/artisan load:data > /dev/null 2>&1
